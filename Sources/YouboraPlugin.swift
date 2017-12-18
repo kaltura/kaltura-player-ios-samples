@@ -9,6 +9,7 @@
 // ===================================================================================================
 
 import PlayKit
+import SwiftyJSON
 
 public class YouboraPlugin: BasePlugin, AppStateObservable {
     
@@ -42,9 +43,15 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     /************************************************************/
     
     @objc public required init(player: Player, pluginConfig: Any?, messageBus: MessageBus) throws {
-        guard let config = pluginConfig as? AnalyticsConfig else {
+        var _analyticsConfig: AnalyticsConfig?
+        if let json = pluginConfig as? JSON {
+            _analyticsConfig = YouboraPlugin.parse(json: json)
+        } else {
+            _analyticsConfig = pluginConfig as? AnalyticsConfig
+        }
+        guard let config = _analyticsConfig else {
             PKLog.error("missing plugin config")
-            throw PKPluginError.missingPluginConfig(pluginName: YouboraPlugin.pluginName)
+            throw PKPluginError.missingPluginConfig(pluginName: YouboraPlugin.pluginName).asNSError
         }
         self.config = config
         /// initialize youbora components
@@ -64,6 +71,19 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         AppStateSubject.shared.add(observer: self)
         
         self.setupYoubora(withConfig: config)
+    }
+    
+    private static func parse(json: JSON) -> AnalyticsConfig? {
+        var _params: [String : Any]?
+        do {
+            _params = try JSONSerialization.jsonObject(with: json.rawData(), options: [JSONSerialization.ReadingOptions.mutableContainers, JSONSerialization.ReadingOptions.mutableLeaves]) as? [String : Any]
+        } catch {
+            return nil
+        }
+        guard let params = _params else {
+            return nil
+        }
+        return AnalyticsConfig(params: params)
     }
     
     @objc public override func onUpdateMedia(mediaConfig: MediaConfig) {
