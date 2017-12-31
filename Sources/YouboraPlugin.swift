@@ -45,7 +45,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     @objc public required init(player: Player, pluginConfig: Any?, messageBus: MessageBus) throws {
         var _analyticsConfig: AnalyticsConfig?
         if let json = pluginConfig as? JSON {
-            _analyticsConfig = YouboraPlugin.parse(json: json)
+            _analyticsConfig = AnalyticsConfig.parse(json: json)
         } else {
             _analyticsConfig = pluginConfig as? AnalyticsConfig
         }
@@ -71,19 +71,6 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         AppStateSubject.shared.add(observer: self)
         
         self.setupYoubora(withConfig: config)
-    }
-    
-    private static func parse(json: JSON) -> AnalyticsConfig? {
-        var _params: [String : Any]?
-        do {
-            _params = try JSONSerialization.jsonObject(with: json.rawData(), options: [JSONSerialization.ReadingOptions.mutableContainers, JSONSerialization.ReadingOptions.mutableLeaves]) as? [String : Any]
-        } catch {
-            return nil
-        }
-        guard let params = _params else {
-            return nil
-        }
-        return AnalyticsConfig(params: params)
     }
     
     @objc public override func onUpdateMedia(mediaConfig: MediaConfig) {
