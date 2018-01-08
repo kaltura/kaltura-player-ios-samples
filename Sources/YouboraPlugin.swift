@@ -42,7 +42,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     // MARK: - PKPlugin
     /************************************************************/
     
-    @objc public required init(player: Player, pluginConfig: Any?, messageBus: MessageBus) throws {
+    @objc public required init(player: Player, pluginConfig: Any?, messageBus: MessageBus, tokenReplacer: TokenReplacer?) throws {
         var _analyticsConfig: AnalyticsConfig?
         if let json = pluginConfig as? JSON {
             _analyticsConfig = AnalyticsConfig.parse(json: json)
@@ -63,7 +63,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
             self.youboraManager.adnalyzer = self.adnalyzerManager
         }
         
-        try super.init(player: player, pluginConfig: pluginConfig, messageBus: messageBus)
+        try super.init(player: player, pluginConfig: pluginConfig, messageBus: messageBus, tokenReplacer: tokenReplacer)
         
         // start monitoring for events
         self.startMonitoring()
