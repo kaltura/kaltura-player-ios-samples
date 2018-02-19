@@ -18,7 +18,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     }
     
     @objc public override class var pluginName: String {
-        return "YouboraPlugin"
+        return "youbora"
     }
     
     /// The key for enabling adnalyzer in the config dictionary
