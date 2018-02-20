@@ -11,7 +11,7 @@
 import PlayKit
 import SwiftyJSON
 
-public class YouboraPlugin: BasePlugin, AppStateObservable {
+public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
     
     struct CustomPropertyKey {
         static let sessionId = "sessionId"
@@ -71,6 +71,26 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         AppStateSubject.shared.add(observer: self)
         
         self.setupYoubora(withConfig: config)
+    }
+    
+    public static func merge(uiConf: Any, appConf: Any) -> Any? {
+        var uiConfig: AnalyticsConfig?
+        if uiConf is JSON {
+            uiConfig = AnalyticsConfig.parse(json: uiConf as! JSON)
+        } else {
+            uiConfig = uiConf as? AnalyticsConfig
+        }
+        guard uiConfig != nil else { return appConf }
+        
+        var appConfig: AnalyticsConfig?
+        if appConf is JSON {
+            appConfig = AnalyticsConfig.parse(json: appConf as! JSON)
+        } else {
+            appConfig = appConf as? AnalyticsConfig
+        }
+        guard appConfig != nil else { return uiConfig }
+        
+        return uiConfig?.merge(config: appConfig!)
     }
     
     @objc public override func onUpdateMedia(mediaConfig: MediaConfig) {
