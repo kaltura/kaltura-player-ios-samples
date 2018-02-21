@@ -72,25 +72,12 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
         
         self.setupYoubora(withConfig: config)
     }
+    public static func parse(json: Any) -> PKPluginConfigMerge? {
+        return AnalyticsConfig.parse(json: json as! JSON)
+    }
     
-    public static func merge(uiConf: Any, appConf: Any) -> Any? {
-        var uiConfig: AnalyticsConfig?
-        if uiConf is JSON {
-            uiConfig = AnalyticsConfig.parse(json: uiConf as! JSON)
-        } else {
-            uiConfig = uiConf as? AnalyticsConfig
-        }
-        guard uiConfig != nil else { return appConf }
-        
-        var appConfig: AnalyticsConfig?
-        if appConf is JSON {
-            appConfig = AnalyticsConfig.parse(json: appConf as! JSON)
-        } else {
-            appConfig = appConf as? AnalyticsConfig
-        }
-        guard appConfig != nil else { return uiConfig }
-        
-        return uiConfig?.merge(config: appConfig!)
+    public static func cast(uiConf: Any) -> PKPluginConfigMerge? {
+        return uiConf as? AnalyticsConfig
     }
     
     @objc public override func onUpdateMedia(mediaConfig: MediaConfig) {
