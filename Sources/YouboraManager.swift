@@ -166,7 +166,7 @@ extension YouboraManager {
                     // play handler to start when asset starts loading.
                     // this point is the closest point to prepare call.
                     strongSelf.playHandler()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.stopped:
                 self.messageBus?.addObserver(self, events: [e.self]) { [weak self] event in
@@ -174,13 +174,13 @@ extension YouboraManager {
                     // we must call `endedHandler()` when stopped so youbora will know player stopped playing content.
                     strongSelf.adnalyzer?.endedAdHandler()
                     strongSelf.endedHandler()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.pause:
                 self.messageBus?.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let strongSelf = self else { return }
                     strongSelf.pauseHandler()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.playing:
                 self.messageBus?.addObserver(self, events: [e.self]) { [weak self] event in
@@ -192,19 +192,19 @@ extension YouboraManager {
                     } else {
                         strongSelf.resumeHandler()
                     }
-                    strongSelf.postEventLog(withMessage: "\(String(describing: event.namespace)))")
+                    strongSelf.postEventLog(withMessage: "\(String(describing: event.namespace))")
                 }
             case let e where e.self == PlayerEvent.seeking:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let strongSelf = self else { return }
                     strongSelf.seekingHandler()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.seeked:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let strongSelf = self else { return }
                     strongSelf.seekedHandler()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.ended:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
@@ -212,13 +212,13 @@ extension YouboraManager {
                     if !strongSelf.shouldDelayEndedHandler {
                         strongSelf.endedHandler()
                     }
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.playbackInfo:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let strongSelf = self else { return }
                     strongSelf.playbackInfo = event.playbackInfo
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.stateChanged:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
@@ -232,7 +232,7 @@ extension YouboraManager {
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let strongSelf = self else { return }
                     self?.lastReportedResource = event.mediaSource?.playbackUrl?.absoluteString
-                    strongSelf.postEventLog(withMessage: "\(event.namespace))")
+                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.error:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
