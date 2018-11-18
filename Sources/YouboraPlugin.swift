@@ -1,7 +1,7 @@
 // ===================================================================================================
 // Copyright (C) 2017 Kaltura Inc.
 //
-// Licensed under the AGPLv3 license, unless a different license for a
+// Licensed under the AGPLv3 license, unless a different license for a 
 // particular library is specified in the applicable library path.
 //
 // You may obtain a copy of the License at
@@ -9,22 +9,21 @@
 // ===================================================================================================
 
 import PlayKit
-import SwiftyJSON
 
-public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
+public class YouboraPlugin: BasePlugin, AppStateObservable {
     
     struct CustomPropertyKey {
         static let sessionId = "sessionId"
     }
     
-    @objc public override class var pluginName: String {
-        return "youbora"
+    public override class var pluginName: String {
+        return "YouboraPlugin"
     }
     
     /// The key for enabling adnalyzer in the config dictionary
     @objc public static let enableSmartAdsKey = "enableSmartAds"
     
-    @objc public static let kaltura = "kaltura"
+    public static let kaltura = "kaltura"
     
     /// The youbora plugin inheriting from `YBPluginGeneric`
     /// - important: Make sure to call `playHandler()` at the start of any flow before everying
@@ -42,16 +41,10 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
     // MARK: - PKPlugin
     /************************************************************/
     
-    @objc public required init(player: Player, pluginConfig: Any?, messageBus: MessageBus, tokenReplacer: TokenReplacer?) throws {
-        var _analyticsConfig: AnalyticsConfig?
-        if let json = pluginConfig as? JSON {
-            _analyticsConfig = AnalyticsConfig.parse(json: json)
-        } else {
-            _analyticsConfig = pluginConfig as? AnalyticsConfig
-        }
-        guard let config = _analyticsConfig else {
+    public required init(player: Player, pluginConfig: Any?, messageBus: MessageBus) throws {
+        guard let config = pluginConfig as? AnalyticsConfig else {
             PKLog.error("missing plugin config")
-            throw PKPluginError.missingPluginConfig(pluginName: YouboraPlugin.pluginName).asNSError
+            throw PKPluginError.missingPluginConfig(pluginName: YouboraPlugin.pluginName)
         }
         self.config = config
         /// initialize youbora components
@@ -63,7 +56,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
             self.youboraManager.adnalyzer = self.adnalyzerManager
         }
         
-        try super.init(player: player, pluginConfig: pluginConfig, messageBus: messageBus, tokenReplacer: tokenReplacer)
+        try super.init(player: player, pluginConfig: pluginConfig, messageBus: messageBus)
         
         // start monitoring for events
         self.startMonitoring()
@@ -72,15 +65,8 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
         
         self.setupYoubora(withConfig: config)
     }
-    public static func parse(json: Any) -> PKPluginConfigMerge? {
-        return AnalyticsConfig.parse(json: json as! JSON)
-    }
     
-    public static func cast(uiConf: Any) -> PKPluginConfigMerge? {
-        return uiConf as? AnalyticsConfig
-    }
-    
-    @objc public override func onUpdateMedia(mediaConfig: MediaConfig) {
+    public override func onUpdateMedia(mediaConfig: MediaConfig) {
         super.onUpdateMedia(mediaConfig: mediaConfig)
         // in case we stopped playback in the middle call eneded handlers and reset state.
         self.endedHandler()
@@ -89,11 +75,11 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
         self.setupYoubora(withConfig: self.config)
     }
     
-    @objc public override func onUpdateConfig(pluginConfig: Any) {
+    public override func onUpdateConfig(pluginConfig: Any) {
         super.onUpdateConfig(pluginConfig: pluginConfig)
         guard let config = pluginConfig as? AnalyticsConfig else {
             PKLog.error("wrong config, could not setup youbora manager")
-            self.messageBus?.post(PlayerEvent.PluginError(nsError: YouboraPluginError.failedToSetupYouboraManager.asNSError))
+            self.messageBus?.post(PluginEvent.Error(nsError: YouboraPluginError.failedToSetupYouboraManager.asNSError))
             return
         }
         self.config = config
@@ -111,7 +97,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
         }
     }
     
-    @objc public override func destroy() {
+    public override func destroy() {
         // we must call `endedHandler()` when destroyed so youbora will know player stopped playing content.
         self.endedHandler()
         self.stopMonitoring()
@@ -202,4 +188,3 @@ public class YouboraPlugin: BasePlugin, AppStateObservable, PKPluginMerge {
         }
     }
 }
-
