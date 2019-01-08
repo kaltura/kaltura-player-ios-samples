@@ -1,5 +1,5 @@
 //
-//  YouboraConfig.swift
+//  PKYouboraConfig.swift
 //  Pods
 //
 //  Created by Nilit Danan on 5/8/18.
@@ -7,28 +7,27 @@
 
 import YouboraLib
 
-struct YouboraConfig: Decodable {
-    let accountCode: String
-    let username: String?
-    let userType: String?
-    let houseHoldId: String?
-    let obfuscateIP: Bool?
-    let httpSecure: Bool = true
+struct PKYouboraConfig: Decodable {
+    let youboraConfig: YouboraConfig?
     let media: Media?
     let ads: Ads?
     let properties: Properties?
     let extraParams: ExtraParams?
-    
+    let houseHoldId: String?
+
     func options() -> YBOptions {
         let options = YBOptions()
         
-        options.accountCode = accountCode
-        options.username = username
-        options.userType = userType
-        options.networkObfuscateIp = obfuscateIP != nil ? NSNumber(booleanLiteral: obfuscateIP!) : nil
+        if let youboraConfig = youboraConfig {
+            options.accountCode = youboraConfig.accountCode
+            options.username = youboraConfig.username
+            options.userType = youboraConfig.userType
+            options.networkObfuscateIp = youboraConfig.obfuscateIP != nil ? NSNumber(booleanLiteral: youboraConfig.obfuscateIP!) : nil
+            options.httpSecure = youboraConfig.httpSecure ?? true
+        }
+        
         options.parseHls = false
         options.parseCdnNode = false
-        options.httpSecure = httpSecure
         
         options.deviceCode = nil // List of device codes http://mapi.youbora.com:8081/devices
         options.contentCdn = nil
@@ -63,7 +62,7 @@ struct YouboraConfig: Decodable {
             options.contentMetadata = ["genre": properties.genre ?? "",
                                        "type": properties.type ?? "",
                                        "transaction_type": properties.transactionType ?? "",
-                                       "year": properties.year ?? "",
+                                       "year": String(describing: properties.year),
                                        "cast": properties.cast ?? "",
                                        "director": properties.director ?? "",
                                        "owner": properties.owner ?? "",
@@ -93,6 +92,14 @@ struct YouboraConfig: Decodable {
     }
 }
 
+struct YouboraConfig: Decodable {
+    let accountCode: String
+    let username: String?
+    let userType: String?
+    let obfuscateIP: Bool?
+    let httpSecure: Bool? = true
+}
+
 struct Media: Decodable {
     let resource: String?
     let isLive: Bool?
@@ -112,7 +119,7 @@ struct Properties: Decodable {
     let genre: String?
     let type: String?
     let transactionType: String?
-    let year: String?
+    let year: Int?
     let cast: String?
     let director: String?
     let owner: String?

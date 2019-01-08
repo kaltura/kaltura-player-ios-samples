@@ -37,7 +37,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     
     /// The plugin's config
     var config: AnalyticsConfig
-    var youboraConfig: YouboraConfig?
+    var youboraConfig: PKYouboraConfig?
     
     /************************************************************/
     // MARK: - PKPlugin
@@ -125,7 +125,7 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     // MARK: - Private
     /************************************************************/
 
-    private func parseYouboraConfig(fromConfig config: AnalyticsConfig) -> YouboraConfig? {
+    private func parseYouboraConfig(fromConfig config: AnalyticsConfig) -> PKYouboraConfig? {
         if !JSONSerialization.isValidJSONObject(config.params) {
             PKLog.error("Config params is not a valid JSON Object")
             return nil
@@ -133,11 +133,11 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         
         do {
             let data = try JSONSerialization.data(withJSONObject: config.params, options: .prettyPrinted)
-            let decodedYouboraConfig = try JSONDecoder().decode(YouboraConfig.self, from: data)
+            let decodedYouboraConfig = try JSONDecoder().decode(PKYouboraConfig.self, from: data)
             return decodedYouboraConfig
             
         } catch let error as NSError {
-            PKLog.error("Couldn't parse data into YouboraConfig error: \(error.localizedDescription)")
+            PKLog.error("Couldn't parse data into YouboraConfig error: \(error)")
         }
         
         return nil
