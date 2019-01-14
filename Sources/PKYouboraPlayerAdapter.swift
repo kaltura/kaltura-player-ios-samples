@@ -20,7 +20,7 @@ class PKYouboraPlayerAdapter: YBPlayerAdapter<AnyObject> {
     var playbackInfo: PKPlaybackInfo?
     
     fileprivate weak var messageBus: MessageBus?
-    fileprivate var config: PKYouboraConfig?
+    fileprivate var config: YouboraConfig?
     
     /// Indicates whether we played for the first time or not.
     fileprivate var isFirstPlay: Bool = true
@@ -35,7 +35,7 @@ class PKYouboraPlayerAdapter: YBPlayerAdapter<AnyObject> {
         super.init()
     }
     
-    init(player: Player, messageBus: MessageBus, config: PKYouboraConfig?) {
+    init(player: Player, messageBus: MessageBus, config: YouboraConfig?) {
         super.init(player: player)
         
         self.config = config

@@ -1,5 +1,5 @@
 //
-//  PKYouboraConfig.swift
+//  YouboraConfig.swift
 //  Pods
 //
 //  Created by Nilit Danan on 5/8/18.
@@ -7,8 +7,13 @@
 
 import YouboraLib
 
-struct PKYouboraConfig: Decodable {
-    let youboraConfig: YouboraConfig?
+struct YouboraConfig: Decodable {
+    let accountCode: String
+    let username: String?
+    let userType: String?
+    let obfuscateIP: Bool?
+    let httpSecure: Bool? = true
+    
     let media: Media?
     let ads: Ads?
     let properties: Properties?
@@ -18,13 +23,11 @@ struct PKYouboraConfig: Decodable {
     func options() -> YBOptions {
         let options = YBOptions()
         
-        if let youboraConfig = youboraConfig {
-            options.accountCode = youboraConfig.accountCode
-            options.username = youboraConfig.username
-            options.userType = youboraConfig.userType
-            options.networkObfuscateIp = youboraConfig.obfuscateIP != nil ? NSNumber(booleanLiteral: youboraConfig.obfuscateIP!) : nil
-            options.httpSecure = youboraConfig.httpSecure ?? true
-        }
+        options.accountCode = accountCode
+        options.username = username
+        options.userType = userType
+        options.networkObfuscateIp = obfuscateIP != nil ? NSNumber(booleanLiteral: obfuscateIP!) : nil
+        options.httpSecure = httpSecure ?? true
         
         options.parseHls = false
         options.parseCdnNode = false
@@ -90,14 +93,6 @@ struct PKYouboraConfig: Decodable {
         
         return options
     }
-}
-
-struct YouboraConfig: Decodable {
-    let accountCode: String
-    let username: String?
-    let userType: String?
-    let obfuscateIP: Bool?
-    let httpSecure: Bool? = true
 }
 
 struct Media: Decodable {
