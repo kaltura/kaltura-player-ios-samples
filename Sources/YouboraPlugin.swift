@@ -104,18 +104,22 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     
     public var observations: Set<NotificationObservation> {
         return [
-            NotificationObservation(name: .UIApplicationWillTerminate) { [unowned self] in
+            NotificationObservation(name: .UIApplicationWillTerminate) { [weak self] in
+                guard let strongSelf = self else { return }
+                
                 PKLog.debug("youbora plugin will terminate event received")
                 // We must call `endedHandler()` when stopped so youbora will know player stopped playing content.
-                self.endedHandler()
-                AppStateSubject.shared.remove(observer: self)
+                strongSelf.endedHandler()
+                AppStateSubject.shared.remove(observer: strongSelf)
             },
-            NotificationObservation(name: .UIApplicationDidEnterBackground) { [unowned self] in
+            NotificationObservation(name: .UIApplicationDidEnterBackground) { [weak self] in
+                guard let strongSelf = self else { return }
+                
                 // When entering background we should call `endedHandler()` to make sure coming back starts a new session.
                 // Otherwise events could be lost (youbora only retry sending events for 5 minutes).
-                self.endedHandler()
+                strongSelf.endedHandler()
                 // Reset the youbora plugin for background handling to start playing again when we return.
-                let pkYouboraPlayerAdapter = self.youboraNPAWPlugin?.adapter as? PKYouboraPlayerAdapter
+                let pkYouboraPlayerAdapter = strongSelf.youboraNPAWPlugin?.adapter as? PKYouboraPlayerAdapter
                 pkYouboraPlayerAdapter?.resetForBackground()
             }
         ]
