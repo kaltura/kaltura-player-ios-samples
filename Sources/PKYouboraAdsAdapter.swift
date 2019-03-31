@@ -153,91 +153,91 @@ extension PKYouboraAdsAdapter {
             switch event {
             case let e where e.self == AdEvent.adLoaded:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     // Update ad info with the new loaded event
-                    strongSelf.adInfo = event.adInfo
+                    self.adInfo = event.adInfo
                     // If ad is preroll make sure to call /start event before /adStart
                     if let positionType = event.adInfo?.positionType, positionType == .preRoll {
-                        strongSelf.plugin?.adapter?.fireStart()
+                        self.plugin?.adapter?.fireStart()
                     }
-                    strongSelf.fireStart()
+                    self.fireStart()
                 }
             case let e where e.self == AdEvent.adStarted:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireJoin()
+                    guard let self = self else { return }
+                    self.fireJoin()
                 }
             case let e where e.self == AdEvent.adComplete:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireStop()
-                    strongSelf.adInfo = nil
+                    guard let self = self else { return }
+                    self.fireStop()
+                    self.adInfo = nil
                 }
             case let e where e.self == AdEvent.adResumed:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireResume()
+                    guard let self = self else { return }
+                    self.fireResume()
                     // If we were coming from background and ad was resumed
                     // Has no effect when already playing ad and resumed because ad was already started.
-                    strongSelf.plugin?.adapter?.fireStart()
-                    strongSelf.fireStart()
-                    strongSelf.fireJoin()
+                    self.plugin?.adapter?.fireStart()
+                    self.fireStart()
+                    self.fireJoin()
                 }
             case let e where e.self == AdEvent.adPaused:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.firePause()
+                    guard let self = self else { return }
+                    self.firePause()
                 }
             case let e where e.self == AdEvent.adDidProgressToTime:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     // Update ad playhead with new data
-                    strongSelf.adPlayhead = event.adMediaTime?.doubleValue
+                    self.adPlayhead = event.adMediaTime?.doubleValue
                 }
             case let e where e.self == AdEvent.adSkipped:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireStop(["skipped":"true"])
+                    guard let self = self else { return }
+                    self.fireStop(["skipped":"true"])
                 }
             case let e where e.self == AdEvent.adStartedBuffering:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireBufferBegin()
+                    guard let self = self else { return }
+                    self.fireBufferBegin()
                 }
             case let e where e.self == AdEvent.adPlaybackReady:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireBufferEnd()
+                    guard let self = self else { return }
+                    self.fireBufferEnd()
                 }
             case let e where e.self == AdEvent.adsRequested:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.lastReportedResource = event.adTagUrl
+                    guard let self = self else { return }
+                    self.lastReportedResource = event.adTagUrl
                 }
             // When ad request the content to resume (finished or error)
             // Make sure to send /adStop event and clear the info.
             case let e where e.self == AdEvent.adDidRequestContentResume:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireStop()
-                    strongSelf.adInfo = nil
+                    guard let self = self else { return }
+                    self.fireStop()
+                    self.adInfo = nil
                 }
             case let e where e.self == AdEvent.adClicked:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
 
                     if let clickThroughUrl = event.data?[AdEventDataKeys.clickThroughUrl] as? String {
-                        strongSelf.fireClick(["adUrl": clickThroughUrl])
+                        self.fireClick(["adUrl": clickThroughUrl])
                     } else {
-                        strongSelf.fireClick()
+                        self.fireClick()
                     }
                 }
             case let e where e.self == AdEvent.error:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     
                     if let adErrorEvent = event.data?[AdEventDataKeys.error] as? NSError {
-                        strongSelf.fireFatalError(withMessage: adErrorEvent.localizedDescription, code: "\(adErrorEvent.code)", andMetadata: adErrorEvent.description)
+                        self.fireFatalError(withMessage: adErrorEvent.localizedDescription, code: "\(adErrorEvent.code)", andMetadata: adErrorEvent.description)
                     }
                 }
             default: assertionFailure("All events must be handled")

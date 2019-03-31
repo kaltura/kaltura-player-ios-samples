@@ -190,104 +190,106 @@ extension PKYouboraPlayerAdapter {
             switch event {
             case let e where e.self == PlayerEvent.play:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     // Play handler to start when asset starts loading.
                     // This point is the closest point to prepare call.
-                    strongSelf.fireStart()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    self.fireStart()
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.stopped:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     // We must call `fireStop()` when stopped so youbora will know player stopped playing content.
-                    strongSelf.plugin?.adsAdapter?.fireStop()
-                    strongSelf.fireStop()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    self.plugin?.adsAdapter?.fireStop()
+                    self.fireStop()
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.pause:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.firePause()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    guard let self = self else { return }
+                    self.firePause()
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.playing:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireJoin()
-                    strongSelf.fireBufferEnd()
-                    if strongSelf.isFirstPlay {
-                        strongSelf.isFirstPlay = false
+                    guard let self = self else { return }
+                    self.fireJoin()
+                    self.fireBufferEnd()
+                    if self.isFirstPlay {
+                        self.isFirstPlay = false
                         //strongSelf.fireJoin()
                         //strongSelf.fireBufferEnd()
                     } else {
-                        strongSelf.fireResume()
+                        self.fireResume()
                     }
-                    strongSelf.postEventLog(withMessage: "\(String(describing: event.namespace))")
+                    self.postEventLog(withMessage: "\(String(describing: event.namespace))")
                 }
             case let e where e.self == PlayerEvent.seeking:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireSeekBegin()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    guard let self = self else { return }
+                    self.fireSeekBegin()
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.seeked:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.fireSeekEnd()
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    guard let self = self else { return }
+                    self.fireSeekEnd()
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.ended:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    if !strongSelf.shouldDelayEndedHandler {
-                        strongSelf.fireStop()
+                    guard let self = self else { return }
+                    if !self.shouldDelayEndedHandler {
+                        self.fireStop()
                     }
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.playbackInfo:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.playbackInfo = event.playbackInfo
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    guard let self = self else { return }
+                    self.playbackInfo = event.playbackInfo
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.stateChanged:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     if event.newState == .buffering {
-                        strongSelf.fireBufferBegin()
-                        strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                        self.fireBufferBegin()
+                        self.postEventLog(withMessage: "\(event.namespace)")
                     }
                 }
             case let e where e.self == PlayerEvent.sourceSelected:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.lastReportedResource = event.mediaSource?.playbackUrl?.absoluteString
-                    strongSelf.postEventLog(withMessage: "\(event.namespace)")
+                    guard let self = self else { return }
+                    self.lastReportedResource = event.mediaSource?.playbackUrl?.absoluteString
+                    self.postEventLog(withMessage: "\(event.namespace)")
                 }
             case let e where e.self == PlayerEvent.error:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     if let error = event.error {
-                        strongSelf.fireFatalError(withMessage: error.localizedDescription, code: "\(error.code)", andMetadata: error.description)
+                        self.fireFatalError(withMessage: error.localizedDescription, code: "\(error.code)", andMetadata: error.description)
                     }
                 }
             case let e where e.self == PlayerEvent.durationChanged:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let strongSelf = self else { return }
-                    strongSelf.lastReportedDuration = event.duration?.doubleValue
+                    guard let self = self else { return }
+                    self.lastReportedDuration = event.duration?.doubleValue
                 }
             case let e where e.self == AdEvent.adCuePointsUpdate:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
+                    guard let self = self else { return }
                     if let hasPostRoll = event.adCuePoints?.hasPostRoll, hasPostRoll == true {
-                        self?.shouldDelayEndedHandler = true
+                        self.shouldDelayEndedHandler = true
                     }
                 }
             case let e where e.self == AdEvent.allAdsCompleted:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    if let shouldDelayEndedHandler = self?.shouldDelayEndedHandler, shouldDelayEndedHandler == true {
-                        self?.shouldDelayEndedHandler = false
-                        self?.plugin?.adsAdapter?.fireStop()
-                        self?.fireStop()
+                    guard let self = self else { return }
+                    if self.shouldDelayEndedHandler {
+                        self.shouldDelayEndedHandler = false
+                        self.plugin?.adsAdapter?.fireStop()
+                        self.fireStop()
                     }
                 }
             default: assertionFailure("All events must be handled")
