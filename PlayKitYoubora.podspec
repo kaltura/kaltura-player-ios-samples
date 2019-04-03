@@ -5,7 +5,7 @@ suffix = '-dev'   # Dev mode
 Pod::Spec.new do |s|
   
   s.name             = 'PlayKitYoubora'
-  s.version          = '1.2.0' + suffix
+  s.version          = '1.3.0' + suffix
   s.summary          = 'PlayKitYoubora -- Analytics framework for iOS'
   s.homepage         = 'https://github.com/kaltura/playkit-ios-youbora'
   s.license          = { :type => 'AGPLv3', :file => 'LICENSE' }
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
 
   s.source_files = 'Sources/**/*' 
-  s.dependency 'PlayKit/AnalyticsCommon', '~> 3.8.0' + suffix
+  s.dependency 'PlayKit/AnalyticsCommon', '~> 3.8' + suffix
   s.dependency 'YouboraLib', '6.1.7'
 end
 
