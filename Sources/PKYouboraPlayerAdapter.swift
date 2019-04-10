@@ -214,11 +214,8 @@ extension PKYouboraPlayerAdapter {
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let self = self else { return }
                     self.fireJoin()
-                    self.fireBufferEnd()
                     if self.isFirstPlay {
                         self.isFirstPlay = false
-                        //strongSelf.fireJoin()
-                        //strongSelf.fireBufferEnd()
                     } else {
                         self.fireResume()
                     }
@@ -253,9 +250,17 @@ extension PKYouboraPlayerAdapter {
             case let e where e.self == PlayerEvent.stateChanged:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
                     guard let self = self else { return }
-                    if event.newState == .buffering {
+                    switch event.newState {
+                    case .buffering:
                         self.fireBufferBegin()
                         self.postEventLog(withMessage: "\(event.namespace)")
+                    case .ready:
+                        if event.oldState == .buffering {
+                            self.fireBufferEnd()
+                            self.postEventLog(withMessage: "\(event.namespace)")
+                        }
+                    default:
+                        break
                     }
                 }
             case let e where e.self == PlayerEvent.sourceSelected:
