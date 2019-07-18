@@ -5,7 +5,7 @@ suffix = '-dev'   # Dev mode
 Pod::Spec.new do |s|
   
   s.name             = 'PlayKitYoubora'
-  s.version          = '1.4.1' + suffix
+  s.version          = '1.4.2' + suffix
   s.summary          = 'PlayKitYoubora -- Analytics framework for iOS'
   s.homepage         = 'https://github.com/kaltura/playkit-ios-youbora'
   s.license          = { :type => 'AGPLv3', :file => 'LICENSE' }
