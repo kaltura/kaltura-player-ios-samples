@@ -83,7 +83,11 @@ extension PKYouboraPlayerAdapter {
     }
     
     override func getTitle() -> String? {
-        return player?.mediaEntry?.id ?? super.getTitle()
+        if let name = player?.mediaEntry?.name {
+            return name
+        } else {
+            return player?.mediaEntry?.id ?? super.getTitle()
+        }
     }
     
     override func getPlayhead() -> NSNumber? {
