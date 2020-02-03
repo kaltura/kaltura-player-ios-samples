@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
 
   s.source_files = 'Sources/**/*' 
-  s.dependency 'PlayKit/AnalyticsCommon'
+  s.dependency 'PlayKit/AnalyticsCommon', '~> 3.8'
   s.dependency 'YouboraLib', '6.1.7'
 end
 

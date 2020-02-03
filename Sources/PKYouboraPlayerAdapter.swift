@@ -20,7 +20,7 @@ class PKYouboraPlayerAdapter: YBPlayerAdapter<AnyObject> {
     var playbackInfo: PKPlaybackInfo?
     
     fileprivate weak var messageBus: MessageBus?
-    fileprivate var config: YouboraConfig?
+    var config: YouboraConfig?
     
     /// Indicates whether we played for the first time or not.
     fileprivate var isFirstPlay: Bool = true

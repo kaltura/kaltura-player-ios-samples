@@ -9,6 +9,7 @@
 // ===================================================================================================
 
 import PlayKit
+import YouboraLib
 
 public class YouboraPlugin: BasePlugin, AppStateObservable {
     
@@ -33,11 +34,19 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
     /// otherwise youbora will wait for /stop event and you could not start new content events until /stop is received.
     private var pkYouboraPlayerAdapter: PKYouboraPlayerAdapter?
     private var pkYouboraAdsAdapter: PKYouboraAdsAdapter?
-    private var youboraNPAWPlugin: YouboraNPAWPlugin?
+    private var ybPlugin: YBPlugin?
     
     /// The plugin's config
-    var config: AnalyticsConfig
-    var youboraConfig: YouboraConfig?
+    var config: AnalyticsConfig {
+        didSet {
+            self.addCustomProperties()
+        }
+    }
+    var youboraConfig: YouboraConfig? {
+        get {
+            return parseYouboraConfig(fromConfig: config)
+        }
+    }
     
     /************************************************************/
     // MARK: - PKPlugin
@@ -52,15 +61,16 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         
         try super.init(player: player, pluginConfig: pluginConfig, messageBus: messageBus)
         
-        /// Initialize youbora components
-//        let youboraConfig = try parseYouboraConfig(fromConfig: config)
-//        self.youboraNPAWPlugin = YouboraNPAWPlugin(options: youboraConfig.options()) //TODO Change this to real options
-        setupYoubora(withConfig: config)
+        // The didSet of config is not performed before the super.init, therfore it needs to be called for the first time.
+        self.addCustomProperties()
+        
         pkYouboraPlayerAdapter = PKYouboraPlayerAdapter(player: player, messageBus: messageBus, config: youboraConfig)
         pkYouboraAdsAdapter = PKYouboraAdsAdapter(player: player, messageBus: messageBus)
         
-        // Start monitoring for events
-        startMonitoring()
+        PKLog.debug("Start monitoring Youbora")
+        ybPlugin = YBPlugin(options: youboraConfig?.options(), andAdapter: pkYouboraPlayerAdapter)
+        ybPlugin?.adsAdapter = pkYouboraAdsAdapter
+
         // Monitor app state changes
         AppStateSubject.shared.add(observer: self)
     }
@@ -72,8 +82,6 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         endedHandler()
         pkYouboraPlayerAdapter?.reset()
         pkYouboraAdsAdapter?.reset()
-        
-        updateYoubora(withConfig: self.config)
     }
     
     public override func onUpdateConfig(pluginConfig: Any) {
@@ -85,7 +93,9 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
             return
         }
         self.config = config
-        setupYoubora(withConfig: config)
+        
+        pkYouboraPlayerAdapter?.config = youboraConfig
+        ybPlugin?.options = youboraConfig?.options() ?? YBOptions()
     }
     
     public override func destroy() {
@@ -119,7 +129,8 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
                 // Otherwise events could be lost (youbora only retry sending events for 5 minutes).
                 self.endedHandler()
                 // Reset the youbora plugin for background handling to start playing again when we return.
-                let pkYouboraPlayerAdapter = self.youboraNPAWPlugin?.adapter as? PKYouboraPlayerAdapter
+                let pkYouboraPlayerAdapter = self.ybPlugin?.adapter as? PKYouboraPlayerAdapter
+
                 pkYouboraPlayerAdapter?.resetForBackground()
             }
         ]
@@ -147,56 +158,30 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         return nil
     }
     
-    private func setupYoubora(withConfig config: AnalyticsConfig) {
-        var options = config.params
-        self.addCustomProperties(toOptions: &options)
-        
-        youboraConfig = parseYouboraConfig(fromConfig: config)
-        
-        youboraNPAWPlugin = YouboraNPAWPlugin(options: youboraConfig?.options())
-    }
-    
-    private func updateYoubora(withConfig config: AnalyticsConfig) {
-        var options = config.params
-        self.addCustomProperties(toOptions: &options)
-        
-        self.youboraConfig = parseYouboraConfig(fromConfig: config)
-        guard let youboraConfig = self.youboraConfig else {
-            PKLog.error("Can't upadate Youbora with new config")
-            return
-        }
-        
-        youboraNPAWPlugin?.options = youboraConfig.options()
-    }
-    
-    private func startMonitoring() {
-        PKLog.debug("Start monitoring Youbora")
-        youboraNPAWPlugin?.adapter = pkYouboraPlayerAdapter
-        youboraNPAWPlugin?.adsAdapter = pkYouboraAdsAdapter
-    }
-    
     private func stopMonitoring() {
         PKLog.debug("Stop monitoring using Youbora")
-        youboraNPAWPlugin?.removeAdsAdapter()
-        youboraNPAWPlugin?.removeAdapter()
+        ybPlugin?.removeAdsAdapter()
+        ybPlugin?.removeAdapter()
     }
     
     private func endedHandler() {
-        youboraNPAWPlugin?.adsAdapter?.fireStop()
-        youboraNPAWPlugin?.adapter?.fireStop()
+        ybPlugin?.adsAdapter?.fireStop()
+        ybPlugin?.adapter?.fireStop()
     }
     
-    private func addCustomProperties(toOptions options: inout [String: Any]) {
+    private func addCustomProperties() {
         guard let player = self.player else {
             PKLog.warning("couldn't add custom properties, player instance is nil")
             return
         }
         let propertiesKey = "properties"
-        if var properties = options[propertiesKey] as? [String: Any] { // if properties already exists override the custom properties only
+        if var properties = config.params[propertiesKey] as? [String: Any] {
+            // if properties already exists override the custom properties only
             properties[CustomPropertyKey.sessionId] = player.sessionId
-            options[propertiesKey] = properties
-        } else { // If properties doesn't exist then add
-            options[propertiesKey] = [CustomPropertyKey.sessionId: player.sessionId]
+            config.params[propertiesKey] = properties
+        } else {
+            // If properties doesn't exist then add
+            config.params[propertiesKey] = [CustomPropertyKey.sessionId: player.sessionId]
         }
     }
 }
