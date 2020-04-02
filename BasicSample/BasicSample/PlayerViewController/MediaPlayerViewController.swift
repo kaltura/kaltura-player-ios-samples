@@ -50,6 +50,8 @@ class MediaPlayerViewController: PlayerViewController {
     private var audioTracks: [KPTrack]?
     private var textTracks: [KPTrack]?
     
+    private var shouldPreparePlayer: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,7 +74,11 @@ class MediaPlayerViewController: PlayerViewController {
         showPlayerControllers(true)
         registerPlayerEvents()
         
-        kalturaBasicPlayer.prepare()
+        if shouldPreparePlayer {
+            shouldPreparePlayer = false
+            kalturaBasicPlayer.prepare()
+        }
+        
         kalturaBasicPlayer.play()
     }
     
