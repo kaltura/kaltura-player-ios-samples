@@ -79,6 +79,7 @@ class MediaPlayerViewController: PlayerViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        kalturaBasicPlayer.pause()
         kalturaBasicPlayer.removeObserver(self, events: KPEvent.allEventTypes)
     }
     
@@ -103,12 +104,7 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     private func registerPlaybackEvents() {
-        guard let player = kalturaBasicPlayer else {
-            NSLog("player is not set")
-            return
-        }
-        
-        player.addObserver(self, events: [KPEvent.stopped, KPEvent.ended, KPEvent.play, KPEvent.playing, KPEvent.pause]) { [weak self] event in
+        kalturaBasicPlayer.addObserver(self, events: [KPEvent.stopped, KPEvent.ended, KPEvent.play, KPEvent.playing, KPEvent.pause]) { [weak self] event in
             guard let self = self else { return }
             
             NSLog(event.description)
@@ -133,12 +129,7 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     private func handleTracks() {
-        guard let player = kalturaBasicPlayer else {
-            NSLog("player is not set")
-            return
-        }
-        
-        player.addObserver(self, events: [KPEvent.tracksAvailable]) { [weak self] event in
+        kalturaBasicPlayer.addObserver(self, events: [KPEvent.tracksAvailable]) { [weak self] event in
             guard let self = self else { return }
             guard let tracks = event.tracks else {
                 NSLog("No Tracks Available")
@@ -151,16 +142,11 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     private func handleProgress() {
-        guard let player = kalturaBasicPlayer else {
-            NSLog("player is not set")
-            return
-        }
-        
-        player.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
+        kalturaBasicPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
-            let currentTime = event.currentTime ?? NSNumber(value: player.currentTime)
+            let currentTime = event.currentTime ?? NSNumber(value: self.kalturaBasicPlayer.currentTime)
             DispatchQueue.main.async {
-                self.mediaProgressSlider.value = Float(currentTime.doubleValue / player.duration)
+                self.mediaProgressSlider.value = Float(currentTime.doubleValue / self.kalturaBasicPlayer.duration)
             }
         }
     }
@@ -226,26 +212,19 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     @IBAction private func mediaProgressSliderValueChanged(_ sender: UISlider) {
-        guard let player = kalturaBasicPlayer else { return }
-        
         let currentValue = Double(sender.value)
-        let seekTo = currentValue * player.duration
-        player.seek(to: seekTo)
+        let seekTo = currentValue * kalturaBasicPlayer.duration
+        kalturaBasicPlayer.seek(to: seekTo)
     }
     
     @IBAction private func playButtonTouched(_ sender: Any) {
-        guard let player = kalturaBasicPlayer else {
-            NSLog("player is not set")
-            return
-        }
-        
         if playPauseButton.displayState == .replay {
-            player.replay()
+            kalturaBasicPlayer.replay()
             showPlayerControllers(false, delay: 0.5)
-        } else if player.isPlaying || player.rate > 0 {
-            player.pause()
+        } else if kalturaBasicPlayer.isPlaying || kalturaBasicPlayer.rate > 0 {
+            kalturaBasicPlayer.pause()
         } else {
-            player.play()
+            kalturaBasicPlayer.play()
             showPlayerControllers(false)
         }
     }
