@@ -31,7 +31,7 @@ class PPRButton: UIButton {
 
 class MediaPlayerViewController: PlayerViewController {
     
-    var kalturaBasicPlayer: KalturaBasicPlayer?
+    var kalturaBasicPlayer: KalturaBasicPlayer! // Created in the viewDidLoad
     
     @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
     
@@ -57,33 +57,36 @@ class MediaPlayerViewController: PlayerViewController {
         
         let basicPlayerOptions = BasicPlayerOptions(id: videoData.id, contentUrl: contentURL)
         kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
+        kalturaBasicPlayer.setPlayerView(kalturaPlayerView)
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(playerViewTapped))
         kalturaPlayerView.addGestureRecognizer(gesture)
         settingsVisualEffectView.alpha = 0.0
         middleVisualEffectView.layer.cornerRadius = 40.0
         playPauseButton.displayState = .play
-        showPlayerControllers(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        kalturaBasicPlayer?.setPlayerView(kalturaPlayerView)
+        showPlayerControllers(true)
         registerPlayerEvents()
         
-        kalturaBasicPlayer?.prepare()
-        kalturaBasicPlayer?.play()
+        kalturaBasicPlayer.prepare()
+        kalturaBasicPlayer.play()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         
-        kalturaBasicPlayer?.removeObserver(self, events: KPEvent.allEventTypes)
+        kalturaBasicPlayer.removeObserver(self, events: KPEvent.allEventTypes)
+    }
+    
+    deinit {
+        kalturaBasicPlayer.destroy()
+        kalturaBasicPlayer = nil
+        audioTracks = nil
+        textTracks = nil
     }
     
     // MARK: - Private Methods
@@ -115,7 +118,9 @@ class MediaPlayerViewController: PlayerViewController {
                 case is KPEvent.Ended:
                     self.playPauseButton.displayState = .replay
                     self.showPlayerControllers(true)
-                case is KPEvent.Playing, is KPEvent.Play:
+                case is KPEvent.Play:
+                    self.playPauseButton.displayState = .pause
+                case is KPEvent.Playing:
                     self.playPauseButton.displayState = .pause
                     self.showPlayerControllers(false)
                 case is KPEvent.Pause:
@@ -195,7 +200,7 @@ class MediaPlayerViewController: PlayerViewController {
         
         for track in tracks {
             alertController.addAction(UIAlertAction(title: track.title, style: UIAlertAction.Style.default, handler: { (alertAction) in
-                self.kalturaBasicPlayer?.selectTrack(trackId: track.id)
+                self.kalturaBasicPlayer.selectTrack(trackId: track.id)
             }))
         }
         
@@ -209,7 +214,7 @@ class MediaPlayerViewController: PlayerViewController {
         
         for track in tracks {
             alertController.addAction(UIAlertAction(title: track.title, style: UIAlertAction.Style.default, handler: { (alertAction) in
-                self.kalturaBasicPlayer?.selectTrack(trackId: track.id)
+                self.kalturaBasicPlayer.selectTrack(trackId: track.id)
             }))
         }
         
@@ -217,7 +222,6 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     @IBAction private func closeTouched(_ sender: Any) {
-        kalturaBasicPlayer?.destroy()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -249,13 +253,13 @@ class MediaPlayerViewController: PlayerViewController {
     @IBAction private func speedRateTouched(_ sender: Any) {
         let alertController = UIAlertController(title: "Select Speed Rate", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         alertController.addAction(UIAlertAction(title: "Normal", style: UIAlertAction.Style.default, handler: { (alertAction) in
-            self.kalturaBasicPlayer?.rate = 1
+            self.kalturaBasicPlayer.rate = 1
         }))
         alertController.addAction(UIAlertAction(title: "x2", style: UIAlertAction.Style.default, handler: { (alertAction) in
-            self.kalturaBasicPlayer?.rate = 2
+            self.kalturaBasicPlayer.rate = 2
         }))
         alertController.addAction(UIAlertAction(title: "x3", style: UIAlertAction.Style.default, handler: { (alertAction) in
-            self.kalturaBasicPlayer?.rate = 3
+            self.kalturaBasicPlayer.rate = 3
         }))
         
         self.present(alertController, animated: true, completion: nil)
