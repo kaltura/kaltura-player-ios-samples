@@ -10,12 +10,12 @@ import UIKit
 
 enum MenuItem: Int, CaseIterable, CustomStringConvertible {
     case basic = 0
-    case pkMediaPlayer
+//    case pkMediaPlayer
     
     var description: String {
         switch self {
         case .basic: return "Basic Sample"
-        case .pkMediaPlayer: return "Using PKMediaPlayer"
+//        case .pkMediaPlayer: return "Using PKMediaPlayer"
         }
     }
 }
@@ -31,8 +31,8 @@ class MainTableViewController: UITableViewController {
                     switch menuItem {
                     case .basic:
                         mediasTableViewController.playerType = .Custom
-                    case .pkMediaPlayer:
-                        mediasTableViewController.playerType = .PlayKitUI
+//                    case .pkMediaPlayer:
+//                        mediasTableViewController.playerType = .PlayKitUI
                     case .none:
                         break
                     }

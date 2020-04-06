@@ -23,6 +23,6 @@ target 'BasicSample' do
     end
   end
 
-  pod 'PlayKitUI', :path => '../../playkit-ios-media-player'
+#  pod 'PlayKitUI', :path => '../../playkit-ios-media-player'
   
 end
