@@ -55,11 +55,18 @@ class MediaPlayerViewController: PlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let videoData = self.videoData, let contentURL = URL(string: videoData.contentUrl) else { return }
+        guard let videoData = self.videoData else { return }
         
-        let basicPlayerOptions = BasicPlayerOptions(id: videoData.id, contentUrl: contentURL)
+        let basicPlayerOptions = BasicPlayerOptions()
+        basicPlayerOptions.autoPlay = videoData.autoPlay
+        basicPlayerOptions.preload = videoData.preload
+        basicPlayerOptions.startTime = videoData.startTime
+        if let pluginConfig = videoData.pluginConfig {
+            basicPlayerOptions.pluginConfig = pluginConfig
+        }
+        
         kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
-        kalturaBasicPlayer.setPlayerView(kalturaPlayerView)
+        kalturaBasicPlayer.kalturaPlayerView = kalturaPlayerView
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(playerViewTapped))
         kalturaPlayerView.addGestureRecognizer(gesture)
@@ -72,14 +79,19 @@ class MediaPlayerViewController: PlayerViewController {
         super.viewWillAppear(animated)
         
         showPlayerControllers(true)
+        guard let videoData = self.videoData else { return }
+        
         registerPlayerEvents()
         
         if shouldPreparePlayer {
             shouldPreparePlayer = false
-            kalturaBasicPlayer.prepare()
+            if let mediaEntry = videoData.mediaEntry {
+                kalturaBasicPlayer.mediaEntry = mediaEntry
+            } else if let freeFormMedia = videoData.freeFormMedia {
+                guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
+                kalturaBasicPlayer.setupMediaEntry(from: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat)
+            }
         }
-        
-        kalturaBasicPlayer.play()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

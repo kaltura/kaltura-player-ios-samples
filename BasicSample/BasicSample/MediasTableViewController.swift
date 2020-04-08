@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PlayKit
 
 class MediasTableViewController: UITableViewController {
     
@@ -21,9 +22,23 @@ class MediasTableViewController: UITableViewController {
     }
     
     func initVideos() {
-        videos.append(VideoData(title: "Sintel",
-                                id: "sintel",
-                                contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"))
+        videos.append(VideoData(title: "Sintel - Free Form Media - Defaults", freeFormMedia: FreeFormMedia(id: "sintel", contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8")))
+        
+        videos.append(VideoData(title: "Sintel - Free Form Media - autoPlay false", freeFormMedia: FreeFormMedia(id: "sintel", contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"), autoPlay: false))
+        
+        videos.append(VideoData(title: "Sintel - Free Form Media - startPosition 30", freeFormMedia: FreeFormMedia(id: "sintel", contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"), startTime: 30.0))
+        
+        // New Media
+        let contentURL = URL(string: "https://cdnapisec.kaltura.com/p/2215841/sp/221584100/playManifest/entryId/1_vl96wf1o/format/applehttp/protocol/https/a.m3u8")
+        let entryId = "KalturaMedia"
+        let source = PKMediaSource(entryId, contentUrl: contentURL, mediaFormat: .hls)
+        let sources: Array = [source]
+        let mediaEntry = PKMediaEntry(entryId, sources: sources, duration: -1)
+        videos.append(VideoData(title: "KalturaMedia - MediaEntry - Defaults", mediaEntry: mediaEntry))
+        
+        videos.append(VideoData(title: "KalturaMedia - MediaEntry - autoPlay false", mediaEntry: mediaEntry, autoPlay: false))
+        
+        videos.append(VideoData(title: "KalturaMedia - MediaEntry - startPosition 10", mediaEntry: mediaEntry, startTime: 10.0))
     }
     
     // MARK: - UITableViewDataSource
