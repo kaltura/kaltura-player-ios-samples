@@ -47,6 +47,8 @@ class MediaPlayerViewController: PlayerViewController {
     
     @IBOutlet private weak var mediaProgressSlider: UISlider!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     private var audioTracks: [KPTrack]?
     private var textTracks: [KPTrack]?
     
@@ -60,7 +62,9 @@ class MediaPlayerViewController: PlayerViewController {
         let basicPlayerOptions = BasicPlayerOptions()
         basicPlayerOptions.autoPlay = videoData.autoPlay
         basicPlayerOptions.preload = videoData.preload
-        basicPlayerOptions.startTime = videoData.startTime
+        if let startTime = videoData.startTime {
+            basicPlayerOptions.startTime = startTime
+        }
         if let pluginConfig = videoData.pluginConfig {
             basicPlayerOptions.pluginConfig = pluginConfig
         }
@@ -73,12 +77,21 @@ class MediaPlayerViewController: PlayerViewController {
         settingsVisualEffectView.alpha = 0.0
         middleVisualEffectView.layer.cornerRadius = 40.0
         playPauseButton.displayState = .play
+        activityIndicator.layer.cornerRadius = 20.0
+        
+        activityIndicator.startAnimating()
+        
+        if videoData.autoPlay {
+            self.playPauseButton.displayState = .pause
+            showPlayerControllers(false)
+        } else {
+            showPlayerControllers(true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        showPlayerControllers(true)
         guard let videoData = self.videoData else { return }
         
         registerPlayerEvents()
@@ -89,7 +102,7 @@ class MediaPlayerViewController: PlayerViewController {
                 kalturaBasicPlayer.mediaEntry = mediaEntry
             } else if let freeFormMedia = videoData.freeFormMedia {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
-                kalturaBasicPlayer.setupMediaEntry(from: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat)
+                kalturaBasicPlayer.setupMediaEntry(from: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType)
             }
         }
     }
@@ -119,10 +132,11 @@ class MediaPlayerViewController: PlayerViewController {
         registerPlaybackEvents()
         handleTracks()
         handleProgress()
+        handleError()
     }
     
     private func registerPlaybackEvents() {
-        kalturaBasicPlayer.addObserver(self, events: [KPEvent.stopped, KPEvent.ended, KPEvent.play, KPEvent.playing, KPEvent.pause]) { [weak self] event in
+        kalturaBasicPlayer.addObserver(self, events: [KPEvent.ended, KPEvent.play, KPEvent.playing, KPEvent.pause, KPEvent.canPlay, KPEvent.seeking, KPEvent.seeked, KPEvent.playbackStalled, KPEvent.stateChanged]) { [weak self] event in
             guard let self = self else { return }
             
             NSLog(event.description)
@@ -135,10 +149,27 @@ class MediaPlayerViewController: PlayerViewController {
                 case is KPEvent.Play:
                     self.playPauseButton.displayState = .pause
                 case is KPEvent.Playing:
+                    self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
                     self.showPlayerControllers(false)
                 case is KPEvent.Pause:
                     self.playPauseButton.displayState = .play
+                case is KPEvent.CanPlay:
+                    self.activityIndicator.stopAnimating()
+                case is KPEvent.Seeking:
+                    self.activityIndicator.startAnimating()
+                    self.showPlayerControllers(false, delay: 0.5)
+                case is KPEvent.Seeked:
+                    self.activityIndicator.stopAnimating()
+                case is KPEvent.PlaybackStalled:
+                    self.activityIndicator.startAnimating()
+                case is KPEvent.StateChanged:
+                    switch event.newState {
+                    case .buffering:
+                        self.activityIndicator.startAnimating()
+                    default:
+                        break
+                    }
                 default:
                     break
                 }
@@ -165,6 +196,20 @@ class MediaPlayerViewController: PlayerViewController {
             let currentTime = event.currentTime ?? NSNumber(value: self.kalturaBasicPlayer.currentTime)
             DispatchQueue.main.async {
                 self.mediaProgressSlider.value = Float(currentTime.doubleValue / self.kalturaBasicPlayer.duration)
+            }
+        }
+    }
+    
+    private func handleError() {
+        kalturaBasicPlayer.addObserver(self, events: [KPEvent.error]) { [weak self] event in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                let alert = UIAlertController(title: "Error", message: event.error?.description, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

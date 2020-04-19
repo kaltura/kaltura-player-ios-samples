@@ -58,8 +58,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="BasicSample" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="41.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wta-Cf-BMd" id="a4e-n2-45b">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="41.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destroy Player" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R82-tm-onp">
+                                            <rect key="frame" x="16" y="10.333333333333336" width="137" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-0P-Xzf">
+                                            <rect key="frame" x="163" y="5.3333333333333321" width="51" height="30.999999999999996"/>
+                                            <color key="onTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Media" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpY-pG-gpM">
+                                            <rect key="frame" x="222" y="10.333333333333336" width="137" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="BpY-pG-gpM" secondAttribute="trailing" id="1gm-p5-u8B"/>
+                                        <constraint firstItem="6uN-0P-Xzf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a4e-n2-45b" secondAttribute="top" constant="5" id="8hY-OL-M9p"/>
+                                        <constraint firstItem="6uN-0P-Xzf" firstAttribute="centerX" secondItem="a4e-n2-45b" secondAttribute="centerX" id="Dms-sY-JwZ"/>
+                                        <constraint firstItem="R82-tm-onp" firstAttribute="centerY" secondItem="a4e-n2-45b" secondAttribute="centerY" id="Fd4-ai-C0q"/>
+                                        <constraint firstItem="BpY-pG-gpM" firstAttribute="leading" secondItem="6uN-0P-Xzf" secondAttribute="trailing" constant="10" id="QVa-n1-iuk"/>
+                                        <constraint firstItem="6uN-0P-Xzf" firstAttribute="centerY" secondItem="a4e-n2-45b" secondAttribute="centerY" id="Rfb-ef-oGr"/>
+                                        <constraint firstItem="6uN-0P-Xzf" firstAttribute="leading" secondItem="R82-tm-onp" secondAttribute="trailing" constant="10" id="ZTC-IO-Pfj"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6uN-0P-Xzf" secondAttribute="bottom" constant="5" id="a4E-hx-PbF"/>
+                                        <constraint firstItem="R82-tm-onp" firstAttribute="leading" secondItem="a4e-n2-45b" secondAttribute="leadingMargin" id="aff-3A-lNV"/>
+                                        <constraint firstItem="BpY-pG-gpM" firstAttribute="centerY" secondItem="a4e-n2-45b" secondAttribute="centerY" id="w8W-3N-qsF"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="changeMediaSwitch" destination="6uN-0P-Xzf" id="Yff-Ya-I7w"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="4NC-zT-12H" style="IBUITableViewCellStyleDefault" id="APs-HL-Ybm">
-                                <rect key="frame" x="0.0" y="28" width="375" height="48.666667938232422"/>
+                                <rect key="frame" x="0.0" y="69.333332061767578" width="375" height="48.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="APs-HL-Ybm" id="Woe-53-ujF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="48.666667938232422"/>
@@ -133,6 +174,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
+                                    <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FzT-ep-bCL">
+                                        <rect key="frame" x="169" y="348.66666666666669" width="37" height="37"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rFh-gs-qDs" userLabel="Settings Visual Effect View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="W4E-m7-R60">
@@ -355,12 +400,14 @@
                                     <constraint firstItem="i8B-fg-qCh" firstAttribute="leading" secondItem="18s-ps-3fg" secondAttribute="leading" id="8wy-SQ-GfX"/>
                                     <constraint firstAttribute="bottom" secondItem="rFh-gs-qDs" secondAttribute="bottom" id="E9p-bo-pPp"/>
                                     <constraint firstItem="P8d-P2-ona" firstAttribute="centerY" secondItem="18s-ps-3fg" secondAttribute="centerY" id="H4x-Uj-K6s"/>
+                                    <constraint firstItem="FzT-ep-bCL" firstAttribute="centerX" secondItem="18s-ps-3fg" secondAttribute="centerX" id="Hx9-sj-BCg"/>
                                     <constraint firstItem="2x3-QI-ayb" firstAttribute="top" secondItem="18s-ps-3fg" secondAttribute="top" id="Isf-TY-WgL"/>
                                     <constraint firstAttribute="trailing" secondItem="eOc-FH-Q04" secondAttribute="trailing" id="Js8-78-4ao"/>
                                     <constraint firstAttribute="bottom" secondItem="i8B-fg-qCh" secondAttribute="bottom" id="NWn-Y8-EJg"/>
                                     <constraint firstItem="2x3-QI-ayb" firstAttribute="leading" secondItem="18s-ps-3fg" secondAttribute="leading" id="Qbd-E9-ELP"/>
                                     <constraint firstItem="eOc-FH-Q04" firstAttribute="top" secondItem="18s-ps-3fg" secondAttribute="top" id="TGs-p8-rfr"/>
                                     <constraint firstItem="rFh-gs-qDs" firstAttribute="top" secondItem="18s-ps-3fg" secondAttribute="top" id="ULz-KK-K65"/>
+                                    <constraint firstItem="FzT-ep-bCL" firstAttribute="centerY" secondItem="18s-ps-3fg" secondAttribute="centerY" id="XwU-DY-FK3"/>
                                     <constraint firstAttribute="trailing" secondItem="i8B-fg-qCh" secondAttribute="trailing" id="cEy-o8-N12"/>
                                     <constraint firstItem="P8d-P2-ona" firstAttribute="centerX" secondItem="18s-ps-3fg" secondAttribute="centerX" id="dEO-Nz-1iL"/>
                                     <constraint firstAttribute="trailing" secondItem="2x3-QI-ayb" secondAttribute="trailing" id="n4U-jY-Q14"/>
@@ -379,6 +426,7 @@
                         <viewLayoutGuide key="safeArea" id="hhd-as-BiW"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="FzT-ep-bCL" id="Yo3-I6-Yx6"/>
                         <outlet property="bottomVisualEffectView" destination="i8B-fg-qCh" id="2hL-cp-vjS"/>
                         <outlet property="bottomVisualEffectViewHeightConstraint" destination="E8g-qO-dAU" id="8GG-5W-UlF"/>
                         <outlet property="kalturaPlayerView" destination="eOc-FH-Q04" id="XPV-Iu-mN3"/>
