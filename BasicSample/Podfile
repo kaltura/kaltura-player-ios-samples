@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 # Uncomment to use a local copy of KalturaPlayer
 KALTURA_PLAYER_LOCAL='../../kaltura-player-ios'

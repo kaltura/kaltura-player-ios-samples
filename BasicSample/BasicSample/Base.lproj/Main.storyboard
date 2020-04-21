@@ -369,21 +369,43 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svL-O4-WJS">
+                                                    <rect key="frame" x="5" y="14.666666666666629" width="75" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="9hP-aa-71M"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="m0L-dC-YCC">
-                                                    <rect key="frame" x="8" y="10" width="359" height="31"/>
+                                                    <rect key="frame" x="83" y="10" width="209" height="31"/>
                                                     <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="maximumTrackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
-                                                        <action selector="mediaProgressSliderValueChanged:" destination="heX-JM-oLt" eventType="valueChanged" id="rLL-sK-GuF"/>
+                                                        <action selector="mediaProgressSliderTouchUpInside:" destination="heX-JM-oLt" eventType="touchUpInside" id="sXY-e8-6C4"/>
                                                     </connections>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-eo-RBz">
+                                                    <rect key="frame" x="295" y="14.666666666666629" width="75" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="cKZ-xQ-r9c"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="m0L-dC-YCC" secondAttribute="trailing" constant="10" id="eGh-Bo-cW8"/>
+                                                <constraint firstItem="svL-O4-WJS" firstAttribute="leading" secondItem="eea-Pq-piK" secondAttribute="leading" constant="5" id="KNa-fi-XrH"/>
+                                                <constraint firstAttribute="trailing" secondItem="6OA-eo-RBz" secondAttribute="trailing" constant="5" id="KP2-ZY-dj5"/>
+                                                <constraint firstItem="6OA-eo-RBz" firstAttribute="leading" secondItem="m0L-dC-YCC" secondAttribute="trailing" constant="5" id="QbB-aG-Cpf"/>
+                                                <constraint firstItem="svL-O4-WJS" firstAttribute="centerY" secondItem="m0L-dC-YCC" secondAttribute="centerY" id="Rxc-nL-LdY"/>
+                                                <constraint firstItem="m0L-dC-YCC" firstAttribute="leading" secondItem="svL-O4-WJS" secondAttribute="trailing" constant="5" id="Y8o-2F-Bwu"/>
                                                 <constraint firstItem="m0L-dC-YCC" firstAttribute="top" secondItem="eea-Pq-piK" secondAttribute="top" constant="10" id="tkG-HG-dB3"/>
-                                                <constraint firstItem="m0L-dC-YCC" firstAttribute="leading" secondItem="eea-Pq-piK" secondAttribute="leading" constant="10" id="xj3-f4-TtV"/>
+                                                <constraint firstItem="6OA-eo-RBz" firstAttribute="centerY" secondItem="m0L-dC-YCC" secondAttribute="centerY" id="xVy-zK-Jce"/>
                                             </constraints>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -429,6 +451,8 @@
                         <outlet property="activityIndicator" destination="FzT-ep-bCL" id="Yo3-I6-Yx6"/>
                         <outlet property="bottomVisualEffectView" destination="i8B-fg-qCh" id="2hL-cp-vjS"/>
                         <outlet property="bottomVisualEffectViewHeightConstraint" destination="E8g-qO-dAU" id="8GG-5W-UlF"/>
+                        <outlet property="currentTimeLabel" destination="svL-O4-WJS" id="637-bk-83D"/>
+                        <outlet property="durationLabel" destination="6OA-eo-RBz" id="3tS-Gx-N3H"/>
                         <outlet property="kalturaPlayerView" destination="eOc-FH-Q04" id="XPV-Iu-mN3"/>
                         <outlet property="mediaProgressSlider" destination="m0L-dC-YCC" id="isT-Vm-07W"/>
                         <outlet property="middleVisualEffectView" destination="P8d-P2-ona" id="H6Y-7M-iWY"/>
@@ -440,7 +464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTR-Zy-0KI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2277" y="491"/>
+            <point key="canvasLocation" x="2276" y="490.64039408866995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h21-zs-Oeb">

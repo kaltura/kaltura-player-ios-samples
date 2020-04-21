@@ -46,6 +46,8 @@ class MediaPlayerViewController: PlayerViewController {
     @IBOutlet private weak var playPauseButton: PPRButton!
     
     @IBOutlet private weak var mediaProgressSlider: UISlider!
+    @IBOutlet weak var currentTimeLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -132,6 +134,7 @@ class MediaPlayerViewController: PlayerViewController {
         registerPlaybackEvents()
         handleTracks()
         handleProgress()
+        handleDuration()
         handleError()
     }
     
@@ -193,9 +196,20 @@ class MediaPlayerViewController: PlayerViewController {
     private func handleProgress() {
         kalturaBasicPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
-            let currentTime = event.currentTime ?? NSNumber(value: self.kalturaBasicPlayer.currentTime)
+            let currentTime = self.getTimeRepresentation(self.kalturaBasicPlayer.currentTime)
             DispatchQueue.main.async {
-                self.mediaProgressSlider.value = Float(currentTime.doubleValue / self.kalturaBasicPlayer.duration)
+                self.currentTimeLabel.text = currentTime
+                self.mediaProgressSlider.value = Float(self.kalturaBasicPlayer.currentTime / self.kalturaBasicPlayer.duration)
+            }
+        }
+    }
+    
+    private func handleDuration() {
+        kalturaBasicPlayer.addObserver(self, events: [KPEvent.durationChanged]) { [weak self] event in
+            guard let self = self else { return }
+            let duration = self.getTimeRepresentation(self.kalturaBasicPlayer.duration)
+            DispatchQueue.main.async {
+                self.durationLabel.text = duration
             }
         }
     }
@@ -222,6 +236,19 @@ class MediaPlayerViewController: PlayerViewController {
             self.middleVisualEffectView.alpha = show ? 1.0 : 0.0
             self.view.layoutIfNeeded()
         })
+    }
+    
+    private func getTimeRepresentation(_ time: TimeInterval) -> String {
+        if time > 3600 {
+            let hours = Int(time / 3600)
+            let minutes = Int(time.truncatingRemainder(dividingBy: 3600) / 60)
+            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        } else {
+            let minutes = Int(time / 60)
+            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+            return String(format: "00:%02d:%02d", minutes, seconds)
+        }
     }
     
     // MARK: - IBAction
@@ -274,7 +301,7 @@ class MediaPlayerViewController: PlayerViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction private func mediaProgressSliderValueChanged(_ sender: UISlider) {
+    @IBAction func mediaProgressSliderTouchUpInside(_ sender: UISlider) {
         let currentValue = Double(sender.value)
         let seekTo = currentValue * kalturaBasicPlayer.duration
         kalturaBasicPlayer.seek(to: seekTo)
