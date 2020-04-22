@@ -46,6 +46,11 @@ class MediaPlayerViewController: PlayerViewController {
     @IBOutlet private weak var playPauseButton: PPRButton!
     
     @IBOutlet private weak var mediaProgressSlider: UISlider!
+    private var userSeekInProgress: Bool = false {
+        didSet {
+            mediaProgressSlider.isEnabled = !self.userSeekInProgress
+        }
+    }
     @IBOutlet weak var currentTimeLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     
@@ -88,6 +93,14 @@ class MediaPlayerViewController: PlayerViewController {
             showPlayerControllers(false)
         } else {
             showPlayerControllers(true)
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] (notification) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.kalturaBasicPlayer.pause()
+                self.activityIndicator.stopAnimating()
+            }
         }
     }
     
@@ -163,13 +176,19 @@ class MediaPlayerViewController: PlayerViewController {
                     self.activityIndicator.startAnimating()
                     self.showPlayerControllers(false, delay: 0.5)
                 case is KPEvent.Seeked:
+                    self.userSeekInProgress = false
                     self.activityIndicator.stopAnimating()
+                    if self.kalturaBasicPlayer.currentTime < self.kalturaBasicPlayer.duration, self.playPauseButton.displayState == .replay {
+                        self.playPauseButton.displayState = .play
+                    }
                 case is KPEvent.PlaybackStalled:
                     self.activityIndicator.startAnimating()
                 case is KPEvent.StateChanged:
                     switch event.newState {
                     case .buffering:
                         self.activityIndicator.startAnimating()
+                    case .ready:
+                        self.activityIndicator.stopAnimating()
                     default:
                         break
                     }
@@ -196,6 +215,7 @@ class MediaPlayerViewController: PlayerViewController {
     private func handleProgress() {
         kalturaBasicPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
+            if self.userSeekInProgress { return }
             let currentTime = self.getTimeRepresentation(self.kalturaBasicPlayer.currentTime)
             DispatchQueue.main.async {
                 self.currentTimeLabel.text = currentTime
@@ -299,6 +319,14 @@ class MediaPlayerViewController: PlayerViewController {
     
     @IBAction private func closeTouched(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func mediaProgressSliderTouchDown(_ sender: UISlider) {
+        userSeekInProgress = true
+    }
+    
+    @IBAction func mediaProgressSliderTouchUpOutside(_ sender: UISlider) {
+        userSeekInProgress = false
     }
     
     @IBAction func mediaProgressSliderTouchUpInside(_ sender: UISlider) {

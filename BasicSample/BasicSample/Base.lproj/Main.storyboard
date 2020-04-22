@@ -384,7 +384,9 @@
                                                     <color key="maximumTrackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <connections>
+                                                        <action selector="mediaProgressSliderTouchDown:" destination="heX-JM-oLt" eventType="touchDown" id="VMc-bZ-fxg"/>
                                                         <action selector="mediaProgressSliderTouchUpInside:" destination="heX-JM-oLt" eventType="touchUpInside" id="sXY-e8-6C4"/>
+                                                        <action selector="mediaProgressSliderTouchUpOutside:" destination="heX-JM-oLt" eventType="touchUpOutside" id="uOC-uk-XeZ"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OA-eo-RBz">
