@@ -33,6 +33,22 @@ class MediaPlayerViewController: PlayerViewController {
     
     var kalturaBasicPlayer: KalturaBasicPlayer! // Created in the viewDidLoad
     
+    override var videoData: VideoData? {
+        didSet {
+            if viewIfLoaded != nil, let videoData = self.videoData {
+                shouldPreparePlayer = true
+                mediaProgressSlider.value = 0
+                currentTimeLabel.text = "00:00:00"
+                durationLabel.text = "00:00:00"
+                audioTracks = nil
+                textTracks = nil
+                
+                let basicPlayerOptions = playerOptions(videoData)
+                kalturaBasicPlayer.updatePlayerOptions(basicPlayerOptions)
+            }
+        }
+    }
+    
     @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
     
     @IBOutlet private weak var topVisualEffectView: UIVisualEffectView!
@@ -64,21 +80,6 @@ class MediaPlayerViewController: PlayerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let videoData = self.videoData else { return }
-        
-        let basicPlayerOptions = BasicPlayerOptions()
-        basicPlayerOptions.autoPlay = videoData.autoPlay
-        basicPlayerOptions.preload = videoData.preload
-        if let startTime = videoData.startTime {
-            basicPlayerOptions.startTime = startTime
-        }
-        if let pluginConfig = videoData.pluginConfig {
-            basicPlayerOptions.pluginConfig = pluginConfig
-        }
-        
-        kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
-        kalturaBasicPlayer.kalturaPlayerView = kalturaPlayerView
-        
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(playerViewTapped))
         kalturaPlayerView.addGestureRecognizer(gesture)
         settingsVisualEffectView.alpha = 0.0
@@ -88,12 +89,9 @@ class MediaPlayerViewController: PlayerViewController {
         
         activityIndicator.startAnimating()
         
-        if videoData.autoPlay {
-            self.playPauseButton.displayState = .pause
-            showPlayerControllers(false)
-        } else {
-            showPlayerControllers(true)
-        }
+        let basicPlayerOptions = playerOptions(videoData)
+        kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
+        kalturaBasicPlayer.kalturaPlayerView = kalturaPlayerView
         
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let self = self else { return }
@@ -119,13 +117,34 @@ class MediaPlayerViewController: PlayerViewController {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
                 kalturaBasicPlayer.setupMediaEntry(from: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType)
             }
+            
+            if videoData.autoPlay {
+                playPauseButton.displayState = .pause
+                showPlayerControllers(false)
+            } else {
+                showPlayerControllers(true)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if videoData == nil {
+            let alert = UIAlertController(title: "Video Data Empty", message: "Can't load the Player without the video data.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        kalturaBasicPlayer.pause()
+
+        if kalturaBasicPlayer.isPlaying {
+            kalturaBasicPlayer.pause()
+        }
         kalturaBasicPlayer.removeObserver(self, events: KPEvent.allEventTypes)
     }
     
@@ -137,6 +156,23 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     // MARK: - Private Methods
+    
+    func playerOptions(_ videoData: VideoData?) -> BasicPlayerOptions {
+        let basicPlayerOptions = BasicPlayerOptions()
+        if let autoPlay = videoData?.autoPlay {
+            basicPlayerOptions.autoPlay = autoPlay
+        }
+        if let preload = videoData?.preload {
+            basicPlayerOptions.preload = preload
+        }
+        if let startTime = videoData?.startTime {
+            basicPlayerOptions.startTime = startTime
+        }
+        if let pluginConfig = videoData?.pluginConfig {
+            basicPlayerOptions.pluginConfig = pluginConfig
+        }
+        return basicPlayerOptions
+    }
     
     @objc private func playerViewTapped() {
         let show = !(topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
@@ -318,6 +354,7 @@ class MediaPlayerViewController: PlayerViewController {
     }
     
     @IBAction private func closeTouched(_ sender: Any) {
+        kalturaBasicPlayer.stop()
         self.dismiss(animated: true, completion: nil)
     }
     

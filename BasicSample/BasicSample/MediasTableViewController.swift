@@ -22,6 +22,9 @@ class MediasTableViewController: UITableViewController {
     var videos: [VideoData] = []
     var playerType: PlayerType = .Custom
     
+    var playerViewController: PlayerViewController?
+    var headerTableViewCell: UIMediaHeaderTableViewCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -92,17 +95,23 @@ class MediasTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableCell(withIdentifier: "UIMediaHeaderTableViewCell")
-        return headerCell
+        if headerTableViewCell == nil {
+            headerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UIMediaHeaderTableViewCell") as? UIMediaHeaderTableViewCell
+        }
+        return headerTableViewCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let playerViewController: PlayerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: playerType.storyboardID()) as? PlayerViewController else { return }
+        if playerViewController == nil || headerTableViewCell?.shouldDestroyPlayer() == true {
+            playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: playerType.storyboardID()) as? PlayerViewController
+        }
         
-        playerViewController.videoData = videos[indexPath.row]
-        playerViewController.modalPresentationStyle = .overCurrentContext
-        self.navigationController?.present(playerViewController, animated: true, completion: {
-            
+        guard let playerVC = playerViewController else { return }
+        
+        playerVC.videoData = videos[indexPath.row]
+        playerVC.modalPresentationStyle = .overCurrentContext
+        self.navigationController?.present(playerVC, animated: true, completion: {
+
         })
         
         tableView.deselectRow(at: indexPath, animated: false)
