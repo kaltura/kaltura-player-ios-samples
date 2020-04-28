@@ -210,7 +210,9 @@ class MediaPlayerViewController: PlayerViewController {
                     self.activityIndicator.stopAnimating()
                 case is KPEvent.Seeking:
                     self.activityIndicator.startAnimating()
-                    self.showPlayerControllers(false, delay: 0.5)
+                    if self.kalturaBasicPlayer.isPlaying {
+                        self.showPlayerControllers(false, delay: 0.5)
+                    }
                 case is KPEvent.Seeked:
                     self.userSeekInProgress = false
                     self.activityIndicator.stopAnimating()
