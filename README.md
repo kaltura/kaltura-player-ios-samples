@@ -4,7 +4,7 @@ Include ```pod 'KalturaPlayer'``` in your Podfile.
 
 ## Basic Player
 
-#### Create a KalturaBasicPlayer
+#### 1. Create a KalturaBasicPlayer
 
 ```swift
 var kalturaBasicPlayer: KalturaBasicPlayer! // Created in the viewDidLoad
@@ -12,18 +12,24 @@ var kalturaBasicPlayer: KalturaBasicPlayer! // Created in the viewDidLoad
 override func viewDidLoad() {
 	super.viewDidLoad()
 	
-	let basicPlayerOptions = BasicPlayerOptions(id: <id>, contentUrl: <contentUrl>)
+	let basicPlayerOptions = BasicPlayerOptions()
 	kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
 }
 ```
 
-In order to create a basic player you need to provide it with player options.  
-The `BasicPlayerOptions` is initialized with the media `id` and `contentUrl`.  
-The `BasicPlayerOptions` can be set with the `mediaFormat` and with `drmData` if needed, these are not mandatory.  
+Check the BasicPlayerOptions class for more info.  
+The available options and defaults that can be configured are:  
 
-#### Pass the view to the KalturaBasicPlayer
+```swift
+public var preload: Bool = true
+public var autoPlay: Bool = true
+public var startTime: TimeInterval?
+public var pluginConfig: PluginConfig = PluginConfig(config: [:])
+```
 
-Create a `KalturaPlayerView` in the xib or by code.  
+#### 2. Pass the view to the KalturaBasicPlayer
+
+Create a `KalturaPlayerView` in the xib or in the code.  
 
 ```swift
 @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
@@ -32,7 +38,7 @@ kalturaBasicPlayer.setPlayerView(kalturaPlayerView)
 
 ```
 
-#### Register for Player Events
+#### 3. Register for Player Events
 
 In order to receive the events from the begining, register to them before running prepare on the player.  
 
@@ -73,17 +79,73 @@ kalturaBasicPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak s
 }
 ```
 
-**NOTE:** Don't forget to perform UI changes on the main thread.
+**NOTE:** Don't forget to perform UI changes on the main thread.  
+And don't forget to unregister when the view is not displayed.
 
-#### Prepare the player
+**All available Player events:**
 
-This will prepare the player with the data provided in the `BasicPlayerOptions`
+* canPlay
+* durationChanged
+* stopped
+* ended
+* loadedMetadata
+* play
+* pause
+* playing
+* seeking
+* seeked
+* replay
+* tracksAvailable
+* textTrackChanged
+* audioTrackChanged
+* videoTrackChanged
+* playbackInfo
+* stateChanged
+* timedMetadata
+* sourceSelected
+* loadedTimeRanges
+* playheadUpdate
+* error
+* errorLog
+* playbackStalled
+
+#### 4. Set the Media Entry
+
+There are two available options: 
+ 
+1. Create a PKMediaEntry and pass it to the `KalturaBasicPlayer`.
+
+	```swift
+	let contentURL = URL(string: "https://cdnapisec.kaltura.com/p/2215841/sp/221584100/playManifest/entryId/1_vl96wf1o/format/applehttp/protocol/https/a.m3u8")
+	let entryId = "KalturaMedia"
+	let source = PKMediaSource(entryId, contentUrl: contentURL, mediaFormat: .hls)
+	let sources: Array = [source]
+	let mediaEntry = PKMediaEntry(entryId, sources: sources, duration: -1)
+	
+	kalturaBasicPlayer.mediaEntry = mediaEntry
+	```
+	
+2. Use the `setupMediaEntry` function.
+	
+	```swift
+	let contentUrl = URL(string:"https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8")
+	kalturaBasicPlayer.setupMediaEntry(id: "sintel", contentUrl: contentUrl)
+	```
+	
+	Check the function for more available params.
+
+#### 5. Prepare the player
+
+**This will be done automatically** if the player options, `autoPlay` or `preload` is set to true.
+Which those are the default values.
+
+In case the `autoPlay` and `preload` are set to false, `prepare` on the player needs to be called manually.
 
 ```swift
 kalturaBasicPlayer.prepare()
 ```
 
-#### Play
+#### 6. Play
 
 ```swift
 kalturaBasicPlayer.play()

@@ -115,7 +115,11 @@ class MediaPlayerViewController: PlayerViewController {
                 kalturaBasicPlayer.mediaEntry = mediaEntry
             } else if let freeFormMedia = videoData.freeFormMedia {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
-                kalturaBasicPlayer.setupMediaEntry(from: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType)
+                kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType)
+            }
+            
+            if videoData.autoPlay == false && videoData.preload == false {
+                kalturaBasicPlayer.prepare()
             }
             
             if videoData.autoPlay {
@@ -253,6 +257,7 @@ class MediaPlayerViewController: PlayerViewController {
     private func handleProgress() {
         kalturaBasicPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
+            
             if self.userSeekInProgress { return }
             let currentTime = self.getTimeRepresentation(self.kalturaBasicPlayer.currentTime)
             DispatchQueue.main.async {
@@ -265,6 +270,7 @@ class MediaPlayerViewController: PlayerViewController {
     private func handleDuration() {
         kalturaBasicPlayer.addObserver(self, events: [KPEvent.durationChanged]) { [weak self] event in
             guard let self = self else { return }
+            
             let duration = self.getTimeRepresentation(self.kalturaBasicPlayer.duration)
             DispatchQueue.main.async {
                 self.durationLabel.text = duration
