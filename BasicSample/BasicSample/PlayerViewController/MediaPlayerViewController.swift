@@ -91,7 +91,7 @@ class MediaPlayerViewController: PlayerViewController {
         
         let basicPlayerOptions = playerOptions(videoData)
         kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
-        kalturaBasicPlayer.kalturaPlayerView = kalturaPlayerView
+        kalturaBasicPlayer.view = kalturaPlayerView
         
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let self = self else { return }
@@ -126,6 +126,7 @@ class MediaPlayerViewController: PlayerViewController {
                 playPauseButton.displayState = .pause
                 showPlayerControllers(false)
             } else {
+                playPauseButton.displayState = .play
                 showPlayerControllers(true)
             }
         }
