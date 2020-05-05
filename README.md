@@ -13,17 +13,16 @@ override func viewDidLoad() {
 	super.viewDidLoad()
 	
 	let basicPlayerOptions = BasicPlayerOptions()
-	kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
+	kalturaBasicPlayer = KalturaBasicPlayer(options: basicPlayerOptions)
 }
 ```
 
-Check the BasicPlayerOptions class for more info.  
+Check the `BasicPlayerOptions` class for more info.  
 The available options and defaults that can be configured are:  
 
 ```swift
 public var preload: Bool = true
 public var autoPlay: Bool = true
-public var startTime: TimeInterval?
 public var pluginConfig: PluginConfig = PluginConfig(config: [:])
 ```
 
@@ -34,7 +33,7 @@ Create a `KalturaPlayerView` in the xib or in the code.
 ```swift
 @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
 
-kalturaBasicPlayer.setPlayerView(kalturaPlayerView)
+kalturaBasicPlayer.view = kalturaPlayerView
 
 ```
 
@@ -122,7 +121,7 @@ There are two available options:
 	let sources: Array = [source]
 	let mediaEntry = PKMediaEntry(entryId, sources: sources, duration: -1)
 	
-	kalturaBasicPlayer.mediaEntry = mediaEntry
+	kalturaBasicPlayer.setMedia(mediaEntry)
 	```
 	
 2. Use the `setupMediaEntry` function.
@@ -133,6 +132,8 @@ There are two available options:
 	```
 	
 	Check the function for more available params.
+	
+**Note:** If you want to add a start time for the media, both functions accept a parameter of type `MediaOptions` which has a `startTime` property which can be set. See `MediaOptions` for more information.
 
 #### 5. Prepare the player
 
@@ -146,6 +147,10 @@ kalturaBasicPlayer.prepare()
 ```
 
 #### 6. Play
+
+**This will be done automatically** if the player options, `autoPlay` is set to true. Which is the default value.
+
+In case the `autoPlay` is set to false, `play` on the player needs to be called manually.
 
 ```swift
 kalturaBasicPlayer.play()

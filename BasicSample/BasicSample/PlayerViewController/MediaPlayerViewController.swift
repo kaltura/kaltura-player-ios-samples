@@ -90,7 +90,7 @@ class MediaPlayerViewController: PlayerViewController {
         activityIndicator.startAnimating()
         
         let basicPlayerOptions = playerOptions(videoData)
-        kalturaBasicPlayer = KalturaBasicPlayer(basicPlayerOptions: basicPlayerOptions)
+        kalturaBasicPlayer = KalturaBasicPlayer(options: basicPlayerOptions)
         kalturaBasicPlayer.view = kalturaPlayerView
         
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] (notification) in
@@ -111,11 +111,18 @@ class MediaPlayerViewController: PlayerViewController {
         
         if shouldPreparePlayer {
             shouldPreparePlayer = false
+            
+            var mediaOptions: MediaOptions? = nil
+            if let startTime = videoData.startTime {
+                mediaOptions = MediaOptions()
+                mediaOptions?.startTime = startTime
+            }
+            
             if let mediaEntry = videoData.mediaEntry {
-                kalturaBasicPlayer.mediaEntry = mediaEntry
+                kalturaBasicPlayer.setMedia(mediaEntry, options: mediaOptions)
             } else if let freeFormMedia = videoData.freeFormMedia {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
-                kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType)
+                kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType, mediaOptions: mediaOptions)
             }
             
             if videoData.autoPlay == false && videoData.preload == false {
@@ -169,9 +176,6 @@ class MediaPlayerViewController: PlayerViewController {
         }
         if let preload = videoData?.preload {
             basicPlayerOptions.preload = preload
-        }
-        if let startTime = videoData?.startTime {
-            basicPlayerOptions.startTime = startTime
         }
         if let pluginConfig = videoData?.pluginConfig {
             basicPlayerOptions.pluginConfig = pluginConfig
