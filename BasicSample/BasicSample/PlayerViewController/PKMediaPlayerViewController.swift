@@ -9,7 +9,8 @@
 import UIKit
 //import PlayKitUI
 
-class PKMediaPlayerViewController: PlayerViewController {
+class PKMediaPlayerViewController: UIViewController, PlayerViewController {
+    var videoData: VideoData?
     
     override func viewDidLoad() {
         super.viewDidLoad()

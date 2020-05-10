@@ -20,6 +20,6 @@ enum PlayerType {
     }
 }
 
-class PlayerViewController: UIViewController {
-    var videoData: VideoData?
+protocol PlayerViewController: UIViewController {
+    var videoData: VideoData? { get set }
 }

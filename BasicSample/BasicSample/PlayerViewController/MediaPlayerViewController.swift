@@ -29,11 +29,11 @@ class PPRButton: UIButton {
     }
 }
 
-class MediaPlayerViewController: PlayerViewController {
+class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     var kalturaBasicPlayer: KalturaBasicPlayer! // Created in the viewDidLoad
     
-    override var videoData: VideoData? {
+    var videoData: VideoData? {
         didSet {
             if viewIfLoaded != nil, let videoData = self.videoData {
                 shouldPreparePlayer = true
