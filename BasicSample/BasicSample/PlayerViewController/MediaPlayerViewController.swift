@@ -125,6 +125,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType, mediaOptions: mediaOptions)
             }
             
+            // If the autoPlay and preload was set to false, prepare will not be called automatically
             if videoData.autoPlay == false && videoData.preload == false {
                 kalturaBasicPlayer.prepare()
             }
