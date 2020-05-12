@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D879A6FFFD154D9FFBF0EE6 /* Pods_OTTSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E5DC614FC11A64743B6859 /* Pods_OTTSample.framework */; };
+		D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */; };
+		D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */; };
+		D29A68F9245F1CBB00C942ED /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */; };
+		D29A68FA245F1CBB00C942ED /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */; };
+		D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */; };
+		D29A68FC245F1CBB00C942ED /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F6245F1CBB00C942ED /* VideoData.swift */; };
+		D2BB803B2439FD3D0050228D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BB803A2439FD3D0050228D /* AppDelegate.swift */; };
+		D2BB80422439FD3E0050228D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BB80402439FD3D0050228D /* Main.storyboard */; };
+		D2BB80442439FD440050228D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BB80432439FD440050228D /* Assets.xcassets */; };
+		D2BB80472439FD450050228D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BB80452439FD450050228D /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		224948AAB8DB9E5358C12A57 /* Pods-OTTSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OTTSample.release.xcconfig"; path = "Target Support Files/Pods-OTTSample/Pods-OTTSample.release.xcconfig"; sourceTree = "<group>"; };
+		34FD1B02DE7FD9E0EB47A894 /* Pods-OTTSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OTTSample.debug.xcconfig"; path = "Target Support Files/Pods-OTTSample/Pods-OTTSample.debug.xcconfig"; sourceTree = "<group>"; };
+		76E5DC614FC11A64743B6859 /* Pods_OTTSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OTTSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasTableViewController.swift; sourceTree = "<group>"; };
+		D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKMediaPlayerViewController.swift; sourceTree = "<group>"; };
+		D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
+		D29A68F6245F1CBB00C942ED /* VideoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
+		D2BB80372439FD3D0050228D /* OTTSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTTSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2BB803A2439FD3D0050228D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2BB80412439FD3D0050228D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2BB80432439FD440050228D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2BB80462439FD450050228D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2BB80482439FD450050228D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2BB80342439FD3D0050228D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D879A6FFFD154D9FFBF0EE6 /* Pods_OTTSample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B2C00631C4F43827B076F1D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34FD1B02DE7FD9E0EB47A894 /* Pods-OTTSample.debug.xcconfig */,
+				224948AAB8DB9E5358C12A57 /* Pods-OTTSample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D29A68F2245F1CBB00C942ED /* PlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */,
+				D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */,
+				D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */,
+			);
+			path = PlayerViewController;
+			sourceTree = "<group>";
+		};
+		D2BB802E2439FD3D0050228D = {
+			isa = PBXGroup;
+			children = (
+				D2BB80392439FD3D0050228D /* OTTSample */,
+				D2BB80382439FD3D0050228D /* Products */,
+				B2C00631C4F43827B076F1D2 /* Pods */,
+				DD69385BEF8FF001EDAFEF66 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D2BB80382439FD3D0050228D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2BB80372439FD3D0050228D /* OTTSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2BB80392439FD3D0050228D /* OTTSample */ = {
+			isa = PBXGroup;
+			children = (
+				D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */,
+				D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */,
+				D29A68F2245F1CBB00C942ED /* PlayerViewController */,
+				D29A68F6245F1CBB00C942ED /* VideoData.swift */,
+				D2BB803A2439FD3D0050228D /* AppDelegate.swift */,
+				D2BB80402439FD3D0050228D /* Main.storyboard */,
+				D2BB80432439FD440050228D /* Assets.xcassets */,
+				D2BB80452439FD450050228D /* LaunchScreen.storyboard */,
+				D2BB80482439FD450050228D /* Info.plist */,
+			);
+			path = OTTSample;
+			sourceTree = "<group>";
+		};
+		DD69385BEF8FF001EDAFEF66 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76E5DC614FC11A64743B6859 /* Pods_OTTSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2BB80362439FD3D0050228D /* OTTSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2BB804B2439FD450050228D /* Build configuration list for PBXNativeTarget "OTTSample" */;
+			buildPhases = (
+				CCB5BA21A5FB4171572C0599 /* [CP] Check Pods Manifest.lock */,
+				D2BB80332439FD3D0050228D /* Sources */,
+				D2BB80342439FD3D0050228D /* Frameworks */,
+				D2BB80352439FD3D0050228D /* Resources */,
+				DF3AD1005230A678BB7459EE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OTTSample;
+			productName = OTTSample;
+			productReference = D2BB80372439FD3D0050228D /* OTTSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2BB802F2439FD3D0050228D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Kaltura Inc.";
+				TargetAttributes = {
+					D2BB80362439FD3D0050228D = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = D2BB80322439FD3D0050228D /* Build configuration list for PBXProject "OTTSample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2BB802E2439FD3D0050228D;
+			productRefGroup = D2BB80382439FD3D0050228D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2BB80362439FD3D0050228D /* OTTSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2BB80352439FD3D0050228D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2BB80472439FD450050228D /* LaunchScreen.storyboard in Resources */,
+				D2BB80442439FD440050228D /* Assets.xcassets in Resources */,
+				D2BB80422439FD3E0050228D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CCB5BA21A5FB4171572C0599 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OTTSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF3AD1005230A678BB7459EE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OTTSample/Pods-OTTSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OTTSample/Pods-OTTSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OTTSample/Pods-OTTSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2BB80332439FD3D0050228D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */,
+				D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */,
+				D29A68FA245F1CBB00C942ED /* PKMediaPlayerViewController.swift in Sources */,
+				D29A68FC245F1CBB00C942ED /* VideoData.swift in Sources */,
+				D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */,
+				D2BB803B2439FD3D0050228D /* AppDelegate.swift in Sources */,
+				D29A68F9245F1CBB00C942ED /* PlayerViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D2BB80402439FD3D0050228D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2BB80412439FD3D0050228D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2BB80452439FD450050228D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2BB80462439FD450050228D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2BB80492439FD450050228D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D2BB804A2439FD450050228D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2BB804C2439FD450050228D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34FD1B02DE7FD9E0EB47A894 /* Pods-OTTSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X8RDCFJK95;
+				INFOPLIST_FILE = OTTSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.OTTSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D2BB804D2439FD450050228D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 224948AAB8DB9E5358C12A57 /* Pods-OTTSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X8RDCFJK95;
+				INFOPLIST_FILE = OTTSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.OTTSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2BB80322439FD3D0050228D /* Build configuration list for PBXProject "OTTSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2BB80492439FD450050228D /* Debug */,
+				D2BB804A2439FD450050228D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2BB804B2439FD450050228D /* Build configuration list for PBXNativeTarget "OTTSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2BB804C2439FD450050228D /* Debug */,
+				D2BB804D2439FD450050228D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2BB802F2439FD3D0050228D /* Project object */;
+}
