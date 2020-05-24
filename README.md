@@ -1,6 +1,11 @@
 # Kaltura Player iOS Samples
 
-Include ```pod 'KalturaPlayer'``` in your Podfile.
+In case of a **Basic Player**, include ```pod 'KalturaPlayer'``` in your Podfile.  
+In case of an **OTT Player**, include ```pod 'KalturaPlayer/OTT'``` in your Podfile.
+
+On this page:
+* TOC 
+{:toc}
 
 ## Basic Player
 
@@ -39,7 +44,7 @@ kalturaBasicPlayer.view = kalturaPlayerView
 
 #### 3. Register for Player Events
 
-In order to receive the events from the begining, register to them before running prepare on the player.  
+In order to receive the events from the beginning, register to them before running prepare on the player.  
 
 An example for the playback events in order to updated the UI on the button:
 
@@ -137,7 +142,7 @@ There are two available options:
 
 #### 5. Prepare the player
 
-**This will be done automatically** if the player options, `autoPlay` or `preload` is set to true.
+**This will be done automatically** if the player options, `autoPlay` or `preload` is set too true.
 Which those are the default values.
 
 In case the `autoPlay` and `preload` are set to false, `prepare` on the player needs to be called manually.
@@ -148,12 +153,207 @@ kalturaBasicPlayer.prepare()
 
 #### 6. Play
 
-**This will be done automatically** if the player options, `autoPlay` is set to true. Which is the default value.
+**This will be done automatically** if the player options, `autoPlay` is set too true. Which is the default value.
 
 In case the `autoPlay` is set to false, `play` on the player needs to be called manually.
 
 ```swift
 kalturaBasicPlayer.play()
+```
+
+Play on the player can be called straight after prepare, once it's ready and can play, the playback will start automatically.  
+Registering to the player event `CanPlay` will enable you to know exactly when the play can be performed in case you need it controlled.
+
+## OTT Player
+
+The OTT Player has the Kava Plugin and Phoenix Analytics Plugin embedded, therefore no additional configuration for those plugins are required.
+
+#### 1. Setup the KalturaOTTPlayerManager
+
+In the AppDelegate call `setup` on the `KalturaOTTPlayerManager` when the app launches.
+
+For Example:
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    // Override point for customization after application launch.
+    KalturaOTTPlayerManager.setup(partnerId: 3009, serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
+    
+    return true
+}
+```
+
+The `setup` will fetch for the configuration needed for the Kava Plugin. As well as register both Kava Plugin and Phoenix Analytics Plugin.
+
+#### 2. Create a KalturaOTTPlayer
+
+```swift
+var kalturaOTTPlayer: KalturaOTTPlayer! // Created in the viewDidLoad
+
+override func viewDidLoad() {
+	super.viewDidLoad()
+	
+	let ottPlayerOptions = OTTPlayerOptions(ks: nil, referrer: nil)
+	kalturaOTTPlayer = KalturaOTTPlayer(options: ottPlayerOptions)
+}
+```
+
+Check the `OTTPlayerOptions` class for more info.  
+The available options and defaults that can be configured are:  
+
+```swift
+public var preload: Bool = true
+public var autoPlay: Bool = true
+public var pluginConfig: PluginConfig = PluginConfig(config: [:])
+```
+
+#### 3. Pass the view to the KalturaOTTPlayer
+
+Create a `KalturaPlayerView` in the xib or in the code.  
+
+```swift
+@IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
+
+kalturaOTTPlayer.view = kalturaPlayerView
+
+```
+
+#### 4. Register for Player Events
+
+In order to receive the events from the beginning, register to them before running prepare on the player.  
+
+An example for the playback events in order to updated the UI on the button:
+
+```swift
+kalturaOTTPlayer.addObserver(self, events: [KPEvent.ended, KPEvent.play, KPEvent.playing, KPEvent.pause]) { [weak self] event in
+	guard let self = self else { return }
+	    
+	NSLog(event.description)
+	    
+	DispatchQueue.main.async {
+	    switch event {
+	    case is KPEvent.Ended:
+	        self.playPauseButton.displayState = .replay
+	    case is KPEvent.Play:
+	        self.playPauseButton.displayState = .pause
+	    case is KPEvent.Playing:
+	        self.playPauseButton.displayState = .pause
+	    case is KPEvent.Pause:
+	        self.playPauseButton.displayState = .play
+	    default:
+	        break
+	    }
+	}
+}
+```
+
+An example to update the progress:
+
+```swift
+kalturaOTTPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
+    guard let self = self else { return }
+    let currentTime = event.currentTime ?? NSNumber(value: self.kalturaOTTPlayer.currentTime)
+    DispatchQueue.main.async {
+        self.mediaProgressSlider.value = Float(currentTime.doubleValue / self.kalturaOTTPlayer.duration)
+    }
+}
+```
+
+**NOTE:** Don't forget to perform UI changes on the main thread.  
+And don't forget to unregister when the view is not displayed.
+
+**All available Player events:**
+
+* canPlay
+* durationChanged
+* stopped
+* ended
+* loadedMetadata
+* play
+* pause
+* playing
+* seeking
+* seeked
+* replay
+* tracksAvailable
+* textTrackChanged
+* audioTrackChanged
+* videoTrackChanged
+* playbackInfo
+* stateChanged
+* timedMetadata
+* sourceSelected
+* loadedTimeRanges
+* playheadUpdate
+* error
+* errorLog
+* playbackStalled
+
+#### 5. Create the media options
+
+This is the media details that will be passed to the player to load.
+
+```swift
+let ottMediaOptions = OTTMediaOptions()
+```
+
+Check the `OTTMediaOptions` class for more info.  
+The available options that can be configured are the following:  
+
+```swift
+public var ks: String?
+public var assetId: String?
+public var assetType: AssetType = .unset
+public var assetReferenceType: AssetReferenceType = .unset
+public var formats: [String]?
+public var fileIds: [String]?
+public var playbackContextType: PlaybackContextType = .unset
+public var networkProtocol: String?
+```
+
+#### 6. Load the media
+
+Pass the created media options to the `loadMedia` function and implement the callback function in order to observe if an error has occurred.
+
+For example:
+
+```swift
+kalturaOTTPlayer.loadMedia(options: ottMediaOptions) { [weak self] (error) in
+    guard let self = self else { return }
+    if error != nil {
+        let alert = UIAlertController(title: "Media not loaded", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    } else {
+        // If the autoPlay and preload was set to false, prepare will not be called automatically
+        if videoData.player.autoPlay == false && videoData.player.preload == false {
+            self.kalturaOTTPlayer.prepare()
+        }
+    }
+}
+```
+
+#### 7. Prepare the player
+
+**This will be done automatically** if the player options, `autoPlay` or `preload` is set too true.
+Which those are the default values.
+
+In case the `autoPlay` and `preload` are set to false, `prepare` on the player needs to be called manually.
+
+```swift
+kalturaOTTPlayer.prepare()
+```
+
+#### 8. Play
+
+**This will be done automatically** if the player options, `autoPlay` is set too true. Which is the default value.
+
+In case the `autoPlay` is set to false, `play` on the player needs to be called manually.
+
+```swift
+kalturaOTTPlayer.play()
 ```
 
 Play on the player can be called straight after prepare, once it's ready and can play, the playback will start automatically.  
