@@ -4,6 +4,7 @@ In case of a **Basic Player**, include ```pod 'KalturaPlayer'``` in your Podfile
 In case of an **OTT Player**, include ```pod 'KalturaPlayer/OTT'``` in your Podfile.
 
 On this page:
+
 - [Basic Player](#basic-player)
   1. [Create a KalturaBasicPlayer](#1-create-a-kalturabasicplayer)
   2. [Pass the view to the KalturaBasicPlayer](#2-pass-the-view-to-the-kalturabasicplayer)
@@ -11,6 +12,7 @@ On this page:
   4. [Set the Media Entry](#4-set-the-media-entry)
   5. [Prepare the player](#5-prepare-the-player)
   6. [Play](#6-play)
+  
 - [OTT Player](#ott-player)
   1. [Setup the KalturaOTTPlayerManager](#1-setup-the-kalturaottplayermanager)
   2. [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer)
