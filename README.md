@@ -4,22 +4,22 @@ In case of a **Basic Player**, include ```pod 'KalturaPlayer'``` in your Podfile
 In case of an **OTT Player**, include ```pod 'KalturaPlayer/OTT'``` in your Podfile.
 
 On this page:
-- [Basic Player](#Basic_Player)
-  * [Create a KalturaBasicPlayer](#Create_a_KalturaBasicPlayer)
-  * [Pass the view to the KalturaBasicPlayer](#Pass_the_view_to_the_KalturaBasicPlayer)
-  * [Register for Player Events](#Register_for_Player_Events_Basic)
-  * [Set the Media Entry](#Set_the_Media_Entry)
-  * [Prepare the player](#Prepare_the_player)
-  * [Play](#Play)
-- [OTT Player](#OTT_Player)
-  * [Setup the KalturaOTTPlayerManager](#Setup_the_KalturaOTTPlayerManager)
-  * [Create a KalturaOTTPlayer](#Create_a_KalturaOTTPlayer)
-  * [Pass the view to the KalturaOTTPlayer](#Pass_the_view_to_the_KalturaOTTPlayer)
-  * [Register for Player Events](#Register_for_Player_Events_OTT)
-  * [Create the media options](#Create_the_media_options_OTT)
-  * [Load the media](#Load_the_media_OTT)
-  * [Prepare the player](#Prepare_the_player_OTT)
-  * [Play](#Play_OTT)
+- [Basic Player](#basic-player)
+  1. [Create a KalturaBasicPlayer](#1-create-a-kalturabasicplayer)
+  2. [Pass the view to the KalturaBasicPlayer](#2-pass-the-view-to-the-kalturabasicplayer)
+  3. [Register for Player Events](#3-register-for-player-events)
+  4. [Set the Media Entry](#4-set-the-media-entry)
+  5. [Prepare the player](#5-prepare-the-player)
+  6. [Play](#6-play)
+- [OTT Player](#ott-player)
+  1. [Setup the KalturaOTTPlayerManager](#1-setup-the-kalturaottplayermanager)
+  2. [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer)
+  3. [Pass the view to the KalturaOTTPlayer](#3-pass-the-view-to-the-kalturaottplayer)
+  4. [Register for Player Events](#4-register-for-player-events)
+  5. [Create the media options](#5-create-the-media-options)
+  6. [Load the media](#6-load-the-media)
+  7. [Prepare the player](#7-prepare-the-player)
+  8. [Play](#8-play)
   
 <!-- toc -->
 
