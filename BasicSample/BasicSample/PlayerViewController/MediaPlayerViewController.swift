@@ -126,11 +126,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
             
             // If the autoPlay and preload was set to false, prepare will not be called automatically
-            if videoData.autoPlay == false && videoData.preload == false {
+            if videoData.player.autoPlay == false && videoData.player.preload == false {
                 kalturaBasicPlayer.prepare()
             }
             
-            if videoData.autoPlay {
+            if videoData.player.autoPlay {
                 playPauseButton.displayState = .pause
                 showPlayerControllers(false)
             } else {
@@ -172,13 +172,13 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     func playerOptions(_ videoData: VideoData?) -> BasicPlayerOptions {
         let basicPlayerOptions = BasicPlayerOptions()
-        if let autoPlay = videoData?.autoPlay {
+        if let autoPlay = videoData?.player.autoPlay {
             basicPlayerOptions.autoPlay = autoPlay
         }
-        if let preload = videoData?.preload {
+        if let preload = videoData?.player.preload {
             basicPlayerOptions.preload = preload
         }
-        if let pluginConfig = videoData?.pluginConfig {
+        if let pluginConfig = videoData?.player.pluginConfig {
             basicPlayerOptions.pluginConfig = pluginConfig
         }
         return basicPlayerOptions

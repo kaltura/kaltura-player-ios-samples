@@ -18,6 +18,9 @@
 		D22671FF22F7346100B1F247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22671FD22F7346100B1F247 /* Main.storyboard */; };
 		D226720122F7346400B1F247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D226720022F7346400B1F247 /* Assets.xcassets */; };
 		D226720422F7346400B1F247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D226720222F7346400B1F247 /* LaunchScreen.storyboard */; };
+		D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2582247EA0E500A430FD /* IMAAdTags.swift */; };
+		D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2585247EA8B800A430FD /* BasicVideoData.swift */; };
+		D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2587247EAEC100A430FD /* IMAVideoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		D226720022F7346400B1F247 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D226720322F7346400B1F247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D226720522F7346400B1F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D28B2582247EA0E500A430FD /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
+		D28B2585247EA8B800A430FD /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
+		D28B2587247EAEC100A430FD /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +98,8 @@
 			children = (
 				D22671F922F7346100B1F247 /* AppDelegate.swift */,
 				D2231DD223E8692900462B23 /* MainTableViewController.swift */,
-				D2231DD923EAD71700462B23 /* VideoData.swift */,
 				D2231DDB23EAD8B300462B23 /* MediasTableViewController.swift */,
+				D28B2584247EA87E00A430FD /* VideoData */,
 				D2231DDF23EAFB2C00462B23 /* PlayerViewController */,
 				D22671FD22F7346100B1F247 /* Main.storyboard */,
 				D226720022F7346400B1F247 /* Assets.xcassets */,
@@ -101,6 +107,17 @@
 				D226720522F7346400B1F247 /* Info.plist */,
 			);
 			path = BasicSample;
+			sourceTree = "<group>";
+		};
+		D28B2584247EA87E00A430FD /* VideoData */ = {
+			isa = PBXGroup;
+			children = (
+				D2231DD923EAD71700462B23 /* VideoData.swift */,
+				D28B2585247EA8B800A430FD /* BasicVideoData.swift */,
+				D28B2582247EA0E500A430FD /* IMAAdTags.swift */,
+				D28B2587247EAEC100A430FD /* IMAVideoData.swift */,
+			);
+			path = VideoData;
 			sourceTree = "<group>";
 		};
 		D79AEE6F337404ED47C5F3FE /* Frameworks */ = {
@@ -229,10 +246,13 @@
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
 				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,
+				D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */,
 				D2231DE123EAFCD600462B23 /* PlayerViewController.swift in Sources */,
 				D22671FA22F7346100B1F247 /* AppDelegate.swift in Sources */,
+				D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */,
 				D2231DDC23EAD8B300462B23 /* MediasTableViewController.swift in Sources */,
 				D2231DDA23EAD71700462B23 /* VideoData.swift in Sources */,
+				D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

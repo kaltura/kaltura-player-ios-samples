@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PlayKit
 
 class UIMediaHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var changeMediaSwitch: UISwitch!
@@ -21,6 +20,7 @@ class MediasTableViewController: UITableViewController {
     
     var videos: [VideoData] = []
     var playerType: PlayerType = .Custom
+    var videoDataType: MenuItem = .basic
     
     var playerViewController: PlayerViewController?
     var headerTableViewCell: UIMediaHeaderTableViewCell?
@@ -29,42 +29,12 @@ class MediasTableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        initVideos()
-    }
-    
-    func initVideos() {
-        videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20",
-                                player: PlayerData(),
-                                media: OTTMedia(assetId: "548570",
-                                                assetType: .media,
-                                                assetReferenceType: .media,
-                                                playbackContextType: .playback,
-                                                networkProtocol: "http",
-                                                startTime: 20)))
-        
-        videos.append(VideoData(title: "548576, autoPlay-false, preload",
-                                player: PlayerData(autoPlay: false),
-                                media: OTTMedia(assetId: "548576",
-                                                assetType: .media,
-                                                assetReferenceType: .media,
-                                                playbackContextType: .playback,
-                                                networkProtocol: "http")))
-        
-        videos.append(VideoData(title: "548577, autoPlay, preload-false",
-                                player: PlayerData(preload: false),
-                                media: OTTMedia(assetId: "548577",
-                                                assetType: .media,
-                                                assetReferenceType: .media,
-                                                playbackContextType: .playback,
-                                                networkProtocol: "http")))
-
-        videos.append(VideoData(title: "548575, autoPlay-false, preload-false",
-                                player: PlayerData(autoPlay: false, preload: false),
-                                media: OTTMedia(assetId: "548575",
-                                                assetType: .media,
-                                                assetReferenceType: .media,
-                                                playbackContextType: .playback,
-                                                networkProtocol: "http")))
+        switch videoDataType {
+        case .basic:
+            videos = VideoData.getBasicVideos()
+        case .ima:
+            videos = VideoData.getIMAVideos()
+        }
     }
     
     // MARK: - UITableViewDataSource
