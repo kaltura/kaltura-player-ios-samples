@@ -172,21 +172,26 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     // MARK: - Private Methods
     
-    func playerOptions(_ videoData: VideoData?) -> OTTPlayerOptions {
-        let playerKS = videoData?.player.ks ?? nil
-        let playerReferrer = videoData?.player.referrer ?? nil
-        let ottPlayerOptions = OTTPlayerOptions(ks: playerKS, referrer: playerReferrer)
+    func playerOptions(_ videoData: VideoData?) -> PlayerOptions {
+        let playerOptions = PlayerOptions()
         
+        if let playerKS = videoData?.player.ks {
+            playerOptions.ks = playerKS
+        }
+        if let playerReferrer = videoData?.player.referrer {
+            playerOptions.referrer = playerReferrer
+        }
         if let autoPlay = videoData?.player.autoPlay {
-            ottPlayerOptions.autoPlay = autoPlay
+            playerOptions.autoPlay = autoPlay
         }
         if let preload = videoData?.player.preload {
-            ottPlayerOptions.preload = preload
+            playerOptions.preload = preload
         }
         if let pluginConfig = videoData?.player.pluginConfig {
-            ottPlayerOptions.pluginConfig = pluginConfig
+            playerOptions.pluginConfig = pluginConfig
         }
-        return ottPlayerOptions
+        
+        return playerOptions
     }
     
     func mediaOptions(_ videoData: VideoData?) -> OTTMediaOptions {
