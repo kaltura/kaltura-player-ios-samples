@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="As8-Tt-03u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="As8-Tt-03u">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <!--Main Table View Controller-->
         <scene sceneID="BRg-7x-tg3">
             <objects>
-                <tableViewController id="xew-M8-MXD" customClass="MainTableViewController" customModule="BasicSample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xew-M8-MXD" customClass="MainTableViewController" customModule="OTTSample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="center" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BmK-vQ-3cz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,13 +52,13 @@
         <!--Medias Table View Controller-->
         <scene sceneID="5Y9-L0-79O">
             <objects>
-                <tableViewController storyboardIdentifier="MediasTableViewController" id="xJb-5s-vVU" customClass="MediasTableViewController" customModule="BasicSample" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MediasTableViewController" id="xJb-5s-vVU" customClass="MediasTableViewController" customModule="OTTSample" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="64D-wL-TyD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="BasicSample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="OTTSample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="41.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wta-Cf-BMd" id="a4e-n2-45b">
@@ -131,7 +131,7 @@
         <!--Media Player View Controller-->
         <scene sceneID="Ry3-Hh-Abx">
             <objects>
-                <viewController storyboardIdentifier="PKMediaPlayerViewController" id="GBZ-X6-JMt" customClass="PKMediaPlayerViewController" customModule="BasicSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PKMediaPlayerViewController" id="GBZ-X6-JMt" customClass="PKMediaPlayerViewController" customModule="OTTSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k6H-u6-3rj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,7 +162,7 @@
         <!--Media Player View Controller-->
         <scene sceneID="OyH-Og-WzT">
             <objects>
-                <viewController storyboardIdentifier="MediaPlayerViewController" id="heX-JM-oLt" customClass="MediaPlayerViewController" customModule="BasicSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MediaPlayerViewController" id="heX-JM-oLt" customClass="MediaPlayerViewController" customModule="OTTSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XwF-nP-7dh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,14 +263,14 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="p6C-6G-SBf" firstAttribute="leading" secondItem="W4E-m7-R60" secondAttribute="leading" id="IBJ-k6-s5B"/>
-                                                <constraint firstAttribute="trailing" secondItem="p6C-6G-SBf" secondAttribute="trailing" id="L6w-ox-IHk"/>
-                                                <constraint firstItem="b0G-Dh-VPa" firstAttribute="centerY" secondItem="W4E-m7-R60" secondAttribute="centerY" id="O5b-Ai-EnV"/>
-                                                <constraint firstItem="p6C-6G-SBf" firstAttribute="top" secondItem="W4E-m7-R60" secondAttribute="top" id="YL8-Zm-mZH"/>
-                                                <constraint firstItem="b0G-Dh-VPa" firstAttribute="centerX" secondItem="W4E-m7-R60" secondAttribute="centerX" id="hNK-wm-n6h"/>
-                                                <constraint firstItem="c1o-BI-FSo" firstAttribute="top" secondItem="W4E-m7-R60" secondAttribute="top" constant="15" id="kHy-WX-yeB"/>
-                                                <constraint firstAttribute="bottom" secondItem="p6C-6G-SBf" secondAttribute="bottom" id="w1D-LB-5o4"/>
-                                                <constraint firstAttribute="trailing" secondItem="c1o-BI-FSo" secondAttribute="trailing" constant="15" id="ybg-IH-IaU"/>
+                                                <constraint firstItem="p6C-6G-SBf" firstAttribute="leading" secondItem="W4E-m7-R60" secondAttribute="leading" identifier="SettingsCloseButtonLeading" id="IBJ-k6-s5B"/>
+                                                <constraint firstAttribute="trailing" secondItem="p6C-6G-SBf" secondAttribute="trailing" identifier="SettingsCloseButtonTrailing" id="L6w-ox-IHk"/>
+                                                <constraint firstItem="b0G-Dh-VPa" firstAttribute="centerY" secondItem="W4E-m7-R60" secondAttribute="centerY" identifier="SettingsViewCenterY" id="O5b-Ai-EnV"/>
+                                                <constraint firstItem="p6C-6G-SBf" firstAttribute="top" secondItem="W4E-m7-R60" secondAttribute="top" identifier="SettingsCloseButtonTop" id="YL8-Zm-mZH"/>
+                                                <constraint firstItem="b0G-Dh-VPa" firstAttribute="centerX" secondItem="W4E-m7-R60" secondAttribute="centerX" identifier="SettingsViewCenterX" id="hNK-wm-n6h"/>
+                                                <constraint firstItem="c1o-BI-FSo" firstAttribute="top" secondItem="W4E-m7-R60" secondAttribute="top" constant="15" identifier="SettingsCloseImageTop" id="kHy-WX-yeB"/>
+                                                <constraint firstAttribute="bottom" secondItem="p6C-6G-SBf" secondAttribute="bottom" identifier="SettingsCloseButtonBottom" id="w1D-LB-5o4"/>
+                                                <constraint firstAttribute="trailing" secondItem="c1o-BI-FSo" secondAttribute="trailing" constant="15" identifier="SettingsCloseImageTrailing" id="ybg-IH-IaU"/>
                                             </constraints>
                                         </view>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -307,18 +307,16 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="tlg-Gd-R4t" firstAttribute="centerY" secondItem="ZAB-fX-ycM" secondAttribute="centerY" id="2Vu-z4-ani"/>
-                                                <constraint firstAttribute="trailing" secondItem="yNV-W2-1Dr" secondAttribute="trailing" constant="20" id="HvB-CR-Dzt"/>
-                                                <constraint firstItem="tlg-Gd-R4t" firstAttribute="leading" secondItem="ZAB-fX-ycM" secondAttribute="leading" constant="20" id="Tih-Wo-CV4"/>
-                                                <constraint firstAttribute="bottom" secondItem="tlg-Gd-R4t" secondAttribute="bottom" constant="5" id="UFu-LL-RYa"/>
-                                                <constraint firstAttribute="bottom" secondItem="yNV-W2-1Dr" secondAttribute="bottom" constant="5" id="bUV-b3-MMN"/>
-                                                <constraint firstItem="yNV-W2-1Dr" firstAttribute="centerY" secondItem="ZAB-fX-ycM" secondAttribute="centerY" id="j1T-NN-y0y"/>
+                                                <constraint firstAttribute="trailing" secondItem="yNV-W2-1Dr" secondAttribute="trailing" constant="20" identifier="TopVisualEffectCloseButtonTrailing" id="HvB-CR-Dzt"/>
+                                                <constraint firstItem="tlg-Gd-R4t" firstAttribute="leading" secondItem="ZAB-fX-ycM" secondAttribute="leading" constant="20" identifier="TopVisualEffectSettingsButtonLeading" id="Tih-Wo-CV4"/>
+                                                <constraint firstAttribute="bottom" secondItem="tlg-Gd-R4t" secondAttribute="bottom" constant="5" identifier="TopVisualEffectSettingsButtonBottom" id="UFu-LL-RYa"/>
+                                                <constraint firstAttribute="bottom" secondItem="yNV-W2-1Dr" secondAttribute="bottom" constant="5" identifier="TopVisualEffectCloseButtonBotton" id="bUV-b3-MMN"/>
                                             </constraints>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="XLc-NQ-Dsy"/>
+                                            <constraint firstAttribute="height" constant="50" identifier="TopVisualEffectHeight" id="XLc-NQ-Dsy"/>
                                         </constraints>
                                         <blurEffect style="dark"/>
                                     </visualEffectView>
@@ -328,7 +326,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6Z-Kx-r4C" customClass="PPRButton" customModule="BasicSample" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6Z-Kx-r4C" customClass="PPRButton" customModule="OTTSample" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -345,15 +343,15 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="L6Z-Kx-r4C" firstAttribute="centerX" secondItem="MSA-n8-KLN" secondAttribute="centerX" id="6Aq-ff-HtK"/>
-                                                <constraint firstItem="L6Z-Kx-r4C" firstAttribute="centerY" secondItem="MSA-n8-KLN" secondAttribute="centerY" id="zsp-OF-B1a"/>
+                                                <constraint firstItem="L6Z-Kx-r4C" firstAttribute="centerX" secondItem="MSA-n8-KLN" secondAttribute="centerX" identifier="MiddleVisualEffectPlayButtonCenterX" id="6Aq-ff-HtK"/>
+                                                <constraint firstItem="L6Z-Kx-r4C" firstAttribute="centerY" secondItem="MSA-n8-KLN" secondAttribute="centerY" identifier="MiddleVisualEffectPlayButtonCenterY" id="zsp-OF-B1a"/>
                                             </constraints>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="nGI-Rk-O77"/>
-                                            <constraint firstAttribute="width" constant="80" id="tzB-R5-pmb"/>
+                                            <constraint firstAttribute="height" constant="80" identifier="MiddleVisualEffectHeight" id="nGI-Rk-O77"/>
+                                            <constraint firstAttribute="width" constant="80" identifier="MiddleVisualEffectWidth" id="tzB-R5-pmb"/>
                                         </constraints>
                                         <blurEffect style="dark"/>
                                         <userDefinedRuntimeAttributes>
@@ -401,19 +399,19 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="svL-O4-WJS" firstAttribute="leading" secondItem="eea-Pq-piK" secondAttribute="leading" constant="5" id="KNa-fi-XrH"/>
-                                                <constraint firstAttribute="trailing" secondItem="6OA-eo-RBz" secondAttribute="trailing" constant="5" id="KP2-ZY-dj5"/>
-                                                <constraint firstItem="6OA-eo-RBz" firstAttribute="leading" secondItem="m0L-dC-YCC" secondAttribute="trailing" constant="5" id="QbB-aG-Cpf"/>
-                                                <constraint firstItem="svL-O4-WJS" firstAttribute="centerY" secondItem="m0L-dC-YCC" secondAttribute="centerY" id="Rxc-nL-LdY"/>
-                                                <constraint firstItem="m0L-dC-YCC" firstAttribute="leading" secondItem="svL-O4-WJS" secondAttribute="trailing" constant="5" id="Y8o-2F-Bwu"/>
-                                                <constraint firstItem="m0L-dC-YCC" firstAttribute="top" secondItem="eea-Pq-piK" secondAttribute="top" constant="10" id="tkG-HG-dB3"/>
-                                                <constraint firstItem="6OA-eo-RBz" firstAttribute="centerY" secondItem="m0L-dC-YCC" secondAttribute="centerY" id="xVy-zK-Jce"/>
+                                                <constraint firstItem="svL-O4-WJS" firstAttribute="leading" secondItem="eea-Pq-piK" secondAttribute="leading" constant="5" identifier="BottomVisualEffectCurrentTimeLeading" id="KNa-fi-XrH"/>
+                                                <constraint firstAttribute="trailing" secondItem="6OA-eo-RBz" secondAttribute="trailing" constant="5" identifier="BottomVisualEffectDurationTrailing" id="KP2-ZY-dj5"/>
+                                                <constraint firstItem="6OA-eo-RBz" firstAttribute="leading" secondItem="m0L-dC-YCC" secondAttribute="trailing" constant="5" identifier="BottomVisualEffectDurationLeading" id="QbB-aG-Cpf"/>
+                                                <constraint firstItem="svL-O4-WJS" firstAttribute="centerY" secondItem="m0L-dC-YCC" secondAttribute="centerY" identifier="BottomVisualEffectCurrentTimeCenterY" id="Rxc-nL-LdY"/>
+                                                <constraint firstItem="m0L-dC-YCC" firstAttribute="leading" secondItem="svL-O4-WJS" secondAttribute="trailing" constant="5" identifier="BottomVisualEffectProgressLeading" id="Y8o-2F-Bwu"/>
+                                                <constraint firstItem="m0L-dC-YCC" firstAttribute="top" secondItem="eea-Pq-piK" secondAttribute="top" constant="10" identifier="BottomVisualEffectProgressTop" id="tkG-HG-dB3"/>
+                                                <constraint firstItem="6OA-eo-RBz" firstAttribute="centerY" secondItem="m0L-dC-YCC" secondAttribute="centerY" identifier="BottomVisualEffectDurationCenterY" id="xVy-zK-Jce"/>
                                             </constraints>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="E8g-qO-dAU"/>
+                                            <constraint firstAttribute="height" constant="50" identifier="BottomVisualEffectHeight" id="E8g-qO-dAU"/>
                                         </constraints>
                                         <blurEffect style="dark"/>
                                     </visualEffectView>

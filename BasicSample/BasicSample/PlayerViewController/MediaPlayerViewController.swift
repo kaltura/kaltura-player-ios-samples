@@ -170,18 +170,20 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     // MARK: - Private Methods
     
-    func playerOptions(_ videoData: VideoData?) -> BasicPlayerOptions {
-        let basicPlayerOptions = BasicPlayerOptions()
-        if let autoPlay = videoData?.player.autoPlay {
-            basicPlayerOptions.autoPlay = autoPlay
+    func playerOptions(_ videoData: VideoData?) -> PlayerOptions {
+        let playerOptions = PlayerOptions()
+        
+        if let autoPlay = videoData?.autoPlay {
+            playerOptions.autoPlay = autoPlay
         }
-        if let preload = videoData?.player.preload {
-            basicPlayerOptions.preload = preload
+        if let preload = videoData?.preload {
+            playerOptions.preload = preload
         }
-        if let pluginConfig = videoData?.player.pluginConfig {
-            basicPlayerOptions.pluginConfig = pluginConfig
+        if let pluginConfig = videoData?.pluginConfig {
+            playerOptions.pluginConfig = pluginConfig
         }
-        return basicPlayerOptions
+        
+        return playerOptions
     }
     
     @objc private func playerViewTapped() {

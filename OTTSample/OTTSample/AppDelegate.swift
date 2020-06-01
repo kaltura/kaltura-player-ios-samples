@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        KalturaOTTPlayerManager.setup(partnerId: 3009, serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
-        
+        KalturaOTTPlayer.setup(partnerId: 3009,
+                               serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
         return true
     }
 

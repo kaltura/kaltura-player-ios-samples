@@ -14,7 +14,7 @@ Follow the steps for the required player:
   - [Play](#6-play)
   
 - [OTT Player](#ott-player)
-  - [Setup the KalturaOTTPlayerManager](#1-setup-the-kalturaottplayermanager)
+  - [Setup the KalturaOTTPlayer](#1-setup-the-kalturaottplayer)
   - [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer)
   - [Pass the view to the KalturaOTTPlayer](#3-pass-the-view-to-the-kalturaottplayer)
   - [Register for Player Events](#4-register-for-player-events)
@@ -35,8 +35,8 @@ var kalturaBasicPlayer: KalturaBasicPlayer! // Created in the viewDidLoad
 override func viewDidLoad() {
 	super.viewDidLoad()
 	
-	let basicPlayerOptions = BasicPlayerOptions()
-	kalturaBasicPlayer = KalturaBasicPlayer(options: basicPlayerOptions)
+	let playerOptions = PlayerOptions()
+	kalturaBasicPlayer = KalturaBasicPlayer(options: playerOptions)
 }
 ```
 
@@ -186,16 +186,16 @@ Registering to the player event `CanPlay` will enable you to know exactly when t
 
 The OTT Player has the Kava Plugin and Phoenix Analytics Plugin embedded, therefore no additional configuration for those plugins are required.
 
-#### 1. Setup the KalturaOTTPlayerManager
+#### 1. Setup the KalturaOTTPlayer
 
-In the AppDelegate call `setup` on the `KalturaOTTPlayerManager` when the app launches.
+In the AppDelegate call `setup` on the `KalturaOTTPlayer` when the app launches.
 
 For Example:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    KalturaOTTPlayerManager.setup(partnerId: 3009, serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
+    KalturaOTTPlayer.setup(partnerId: 3009, serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
     
     return true
 }
@@ -211,18 +211,20 @@ var kalturaOTTPlayer: KalturaOTTPlayer! // Created in the viewDidLoad
 override func viewDidLoad() {
 	super.viewDidLoad()
 	
-	let ottPlayerOptions = OTTPlayerOptions(ks: nil, referrer: nil)
-	kalturaOTTPlayer = KalturaOTTPlayer(options: ottPlayerOptions)
+	let playerOptions = PlayerOptions()
+	kalturaOTTPlayer = KalturaOTTPlayer(options: playerOptions)
 }
 ```
 
-Check the `OTTPlayerOptions` class for more info.  
+Check the `PlayerOptions` class for more info.  
 The available options and defaults that can be configured are:  
 
 ```swift
 public var preload: Bool = true
 public var autoPlay: Bool = true
 public var pluginConfig: PluginConfig = PluginConfig(config: [:])
+public var ks: String?
+public var referrer: String?
 ```
 
 #### 3. Pass the view to the KalturaOTTPlayer

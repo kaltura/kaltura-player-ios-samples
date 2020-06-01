@@ -308,12 +308,10 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="tlg-Gd-R4t" firstAttribute="centerY" secondItem="ZAB-fX-ycM" secondAttribute="centerY" id="2Vu-z4-ani"/>
                                                 <constraint firstAttribute="trailing" secondItem="yNV-W2-1Dr" secondAttribute="trailing" constant="20" id="HvB-CR-Dzt"/>
                                                 <constraint firstItem="tlg-Gd-R4t" firstAttribute="leading" secondItem="ZAB-fX-ycM" secondAttribute="leading" constant="20" id="Tih-Wo-CV4"/>
                                                 <constraint firstAttribute="bottom" secondItem="tlg-Gd-R4t" secondAttribute="bottom" constant="5" id="UFu-LL-RYa"/>
                                                 <constraint firstAttribute="bottom" secondItem="yNV-W2-1Dr" secondAttribute="bottom" constant="5" id="bUV-b3-MMN"/>
-                                                <constraint firstItem="yNV-W2-1Dr" firstAttribute="centerY" secondItem="ZAB-fX-ycM" secondAttribute="centerY" id="j1T-NN-y0y"/>
                                             </constraints>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
