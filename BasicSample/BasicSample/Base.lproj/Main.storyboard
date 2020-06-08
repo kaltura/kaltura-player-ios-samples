@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="As8-Tt-03u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="As8-Tt-03u">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -173,6 +173,10 @@
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="eOc-FH-Q04" customClass="KalturaPlayerView" customModule="KalturaPlayer">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doE-Nk-Ycp">
+                                        <rect key="frame" x="0.0" y="78.333333333333314" width="375" height="577.33333333333348"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FzT-ep-bCL">
@@ -427,15 +431,21 @@
                                     <constraint firstItem="2x3-QI-ayb" firstAttribute="top" secondItem="18s-ps-3fg" secondAttribute="top" id="Isf-TY-WgL"/>
                                     <constraint firstAttribute="trailing" secondItem="eOc-FH-Q04" secondAttribute="trailing" id="Js8-78-4ao"/>
                                     <constraint firstAttribute="bottom" secondItem="i8B-fg-qCh" secondAttribute="bottom" id="NWn-Y8-EJg"/>
+                                    <constraint firstItem="doE-Nk-Ycp" firstAttribute="trailing" secondItem="eOc-FH-Q04" secondAttribute="trailing" id="PmM-sQ-VBo"/>
                                     <constraint firstItem="2x3-QI-ayb" firstAttribute="leading" secondItem="18s-ps-3fg" secondAttribute="leading" id="Qbd-E9-ELP"/>
                                     <constraint firstItem="eOc-FH-Q04" firstAttribute="top" secondItem="18s-ps-3fg" secondAttribute="top" id="TGs-p8-rfr"/>
                                     <constraint firstItem="rFh-gs-qDs" firstAttribute="top" secondItem="18s-ps-3fg" secondAttribute="top" id="ULz-KK-K65"/>
                                     <constraint firstItem="FzT-ep-bCL" firstAttribute="centerY" secondItem="18s-ps-3fg" secondAttribute="centerY" id="XwU-DY-FK3"/>
                                     <constraint firstAttribute="trailing" secondItem="i8B-fg-qCh" secondAttribute="trailing" id="cEy-o8-N12"/>
                                     <constraint firstItem="P8d-P2-ona" firstAttribute="centerX" secondItem="18s-ps-3fg" secondAttribute="centerX" id="dEO-Nz-1iL"/>
+                                    <constraint firstItem="doE-Nk-Ycp" firstAttribute="height" secondItem="eOc-FH-Q04" secondAttribute="height" multiplier="0.65" constant="100" id="fo3-dW-bH8">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="doE-Nk-Ycp" firstAttribute="centerY" secondItem="eOc-FH-Q04" secondAttribute="centerY" id="l1L-mv-buU"/>
                                     <constraint firstAttribute="trailing" secondItem="2x3-QI-ayb" secondAttribute="trailing" id="n4U-jY-Q14"/>
                                     <constraint firstAttribute="bottom" secondItem="eOc-FH-Q04" secondAttribute="bottom" id="sQa-XJ-mcH"/>
                                     <constraint firstAttribute="trailing" secondItem="rFh-gs-qDs" secondAttribute="trailing" id="xwZ-NV-dSw"/>
+                                    <constraint firstItem="doE-Nk-Ycp" firstAttribute="leading" secondItem="eOc-FH-Q04" secondAttribute="leading" id="yW7-0J-QAg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -452,6 +462,7 @@
                         <outlet property="activityIndicator" destination="FzT-ep-bCL" id="Yo3-I6-Yx6"/>
                         <outlet property="bottomVisualEffectView" destination="i8B-fg-qCh" id="2hL-cp-vjS"/>
                         <outlet property="bottomVisualEffectViewHeightConstraint" destination="E8g-qO-dAU" id="8GG-5W-UlF"/>
+                        <outlet property="controllersInteractiveView" destination="doE-Nk-Ycp" id="vy8-sf-OgC"/>
                         <outlet property="currentTimeLabel" destination="svL-O4-WJS" id="637-bk-83D"/>
                         <outlet property="durationLabel" destination="6OA-eo-RBz" id="3tS-Gx-N3H"/>
                         <outlet property="kalturaPlayerView" destination="eOc-FH-Q04" id="XPV-Iu-mN3"/>

@@ -27,6 +27,7 @@ extension VideoData {
                                                 networkProtocol: "http")))
         
         let imaSkippableConfig = IMAConfig()
+        imaSkippableConfig.alwaysStartWithPreroll = true
         imaSkippableConfig.adTagUrl = IMASkippableTag
         videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20 - IMASkippableTag",
                                 player: PlayerData(pluginConfig: PluginConfig(config: [IMAPlugin.pluginName : imaSkippableConfig])),

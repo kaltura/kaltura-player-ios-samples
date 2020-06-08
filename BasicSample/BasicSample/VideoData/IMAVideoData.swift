@@ -93,6 +93,7 @@ extension VideoData {
                            pluginConfig: PluginConfig(config: [IMAPlugin.pluginName : imaAdSenseConfig]))))
         
         let imaPrerollAdsResponseConfig = IMAConfig()
+        imaPrerollAdsResponseConfig.alwaysStartWithPreroll = true
         imaPrerollAdsResponseConfig.adsResponse = IMAPrerollAdsResponse
         videos.append(VideoData(title: "KalturaMedia - MediaEntry - startPosition 10 - IMAPrerollAdsResponse",
                                 mediaEntry: mediaEntry,

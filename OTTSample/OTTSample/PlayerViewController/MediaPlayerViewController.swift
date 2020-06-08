@@ -8,6 +8,7 @@
 
 import UIKit
 import KalturaPlayer
+import PlayKit_IMA
 
 class PPRButton: UIButton {
     enum PPRButtonState {
@@ -42,6 +43,9 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 durationLabel.text = "00:00:00"
                 audioTracks = nil
                 textTracks = nil
+                mediaEnded = false
+                adsLoaded = false
+                allAdsCompleted = false
                 
                 let ottPlayerOptions = playerOptions(videoData)
                 kalturaOTTPlayer.updatePlayerOptions(ottPlayerOptions)
@@ -51,6 +55,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
     
+    // We have to have the 'controllersInteractiveView' and set the tap guesture on it and not on the 'kalturaPlayerView' because IMA's ad view is above the player's view.
+    @IBOutlet private weak var controllersInteractiveView: UIView!
     @IBOutlet private weak var topVisualEffectView: UIVisualEffectView!
     @IBOutlet private weak var topVisualEffectViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var bottomVisualEffectView: UIVisualEffectView!
@@ -77,11 +83,16 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     private var shouldPreparePlayer: Bool = true
     
+    private var mediaEnded: Bool = false
+    private var adsLoaded: Bool = false
+    private var allAdsCompleted: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let gesture = UITapGestureRecognizer(target: self, action:  #selector(playerViewTapped))
-        kalturaPlayerView.addGestureRecognizer(gesture)
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(controllersInteractiveViewTapped))
+        controllersInteractiveView.addGestureRecognizer(gesture)
+        
         settingsVisualEffectView.alpha = 0.0
         middleVisualEffectView.layer.cornerRadius = 40.0
         playPauseButton.displayState = .play
@@ -108,6 +119,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         guard let videoData = self.videoData else { return }
         
         registerPlayerEvents()
+        // IMA
+        registerAdEvents()
         
         if shouldPreparePlayer {
             shouldPreparePlayer = false
@@ -129,8 +142,6 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                     }
                 }
             }
-            
-            
             
             if videoData.player.autoPlay {
                 playPauseButton.displayState = .pause
@@ -160,7 +171,9 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         if kalturaOTTPlayer.isPlaying {
             kalturaOTTPlayer.pause()
         }
-        kalturaOTTPlayer.removeObserver(self, events: KPEvent.allEventTypes)
+        kalturaOTTPlayer.removeObserver(self, events: KPPlayerEvent.allEventTypes)
+        // IMA
+        kalturaOTTPlayer.removeObserver(self, events: KPAdEvent.allEventTypes)
     }
     
     deinit {
@@ -188,6 +201,9 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             playerOptions.preload = preload
         }
         if let pluginConfig = videoData?.player.pluginConfig {
+            if let imaConfig = pluginConfig.config[IMAPlugin.pluginName] as? IMAConfig {
+                imaConfig.videoControlsOverlays = [controllersInteractiveView, topVisualEffectView, middleVisualEffectView, bottomVisualEffectView]
+            }
             playerOptions.pluginConfig = pluginConfig
         }
         
@@ -216,7 +232,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         return ottMediaOptions
     }
     
-    @objc private func playerViewTapped() {
+    @objc private func controllersInteractiveViewTapped() {
         let show = !(topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
         showPlayerControllers(show)
     }
@@ -230,40 +246,44 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func registerPlaybackEvents() {
-        kalturaOTTPlayer.addObserver(self, events: [KPEvent.ended, KPEvent.play, KPEvent.playing, KPEvent.pause, KPEvent.canPlay, KPEvent.seeking, KPEvent.seeked, KPEvent.playbackStalled, KPEvent.stateChanged]) { [weak self] event in
+        kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause, KPPlayerEvent.canPlay, KPPlayerEvent.seeking, KPPlayerEvent.seeked, KPPlayerEvent.playbackStalled, KPPlayerEvent.stateChanged]) { [weak self] event in
             guard let self = self else { return }
             
             NSLog(event.description)
             
             DispatchQueue.main.async {
                 switch event {
-                case is KPEvent.Ended:
-                    self.playPauseButton.displayState = .replay
-                    self.showPlayerControllers(true)
-                case is KPEvent.Play:
+                case is KPPlayerEvent.Ended:
+                    self.mediaEnded = true
+                    if self.adsLoaded == false || self.allAdsCompleted {
+                        // No ads on media or all ads where completed
+                        self.playPauseButton.displayState = .replay
+                        self.showPlayerControllers(true)
+                    }
+                case is KPPlayerEvent.Play:
                     self.playPauseButton.displayState = .pause
-                case is KPEvent.Playing:
+                case is KPPlayerEvent.Playing:
                     self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
                     self.showPlayerControllers(false)
-                case is KPEvent.Pause:
+                case is KPPlayerEvent.Pause:
                     self.playPauseButton.displayState = .play
-                case is KPEvent.CanPlay:
+                case is KPPlayerEvent.CanPlay:
                     self.activityIndicator.stopAnimating()
-                case is KPEvent.Seeking:
+                case is KPPlayerEvent.Seeking:
                     self.activityIndicator.startAnimating()
                     if self.kalturaOTTPlayer.isPlaying {
                         self.showPlayerControllers(false, delay: 0.5)
                     }
-                case is KPEvent.Seeked:
+                case is KPPlayerEvent.Seeked:
                     self.userSeekInProgress = false
                     self.activityIndicator.stopAnimating()
                     if self.kalturaOTTPlayer.currentTime < self.kalturaOTTPlayer.duration, self.playPauseButton.displayState == .replay {
                         self.playPauseButton.displayState = .play
                     }
-                case is KPEvent.PlaybackStalled:
+                case is KPPlayerEvent.PlaybackStalled:
                     self.activityIndicator.startAnimating()
-                case is KPEvent.StateChanged:
+                case is KPPlayerEvent.StateChanged:
                     switch event.newState {
                     case .buffering:
                         self.activityIndicator.startAnimating()
@@ -280,7 +300,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func handleTracks() {
-        kalturaOTTPlayer.addObserver(self, events: [KPEvent.tracksAvailable]) { [weak self] event in
+        kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.tracksAvailable]) { [weak self] event in
             guard let self = self else { return }
             guard let tracks = event.tracks else {
                 NSLog("No Tracks Available")
@@ -293,7 +313,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func handleProgress() {
-        kalturaOTTPlayer.addObserver(self, events: [KPEvent.playheadUpdate]) { [weak self] event in
+        kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
             
             if self.userSeekInProgress { return }
@@ -306,7 +326,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func handleDuration() {
-        kalturaOTTPlayer.addObserver(self, events: [KPEvent.durationChanged]) { [weak self] event in
+        kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.durationChanged]) { [weak self] event in
             guard let self = self else { return }
             
             let duration = self.getTimeRepresentation(self.kalturaOTTPlayer.duration)
@@ -317,7 +337,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func handleError() {
-        kalturaOTTPlayer.addObserver(self, events: [KPEvent.error]) { [weak self] event in
+        kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.error]) { [weak self] event in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
@@ -350,6 +370,36 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             let minutes = Int(time / 60)
             let seconds = Int(time.truncatingRemainder(dividingBy: 60))
             return String(format: "00:%02d:%02d", minutes, seconds)
+        }
+    }
+    
+    // MARK: - IMA
+    
+    private func registerAdEvents() {
+        kalturaOTTPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStarted, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
+            guard let self = self else { return }
+            
+            switch adEvent {
+            case is KPAdEvent.AdLoaded:
+                self.adsLoaded = true
+            case is KPAdEvent.AdPaused:
+                self.playPauseButton.displayState = .play
+            case is KPAdEvent.AdResumed:
+                 self.activityIndicator.stopAnimating()
+                self.playPauseButton.displayState = .pause
+            case is KPAdEvent.AdStarted:
+                 self.activityIndicator.stopAnimating()
+                self.playPauseButton.displayState = .pause
+            case is KPAdEvent.AllAdsCompleted:
+                self.allAdsCompleted = true
+                // In case of a post-roll the media has ended
+                if self.mediaEnded {
+                    self.playPauseButton.displayState = .replay
+                    self.showPlayerControllers(true)
+                }
+            default:
+                break
+            }
         }
     }
     

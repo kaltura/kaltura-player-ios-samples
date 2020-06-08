@@ -24,7 +24,8 @@ target 'OTTSample' do
   end
   
   # In case we want to add IMA (Interactive Media Ads)
-  pod 'PlayKit_IMA'
+#  pod 'PlayKit_IMA'
+pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
 
   
   #--- In order to work with the unreleased versions --- Will be removed once released ---
@@ -32,5 +33,6 @@ target 'OTTSample' do
   pod 'PlayKit', :path => '../../playkit-ios'
   pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
   pod 'PlayKitKava', :path => '../../playkit-ios-kava'
+  
   
 end
