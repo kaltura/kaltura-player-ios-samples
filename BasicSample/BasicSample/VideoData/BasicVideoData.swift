@@ -15,7 +15,6 @@ extension VideoData {
         
         // Sending a free form Media
         
-        
         videos.append(VideoData(title: "Sintel - Free Form Media - Defaults",
                                 freeFormMedia: FreeFormMedia(id: "sintel",
                                                              contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8")))
@@ -48,6 +47,7 @@ extension VideoData {
                                 player: PlayerData(autoPlay: false)))
         
         // Sending a MediaEntry
+        
         let contentURL = URL(string: "https://cdnapisec.kaltura.com/p/2215841/sp/221584100/playManifest/entryId/1_vl96wf1o/format/applehttp/protocol/https/a.m3u8")
         let entryId = "KalturaMedia"
         let source = PKMediaSource(entryId, contentUrl: contentURL, mediaFormat: .hls)

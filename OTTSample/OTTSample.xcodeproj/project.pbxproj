@@ -11,6 +11,7 @@
 		D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */; };
 		D24D63E7247F9F810043FF11 /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E6247F9F810043FF11 /* IMAAdTags.swift */; };
 		D24D63E9247FA7880043FF11 /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E8247FA7880043FF11 /* IMAVideoData.swift */; };
+		D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815554248E375C00099C1B /* IMADAIVideoData.swift */; };
 		D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */; };
 		D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */; };
 		D29A68F9245F1CBB00C942ED /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */; };
@@ -30,6 +31,7 @@
 		D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D24D63E6247F9F810043FF11 /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		D24D63E8247FA7880043FF11 /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
+		D2815554248E375C00099C1B /* IMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMADAIVideoData.swift; sourceTree = "<group>"; };
 		D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasTableViewController.swift; sourceTree = "<group>"; };
 		D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */,
 				D24D63E6247F9F810043FF11 /* IMAAdTags.swift */,
 				D24D63E8247FA7880043FF11 /* IMAVideoData.swift */,
+				D2815554248E375C00099C1B /* IMADAIVideoData.swift */,
 			);
 			path = VideoData;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */,
 				D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */,
 				D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */,
 				D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */,

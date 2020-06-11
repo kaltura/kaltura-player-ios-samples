@@ -21,6 +21,7 @@
 		D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2582247EA0E500A430FD /* IMAAdTags.swift */; };
 		D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2585247EA8B800A430FD /* BasicVideoData.swift */; };
 		D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2587247EAEC100A430FD /* IMAVideoData.swift */; };
+		D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D28B2582247EA0E500A430FD /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		D28B2585247EA8B800A430FD /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D28B2587247EAEC100A430FD /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
+		D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMADAIVideoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				D28B2585247EA8B800A430FD /* BasicVideoData.swift */,
 				D28B2582247EA0E500A430FD /* IMAAdTags.swift */,
 				D28B2587247EAEC100A430FD /* IMAVideoData.swift */,
+				D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */,
 			);
 			path = VideoData;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */,
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
 				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,

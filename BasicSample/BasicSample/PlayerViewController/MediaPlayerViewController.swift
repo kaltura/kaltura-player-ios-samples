@@ -218,13 +218,19 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func registerPlaybackEvents() {
-        kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause, KPPlayerEvent.canPlay, KPPlayerEvent.seeking, KPPlayerEvent.seeked, KPPlayerEvent.playbackStalled, KPPlayerEvent.stateChanged]) { [weak self] event in
+        kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.loadedMetadata, KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause, KPPlayerEvent.canPlay, KPPlayerEvent.seeking, KPPlayerEvent.seeked, KPPlayerEvent.playbackStalled, KPPlayerEvent.stateChanged]) { [weak self] event in
             guard let self = self else { return }
             
-            NSLog(event.description)
+            NSLog("Event triggered: " + event.description)
             
             DispatchQueue.main.async {
                 switch event {
+                case is KPPlayerEvent.LoadedMetadata:
+                    if self.kalturaBasicPlayer.isLive() {
+                        self.mediaProgressSlider.thumbTintColor = UIColor.red
+                    } else {
+                        self.mediaProgressSlider.thumbTintColor = UIColor.white
+                    }
                 case is KPPlayerEvent.Ended:
                     self.mediaEnded = true
                     if self.adsLoaded == false || self.allAdsCompleted {
@@ -348,29 +354,36 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     // MARK: - IMA
     
     private func registerAdEvents() {
-        kalturaBasicPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStarted, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
+        kalturaBasicPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
             guard let self = self else { return }
             
-            switch adEvent {
-            case is KPAdEvent.AdLoaded:
-                self.adsLoaded = true
-            case is KPAdEvent.AdPaused:
-                self.playPauseButton.displayState = .play
-            case is KPAdEvent.AdResumed:
-                 self.activityIndicator.stopAnimating()
-                self.playPauseButton.displayState = .pause
-            case is KPAdEvent.AdStarted:
-                 self.activityIndicator.stopAnimating()
-                self.playPauseButton.displayState = .pause
-            case is KPAdEvent.AllAdsCompleted:
-                self.allAdsCompleted = true
-                // In case of a post-roll the media has ended
-                if self.mediaEnded {
-                    self.playPauseButton.displayState = .replay
-                    self.showPlayerControllers(true)
+            NSLog("Event triggered: " + adEvent.description)
+            
+            DispatchQueue.main.async {
+                switch adEvent {
+                case is KPAdEvent.AdLoaded:
+                    self.adsLoaded = true
+                case is KPAdEvent.AdPaused:
+                    self.playPauseButton.displayState = .play
+                case is KPAdEvent.AdResumed:
+                    self.activityIndicator.stopAnimating()
+                    self.playPauseButton.displayState = .pause
+                case is KPAdEvent.AdStarted:
+                    self.activityIndicator.stopAnimating()
+                    self.playPauseButton.displayState = .pause
+                     self.mediaProgressSlider.isEnabled = false
+                case is KPAdEvent.AdComplete:
+                    self.mediaProgressSlider.isEnabled = true
+                case is KPAdEvent.AllAdsCompleted:
+                    self.allAdsCompleted = true
+                    // In case of a post-roll the media has ended
+                    if self.mediaEnded {
+                        self.playPauseButton.displayState = .replay
+                        self.showPlayerControllers(true)
+                    }
+                default:
+                    break
                 }
-            default:
-                break
             }
         }
     }

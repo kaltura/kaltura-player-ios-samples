@@ -11,11 +11,13 @@ import UIKit
 enum MenuItem: Int, CaseIterable, CustomStringConvertible {
     case basic = 0
     case ima
+    case imaDAI
     
     var description: String {
         switch self {
         case .basic: return "Basic Sample"
         case .ima: return "IMA Sample"
+        case .imaDAI: return "IMA DAI Sample"
         }
     }
 }
