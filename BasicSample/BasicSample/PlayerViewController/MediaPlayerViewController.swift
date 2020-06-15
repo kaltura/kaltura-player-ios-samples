@@ -100,8 +100,6 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         playPauseButton.displayState = .play
         activityIndicator.layer.cornerRadius = 20.0
         
-        activityIndicator.startAnimating()
-        
         let basicPlayerOptions = playerOptions(videoData)
         kalturaBasicPlayer = KalturaBasicPlayer(options: basicPlayerOptions)
         kalturaBasicPlayer.view = kalturaPlayerView
@@ -127,6 +125,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         if shouldPreparePlayer {
             shouldPreparePlayer = false
             
+            activityIndicator.startAnimating()
+            
             var mediaOptions: MediaOptions? = nil
             if let startTime = videoData.startTime {
                 mediaOptions = MediaOptions()
@@ -149,6 +149,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 playPauseButton.displayState = .pause
                 showPlayerControllers(false)
             } else {
+                self.activityIndicator.stopAnimating()
                 playPauseButton.displayState = .play
                 showPlayerControllers(true)
             }
@@ -251,9 +252,10 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 case is KPPlayerEvent.CanPlay:
                     self.activityIndicator.stopAnimating()
                 case is KPPlayerEvent.Seeking:
-                    self.activityIndicator.startAnimating()
                     if self.kalturaBasicPlayer.isPlaying {
                         self.showPlayerControllers(false, delay: 0.5)
+                    } else {
+                        self.activityIndicator.startAnimating()
                     }
                 case is KPPlayerEvent.Seeked:
                     self.userSeekInProgress = false
@@ -262,11 +264,15 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         self.playPauseButton.displayState = .play
                     }
                 case is KPPlayerEvent.PlaybackStalled:
-                    self.activityIndicator.startAnimating()
+                    if !self.kalturaBasicPlayer.isPlaying {
+                        self.activityIndicator.startAnimating()
+                    }
                 case is KPPlayerEvent.StateChanged:
                     switch event.newState {
                     case .buffering:
-                        self.activityIndicator.startAnimating()
+                        if !self.kalturaBasicPlayer.isPlaying {
+                            self.activityIndicator.startAnimating()
+                        }
                     case .ready:
                         self.activityIndicator.stopAnimating()
                     default:
@@ -356,7 +362,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     // MARK: - IMA
     
     private func registerAdEvents() {
-        kalturaBasicPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
+        kalturaBasicPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
             guard let self = self else { return }
             
             NSLog("Event triggered: " + adEvent.description)
@@ -370,11 +376,19 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 case is KPAdEvent.AdResumed:
                     self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
+                case is KPAdEvent.AdStartedBuffering:
+                    if !self.kalturaBasicPlayer.isPlaying {
+                        self.activityIndicator.startAnimating()
+                    }
+                case is KPAdEvent.AdPlaybackReady:
+                    self.activityIndicator.stopAnimating()
                 case is KPAdEvent.AdStarted:
                     self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
-                     self.mediaProgressSlider.isEnabled = false
+                    self.mediaProgressSlider.isEnabled = false
                 case is KPAdEvent.AdComplete:
+                    self.mediaProgressSlider.isEnabled = true
+                case is KPAdEvent.AdSkipped:
                     self.mediaProgressSlider.isEnabled = true
                 case is KPAdEvent.AllAdsCompleted:
                     self.allAdsCompleted = true

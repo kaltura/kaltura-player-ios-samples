@@ -100,8 +100,6 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         playPauseButton.displayState = .play
         activityIndicator.layer.cornerRadius = 20.0
         
-        activityIndicator.startAnimating()
-        
         let ottPlayerOptions = playerOptions(videoData)
         kalturaOTTPlayer = KalturaOTTPlayer(options: ottPlayerOptions)
         kalturaOTTPlayer.view = kalturaPlayerView
@@ -127,6 +125,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         if shouldPreparePlayer {
             shouldPreparePlayer = false
             
+            activityIndicator.startAnimating()
+            
             let mediaOptions = self.mediaOptions(videoData)
             
             kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
@@ -141,6 +141,12 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                     // If the autoPlay and preload was set to false, prepare will not be called automatically
                     if videoData.player.autoPlay == false && videoData.player.preload == false {
                         self.kalturaOTTPlayer.prepare()
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    if !videoData.player.autoPlay {
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             }
@@ -279,9 +285,10 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 case is KPPlayerEvent.CanPlay:
                     self.activityIndicator.stopAnimating()
                 case is KPPlayerEvent.Seeking:
-                    self.activityIndicator.startAnimating()
                     if self.kalturaOTTPlayer.isPlaying {
                         self.showPlayerControllers(false, delay: 0.5)
+                    } else {
+                        self.activityIndicator.startAnimating()
                     }
                 case is KPPlayerEvent.Seeked:
                     self.userSeekInProgress = false
@@ -290,11 +297,15 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         self.playPauseButton.displayState = .play
                     }
                 case is KPPlayerEvent.PlaybackStalled:
-                    self.activityIndicator.startAnimating()
+                    if !self.kalturaOTTPlayer.isPlaying {
+                        self.activityIndicator.startAnimating()
+                    }
                 case is KPPlayerEvent.StateChanged:
                     switch event.newState {
                     case .buffering:
-                        self.activityIndicator.startAnimating()
+                        if !self.kalturaOTTPlayer.isPlaying {
+                            self.activityIndicator.startAnimating()
+                        }
                     case .ready:
                         self.activityIndicator.stopAnimating()
                     default:
@@ -384,7 +395,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     // MARK: - IMA
     
     private func registerAdEvents() {
-        kalturaOTTPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
+        kalturaOTTPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
             guard let self = self else { return }
             
             NSLog("Event triggered: " + adEvent.description)
@@ -396,13 +407,21 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 case is KPAdEvent.AdPaused:
                     self.playPauseButton.displayState = .play
                 case is KPAdEvent.AdResumed:
-                     self.activityIndicator.stopAnimating()
+                    self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
+                case is KPAdEvent.AdStartedBuffering:
+                    if !self.kalturaOTTPlayer.isPlaying {
+                        self.activityIndicator.startAnimating()
+                    }
+                case is KPAdEvent.AdPlaybackReady:
+                    self.activityIndicator.stopAnimating()
                 case is KPAdEvent.AdStarted:
                      self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
                      self.mediaProgressSlider.isEnabled = false
                 case is KPAdEvent.AdComplete:
+                    self.mediaProgressSlider.isEnabled = true
+                case is KPAdEvent.AdSkipped:
                     self.mediaProgressSlider.isEnabled = true
                 case is KPAdEvent.AllAdsCompleted:
                     self.allAdsCompleted = true
