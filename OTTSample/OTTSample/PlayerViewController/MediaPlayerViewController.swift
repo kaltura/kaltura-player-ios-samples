@@ -37,6 +37,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     var videoData: VideoData? {
         didSet {
             if viewIfLoaded != nil, let videoData = self.videoData {
+                kalturaOTTPlayer.stop()
+                
                 shouldPreparePlayer = true
                 mediaProgressSlider.value = 0
                 currentTimeLabel.text = "00:00:00"
@@ -463,7 +465,6 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     @IBAction private func closeTouched(_ sender: Any) {
-        kalturaOTTPlayer.stop()
         self.dismiss(animated: true, completion: nil)
     }
     
