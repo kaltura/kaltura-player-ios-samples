@@ -43,7 +43,7 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
 
 ## Basic Player
 
-#### 1. Setup the KalturaBasicPlayer
+### 1. Setup the KalturaBasicPlayer
 
 In the AppDelegate call `setup` on the `KalturaBasicPlayer` when the app launches.
 
@@ -62,7 +62,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 The `setup` will register any of Kaltura's known Plugins if they are added to the project.
 
-#### 2. Create a KalturaBasicPlayer
+### 2. Create a KalturaBasicPlayer
 
 ```swift
 import KalturaPlayer
@@ -86,7 +86,7 @@ public var autoPlay: Bool = true
 public var pluginConfig: PluginConfig = PluginConfig(config: [:])
 ```
 
-#### 3. Pass the view to the KalturaBasicPlayer
+### 3. Pass the view to the KalturaBasicPlayer
 
 Create a `KalturaPlayerView` in the xib or in the code.  
 
@@ -97,7 +97,7 @@ kalturaBasicPlayer.view = kalturaPlayerView
 
 ```
 
-#### 4. Register for Player Events
+### 4. Register for Player Events
 
 In order to receive the events from the beginning, register to them before running prepare on the player.  
 
@@ -168,7 +168,7 @@ And don't forget to unregister when the view is not displayed.
 * errorLog
 * playbackStalled
 
-#### 5. Set the Media Entry
+### 5. Set the Media Entry
 
 There are two available options: 
  
@@ -195,7 +195,7 @@ There are two available options:
 	
 **Note:** If you want to add a start time for the media, both functions accept a parameter of type `MediaOptions` which has a `startTime` property which can be set. See `MediaOptions` for more information.
 
-#### 6. Prepare the player
+### 6. Prepare the player
 
 **This will be done automatically** if the player options, `autoPlay` or `preload` is set too true.
 Which those are the default values.
@@ -206,7 +206,7 @@ In case the `autoPlay` and `preload` are set to false, `prepare` on the player n
 kalturaBasicPlayer.prepare()
 ```
 
-#### 7. Play
+### 7. Play
 
 **This will be done automatically** if the player options, `autoPlay` is set too true. Which is the default value.
 
@@ -223,7 +223,7 @@ Registering to the player event `CanPlay` will enable you to know exactly when t
 
 The OTT Player has the Kava Plugin and Phoenix Analytics Plugin embedded, therefore no additional configuration for those plugins are required.
 
-#### 1. Setup the KalturaOTTPlayer
+### 1. Setup the KalturaOTTPlayer
 
 In the AppDelegate call `setup` on the `KalturaOTTPlayer` when the app launches.
 
@@ -242,7 +242,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 The `setup` will fetch for the configuration needed for the Kava Plugin. As well as register both Kava Plugin and Phoenix Analytics Plugin.
 
-#### 2. Create a KalturaOTTPlayer
+### 2. Create a KalturaOTTPlayer
 
 ```swift
 import KalturaPlayer
@@ -268,7 +268,7 @@ public var ks: String?
 public var referrer: String?
 ```
 
-#### 3. Pass the view to the KalturaOTTPlayer
+### 3. Pass the view to the KalturaOTTPlayer
 
 Create a `KalturaPlayerView` in the xib or in the code.  
 
@@ -279,7 +279,7 @@ kalturaOTTPlayer.view = kalturaPlayerView
 
 ```
 
-#### 4. Register for Player Events
+### 4. Register for Player Events
 
 In order to receive the events from the beginning, register to them before running prepare on the player.  
 
@@ -350,7 +350,7 @@ And don't forget to unregister when the view is not displayed.
 * errorLog
 * playbackStalled
 
-#### 5. Create the media options
+### 5. Create the media options
 
 This is the media details that will be passed to the player to load.
 
@@ -372,7 +372,7 @@ public var playbackContextType: PlaybackContextType = .unset
 public var networkProtocol: String?
 ```
 
-#### 6. Load the media
+### 6. Load the media
 
 Pass the created media options to the `loadMedia` function and implement the callback function in order to observe if an error has occurred.
 
@@ -396,7 +396,7 @@ kalturaOTTPlayer.loadMedia(options: ottMediaOptions) { [weak self] (error) in
 }
 ```
 
-#### 7. Prepare the player
+### 7. Prepare the player
 
 **This will be done automatically** if the player options, `autoPlay` or `preload` is set too true.
 Which those are the default values.
@@ -407,7 +407,7 @@ In case the `autoPlay` and `preload` are set to false, `prepare` on the player n
 kalturaOTTPlayer.prepare()
 ```
 
-#### 8. Play
+### 8. Play
 
 **This will be done automatically** if the player options, `autoPlay` is set too true. Which is the default value.
 
@@ -438,7 +438,7 @@ After that follow the steps:
 
 Add Google's IMA (Interactive Media Ads) or IMA DAI (Dynamic Ad Insertion)
 
-#### 1. Add the Pod
+### 1. Add the Pod
 
 Inside your Podfile, for the specific target, add the following:  
 
@@ -455,7 +455,7 @@ Add the `PlayKit_IMA` to the relevant file.
 import PlayKit_IMA
 ```
 
-#### 2. Create the IMAConfig or IMADAIConfig
+### 2. Create the IMAConfig or IMADAIConfig
 
 - For IMA:  
 	Create the IMAConfig and set the `adTagUrl` or the `adsResponse`.  
@@ -495,7 +495,7 @@ import PlayKit_IMA
 	```
 
 
-#### 3. Create the PluginConfig
+### 3. Create the PluginConfig
 
 Pass the created config to the `PluginConfig`
 
@@ -511,7 +511,7 @@ Pass the created config to the `PluginConfig`
 	let pluginConfig = PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfig])
 	```
 
-#### 4. Pass the PluginConfig to the PlayerOptions
+### 4. Pass the PluginConfig to the PlayerOptions
 
 Set the player options with the plugin config created.
 
@@ -524,7 +524,7 @@ Two options to consider:
 - The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) for the relevant player. 
 - The playerOptions can be updated upon a change media flow, see section [Change Media](#change-media)
 
-#### 5. Register to the ad events
+### 5. Register to the ad events
 
 In order to receive the events from the beginning, register to them before running prepare on the player.
 
