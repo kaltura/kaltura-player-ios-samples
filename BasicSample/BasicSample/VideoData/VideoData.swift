@@ -16,34 +16,42 @@ struct FreeFormMedia {
     var mediaType: MediaType = .unknown
 }
 
+struct PlayerData {
+
+    var autoPlay: Bool = true
+    var preload: Bool = true
+    
+    var pluginConfig: PluginConfig?
+    
+    init(autoPlay: Bool = true, preload: Bool = true, pluginConfig: PluginConfig? = nil) {
+        self.autoPlay = autoPlay
+        self.preload = preload
+        self.pluginConfig = pluginConfig
+    }
+}
+
 struct VideoData {
     var title: String
     
-    var autoPlay: Bool = true
-    var preload: Bool = true
+    var player: PlayerData
+
     var startTime: TimeInterval?
     
     // Choose a media type
     var mediaEntry: PKMediaEntry?
     var freeFormMedia: FreeFormMedia?
     
-    var pluginConfig: PluginConfig?
-    
-    init(title: String, mediaEntry: PKMediaEntry, autoPlay: Bool = true, preload: Bool = true, startTime: TimeInterval? = nil, pluginConfig: PluginConfig? = nil) {
+    init(title: String, mediaEntry: PKMediaEntry, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil) {
         self.title = title
         self.mediaEntry = mediaEntry
-        self.autoPlay = autoPlay
-        self.preload = preload
+        self.player = player
         self.startTime = startTime
-        self.pluginConfig = pluginConfig
     }
     
-    init(title: String, freeFormMedia: FreeFormMedia, autoPlay: Bool = true, preload: Bool = true, startTime: TimeInterval? = nil, pluginConfig: PluginConfig? = nil) {
+    init(title: String, freeFormMedia: FreeFormMedia, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil) {
         self.title = title
         self.freeFormMedia = freeFormMedia
-        self.autoPlay = autoPlay
-        self.preload = preload
+        self.player = player
         self.startTime = startTime
-        self.pluginConfig = pluginConfig
     }
 }

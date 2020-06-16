@@ -10,12 +10,14 @@ import UIKit
 
 enum MenuItem: Int, CaseIterable, CustomStringConvertible {
     case basic = 0
-//    case pkMediaPlayer
+    case ima
+    case imaDAI
     
     var description: String {
         switch self {
         case .basic: return "Basic Sample"
-//        case .pkMediaPlayer: return "Using PKMediaPlayer"
+        case .ima: return "IMA Sample"
+        case .imaDAI: return "IMA DAI Sample"
         }
     }
 }
@@ -27,15 +29,8 @@ class MainTableViewController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 
                 if let mediasTableViewController = segue.destination as? MediasTableViewController {
-                    let menuItem = MenuItem(rawValue: indexPath.row)
-                    switch menuItem {
-                    case .basic:
-                        mediasTableViewController.playerType = .Custom
-//                    case .pkMediaPlayer:
-//                        mediasTableViewController.playerType = .PlayKitUI
-                    case .none:
-                        break
-                    }
+                    guard let menuItem = MenuItem(rawValue: indexPath.row) else { return }
+                    mediasTableViewController.videoDataType = menuItem
                 }
             }
         }

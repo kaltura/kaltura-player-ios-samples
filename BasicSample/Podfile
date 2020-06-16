@@ -23,6 +23,13 @@ target 'BasicSample' do
     end
   end
 
-#  pod 'PlayKitUI', :path => '../../playkit-ios-media-player'
+  # In case we want to add IMA (Interactive Media Ads)
+#  pod 'PlayKit_IMA'
+pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
   
+  
+  #--- In order to work with the unreleased versions --- Will be removed once released ---
+
+  pod 'PlayKit', :path => '../../playkit-ios'
+
 end
