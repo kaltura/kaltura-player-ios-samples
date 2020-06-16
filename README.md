@@ -30,9 +30,16 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   
 **Plugins:**
 
-- [IMA Plugin](#ima-plugin) 
+- [IMA Plugin](#ima-plugin)
+  - [Add the Pod](#1-add-the-pod)
+  - [Create the IMAConfig or IMADAIConfig](#2-create-the-imaconfig-or-imadaiconfig)
+  - [Create the PluginConfig](#3-create-the-pluginconfig)
+  - [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions)
+  - [Register to the ad events](#5-register-to-the-ad-events)
   
 <!-- toc -->
+
+
 
 ## Basic Player
 
@@ -440,6 +447,7 @@ pod 'PlayKit_IMA'
 ```
 
 Then perform `pod update` or `pod update PlayKit_IMA` in the terminal.  
+See Cocoapods Guide for the [difference between pod install and pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html).
 
 Add the `PlayKit_IMA` to the relevant file.
 
@@ -447,10 +455,11 @@ Add the `PlayKit_IMA` to the relevant file.
 import PlayKit_IMA
 ```
 
-#### 2. Create the IMAConfig
+#### 2. Create the IMAConfig or IMADAIConfig
 
 - For IMA:  
-	Create the IMAConfig and set the `adTagUrl` or the `adsResponse`.
+	Create the IMAConfig and set the `adTagUrl` or the `adsResponse`.  
+	Refer to the `IMAConfig` class for all available settings.
 
 	```swift
 	let imaConfig = IMAConfig()
@@ -459,14 +468,36 @@ import PlayKit_IMA
 
 - For IMA DAI:
 
-	```swift
+	Set the required configuration.  
+	Refer to the `IMADAIConfig` class for all available settings.  
+	The IMA DAI stream samples can be found in their [docs](https://developers.google.com/interactive-media-ads/docs/sdks/ios/dai/streams).
 	
+	Sample for a VOD media:
+
+	```swift
+    let imaDAIConfig = IMADAIConfig()
+    imaDAIConfig.assetTitle = "Tears of Steel"
+    imaDAIConfig.assetKey = nil
+    imaDAIConfig.contentSourceId = "2528370"
+    imaDAIConfig.videoId = "tears-of-steel"
+    imaDAIConfig.streamType = .vod
+	```
+	
+	Sample for a Live media:
+	
+	```swift
+	let imaDAIConfig = IMADAIConfig()
+	imaDAIConfig.assetTitle = "Big Buck Bunny"
+	imaDAIConfig.assetKey = "sN_IYUG8STe1ZzhIIE_ksA"
+	imaDAIConfig.contentSourceId = nil
+	imaDAIConfig.videoId = nil
+	imaDAIConfig.streamType = .live
 	```
 
 
 #### 3. Create the PluginConfig
 
-Pass the created imaConfig to the `PluginConfig`
+Pass the created config to the `PluginConfig`
 
 - For IMA: 
 
@@ -477,7 +508,7 @@ Pass the created imaConfig to the `PluginConfig`
 - For IMA DAI:
 
 	```swift
-	
+	let pluginConfig = PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfig])
 	```
 
 #### 4. Pass the PluginConfig to the PlayerOptions
@@ -487,6 +518,8 @@ Set the player options with the plugin config created.
 ```swift
 playerOptions.pluginConfig = pluginConfig
 ```
+
+Two options to consider:  
 
 - The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) for the relevant player. 
 - The playerOptions can be updated upon a change media flow, see section [Change Media](#change-media)
