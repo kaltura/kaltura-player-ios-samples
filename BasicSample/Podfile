@@ -25,11 +25,9 @@ target 'BasicSample' do
 
   # In case we want to add IMA (Interactive Media Ads)
 #  pod 'PlayKit_IMA'
-pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
+pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
   
-  
-  #--- In order to work with the unreleased versions --- Will be removed once released ---
-
-  pod 'PlayKit', :path => '../../playkit-ios'
+  # In case we want to add Youbora
+  pod 'PlayKitYoubora'
 
 end

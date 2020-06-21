@@ -18,10 +18,13 @@
 		D22671FF22F7346100B1F247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22671FD22F7346100B1F247 /* Main.storyboard */; };
 		D226720122F7346400B1F247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D226720022F7346400B1F247 /* Assets.xcassets */; };
 		D226720422F7346400B1F247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D226720222F7346400B1F247 /* LaunchScreen.storyboard */; };
+		D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */; };
 		D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2582247EA0E500A430FD /* IMAAdTags.swift */; };
 		D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2585247EA8B800A430FD /* BasicVideoData.swift */; };
 		D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2587247EAEC100A430FD /* IMAVideoData.swift */; };
 		D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */; };
+		D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */; };
+		D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,10 +43,13 @@
 		D226720022F7346400B1F247 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D226720322F7346400B1F247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D226720522F7346400B1F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraVideoData.swift; sourceTree = "<group>"; };
 		D28B2582247EA0E500A430FD /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		D28B2585247EA8B800A430FD /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D28B2587247EAEC100A430FD /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
 		D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMADAIVideoData.swift; sourceTree = "<group>"; };
+		D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
+		D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,9 @@
 				D28B2582247EA0E500A430FD /* IMAAdTags.swift */,
 				D28B2587247EAEC100A430FD /* IMAVideoData.swift */,
 				D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */,
+				D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */,
+				D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */,
+				D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */,
 			);
 			path = VideoData;
 			sourceTree = "<group>";
@@ -247,8 +256,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */,
+				D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
 				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,
+				D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,
 				D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */,
 				D2231DE123EAFCD600462B23 /* PlayerViewController.swift in Sources */,
@@ -257,6 +268,7 @@
 				D2231DDC23EAD8B300462B23 /* MediasTableViewController.swift in Sources */,
 				D2231DDA23EAD71700462B23 /* VideoData.swift in Sources */,
 				D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */,
+				D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,12 +12,18 @@ enum MenuItem: Int, CaseIterable, CustomStringConvertible {
     case basic = 0
     case ima
     case imaDAI
+    case youbora
+    case youboraIMA
+    case youboraIMADAI
     
     var description: String {
         switch self {
         case .basic: return "Basic Sample"
         case .ima: return "IMA Sample"
         case .imaDAI: return "IMA DAI Sample"
+        case .youbora: return "Youbora Sample"
+        case .youboraIMA: return "Youbora with IMA Sample"
+        case .youboraIMADAI: return "Youbora with IMA DAI Sample"
         }
     }
 }

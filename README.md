@@ -31,11 +31,18 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
 **Plugins:**
 
 - [IMA Plugin](#ima-plugin)
-  - [Add the Pod](#1-add-the-pod)
+  - [Add the IMA Pod](#1-add-the-ima-pod)
   - [Create the IMAConfig or IMADAIConfig](#2-create-the-imaconfig-or-imadaiconfig)
   - [Create the PluginConfig](#3-create-the-pluginconfig)
   - [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions)
   - [Register to the ad events](#5-register-to-the-ad-events)
+  
+- [Youbora Plugin](#youbora-plugin)
+  - [Add the Youbora Pod](#1-add-the-youbora-pod)
+  - [Create the AnalyticsConfig](#2-create-the-analyticsConfig)
+  - [Create the PluginConfig](#3-create-the-pluginconfig-1)
+  - [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions-1)
+
   
 <!-- toc -->
 
@@ -438,7 +445,7 @@ After that follow the steps:
 
 Add Google's IMA (Interactive Media Ads) or IMA DAI (Dynamic Ad Insertion)
 
-### 1. Add the Pod
+### 1. Add the IMA Pod
 
 Inside your Podfile, for the specific target, add the following:  
 
@@ -603,3 +610,56 @@ And don't forget to unregister when the view is not displayed.
 * requestTimedOut /// Sent when the ads request timed out.
 * adsRequested /// delivered when ads request was sent.
 * error /// Sent when an error occurs.
+
+
+## Youbora Plugin
+
+### 1. Add the Youbora Pod
+
+Inside your Podfile, for the specific target, add the following:  
+
+```swift
+pod 'PlayKitYoubora'
+```
+
+Then perform `pod update` or `pod update PlayKitYoubora` in the terminal.  
+See Cocoapods Guide for the [difference between pod install and pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html).
+
+Add the `PlayKitYoubora` to the relevant file.
+
+```swift
+import PlayKitYoubora
+```
+
+### 2. Create the AnalyticsConfig
+
+The account code is mandatory, make sure to put the correct one.  
+See all available params in the `YouboraConfig` struct.
+        
+```swift
+let youboraPluginParams: [String: Any] = [
+    "accountCode": "kalturatest"
+]
+let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
+```
+
+### 3. Create the PluginConfig
+
+Pass the created config to the `PluginConfig`
+
+```swift
+let pluginConfig = PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])
+```
+
+### 4. Pass the PluginConfig to the PlayerOptions
+
+Set the player options with the plugin config created.
+
+```swift
+playerOptions.pluginConfig = pluginConfig
+```
+
+Two options to consider:  
+
+- The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) for the relevant player. 
+- The playerOptions can be updated upon a change media flow, see section [Change Media](#change-media)

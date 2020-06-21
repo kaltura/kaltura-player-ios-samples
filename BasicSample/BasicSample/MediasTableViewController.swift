@@ -37,6 +37,12 @@ class MediasTableViewController: UITableViewController {
             videos = VideoData.getIMAVideos()
         case .imaDAI:
             videos = VideoData.getIMADAIVideos()
+        case .youbora:
+            videos = VideoData.getYouboraVideos()
+        case .youboraIMA:
+            videos = VideoData.getYouboraIMAVideos()
+        case .youboraIMADAI:
+            videos = VideoData.getYouboraIMADAIVideos()
         }
     }
     

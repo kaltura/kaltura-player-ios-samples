@@ -89,6 +89,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
     
+    // MARK: -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -211,6 +213,31 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         let show = !(topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
         showPlayerControllers(show)
     }
+    
+    private func showPlayerControllers(_ show: Bool, delay: Double = 0.0) {
+        let constantValue: Float = show ? topBottomVisualEffectViewHeight : 0.0
+        UIView.animate(withDuration: 0.5, delay: delay, animations: {
+            self.topVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
+            self.bottomVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
+            self.middleVisualEffectView.alpha = show ? 1.0 : 0.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func getTimeRepresentation(_ time: TimeInterval) -> String {
+        if time > 3600 {
+            let hours = Int(time / 3600)
+            let minutes = Int(time.truncatingRemainder(dividingBy: 3600) / 60)
+            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        } else {
+            let minutes = Int(time / 60)
+            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+            return String(format: "00:%02d:%02d", minutes, seconds)
+        }
+    }
+    
+    // MARK: - Register Events
     
     private func registerPlayerEvents() {
         registerPlaybackEvents()
@@ -335,31 +362,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
         }
     }
-        
-    private func showPlayerControllers(_ show: Bool, delay: Double = 0.0) {
-        let constantValue: Float = show ? topBottomVisualEffectViewHeight : 0.0
-        UIView.animate(withDuration: 0.5, delay: delay, animations: {
-            self.topVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
-            self.bottomVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
-            self.middleVisualEffectView.alpha = show ? 1.0 : 0.0
-            self.view.layoutIfNeeded()
-        })
-    }
     
-    private func getTimeRepresentation(_ time: TimeInterval) -> String {
-        if time > 3600 {
-            let hours = Int(time / 3600)
-            let minutes = Int(time.truncatingRemainder(dividingBy: 3600) / 60)
-            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
-            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-        } else {
-            let minutes = Int(time / 60)
-            let seconds = Int(time.truncatingRemainder(dividingBy: 60))
-            return String(format: "00:%02d:%02d", minutes, seconds)
-        }
-    }
-    
-    // MARK: - IMA
+    // MARK: - Register IMA Events
     
     private func registerAdEvents() {
         kalturaBasicPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
