@@ -40,8 +40,8 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
 - [Youbora Plugin](#youbora-plugin)
   - [Add the Youbora Pod](#1-add-the-youbora-pod)
   - [Create the AnalyticsConfig](#2-create-the-analyticsConfig)
-  - [Create the PluginConfig](#3-create-the-pluginconfig)
-  - [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions)
+  - [Create the PluginConfig](#3-create-the-pluginconfig-1)
+  - [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions-1)
 
   
 <!-- toc -->
