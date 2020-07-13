@@ -89,7 +89,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
     
-    // MARK: -
+    // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -407,9 +407,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
         }
     }
+}
     
-    // MARK: - IBAction
-        
+// MARK: - IBAction
+
+extension MediaPlayerViewController {
     @IBAction private func openSettingsTouched(_ sender: Any) {
         showPlayerControllers(false)
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCrossDissolve, animations: {

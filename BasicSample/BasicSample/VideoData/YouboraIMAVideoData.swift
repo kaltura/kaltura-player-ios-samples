@@ -76,7 +76,7 @@ extension VideoData {
         
         // Sending a MediaEntry
         let contentURL = URL(string: "https://cdnapisec.kaltura.com/p/2215841/sp/221584100/playManifest/entryId/1_vl96wf1o/format/applehttp/protocol/https/a.m3u8")
-        let entryId = "KalturaMedia"
+        let entryId = "1_vl96wf1o"
         let source = PKMediaSource(entryId, contentUrl: contentURL, mediaFormat: .hls)
         let sources: Array = [source]
         let mediaEntry = PKMediaEntry(entryId, sources: sources, duration: -1)

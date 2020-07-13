@@ -7,6 +7,7 @@
 //
 
 import PlayKit
+import KalturaPlayer
 
 struct FreeFormMedia {
     var id: String
@@ -41,17 +42,21 @@ struct VideoData {
     var mediaEntry: PKMediaEntry?
     var freeFormMedia: FreeFormMedia?
     
-    init(title: String, mediaEntry: PKMediaEntry, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil) {
+    var offlineSelectionOptions: OfflineSelectionOptions?
+    
+    init(title: String, mediaEntry: PKMediaEntry, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil, offlineSelectionOptions: OfflineSelectionOptions? = nil) {
         self.title = title
         self.mediaEntry = mediaEntry
         self.player = player
         self.startTime = startTime
+        self.offlineSelectionOptions = offlineSelectionOptions
     }
     
-    init(title: String, freeFormMedia: FreeFormMedia, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil) {
+    init(title: String, freeFormMedia: FreeFormMedia, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil, offlineSelectionOptions: OfflineSelectionOptions? = nil) {
         self.title = title
         self.freeFormMedia = freeFormMedia
         self.player = player
         self.startTime = startTime
+        self.offlineSelectionOptions = offlineSelectionOptions
     }
 }
