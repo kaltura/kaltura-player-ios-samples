@@ -24,19 +24,14 @@ class UIDownloadButton: UIButton {
             switch displayState {
             case .download:
                 setImage(UIImage(named: "download"), for: .normal)
-                setTitle(nil, for: .normal)
             case .resume:
                 setImage(UIImage(named: "play"), for: .normal)
-                setTitle(nil, for: .normal)
             case .pause:
                 setImage(UIImage(named: "pause"), for: .normal)
-                setTitle(nil, for: .normal)
             case .complete:
                 setImage(UIImage(named: "delete"), for: .normal)
-                setTitle(nil, for: .normal)
             case .error:
-                setImage(nil, for: .normal)
-                setTitle("!", for: .normal)
+                setImage(UIImage(named: "error"), for: .normal)
             }
         }
     }
@@ -97,8 +92,10 @@ extension UIMediaDownloadTableViewCell {
     }
     
     func canPlayDownloadedMedia() -> Bool {
+        guard let mediaEntry = videoData?.mediaEntry else { return false }
+        guard let assetInfo = OfflineManager.shared.getAssetInfo(assetId: mediaEntry.id) else { return false }
         
-        return false
+        return assetInfo.state == .completed
     }
 }
 
@@ -131,8 +128,8 @@ extension UIMediaDownloadTableViewCell {
             OfflineManager.shared.pauseAssetDownload(assetId: mediaEntry.id)
         case .complete:
             OfflineManager.shared.removeAssetDownload(assetId: mediaEntry.id)
-        default:
-            break
+        case .error:
+            downloadButton.displayState = .download
         }
     }
 }

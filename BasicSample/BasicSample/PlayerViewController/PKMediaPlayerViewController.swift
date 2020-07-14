@@ -10,7 +10,9 @@ import UIKit
 //import PlayKitUI
 
 class PKMediaPlayerViewController: UIViewController, PlayerViewController {
+    
     var videoData: VideoData?
+    var shouldPlayLocally: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
