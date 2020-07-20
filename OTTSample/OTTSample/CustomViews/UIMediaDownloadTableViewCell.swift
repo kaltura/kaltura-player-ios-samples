@@ -1,6 +1,6 @@
 //
 //  UIMediaDownloadTableViewCell.swift
-//  BasicSample
+//  OTTSample
 //
 //  Created by Nilit Danan on 6/26/20.
 //  Copyright © 2020 Kaltura Inc. All rights reserved.
@@ -46,8 +46,8 @@ class UIMediaDownloadTableViewCell: UITableViewCell, DownloadMediaTableViewCell 
     var videoData: VideoData? {
         didSet {
             if videoData == nil { return }
-            if let newVideoData = videoData, let mediaEntry = newVideoData.mediaEntry {
-                let assetInfo = OfflineManager.shared.getAssetInfo(assetId: mediaEntry.id)
+            if let newVideoData = videoData {
+                let assetInfo = OfflineManager.shared.getAssetInfo(assetId: newVideoData.media.assetId)
                 updateProgress(assetInfo?.progress ?? 0.0)
                 updateDownloadState(assetInfo?.state ?? AssetDownloadState.new)
             }
@@ -96,8 +96,8 @@ extension UIMediaDownloadTableViewCell {
     }
     
     func canPlayDownloadedMedia() -> Bool {
-        guard let mediaEntry = videoData?.mediaEntry else { return false }
-        guard let assetInfo = OfflineManager.shared.getAssetInfo(assetId: mediaEntry.id) else { return false }
+        guard let media = videoData?.media else { return false }
+        guard let assetInfo = OfflineManager.shared.getAssetInfo(assetId: media.assetId) else { return false }
         
         return assetInfo.state == .completed
     }
@@ -107,14 +107,16 @@ extension UIMediaDownloadTableViewCell {
 
 extension UIMediaDownloadTableViewCell {
     @IBAction private func downloadButtonClicked(_ sender: Any) {
-        guard let videoData = videoData, let mediaEntry = videoData.mediaEntry, let offlineSelectionOptions = videoData.offlineSelectionOptions else {
+        guard let videoData = videoData, let offlineSelectionOptions = videoData.offlineSelectionOptions else {
             return
         }
         
         switch downloadButton.displayState {
         case .download:
             downloadButton.displayState = .pause
-            OfflineManager.shared.prepareAsset(mediaEntry: mediaEntry, options: offlineSelectionOptions) { (error, assetInfo) in
+            
+            OfflineManager.shared.prepareAsset(mediaOptions: videoData.media.mediaOptions(),
+                                               options: offlineSelectionOptions) { (error, assetInfo, pkMediaEntry)  in
                 DispatchQueue.main.async {
                     if let assetInfo = assetInfo, error == nil {
                         OfflineManager.shared.startAssetDownload(assetId: assetInfo.itemId)
@@ -126,12 +128,12 @@ extension UIMediaDownloadTableViewCell {
             }
         case .resume:
             downloadButton.displayState = .pause
-            OfflineManager.shared.startAssetDownload(assetId: mediaEntry.id)
+            OfflineManager.shared.startAssetDownload(assetId: videoData.media.assetId)
         case .pause:
             downloadButton.displayState = .resume
-            OfflineManager.shared.pauseAssetDownload(assetId: mediaEntry.id)
+            OfflineManager.shared.pauseAssetDownload(assetId: videoData.media.assetId)
         case .complete:
-            OfflineManager.shared.removeAssetDownload(assetId: mediaEntry.id)
+            OfflineManager.shared.removeAssetDownload(assetId: videoData.media.assetId)
         case .error:
             downloadButton.displayState = .download
         }

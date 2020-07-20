@@ -30,6 +30,10 @@ pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :br
   # In case we want to add Youbora
   pod 'PlayKitYoubora'
 
+  # In case we want Offline content
+#  pod 'KalturaPlayer/Offline_OTT'
+pod 'KalturaPlayer/Offline_OTT', :path => KALTURA_PLAYER_LOCAL
+  
   
   #--- In order to work with the unreleased versions --- Will be removed once released ---
   

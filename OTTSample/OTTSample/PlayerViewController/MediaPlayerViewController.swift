@@ -54,6 +54,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
         }
     }
+    var shouldPlayLocally: Bool = false
     
     @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
     
@@ -89,7 +90,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
     
-    // MARK: -
+    // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,26 +130,43 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             
             activityIndicator.startAnimating()
             
-            let mediaOptions = self.mediaOptions(videoData)
+            let mediaOptions = videoData.media.mediaOptions()
             
-            kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
-                guard let self = self else { return }
-                if error != nil {
-                    let alert = UIAlertController(title: "Media not loaded", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
-                        self.dismiss(animated: true, completion: nil)
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                } else {
+            if shouldPlayLocally {
+                if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videoData.media.assetId) {
+                    kalturaOTTPlayer.setMedia(localMediaEntry, options: mediaOptions)
+                    
                     // If the autoPlay and preload was set to false, prepare will not be called automatically
                     if videoData.player.autoPlay == false && videoData.player.preload == false {
                         self.kalturaOTTPlayer.prepare()
                     }
+                } else {
+                    let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
+                        self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
-                
-                DispatchQueue.main.async {
-                    if !videoData.player.autoPlay {
-                        self.activityIndicator.stopAnimating()
+            } else {
+                kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
+                    guard let self = self else { return }
+                    if error != nil {
+                        let alert = UIAlertController(title: "Media not loaded", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
+                            self.dismiss(animated: true, completion: nil)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        // If the autoPlay and preload was set to false, prepare will not be called automatically
+                        if videoData.player.autoPlay == false && videoData.player.preload == false {
+                            self.kalturaOTTPlayer.prepare()
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        if !videoData.player.autoPlay {
+                            self.activityIndicator.stopAnimating()
+                        }
                     }
                 }
             }
@@ -218,31 +236,6 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         }
         
         return playerOptions
-    }
-    
-    func mediaOptions(_ videoData: VideoData?) -> OTTMediaOptions {
-        let ottMediaOptions = OTTMediaOptions()
-        
-        ottMediaOptions.ks = videoData?.media.ks
-        ottMediaOptions.assetId = videoData?.media.assetId
-        if let assetType = videoData?.media.assetType {
-            ottMediaOptions.assetType = assetType
-        }
-        if let assetReferenceType = videoData?.media.assetReferenceType {
-            ottMediaOptions.assetReferenceType = assetReferenceType
-        }
-        ottMediaOptions.formats = videoData?.media.formats
-        ottMediaOptions.fileIds = videoData?.media.fileIds
-        if let playbackContextType = videoData?.media.playbackContextType {
-            ottMediaOptions.playbackContextType = playbackContextType
-        }
-        ottMediaOptions.networkProtocol = videoData?.media.networkProtocol
-        
-        if let startTime = videoData?.media.startTime {
-            ottMediaOptions.startTime = startTime
-        }
-        
-        return ottMediaOptions
     }
     
     @objc private func controllersInteractiveViewTapped() {
@@ -443,8 +436,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
         }
     }
+}
     
-    // MARK: - IBAction
+// MARK: - IBAction
+
+extension MediaPlayerViewController {
         
     @IBAction private func openSettingsTouched(_ sender: Any) {
         showPlayerControllers(false)

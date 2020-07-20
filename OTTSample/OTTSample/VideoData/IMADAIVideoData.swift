@@ -85,11 +85,11 @@ extension VideoData {
         imaDAIConfigError.streamType = .vod
         imaDAIConfigError.alwaysStartWithPreroll = false
         
-        videos.append(VideoData(title: "IMA DAI - Error, 548575, autoPlay-false, preload-false",
+        videos.append(VideoData(title: "IMA DAI - Error, 548551, autoPlay-false, preload-false",
                                 player: PlayerData(autoPlay: false,
                                                    preload: false,
                                                    pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigError])),
-                                media: OTTMedia(assetId: "548575",
+                                media: OTTMedia(assetId: "548551",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
