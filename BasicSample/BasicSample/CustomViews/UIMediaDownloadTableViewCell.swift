@@ -81,6 +81,7 @@ extension UIMediaDownloadTableViewCell {
     public func updateDownloadState(_ state: AssetDownloadState) {
         switch state {
         case .new:
+            if self.downloadButton.displayState == .pause { return }
             self.downloadButton.displayState = .download
             self.updateProgress(0.0)
         case .prepared,.started:

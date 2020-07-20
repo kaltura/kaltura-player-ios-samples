@@ -101,27 +101,22 @@ class MediasTableViewController: UITableViewController {
         if videoDataType == .offline {
             if let cell = tableView.cellForRow(at: indexPath) as? DownloadMediaTableViewCell, cell.canPlayDownloadedMedia() {
                 if let mediaEntry = videos[indexPath.row].mediaEntry {
-                    let drmData = mediaEntry.sources?.first(where: { (mediaSource) -> Bool in
-                        mediaSource.drmData != nil
-                    })
-                    if drmData != nil {
+                    if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
+                        OfflineManager.shared.renewDrmAssetLicense(mediaEntry: mediaEntry)
+                        var message = ""
                         if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
-                            OfflineManager.shared.renewDrmAssetLicense(mediaEntry: mediaEntry)
-                            var message = ""
-                            if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
-                                message = "The DRM License was not renewed, can't play locally."
-                            }
-                            else {
-                                message = "The DRM License was renewed, click again."
-                            }
-                            
-                            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true)
-                            
-                            return nil
+                            message = "The DRM License was not renewed, can't play locally."
                         }
+                        else {
+                            message = "The DRM License was renewed, click again."
+                        }
+                        
+                        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        return nil
                     }
                 } else {
                     return nil
