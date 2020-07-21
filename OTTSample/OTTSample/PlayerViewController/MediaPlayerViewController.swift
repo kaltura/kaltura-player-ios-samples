@@ -219,9 +219,6 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         if let playerKS = videoData?.player.ks {
             playerOptions.ks = playerKS
         }
-        if let playerReferrer = videoData?.player.referrer {
-            playerOptions.referrer = playerReferrer
-        }
         if let autoPlay = videoData?.player.autoPlay {
             playerOptions.autoPlay = autoPlay
         }

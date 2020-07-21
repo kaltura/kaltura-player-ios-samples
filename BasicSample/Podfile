@@ -34,4 +34,8 @@ pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :br
 #  pod 'KalturaPlayer/Offline'
 pod 'KalturaPlayer/Offline', :path => KALTURA_PLAYER_LOCAL
 
+#--- In order to work with the unreleased versions --- Will be removed once released ---
+
+pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
+
 end

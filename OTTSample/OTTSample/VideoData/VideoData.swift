@@ -16,15 +16,13 @@ struct PlayerData {
     var preload: Bool = true
     
     var ks: String?
-    var referrer: String?
     
     var pluginConfig: PluginConfig?
     
-    init(autoPlay: Bool = true, preload: Bool = true, ks: String? = nil, referrer: String? = nil, pluginConfig: PluginConfig? = nil) {
+    init(autoPlay: Bool = true, preload: Bool = true, ks: String? = nil, pluginConfig: PluginConfig? = nil) {
         self.autoPlay = autoPlay
         self.preload = preload
         self.ks = ks
-        self.referrer = referrer
         self.pluginConfig = pluginConfig
     }
 }

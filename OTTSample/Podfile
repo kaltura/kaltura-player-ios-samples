@@ -39,6 +39,6 @@ pod 'KalturaPlayer/Offline_OTT', :path => KALTURA_PLAYER_LOCAL
   
   pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
   pod 'PlayKitKava', :path => '../../playkit-ios-kava'
-  
+  pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
   
 end
