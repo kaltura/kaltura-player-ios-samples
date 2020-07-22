@@ -36,6 +36,7 @@ pod 'KalturaPlayer/Offline', :path => KALTURA_PLAYER_LOCAL
 
 #--- In order to work with the unreleased versions --- Will be removed once released ---
 
+pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
 pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
 
 end

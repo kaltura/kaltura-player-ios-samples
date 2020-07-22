@@ -162,17 +162,17 @@ class MediasTableViewController: UITableViewController {
 
 extension MediasTableViewController: OfflineManagerDelegate {
 
-    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64?) {
+    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64?, completedFraction: Float) {
         if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
-            let progressValue = OfflineManager.shared.getAssetInfo(assetId: id)?.progress ?? 0.0
             DispatchQueue.main.async {
                 let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
-                cell.updateProgress(progressValue)
+                cell.updateProgress(completedFraction)
             }
         }
     }
     
     func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
+        print("Nilit: id: \(id) didChangeToState: \(newState)")
         if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
             if newState == .completed {
                 OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[index].media.mediaOptions())

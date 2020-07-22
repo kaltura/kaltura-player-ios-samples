@@ -159,12 +159,11 @@ class MediasTableViewController: UITableViewController {
 
 extension MediasTableViewController: OfflineManagerDelegate {
 
-    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64?) {
+    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64?, completedFraction: Float) {
         if let index = self.videos.firstIndex(where: { $0.mediaEntry?.id == id }) {
-            let progressValue = OfflineManager.shared.getAssetInfo(assetId: id)?.progress ?? 0.0
             DispatchQueue.main.async {
                 let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
-                cell.updateProgress(progressValue)
+                cell.updateProgress(completedFraction)
             }
         }
     }
