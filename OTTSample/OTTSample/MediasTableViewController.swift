@@ -104,7 +104,9 @@ class MediasTableViewController: UITableViewController {
                 let pkMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videos[indexPath.row].media.assetId)
                 if let mediaEntry = pkMediaEntry {
                     if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
-                        OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[indexPath.row].media.mediaOptions())
+                        OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[indexPath.row].media.mediaOptions()) { (error) in
+                            // Decide what to do with the error depending on the error.
+                        }
                         var message = ""
                         if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
                             message = "The DRM License was not renewed, can't play locally."
@@ -162,7 +164,7 @@ class MediasTableViewController: UITableViewController {
 
 extension MediasTableViewController: OfflineManagerDelegate {
 
-    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64?, completedFraction: Float) {
+    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64, completedFraction: Float) {
         if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
             DispatchQueue.main.async {
                 let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
@@ -175,7 +177,9 @@ extension MediasTableViewController: OfflineManagerDelegate {
         print("Nilit: id: \(id) didChangeToState: \(newState)")
         if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
             if newState == .completed {
-                OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[index].media.mediaOptions())
+                OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[index].media.mediaOptions()) { (error) in
+                    // Decide what to do with the error depending on the error.
+                }
             }
             DispatchQueue.main.async {
                 let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
