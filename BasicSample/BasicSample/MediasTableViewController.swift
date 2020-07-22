@@ -102,7 +102,7 @@ class MediasTableViewController: UITableViewController {
             if let cell = tableView.cellForRow(at: indexPath) as? DownloadMediaTableViewCell, cell.canPlayDownloadedMedia() {
                 if let mediaEntry = videos[indexPath.row].mediaEntry {
                     if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
-                        OfflineManager.shared.renewDrmAssetLicense(mediaEntry: mediaEntry)
+                        OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry)
                         var message = ""
                         if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
                             message = "The DRM License was not renewed, can't play locally."
@@ -172,7 +172,7 @@ extension MediasTableViewController: OfflineManagerDelegate {
     func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
         if let index = self.videos.firstIndex(where: { $0.mediaEntry?.id == id }) {
             if newState == .completed, let mediaEntry = videos[index].mediaEntry {
-                OfflineManager.shared.renewDrmAssetLicense(mediaEntry: mediaEntry)
+                OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry)
             }
             DispatchQueue.main.async {
                 let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell

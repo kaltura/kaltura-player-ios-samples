@@ -120,7 +120,7 @@ extension UIMediaDownloadTableViewCell {
                                                options: offlineSelectionOptions) { (error, assetInfo, pkMediaEntry)  in
                 DispatchQueue.main.async {
                     if let assetInfo = assetInfo, error == nil {
-                        OfflineManager.shared.startAssetDownload(assetId: assetInfo.itemId)
+                        try? OfflineManager.shared.startAssetDownload(assetId: assetInfo.itemId)
                     }
                     else {
                         self.downloadButton.displayState = .error
@@ -129,12 +129,12 @@ extension UIMediaDownloadTableViewCell {
             }
         case .resume:
             downloadButton.displayState = .pause
-            OfflineManager.shared.startAssetDownload(assetId: videoData.media.assetId)
+            try? OfflineManager.shared.startAssetDownload(assetId: videoData.media.assetId)
         case .pause:
             downloadButton.displayState = .resume
-            OfflineManager.shared.pauseAssetDownload(assetId: videoData.media.assetId)
+            try? OfflineManager.shared.pauseAssetDownload(assetId: videoData.media.assetId)
         case .complete:
-            OfflineManager.shared.removeAssetDownload(assetId: videoData.media.assetId)
+            try? OfflineManager.shared.removeAssetDownload(assetId: videoData.media.assetId)
         case .error:
             downloadButton.displayState = .download
         }
