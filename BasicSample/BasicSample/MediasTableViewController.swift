@@ -173,8 +173,11 @@ extension MediasTableViewController: OfflineManagerDelegate {
     func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
         if let index = self.videos.firstIndex(where: { $0.mediaEntry?.id == id }) {
             if newState == .completed, let mediaEntry = videos[index].mediaEntry {
-                OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry) { (error) in
-                    // Decide what to do with the error depending on the error.
+                if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id),
+                    drmStatus.isValid() == false {
+                    OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry) { (error) in
+                        // Decide what to do with the error depending on the error.
+                    }
                 }
             }
             DispatchQueue.main.async {
