@@ -164,7 +164,7 @@ extension MediasTableViewController: OfflineManagerDelegate {
     func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64, completedFraction: Float) {
         if let index = self.videos.firstIndex(where: { $0.mediaEntry?.id == id }) {
             DispatchQueue.main.async {
-                let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
                 cell.updateProgress(completedFraction)
             }
         }
@@ -181,7 +181,7 @@ extension MediasTableViewController: OfflineManagerDelegate {
                 }
             }
             DispatchQueue.main.async {
-                let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
                 cell.updateDownloadState(newState)
             }
         }

@@ -167,14 +167,13 @@ extension MediasTableViewController: OfflineManagerDelegate {
     func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64, completedFraction: Float) {
         if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
             DispatchQueue.main.async {
-                let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
                 cell.updateProgress(completedFraction)
             }
         }
     }
     
     func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
-        print("Nilit: id: \(id) didChangeToState: \(newState)")
         if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
             if newState == .completed {
                 if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: videos[index].media.assetId),
@@ -185,7 +184,7 @@ extension MediasTableViewController: OfflineManagerDelegate {
                 }
             }
             DispatchQueue.main.async {
-                let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as! DownloadMediaTableViewCell
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
                 cell.updateDownloadState(newState)
             }
         }
