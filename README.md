@@ -658,7 +658,7 @@ In order to retrieve the local media, call `getLocalPlaybackEntry`, if the `PKMe
 
 ```swift
 if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
-	kalturaPlayer.setMedia(localMediaEntry, options: mediaOptions)
+    kalturaPlayer.setMedia(localMediaEntry, options: mediaOptions)
 }
 ```
 
