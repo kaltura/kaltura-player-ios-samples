@@ -26,7 +26,20 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Prepare the player](#7-prepare-the-player)
   - [Play](#8-play)
   
-- [Change Media](#change-media)  
+**Additional Actions:**
+  
+- [Change Media](#change-media)
+
+- [Offline](#offline)  
+	- [Update the KalturaPlayer Pod](#1-update-the-kalturaplayer-pod)
+	- [Implement the OfflineManagerDelegate](#2-implement-the-offlinemanagerdelegate)
+	- [Check for the media state](#3-check-for-the-media-state)
+	- [Prepare a media for download](#4-prepare-a-media-for-download)
+	- [Start or resume downloading the media](#5-start-or-resume-downloading-the-media)
+	- [Pause downloading the media](#6-pause-downloading-the-media)
+	- [Remove the asset](#7-remove-the-asset)
+	- [Get the local media and set it on the player](#8-get-the-local-media-and-set-it-on-the-player)
+	- [DRM Content](#9-drm-content)
   
 **Plugins:**
 
@@ -84,7 +97,7 @@ override func viewDidLoad() {
 }
 ```
 
-Check the `BasicPlayerOptions` class for more info.  
+Check the `PlayerOptions` class for more info.  
 The available options and defaults that can be configured are:  
 
 ```swift
@@ -241,7 +254,7 @@ import KalturaPlayer
 
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    KalturaOTTPlayer.setup(partnerId: 3009, serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
+    KalturaOTTPlayer.setup(partnerId: 3009, serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/", referrer: nil)
     
     return true
 }
@@ -272,7 +285,6 @@ public var preload: Bool = true
 public var autoPlay: Bool = true
 public var pluginConfig: PluginConfig = PluginConfig(config: [:])
 public var ks: String?
-public var referrer: String?
 ```
 
 ### 3. Pass the view to the KalturaOTTPlayer
@@ -440,6 +452,256 @@ After that follow the steps:
 
 - For the KalturaBasicPlayer from section [Set the Media Entry](#5-set-the-media-entry)
 - For the KalturaOTTPlayer from section [Create the media options](#5-create-the-media-options)
+
+## Offline
+
+Adds the option to download and play local media. The `OfflineManager` shared instance is used in order to perform all actions.
+
+### 1. Update the KalturaPlayer Pod
+
+Inside your Podfile, for the specific target, add the following: 
+
+- For the KalturaBasicPlayer:
+
+	```swift
+	pod 'KalturaPlayer/Offline'
+	```
+	This can replace the `pod 'KalturaPlayer'`
+	
+- For the KalturaOTTPlayer:
+
+	```swift
+	pod 'KalturaPlayer/Offline_OTT'
+	```
+	This can replace the `pod 'KalturaPlayer/OTT'`
+	
+Then perform `pod update` in the terminal.  
+See Cocoapods Guide for the [difference between pod install and pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html).
+
+Add the `KalturaPlayer` to the relevant file if doesn't already exist.
+
+```swift
+import KalturaPlayer
+```
+
+**NOTE:** The setup function on the KalturaPlayer which is called in the AppDelegate, will perform the needed initialization, and will start any media that was downloading before the application was closed.
+
+### 2. Implement the OfflineManagerDelegate
+
+In the desired class that will take care of the download updates, set it as the OfflineManager's delegate.
+
+Add the following:
+
+```swift
+OfflineManager.shared.offlineManagerDelegate = self
+```
+
+**Note:** Don't forget to remove itself.
+
+```swift
+OfflineManager.shared.offlineManagerDelegate = nil
+```
+
+Set the class to implement it's functions:
+
+```swift
+extension MediasTableViewController: OfflineManagerDelegate {
+
+    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64, completedFraction: Float) {
+        if let index = self.videos.firstIndex(where: { $0.media.id == id }) {
+            DispatchQueue.main.async {
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
+                cell.updateProgress(completedFraction)
+            }
+        }
+    }
+    
+    func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
+        if let index = self.videos.firstIndex(where: { $0.media.id == id }) {
+            if newState == .completed {
+                // Download is completed, do something.
+            }
+            DispatchQueue.main.async {
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
+                cell.updateDownloadState(newState)
+            }
+        }
+    }
+}
+```
+
+### 3. Check for the media state
+
+In order to update the view once shown with the relevant data regarding the download process, call the `getAssetInfo` function. The `AssetInfo` will include the required data in order to update the UI.
+
+```swift
+let assetInfo = OfflineManager.shared.getAssetInfo(assetId: assetId)
+```
+
+The `AssetInfo` object includes the following:
+	
+```swift
+public var itemId: String				// The asset's id.
+public var state: AssetDownloadState	// The asset's state. See `AssetDownloadState` for more info.
+public var estimatedSize: Int64			// The asset's estimated size.
+public var downloadedSize: Int64		// The asset's downloaded size.
+public var progress: Float 				// The asset's progress. A value between 0 and 1.
+```
+
+The `AssetDownloadState` represents the asset's download state.
+ 
+Available Values:
+
+* new
+* prepared
+* started
+* paused
+* completed
+* failed
+* outOfSpace
+
+### 4. Prepare a media for download
+
+In order to start downloading a media, a call to `prepareAsset` is required.
+
+The `prepareAsset` function requires two parameters: `PKMediaEntry` and `OfflineSelectionOptions`.
+
+- Create an `OfflineSelectionOptions`. 
+
+	For example:
+
+	```swift
+	let offlineSelectionOptions = OfflineSelectionOptions()
+	    .setMinVideoHeight(300)
+	    .setMinVideoBitrate(.avc1, 3_000_000)
+	    .setMinVideoBitrate(.hevc, 5_000_000)
+	    .setPreferredVideoCodecs([.hevc, .avc1])
+	    .setPreferredAudioCodecs([.ac3, .mp4a])
+	    .setAllTextLanguages()
+	    .setAllAudioLanguages()
+	```
+
+- Call the `prepareAsset` function
+
+	```swift
+	OfflineManager.shared.prepareAsset(mediaEntry: pkMediaEntry, options: offlineSelectionOptions) { (error, assetInfo) in
+	    // In case an assetInfo was returned and there is no error, 
+	    // a call to start the download can be performed.
+	}
+	```
+
+##### For OTT
+
+There is an additional function for the `prepareAsset` that requires the following two parameters: `OTTMediaOptions` and `OfflineSelectionOptions`.
+
+
+- Create the `MediaOptions`, follow the [Create the media options](#5-create-the-media-options) section.
+
+- Create an `OfflineSelectionOptions`. 
+
+	For example:
+
+	```swift
+	let offlineSelectionOptions = OfflineSelectionOptions()
+	    .setMinVideoHeight(300)
+	    .setMinVideoBitrate(.avc1, 3_000_000)
+	    .setMinVideoBitrate(.hevc, 5_000_000)
+	    .setPreferredVideoCodecs([.hevc, .avc1])
+	    .setPreferredAudioCodecs([.ac3, .mp4a])
+	    .setAllTextLanguages()
+	    .setAllAudioLanguages()
+	```
+
+- Call the `prepareAsset` function
+
+	```swift
+	OfflineManager.shared.prepareAsset(mediaOptions: ottMediaOptions,
+	                                   options: offlineSelectionOptions) { (error, assetInfo, pkMediaEntry)  in
+	    // In case an assetInfo was returned and there is no error, 
+	    // a call to start the download can be performed.
+	}
+	```
+	
+### 5. Start or resume downloading the media
+
+In order to start downloading the asset call `startAssetDownload`:
+
+```swift
+try? OfflineManager.shared.startAssetDownload(assetId: id)
+```	
+
+An error can be thrown, see the documentation for more information.
+
+### 6. Pause downloading the media
+
+In order to pause downloading the asset call `pauseAssetDownload`:
+
+```swift
+try? OfflineManager.shared.pauseAssetDownload(assetId: id)
+```
+
+An error can be thrown, see the documentation for more information.
+
+### 7. Remove the asset
+
+In order to remove the downloaded asset with all it’s data, call `removeAssetDownload`:
+
+```swift
+try? OfflineManager.shared.removeAssetDownload(assetId: id)
+```
+
+An error can be thrown, see the documentation for more information.
+
+### 8. Get the local media and set it on the player
+
+In order to retrieve the local media, call `getLocalPlaybackEntry`, if the `PKMediaEntry` was retrieved call `setMedia` on the relevant KalturaPlayer.
+
+```swift
+if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
+	kalturaPlayer.setMedia(localMediaEntry, options: mediaOptions)
+}
+```
+
+The player can now be used as usual.
+
+### 9. DRM Content
+
+For DRM content, additional actions are need.
+
+- Get the DRM Status. See the `DRMStatus` for more information.
+- Renew the asset DRM license.
+
+In order to get the DRM status of the asset, call `getDRMStatus`:
+
+```swift
+let drmStatus = OfflineManager.shared.getDRMStatus(assetId: id)
+```
+
+A call to `isValid`, on the drmStatus, can determine if the license is still valid and the media can be played, otherwise a call to `renewAssetDRMLicense` is needed.
+
+```swift
+if drmStatus.isValid() == false {
+	// Renewal is needed.
+}
+```
+
+In order to renew the license, a call to `renewAssetDRMLicense` is needed.
+
+```swift
+OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry) { (error) in
+    // Decide what to do with the error depending on the error.
+}
+```
+
+##### For OTT
+
+There is an additional function that requires the `OTTMediaOptions`.
+
+```swift
+OfflineManager.shared.renewAssetDRMLicense(mediaOptions: mediaOptions) { (error) in
+    // Decide what to do with the error depending on the error.
+}
+```
 
 ## IMA Plugin
 
