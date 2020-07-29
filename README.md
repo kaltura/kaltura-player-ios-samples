@@ -478,7 +478,7 @@ Inside your Podfile, for the specific target, add the following:
 Then perform `pod update` in the terminal.  
 See Cocoapods Guide for the [difference between pod install and pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html).
 
-Add the `KalturaPlayer` to the relevant file if doesn't already exist.
+Add the `KalturaPlayer` to the relevant file if it doesn't already exist.
 
 ```swift
 import KalturaPlayer
@@ -541,11 +541,11 @@ let assetInfo = OfflineManager.shared.getAssetInfo(assetId: assetId)
 The `AssetInfo` object includes the following:
 	
 ```swift
-public var itemId: String				// The asset's id.
-public var state: AssetDownloadState	// The asset's state. See `AssetDownloadState` for more info.
-public var estimatedSize: Int64			// The asset's estimated size.
-public var downloadedSize: Int64		// The asset's downloaded size.
-public var progress: Float 				// The asset's progress. A value between 0 and 1.
+public var itemId: String               // The asset's id.
+public var state: AssetDownloadState    // The asset's state. See `AssetDownloadState` for more info.
+public var estimatedSize: Int64         // The asset's estimated size.
+public var downloadedSize: Int64        // The asset's downloaded size.
+public var progress: Float              // The asset's progress. A value between 0 and 1.
 ```
 
 The `AssetDownloadState` represents the asset's download state.
@@ -681,7 +681,7 @@ A call to `isValid`, on the drmStatus, can determine if the license is still val
 
 ```swift
 if drmStatus.isValid() == false {
-	// Renewal is needed.
+    // Renewal is needed.
 }
 ```
 
