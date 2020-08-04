@@ -54,6 +54,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
         }
     }
+    var shouldPlayLocally: Bool = false
     
     @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
     
@@ -89,7 +90,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
     
-    // MARK: -
+    // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +137,19 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
             
             if let mediaEntry = videoData.mediaEntry {
-                kalturaBasicPlayer.setMedia(mediaEntry, options: mediaOptions)
+                if shouldPlayLocally {
+                    if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
+                        kalturaBasicPlayer.setMedia(localMediaEntry, options: mediaOptions)
+                    } else {
+                        let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
+                            self.dismiss(animated: true, completion: nil)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    kalturaBasicPlayer.setMedia(mediaEntry, options: mediaOptions)
+                }
             } else if let freeFormMedia = videoData.freeFormMedia {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
                 kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType, mediaOptions: mediaOptions)
@@ -407,9 +420,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
         }
     }
+}
     
-    // MARK: - IBAction
-        
+// MARK: - IBAction
+
+extension MediaPlayerViewController {
     @IBAction private func openSettingsTouched(_ sender: Any) {
         showPlayerControllers(false)
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCrossDissolve, animations: {

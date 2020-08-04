@@ -1,40 +1,35 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '11.0'
 
-# Uncomment to use a local copy of KalturaPlayer
-KALTURA_PLAYER_LOCAL='../../kaltura-player-ios'
-
-# Uncomment to use a git copy
-#KALTURA_PLAYER_GIT='https://github.com/kaltura/kaltura-player-ios.git'
-
-KALTURA_PLAYER_BRANCH=ENV['KP_BRANCH'] || 'develop'
 
 target 'OTTSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  if defined? KALTURA_PLAYER_LOCAL
-    pod 'KalturaPlayer/OTT', :path => KALTURA_PLAYER_LOCAL
-    else
-    if defined? KALTURA_PLAYER_GIT
-      pod 'KalturaPlayer/OTT', :git => KALTURA_PLAYER_GIT, :branch => KALTURA_PLAYER_BRANCH
-      else
-      pod 'KalturaPlayer/OTT'
-    end
-  end
-  
-  # In case we want to add IMA (Interactive Media Ads)
-#  pod 'PlayKit_IMA'
-pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
 
-  # In case we want to add Youbora
+  #pod 'KalturaPlayer/OTT'
+  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
+
+  
+  ## In case we want to add IMA (Interactive Media Ads)
+  #pod 'PlayKit_IMA'
+  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+
+
+  ## In case we want to add Youbora
   pod 'PlayKitYoubora'
 
+
+  ## In case we want Offline content (can replace: pod 'KalturaPlayer/OTT')
+  #pod 'KalturaPlayer/Offline_OTT'
+  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
+  
   
   #--- In order to work with the unreleased versions --- Will be removed once released ---
   
   pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
   pod 'PlayKitKava', :path => '../../playkit-ios-kava'
-  
+  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
+  pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
   
 end

@@ -18,6 +18,10 @@
 		D22671FF22F7346100B1F247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22671FD22F7346100B1F247 /* Main.storyboard */; };
 		D226720122F7346400B1F247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D226720022F7346400B1F247 /* Assets.xcassets */; };
 		D226720422F7346400B1F247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D226720222F7346400B1F247 /* LaunchScreen.storyboard */; };
+		D22E9CD924B2215B00CD9DDB /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CD824B2215B00CD9DDB /* OfflineVideoData.swift */; };
+		D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CDF24B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift */; };
+		D22E9CE224B2F4D400CD9DDB /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CE124B2F4D400CD9DDB /* CircleProgressView.swift */; };
+		D22E9CE424B36C5000CD9DDB /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CE324B36C5000CD9DDB /* UIMediaTableViewCell.swift */; };
 		D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */; };
 		D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2582247EA0E500A430FD /* IMAAdTags.swift */; };
 		D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B2585247EA8B800A430FD /* BasicVideoData.swift */; };
@@ -43,6 +47,10 @@
 		D226720022F7346400B1F247 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D226720322F7346400B1F247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D226720522F7346400B1F247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D22E9CD824B2215B00CD9DDB /* OfflineVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineVideoData.swift; sourceTree = "<group>"; };
+		D22E9CDF24B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaDownloadTableViewCell.swift; sourceTree = "<group>"; };
+		D22E9CE124B2F4D400CD9DDB /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		D22E9CE324B36C5000CD9DDB /* UIMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaTableViewCell.swift; sourceTree = "<group>"; };
 		D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraVideoData.swift; sourceTree = "<group>"; };
 		D28B2582247EA0E500A430FD /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		D28B2585247EA8B800A430FD /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
@@ -109,12 +117,23 @@
 				D2231DDB23EAD8B300462B23 /* MediasTableViewController.swift */,
 				D28B2584247EA87E00A430FD /* VideoData */,
 				D2231DDF23EAFB2C00462B23 /* PlayerViewController */,
+				D22E9CDA24B2F2EE00CD9DDB /* CustomViews */,
 				D22671FD22F7346100B1F247 /* Main.storyboard */,
 				D226720022F7346400B1F247 /* Assets.xcassets */,
 				D226720222F7346400B1F247 /* LaunchScreen.storyboard */,
 				D226720522F7346400B1F247 /* Info.plist */,
 			);
 			path = BasicSample;
+			sourceTree = "<group>";
+		};
+		D22E9CDA24B2F2EE00CD9DDB /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9CE124B2F4D400CD9DDB /* CircleProgressView.swift */,
+				D22E9CDF24B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift */,
+				D22E9CE324B36C5000CD9DDB /* UIMediaTableViewCell.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		D28B2584247EA87E00A430FD /* VideoData */ = {
@@ -128,6 +147,7 @@
 				D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */,
 				D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */,
 				D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */,
+				D22E9CD824B2215B00CD9DDB /* OfflineVideoData.swift */,
 			);
 			path = VideoData;
 			sourceTree = "<group>";
@@ -256,9 +276,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */,
+				D22E9CD924B2215B00CD9DDB /* OfflineVideoData.swift in Sources */,
+				D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
 				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,
+				D22E9CE224B2F4D400CD9DDB /* CircleProgressView.swift in Sources */,
 				D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,
 				D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */,
@@ -266,6 +289,7 @@
 				D22671FA22F7346100B1F247 /* AppDelegate.swift in Sources */,
 				D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */,
 				D2231DDC23EAD8B300462B23 /* MediasTableViewController.swift in Sources */,
+				D22E9CE424B36C5000CD9DDB /* UIMediaTableViewCell.swift in Sources */,
 				D2231DDA23EAD71700462B23 /* VideoData.swift in Sources */,
 				D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */,
 				D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */,

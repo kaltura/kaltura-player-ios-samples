@@ -7,6 +7,17 @@
 //
 
 import UIKit
+import KalturaPlayer
+
+protocol MediaTableViewCell: UITableViewCell {
+    var videoData: VideoData? { get set }
+}
+
+protocol DownloadMediaTableViewCell: MediaTableViewCell {
+    func updateProgress(_ value: Float)
+    func updateDownloadState(_ state: AssetDownloadState)
+    func canPlayDownloadedMedia() -> Bool
+}
 
 class UIMediaHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var changeMediaSwitch: UISwitch!
@@ -42,6 +53,18 @@ class MediasTableViewController: UITableViewController {
             videos = VideoData.getYouboraIMAVideos()
         case .youboraIMADAI:
             videos = VideoData.getYouboraIMADAIVideos()
+        case .offline:
+            videos = VideoData.getOfflineVideos()
+            OfflineManager.shared.offlineManagerDelegate = self
+        }
+    }
+
+    deinit {
+        switch videoDataType {
+        case .offline:
+            OfflineManager.shared.offlineManagerDelegate = nil
+        default:
+            break
         }
     }
     
@@ -52,9 +75,16 @@ class MediasTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UIMediaTableViewCell", for: indexPath)
+        let cell: MediaTableViewCell
         
-        cell.textLabel?.text = videos[indexPath.row].title
+        switch videoDataType {
+        case .offline:
+            cell = tableView.dequeueReusableCell(withIdentifier: "UIMediaDownloadTableViewCell", for: indexPath) as! MediaTableViewCell
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "UIMediaTableViewCell", for: indexPath) as! MediaTableViewCell
+        }
+        
+        cell.videoData = videos[indexPath.row]
         
         return cell
     }
@@ -68,6 +98,42 @@ class MediasTableViewController: UITableViewController {
         return headerTableViewCell
     }
     
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if videoDataType == .offline {
+            if let cell = tableView.cellForRow(at: indexPath) as? DownloadMediaTableViewCell, cell.canPlayDownloadedMedia() {
+                let pkMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videos[indexPath.row].media.assetId)
+                if let mediaEntry = pkMediaEntry {
+                    if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
+                        OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[indexPath.row].media.mediaOptions()) { (error) in
+                            // Decide what to do with the error depending on the error.
+                        }
+                        var message = ""
+                        if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
+                            message = "The DRM License was not renewed, can't play locally."
+                        }
+                        else {
+                            message = "The DRM License was renewed, click again."
+                        }
+                        
+                        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        
+                        return nil
+                    }
+                } else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        }
+        
+        return indexPath
+    }
+
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if playerViewController == nil || headerTableViewCell?.shouldDestroyPlayer() == true {
             playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: playerType.storyboardID()) as? PlayerViewController
@@ -76,6 +142,10 @@ class MediasTableViewController: UITableViewController {
         guard let playerVC = playerViewController else { return }
         
         playerVC.videoData = videos[indexPath.row]
+        if videoDataType == .offline {
+            playerVC.shouldPlayLocally = true
+        }
+
         playerVC.modalPresentationStyle = .overCurrentContext
         self.navigationController?.present(playerVC, animated: true, completion: {
 
@@ -87,5 +157,36 @@ class MediasTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "UIMediaHeaderTableViewCell")
         return headerCell?.frame.height ?? 45.0
+    }
+}
+
+// MARK: - OfflineManagerDelegate
+
+extension MediasTableViewController: OfflineManagerDelegate {
+
+    func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64, completedFraction: Float) {
+        if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
+            DispatchQueue.main.async {
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
+                cell.updateProgress(completedFraction)
+            }
+        }
+    }
+    
+    func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
+        if let index = self.videos.firstIndex(where: { $0.media.assetId == id }) {
+            if newState == .completed {
+                if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: videos[index].media.assetId),
+                    drmStatus.isValid() == false {
+                    OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[index].media.mediaOptions()) { (error) in
+                        // Decide what to do with the error depending on the error.
+                    }
+                }
+            }
+            DispatchQueue.main.async {
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
+                cell.updateDownloadState(newState)
+            }
+        }
     }
 }

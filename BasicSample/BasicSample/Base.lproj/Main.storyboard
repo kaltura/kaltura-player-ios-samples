@@ -18,14 +18,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="Mp5-ox-Mpj" style="IBUITableViewCellStyleDefault" id="Ad9-XL-CPF">
-                                <rect key="frame" x="0.0" y="28" width="375" height="72.666664123535156"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="57.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ad9-XL-CPF" id="dRb-tR-h3N">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="72.666664123535156"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="57.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" id="Mp5-ox-Mpj">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="72.666664123535156"/>
+                                            <rect key="frame" x="16" y="0.0" width="343" height="57.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="BasicSample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="BasicSample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="41.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wta-Cf-BMd" id="a4e-n2-45b">
@@ -67,8 +67,8 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destroy Player" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R82-tm-onp">
                                             <rect key="frame" x="16" y="10.333333333333336" width="137" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-0P-Xzf">
@@ -77,12 +77,11 @@
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Media" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpY-pG-gpM">
                                             <rect key="frame" x="222" y="10.333333333333336" width="137" height="21"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="0.84949933978873238" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="BpY-pG-gpM" secondAttribute="trailing" id="1gm-p5-u8B"/>
                                         <constraint firstItem="6uN-0P-Xzf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a4e-n2-45b" secondAttribute="top" constant="5" id="8hY-OL-M9p"/>
@@ -96,26 +95,86 @@
                                         <constraint firstItem="BpY-pG-gpM" firstAttribute="centerY" secondItem="a4e-n2-45b" secondAttribute="centerY" id="w8W-3N-qsF"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="changeMediaSwitch" destination="6uN-0P-Xzf" id="Yff-Ya-I7w"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="4NC-zT-12H" style="IBUITableViewCellStyleDefault" id="APs-HL-Ybm">
-                                <rect key="frame" x="0.0" y="69.333332061767578" width="375" height="48.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="mqD-f7-0ek" style="IBUITableViewCellStyleDefault" id="APs-HL-Ybm" customClass="UIMediaTableViewCell" customModule="BasicSample" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="69.333332061767578" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="APs-HL-Ybm" id="Woe-53-ujF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="48.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4NC-zT-12H">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="48.666667938232422"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqD-f7-0ek">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mediaLabel" destination="mqD-f7-0ek" id="OhI-8X-I1c"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaDownloadTableViewCell" id="YfY-H8-VHc" customClass="UIMediaDownloadTableViewCell" customModule="BasicSample">
+                                <rect key="frame" x="0.0" y="113" width="375" height="60.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YfY-H8-VHc" id="9lQ-wS-BdN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPP-ni-QqI">
+                                            <rect key="frame" x="15.999999999999996" y="10" width="41.666666666666657" height="40.333333333333336"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="aUB-aN-t5J"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9m-Hu-C3M" customClass="CircleProgressView" customModule="BasicSample">
+                                            <rect key="frame" x="315" y="10.333333333333336" width="40" height="40"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bMT-kO-o6N" customClass="UIDownloadButton" customModule="BasicSample">
+                                            <rect key="frame" x="315" y="10.333333333333336" width="40" height="40"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="2lw-1A-WeW"/>
+                                                <constraint firstAttribute="height" constant="40" id="3j8-qq-uj5"/>
+                                            </constraints>
+                                            <state key="normal" image="download">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="downloadButtonClicked:" destination="YfY-H8-VHc" eventType="touchUpInside" id="Ky8-PD-RSa"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="d9m-Hu-C3M" secondAttribute="bottom" id="1aN-sj-Ncy"/>
+                                        <constraint firstItem="qPP-ni-QqI" firstAttribute="leading" secondItem="9lQ-wS-BdN" secondAttribute="leading" constant="16" id="4ka-ln-gYC"/>
+                                        <constraint firstAttribute="bottom" secondItem="qPP-ni-QqI" secondAttribute="bottom" constant="10" id="4zd-F6-zjU"/>
+                                        <constraint firstItem="d9m-Hu-C3M" firstAttribute="centerX" secondItem="bMT-kO-o6N" secondAttribute="centerX" id="Auh-gH-Tyh"/>
+                                        <constraint firstItem="d9m-Hu-C3M" firstAttribute="height" secondItem="bMT-kO-o6N" secondAttribute="height" id="C2x-Vy-FLA"/>
+                                        <constraint firstItem="d9m-Hu-C3M" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9lQ-wS-BdN" secondAttribute="top" id="EMK-Kb-dnI"/>
+                                        <constraint firstItem="bMT-kO-o6N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qPP-ni-QqI" secondAttribute="trailing" constant="10" id="EkK-Qb-bBm"/>
+                                        <constraint firstItem="bMT-kO-o6N" firstAttribute="centerY" secondItem="qPP-ni-QqI" secondAttribute="centerY" id="FOm-zz-dS0"/>
+                                        <constraint firstItem="qPP-ni-QqI" firstAttribute="top" secondItem="9lQ-wS-BdN" secondAttribute="top" constant="10" id="MpK-Ub-Q0c"/>
+                                        <constraint firstAttribute="trailing" secondItem="bMT-kO-o6N" secondAttribute="trailing" constant="20" id="cQE-TJ-WTh"/>
+                                        <constraint firstItem="d9m-Hu-C3M" firstAttribute="centerY" secondItem="bMT-kO-o6N" secondAttribute="centerY" id="gjU-wd-rw9"/>
+                                        <constraint firstItem="d9m-Hu-C3M" firstAttribute="width" secondItem="bMT-kO-o6N" secondAttribute="width" id="k0s-6z-vP7"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="downloadButton" destination="bMT-kO-o6N" id="0cD-DA-iyO"/>
+                                    <outlet property="downloadProgressView" destination="d9m-Hu-C3M" id="o1r-Cy-Vjr"/>
+                                    <outlet property="mediaLabel" destination="qPP-ni-QqI" id="uB8-ES-YoH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -510,6 +569,7 @@
         <image name="audioTrack" width="76" height="76"/>
         <image name="cc" width="76" height="76"/>
         <image name="close" width="32" height="32"/>
+        <image name="download" width="225" height="225"/>
         <image name="play" width="109" height="109"/>
         <image name="playerSettingsIcon" width="32" height="32"/>
         <image name="speedRate" width="60" height="60"/>

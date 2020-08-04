@@ -62,11 +62,11 @@ extension VideoData {
 
         let imaPrerollAdsResponseConfig = IMAConfig()
         imaPrerollAdsResponseConfig.adsResponse = IMAPrerollAdsResponse
-        videos.append(VideoData(title: "548575, autoPlay-false, preload-false - IMAPrerollAdsResponse",
+        videos.append(VideoData(title: "548551, autoPlay-false, preload-false - IMAPrerollAdsResponse",
                                 player: PlayerData(autoPlay: false,
                                                    preload: false,
                                                    pluginConfig: PluginConfig(config: [IMAPlugin.pluginName : imaPrerollAdsResponseConfig])),
-                                media: OTTMedia(assetId: "548575",
+                                media: OTTMedia(assetId: "548551",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,

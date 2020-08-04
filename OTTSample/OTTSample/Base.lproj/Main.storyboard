@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="OTTSample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="Wta-Cf-BMd" customClass="UIMediaHeaderTableViewCell" customModule="OTTSample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="41.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wta-Cf-BMd" id="a4e-n2-45b">
@@ -95,26 +95,86 @@
                                         <constraint firstItem="BpY-pG-gpM" firstAttribute="centerY" secondItem="a4e-n2-45b" secondAttribute="centerY" id="w8W-3N-qsF"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="changeMediaSwitch" destination="6uN-0P-Xzf" id="Yff-Ya-I7w"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="4NC-zT-12H" style="IBUITableViewCellStyleDefault" id="APs-HL-Ybm">
-                                <rect key="frame" x="0.0" y="69.333332061767578" width="375" height="48.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="gy9-m3-0bp" style="IBUITableViewCellStyleDefault" id="LsF-iO-zEo" customClass="UIMediaTableViewCell" customModule="OTTSample">
+                                <rect key="frame" x="0.0" y="69.333332061767578" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="APs-HL-Ybm" id="Woe-53-ujF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="48.666667938232422"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LsF-iO-zEo" id="WNV-lU-Rt5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4NC-zT-12H">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="48.666667938232422"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gy9-m3-0bp">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mediaLabel" destination="gy9-m3-0bp" id="W3X-U2-jc9"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaDownloadTableViewCell" id="M7k-Tx-Y2x" customClass="UIMediaDownloadTableViewCell" customModule="OTTSample">
+                                <rect key="frame" x="0.0" y="113" width="375" height="60.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M7k-Tx-Y2x" id="EXW-4r-1PE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R00-CN-a6L">
+                                            <rect key="frame" x="15.999999999999996" y="10" width="41.666666666666657" height="40.333333333333336"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="0la-Gc-Ebw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lc7-jH-33F" customClass="CircleProgressView" customModule="OTTSample">
+                                            <rect key="frame" x="315" y="10.333333333333336" width="40" height="40"/>
+                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eay-8K-NQX" customClass="UIDownloadButton" customModule="OTTSample">
+                                            <rect key="frame" x="315" y="10.333333333333336" width="40" height="40"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="BLU-zD-4HI"/>
+                                                <constraint firstAttribute="width" constant="40" id="HaC-NG-onJ"/>
+                                            </constraints>
+                                            <state key="normal" image="download">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="downloadButtonClicked:" destination="M7k-Tx-Y2x" eventType="touchUpInside" id="gnD-R2-TuL"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Lc7-jH-33F" secondAttribute="bottom" id="42U-Xa-rG5"/>
+                                        <constraint firstAttribute="trailing" secondItem="eay-8K-NQX" secondAttribute="trailing" constant="20" id="4J9-p7-bFu"/>
+                                        <constraint firstItem="Lc7-jH-33F" firstAttribute="height" secondItem="eay-8K-NQX" secondAttribute="height" id="Fax-9C-uK5"/>
+                                        <constraint firstItem="eay-8K-NQX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R00-CN-a6L" secondAttribute="trailing" constant="10" id="FeB-QV-eS5"/>
+                                        <constraint firstItem="R00-CN-a6L" firstAttribute="leading" secondItem="EXW-4r-1PE" secondAttribute="leading" constant="16" id="NpR-xt-Nd1"/>
+                                        <constraint firstItem="Lc7-jH-33F" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EXW-4r-1PE" secondAttribute="top" id="O8E-5F-auC"/>
+                                        <constraint firstItem="Lc7-jH-33F" firstAttribute="centerY" secondItem="eay-8K-NQX" secondAttribute="centerY" id="Yj3-MN-JxG"/>
+                                        <constraint firstItem="Lc7-jH-33F" firstAttribute="centerX" secondItem="eay-8K-NQX" secondAttribute="centerX" id="Zyu-pm-Hau"/>
+                                        <constraint firstItem="Lc7-jH-33F" firstAttribute="width" secondItem="eay-8K-NQX" secondAttribute="width" id="bEg-ni-mNQ"/>
+                                        <constraint firstItem="R00-CN-a6L" firstAttribute="top" secondItem="EXW-4r-1PE" secondAttribute="top" constant="10" id="cGP-xA-jyC"/>
+                                        <constraint firstAttribute="bottom" secondItem="R00-CN-a6L" secondAttribute="bottom" constant="10" id="uXA-sg-52e"/>
+                                        <constraint firstItem="eay-8K-NQX" firstAttribute="centerY" secondItem="R00-CN-a6L" secondAttribute="centerY" id="yGW-ls-kaT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="downloadButton" destination="eay-8K-NQX" id="JS7-gV-BVM"/>
+                                    <outlet property="downloadProgressView" destination="Lc7-jH-33F" id="xBt-sU-q7X"/>
+                                    <outlet property="mediaLabel" destination="R00-CN-a6L" id="msb-E2-W4e"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -126,7 +186,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wft-Yh-7gJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1159" y="139"/>
+            <point key="canvasLocation" x="1157.5999999999999" y="138.91625615763547"/>
         </scene>
         <!--Media Player View Controller-->
         <scene sceneID="Ry3-Hh-Abx">
@@ -509,6 +569,7 @@
         <image name="audioTrack" width="76" height="76"/>
         <image name="cc" width="76" height="76"/>
         <image name="close" width="32" height="32"/>
+        <image name="download" width="225" height="225"/>
         <image name="play" width="109" height="109"/>
         <image name="playerSettingsIcon" width="32" height="32"/>
         <image name="speedRate" width="60" height="60"/>

@@ -22,4 +22,5 @@ enum PlayerType {
 
 protocol PlayerViewController: UIViewController {
     var videoData: VideoData? { get set }
+    var shouldPlayLocally: Bool { get set }
 }
