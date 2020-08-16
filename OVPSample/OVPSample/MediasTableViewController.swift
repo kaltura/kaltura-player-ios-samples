@@ -1,10 +1,12 @@
 //
 //  MediasTableViewController.swift
-//  BasicSample
+//  OVPSample
 //
-//  Created by Nilit Danan on 2/5/20.
+//  Created by Nilit Danan on 7/30/20.
 //  Copyright © 2020 Kaltura Inc. All rights reserved.
 //
+
+import Foundation
 
 import UIKit
 import KalturaPlayer
@@ -58,7 +60,7 @@ class MediasTableViewController: UITableViewController {
             OfflineManager.shared.offlineManagerDelegate = self
         }
     }
-    
+
     deinit {
         switch videoDataType {
         case .offline:
@@ -85,6 +87,7 @@ class MediasTableViewController: UITableViewController {
         }
         
         cell.videoData = videos[indexPath.row]
+        
         return cell
     }
     
@@ -100,13 +103,14 @@ class MediasTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if videoDataType == .offline {
             if let cell = tableView.cellForRow(at: indexPath) as? DownloadMediaTableViewCell, cell.canPlayDownloadedMedia() {
-                if let mediaEntry = videos[indexPath.row].mediaEntry, OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) != nil {
+                let media = videos[indexPath.row].media
+                if OfflineManager.shared.getLocalPlaybackEntry(assetId: media.entryId) != nil {
                     // In case the DRM media's license has expired, renew it.
-                    if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
-                        OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry) { (error) in
+                    if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: media.entryId), drmStatus.isValid() == false {
+                        OfflineManager.shared.renewAssetDRMLicense(mediaOptions: media.mediaOptions()) { (error) in
                             // Decide what to do with the error depending on the error.
                             var message = ""
-                            if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
+                            if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: media.entryId), drmStatus.isValid() == false {
                                 message = "The DRM License was not renewed, can't play locally."
                             }
                             else {
@@ -134,8 +138,9 @@ class MediasTableViewController: UITableViewController {
         
         return indexPath
     }
+
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if playerViewController == nil || headerTableViewCell?.shouldDestroyPlayer() == true {
             playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: playerType.storyboardID()) as? PlayerViewController
         }
@@ -146,7 +151,7 @@ class MediasTableViewController: UITableViewController {
         if videoDataType == .offline {
             playerVC.shouldPlayLocally = true
         }
-        
+
         playerVC.modalPresentationStyle = .overCurrentContext
         self.navigationController?.present(playerVC, animated: true, completion: {
 
@@ -166,20 +171,20 @@ class MediasTableViewController: UITableViewController {
 extension MediasTableViewController: OfflineManagerDelegate {
 
     func item(id: String, didDownloadData totalBytesDownloaded: Int64, totalBytesEstimated: Int64, completedFraction: Float) {
-        if let index = self.videos.firstIndex(where: { $0.mediaEntry?.id == id }) {
+        if let index = self.videos.firstIndex(where: { $0.media.entryId == id }) {
             DispatchQueue.main.async {
                 guard let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? DownloadMediaTableViewCell else { return }
                 cell.updateProgress(completedFraction)
             }
         }
     }
-    
+
     func item(id: String, didChangeToState newState: AssetDownloadState, error: Error?) {
-        if let index = self.videos.firstIndex(where: { $0.mediaEntry?.id == id }) {
-            if newState == .completed, let mediaEntry = videos[index].mediaEntry {
+        if let index = self.videos.firstIndex(where: { $0.media.entryId == id }) {
+            if newState == .completed {
                 // In case the DRM media was paused for too long and the license has expired, renew it.
-                if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: mediaEntry.id), drmStatus.isValid() == false {
-                    OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry) { (error) in
+                if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: videos[index].media.entryId), drmStatus.isValid() == false {
+                    OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[index].media.mediaOptions()) { (error) in
                         // Decide what to do with the error depending on the error.
                     }
                 }
