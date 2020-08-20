@@ -102,7 +102,7 @@ extension PKYouboraAdsAdapter {
     }
     
     override func getVersion() -> String {
-        return YouboraLibVersion + "-" + PlayKitManager.versionString + "-" + (getPlayerVersion() ?? "")
+        return YBConstants.youboraLibVersion + "-" + PlayKitManager.versionString + "-" + (getPlayerVersion() ?? "")
     }
     
     override func getPlayerName() -> String? {

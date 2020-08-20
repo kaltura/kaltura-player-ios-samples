@@ -68,6 +68,9 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         pkYouboraAdsAdapter = PKYouboraAdsAdapter(player: player, messageBus: messageBus)
         
         PKLog.debug("Start monitoring Youbora")
+        
+        YBLog.debugLevel()
+        
         ybPlugin = YBPlugin(options: youboraConfig?.options(), andAdapter: pkYouboraPlayerAdapter)
         ybPlugin?.adsAdapter = pkYouboraAdsAdapter
 
