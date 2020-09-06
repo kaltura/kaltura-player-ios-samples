@@ -7,25 +7,38 @@ target 'BasicSample' do
   use_frameworks!
 
   #pod 'KalturaPlayer'
-  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)
   #pod 'PlayKit_IMA'
   pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+#  pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
 
   
   ## In case we want to add Youbora
-  pod 'PlayKitYoubora'
+  #pod 'PlayKitYoubora'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
   
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer') 
   #pod 'KalturaPlayer/Offline'
-  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'
 
   #--- In order to work with the unreleased versions --- Will be removed once released ---
 
-  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
-  pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
+  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'develop'
+#  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
+  
+  pod 'PlayKitUtils', :git => 'https://github.com/kaltura/playkit-ios-utils.git', :branch => 'develop'
+#  pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
 
+  pod 'KalturaNetKit', :git => 'https://github.com/kaltura/netkit-ios.git', :branch => 'develop'
+#  pod 'KalturaNetKit', :path => '../../netkit-ios'
+  
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+#  pod 'PlayKit', :path => '../../playkit-ios'
 end
