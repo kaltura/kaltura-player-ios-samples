@@ -19,7 +19,7 @@ target 'BasicSample' do
   
   ## In case we want to add Youbora
   #pod 'PlayKitYoubora'
-  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'FEC-10431'
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
   
 
@@ -30,15 +30,15 @@ target 'BasicSample' do
 
   #--- In order to work with the unreleased versions --- Will be removed once released ---
 
-  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'develop'
+  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'FEC-10431'
 #  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
   
   pod 'PlayKitUtils', :git => 'https://github.com/kaltura/playkit-ios-utils.git', :branch => 'develop'
 #  pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
 
-  pod 'KalturaNetKit', :git => 'https://github.com/kaltura/netkit-ios.git', :branch => 'develop'
+  pod 'KalturaNetKit', :git => 'https://github.com/kaltura/netkit-ios.git', :branch => 'FEC-10431'
 #  pod 'KalturaNetKit', :path => '../../netkit-ios'
   
-  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'FEC-10431-A'
 #  pod 'PlayKit', :path => '../../playkit-ios'
 end
