@@ -40,7 +40,7 @@ struct YouboraConfig: Decodable {
             options.contentIsLiveNoSeek = media.isDVR != nil ? NSNumber(booleanLiteral: !(media.isDVR!)) : nil
             options.contentDuration = media.duration != nil ? NSNumber(value: media.duration!) : nil
             options.contentTitle = media.title
-            options.contentTitle2 = media.title2
+            options.program = media.title2
             
             if let program = media.program {
                 options.program = program
