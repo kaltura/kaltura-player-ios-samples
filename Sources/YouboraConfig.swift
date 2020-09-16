@@ -12,7 +12,7 @@ struct YouboraConfig: Decodable {
     let username: String?
     let userType: String?
     let obfuscateIP: Bool?
-    let httpSecure: Bool? = true
+    var httpSecure: Bool? = true
     
     let media: Media?
     let ads: Ads?
