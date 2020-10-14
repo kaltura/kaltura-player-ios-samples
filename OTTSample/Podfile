@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+platform :ios, '10.0'
 
 
 target 'OTTSample' do
@@ -8,28 +8,26 @@ target 'OTTSample' do
 
 
   #pod 'KalturaPlayer/OTT'
-  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 
   
   ## In case we want to add IMA (Interactive Media Ads)
-  #pod 'PlayKit_IMA'
-  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+  pod 'PlayKit_IMA'
+#  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
 
 
   ## In case we want to add Youbora
   pod 'PlayKitYoubora'
+#  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
 
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OTT')
   #pod 'KalturaPlayer/Offline_OTT'
-  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/Offline_OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
   
   
   #--- In order to work with the unreleased versions --- Will be removed once released ---
   
-  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
-  pod 'PlayKitKava', :path => '../../playkit-ios-kava'
-  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
-  pod 'PlayKitUtils', :path => '../../playkit-ios-utils'
+  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'FEC-10431'
   
 end
