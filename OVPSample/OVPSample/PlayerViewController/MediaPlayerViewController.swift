@@ -132,22 +132,22 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             
             let mediaOptions = videoData.media.mediaOptions()
             
-            if shouldPlayLocally {
-                if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videoData.media.entryId) {
-                    kalturaOVPPlayer.setMedia(localMediaEntry, options: mediaOptions)
-                    
-                    // If the autoPlay and preload was set to false, prepare will not be called automatically
-                    if videoData.player.autoPlay == false && videoData.player.preload == false {
-                        self.kalturaOVPPlayer.prepare()
-                    }
-                } else {
-                    let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
-                        self.dismiss(animated: true, completion: nil)
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            } else {
+//            if shouldPlayLocally {
+//                if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videoData.media.entryId) {
+//                    kalturaOVPPlayer.setMedia(localMediaEntry, options: mediaOptions)
+//
+//                    // If the autoPlay and preload was set to false, prepare will not be called automatically
+//                    if videoData.player.autoPlay == false && videoData.player.preload == false {
+//                        self.kalturaOVPPlayer.prepare()
+//                    }
+//                } else {
+//                    let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
+//                        self.dismiss(animated: true, completion: nil)
+//                    }))
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            } else {
                 kalturaOVPPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
                     guard let self = self else { return }
                     if error != nil {
@@ -169,7 +169,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         }
                     }
                 }
-            }
+//            }
             
             if videoData.player.autoPlay {
                 playPauseButton.displayState = .pause

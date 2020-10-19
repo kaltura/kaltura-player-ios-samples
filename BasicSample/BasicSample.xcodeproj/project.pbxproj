@@ -18,8 +18,6 @@
 		D22671FF22F7346100B1F247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22671FD22F7346100B1F247 /* Main.storyboard */; };
 		D226720122F7346400B1F247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D226720022F7346400B1F247 /* Assets.xcassets */; };
 		D226720422F7346400B1F247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D226720222F7346400B1F247 /* LaunchScreen.storyboard */; };
-		D22E9CD924B2215B00CD9DDB /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CD824B2215B00CD9DDB /* OfflineVideoData.swift */; };
-		D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CDF24B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift */; };
 		D22E9CE224B2F4D400CD9DDB /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CE124B2F4D400CD9DDB /* CircleProgressView.swift */; };
 		D22E9CE424B36C5000CD9DDB /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CE324B36C5000CD9DDB /* UIMediaTableViewCell.swift */; };
 		D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */; };
@@ -276,8 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */,
-				D22E9CD924B2215B00CD9DDB /* OfflineVideoData.swift in Sources */,
-				D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
 				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,

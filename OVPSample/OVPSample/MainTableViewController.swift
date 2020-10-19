@@ -15,7 +15,7 @@ enum MenuItem: Int, CaseIterable, CustomStringConvertible {
     case youbora
     case youboraIMA
     case youboraIMADAI
-    case offline
+//    case offline
     
     var description: String {
         switch self {
@@ -25,7 +25,7 @@ enum MenuItem: Int, CaseIterable, CustomStringConvertible {
         case .youbora: return "Youbora Sample"
         case .youboraIMA: return "Youbora with IMA Sample"
         case .youboraIMADAI: return "Youbora with IMA DAI Sample"
-        case .offline: return "Offline Sample"
+//        case .offline: return "Offline Sample"
         }
     }
 }

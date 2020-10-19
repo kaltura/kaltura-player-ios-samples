@@ -12,8 +12,6 @@
 		D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */; };
 		D24D63E7247F9F810043FF11 /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E6247F9F810043FF11 /* IMAAdTags.swift */; };
 		D24D63E9247FA7880043FF11 /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E8247FA7880043FF11 /* IMAVideoData.swift */; };
-		D258740924A5E8A100E90558 /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258740824A5E8A100E90558 /* UIMediaDownloadTableViewCell.swift */; };
-		D277EFAD24A8DFAA00C05279 /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D277EFAC24A8DFAA00C05279 /* OfflineVideoData.swift */; };
 		D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815554248E375C00099C1B /* IMADAIVideoData.swift */; };
 		D282F9BA24BF33DD00901680 /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D282F9B924BF33DD00901680 /* UIMediaTableViewCell.swift */; };
 		D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */; };
@@ -277,7 +275,6 @@
 			files = (
 				D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */,
 				D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */,
-				D277EFAD24A8DFAA00C05279 /* OfflineVideoData.swift in Sources */,
 				D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */,
 				D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */,
 				D2F1D4BB249A4D6A00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
@@ -291,7 +288,6 @@
 				D24D63E9247FA7880043FF11 /* IMAVideoData.swift in Sources */,
 				D282F9BA24BF33DD00901680 /* UIMediaTableViewCell.swift in Sources */,
 				D24241EA24A4D7250037FDAD /* CircleProgressView.swift in Sources */,
-				D258740924A5E8A100E90558 /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2F1D4B7249A49E300D57863 /* YouboraVideoData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
