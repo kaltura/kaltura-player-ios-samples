@@ -6,9 +6,9 @@ target 'BasicSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  #pod 'KalturaPlayer'
-  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10586'
-  #pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
+#  pod 'KalturaPlayer'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)
@@ -28,16 +28,10 @@ Removing Offline until a fix will be provided by Cocoapods or Realm for the rele
 https://github.com/realm/realm-cocoa/issues/6800
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer') 
-  #pod 'KalturaPlayer/Offline'
+#  pod 'KalturaPlayer/Offline'
   pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'
 
 =end
-
-  #--- In order to work with the unreleased versions --- Will be removed once released ---
-
-#  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'develop'
-#  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
-  
 
 end

@@ -7,33 +7,28 @@ target 'OTTSample' do
   use_frameworks!
 
 
-  #pod 'KalturaPlayer/OTT'
-  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10586'
-  #pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
+#  pod 'KalturaPlayer/OTT'
+  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
 
   
   ## In case we want to add IMA (Interactive Media Ads)
   pod 'PlayKit_IMA'
-  #pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+#  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
 
 
   ## In case we want to add Youbora
   pod 'PlayKitYoubora'
-  #pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
 
 =begin
 Removing Offline until a fix will be provided by Cocoapods or Realm for the release in Xcode 12.
 https://github.com/realm/realm-cocoa/issues/6800
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OTT')
-  #pod 'KalturaPlayer/Offline_OTT'
+#  pod 'KalturaPlayer/Offline_OTT'
   pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
   
 =end
-  
-  #--- In order to work with the unreleased versions --- Will be removed once released ---
-  
-#  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'develop'
-#  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
   
 end
