@@ -64,5 +64,5 @@ struct VideoData {
     var player: PlayerData
     var media: OTTMedia
     
-    var offlineSelectionOptions: OfflineSelectionOptions?
+//    var offlineSelectionOptions: OfflineSelectionOptions?
 }
