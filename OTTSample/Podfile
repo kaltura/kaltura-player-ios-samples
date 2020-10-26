@@ -9,7 +9,6 @@ target 'OTTSample' do
 
 #  pod 'KalturaPlayer/OTT'
   pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-#  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
 
   
   ## In case we want to add IMA (Interactive Media Ads)
@@ -30,5 +29,7 @@ https://github.com/realm/realm-cocoa/issues/6800
   pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
   
 =end
-  
+
+  #--- In order to work with the unreleased versions --- Will be removed once released ---
+    
 end

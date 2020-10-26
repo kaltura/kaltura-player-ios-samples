@@ -36,6 +36,7 @@ struct OTTMedia {
     var formats: [String]?
     var fileIds: [String]?
     var networkProtocol: String?
+    var urlType: String?
     var startTime: TimeInterval?
     
     func mediaOptions() -> OTTMediaOptions {
@@ -49,6 +50,7 @@ struct OTTMedia {
         ottMediaOptions.fileIds = fileIds
         ottMediaOptions.playbackContextType = playbackContextType
         ottMediaOptions.networkProtocol = networkProtocol
+        ottMediaOptions.urlType = urlType
         
         if let startTime = startTime {
             ottMediaOptions.startTime = startTime
