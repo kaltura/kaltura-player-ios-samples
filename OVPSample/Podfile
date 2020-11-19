@@ -36,4 +36,6 @@ https://github.com/realm/realm-cocoa/issues/6800
 pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
 #pod 'PlayKit', :path => '../../playkit-ios'
   
+pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'FEC-10671'
+
 end
