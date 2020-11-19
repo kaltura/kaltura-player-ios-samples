@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UwV-0S-DtE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UwV-0S-DtE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +16,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LLf-mQ-aIF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="CE2-9R-DVY" style="IBUITableViewCellStyleDefault" id="sGf-B1-v54">
                                 <rect key="frame" x="0.0" y="28" width="414" height="58.5"/>
@@ -56,7 +57,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="prg-l0-UjJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="d2l-yY-lKt" customClass="UIMediaHeaderTableViewCell" customModule="OVPSample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="41.5"/>
@@ -73,7 +74,7 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Rb-TZ-QqY">
                                             <rect key="frame" x="182.5" y="5.5" width="51" height="31"/>
-                                            <color key="onTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                            <color key="onTintColor" systemColor="viewFlipsideBackgroundColor"/>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Media" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3n-ZL-8fm">
                                             <rect key="frame" x="241.5" y="10.5" width="152.5" height="21"/>
@@ -95,7 +96,7 @@
                                         <constraint firstItem="0Rb-TZ-QqY" firstAttribute="centerX" secondItem="1Ms-89-RdC" secondAttribute="centerX" id="vsA-8J-FO5"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemFillColor"/>
                                 <connections>
                                     <outlet property="changeMediaSwitch" destination="0Rb-TZ-QqY" id="82A-B5-hBh"/>
                                 </connections>
@@ -128,7 +129,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5v9-L9-KdY">
-                                            <rect key="frame" x="16" y="10" width="42" height="40.5"/>
+                                            <rect key="frame" x="16" y="10" width="41.5" height="40.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="srf-Jy-PqT"/>
                                             </constraints>
@@ -138,7 +139,7 @@
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6L5-QJ-Y22" customClass="CircleProgressView" customModule="OVPSample">
                                             <rect key="frame" x="354" y="10.5" width="40" height="40"/>
-                                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="tintColor" systemColor="darkTextColor"/>
                                         </view>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="MxL-Vt-Bl9" customClass="UIDownloadButton" customModule="OVPSample">
                                             <rect key="frame" x="354" y="10.5" width="40" height="40"/>
@@ -148,7 +149,7 @@
                                                 <constraint firstAttribute="height" constant="40" id="s5B-mB-EH2"/>
                                             </constraints>
                                             <state key="normal" image="download">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="titleColor" systemColor="darkTextColor"/>
                                             </state>
                                             <connections>
                                                 <action selector="downloadButtonClicked:" destination="2cq-qd-n2F" eventType="touchUpInside" id="Mvb-Ah-zbE"/>
@@ -201,7 +202,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="sHH-Dh-y98"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sHH-Dh-y98" firstAttribute="trailing" secondItem="tlv-ad-fnp" secondAttribute="trailing" id="2Md-vS-f9L"/>
                             <constraint firstItem="tlv-ad-fnp" firstAttribute="leading" secondItem="sHH-Dh-y98" secondAttribute="leading" id="Gi9-5T-wLv"/>
@@ -212,7 +214,6 @@
                             <constraint firstItem="sHH-Dh-y98" firstAttribute="bottom" secondItem="tlv-ad-fnp" secondAttribute="bottom" id="qIf-Gp-c5O"/>
                             <constraint firstItem="tlv-ad-fnp" firstAttribute="top" secondItem="sHH-Dh-y98" secondAttribute="top" id="zeQ-8r-NT9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sHH-Dh-y98"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcJ-1O-1a8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -440,11 +441,16 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XGX-RD-OoH">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XGX-RD-OoH" customClass="UIPlayerSlider" customModule="OVPSample" customModuleProvider="target">
                                                     <rect key="frame" x="83" y="10" width="248" height="31"/>
                                                     <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="maximumTrackTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="maximumTrackTintColor" white="0.345428036971831" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="bufferTintColor">
+                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="mediaProgressSliderTouchDown:" destination="7R5-Hr-cUO" eventType="touchDown" id="daR-cP-3wY"/>
                                                         <action selector="mediaProgressSliderTouchUpInside:" destination="7R5-Hr-cUO" eventType="touchUpInside" id="aGw-bK-jQf"/>
@@ -508,6 +514,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="NdY-zF-pvS"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NdY-zF-pvS" firstAttribute="bottom" secondItem="n29-24-Msb" secondAttribute="bottom" id="6xP-q4-lyE"/>
@@ -515,7 +522,6 @@
                             <constraint firstItem="n29-24-Msb" firstAttribute="leading" secondItem="NdY-zF-pvS" secondAttribute="leading" id="TdL-jH-VVL"/>
                             <constraint firstItem="n29-24-Msb" firstAttribute="top" secondItem="NdY-zF-pvS" secondAttribute="top" id="vLS-UH-iKD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="NdY-zF-pvS"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Ekp-fB-YIe" id="qq5-ks-P2r"/>
@@ -565,6 +571,11 @@
             <point key="canvasLocation" x="-633.33333333333337" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="XGX-RD-OoH">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="audioTrack" width="76" height="76"/>
         <image name="cc" width="76" height="76"/>
@@ -573,5 +584,20 @@
         <image name="play" width="109" height="109"/>
         <image name="playerSettingsIcon" width="32" height="32"/>
         <image name="speedRate" width="60" height="60"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.1215686274509804" green="0.12941176470588239" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

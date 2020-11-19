@@ -7,9 +7,9 @@ target 'OTTSample' do
   use_frameworks!
 
 
-  pod 'KalturaPlayer/OTT', '4.0.0.beta.1'
+#  pod 'KalturaPlayer/OTT', '4.0.0.beta.1'
 #  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-
+pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
   
   ## In case we want to add IMA (Interactive Media Ads)
   pod 'PlayKit_IMA'
@@ -31,5 +31,8 @@ https://github.com/realm/realm-cocoa/issues/6800
 =end
 
   #--- In order to work with the unreleased versions --- Will be removed once released ---
+
+pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+#pod 'PlayKit', :path => '../../playkit-ios'
     
 end
