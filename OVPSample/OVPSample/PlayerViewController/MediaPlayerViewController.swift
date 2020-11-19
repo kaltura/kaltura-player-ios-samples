@@ -9,6 +9,7 @@
 import UIKit
 import KalturaPlayer
 import PlayKit_IMA
+import PlayKit
 
 class PPRButton: UIButton {
     enum PPRButtonState {
@@ -70,7 +71,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet private weak var playPauseButton: PPRButton!
     
-    @IBOutlet private weak var mediaProgressSlider: UISlider!
+    @IBOutlet private weak var mediaProgressSlider: UIPlayerSlider!
     private var userSeekInProgress: Bool = false {
         didSet {
             mediaProgressSlider.isEnabled = !self.userSeekInProgress
@@ -269,6 +270,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         registerPlaybackEvents()
         handleTracks()
         handleProgress()
+        handleBufferedProgress()
         handleDuration()
         handleError()
     }
@@ -356,10 +358,24 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             guard let self = self else { return }
             
             if self.userSeekInProgress { return }
-            let currentTime = self.getTimeRepresentation(self.kalturaOVPPlayer.currentTime)
+            
+            guard let currentTimeNumber = event.currentTime else { return }
+            let currentTime = self.getTimeRepresentation(currentTimeNumber.doubleValue)
             DispatchQueue.main.async {
                 self.currentTimeLabel.text = currentTime
-                self.mediaProgressSlider.value = Float(self.kalturaOVPPlayer.currentTime / self.kalturaOVPPlayer.duration)
+                self.mediaProgressSlider.value = Float(currentTimeNumber.doubleValue / self.kalturaOVPPlayer.duration)
+            }
+        }
+    }
+    
+    private func handleBufferedProgress() {
+        kalturaOVPPlayer.addObserver(self, event: KPPlayerEvent.loadedTimeRanges) { [weak self] event in
+            guard let self = self else { return }
+
+            if self.userSeekInProgress { return }
+
+            DispatchQueue.main.async {
+                self.mediaProgressSlider.bufferValue = Float(self.kalturaOVPPlayer.bufferedTime / self.kalturaOVPPlayer.duration)
             }
         }
     }
