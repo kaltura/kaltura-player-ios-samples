@@ -9,6 +9,7 @@
 import UIKit
 import KalturaPlayer
 import PlayKit_IMA
+import PlayKit
 
 class PPRButton: UIButton {
     enum PPRButtonState {
@@ -70,7 +71,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet private weak var playPauseButton: PPRButton!
     
-    @IBOutlet private weak var mediaProgressSlider: UISlider!
+    @IBOutlet private weak var mediaProgressSlider: UIPlayerSlider!
     private var userSeekInProgress: Bool = false {
         didSet {
             mediaProgressSlider.isEnabled = !self.userSeekInProgress
@@ -269,6 +270,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         registerPlaybackEvents()
         handleTracks()
         handleProgress()
+        handleBufferedProgress()
         handleDuration()
         handleError()
     }
@@ -362,6 +364,31 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 self.mediaProgressSlider.value = Float(self.kalturaOTTPlayer.currentTime / self.kalturaOTTPlayer.duration)
             }
         }
+    }
+    
+    private func handleBufferedProgress() {
+        kalturaOTTPlayer.addObserver(self, event: KPPlayerEvent.loadedTimeRanges) { [weak self] event in
+            guard let self = self else { return }
+            
+            if self.userSeekInProgress { return }
+            
+            guard let timeRanges = event.timeRanges else { return }
+            let bufferPosition = self.bufferPosition(from: self.kalturaOTTPlayer.currentTime, loadedTimeRanges: timeRanges)
+            DispatchQueue.main.async {
+                self.mediaProgressSlider.bufferValue = Float(bufferPosition / self.kalturaOTTPlayer.duration)
+            }
+        }
+    }
+    
+    // PKTimeRange needs an import PlayKit
+    private func bufferPosition(from currentTime: TimeInterval, loadedTimeRanges: [PKTimeRange]) -> TimeInterval {
+        for timeRange in loadedTimeRanges {
+            if currentTime.isLess(than: timeRange.end) {
+                return timeRange.end
+            }
+        }
+        
+        return currentTime
     }
     
     private func handleDuration() {
