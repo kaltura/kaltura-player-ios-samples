@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class UIPlayerSlider: UISlider {
     
-    let bufferProgressView = UIProgressView(progressViewStyle: .default)
+    lazy var bufferProgressView = UIProgressView(progressViewStyle: .default)
     
     override init (frame : CGRect) {
         super.init(frame : frame)
@@ -24,6 +24,10 @@ class UIPlayerSlider: UISlider {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setup()
     }
     
@@ -42,30 +46,19 @@ class UIPlayerSlider: UISlider {
     }
     
     func setup() {
-        bufferProgressView.isUserInteractionEnabled = false
+        bufferProgressView.frame = self.bounds
         bufferProgressView.progress = 0.0
-        
-        let layoutConstraints = bufferProgressView.constraintsForAnchoringTo(boundsOf: self)
-//        NSLayoutConstraint.activate(layoutConstraints)
+        bufferProgressView.center = CGPoint(x: self.frame.size.width * 0.5, y: self.frame.size.height * 0.5)
         
         self.addSubview(bufferProgressView)
-    }
-}
+        self.sendSubviewToBack(bufferProgressView)
 
-// MARK: -
-
-extension UIView {
-
-    /// Returns a collection of constraints to anchor the bounds of the current view to the given view.
-    ///
-    /// - Parameter view: The view to anchor to.
-    /// - Returns: The layout constraints needed for this constraint.
-    func constraintsForAnchoringTo(boundsOf view: UIView) -> [NSLayoutConstraint] {
-        return [
-            topAnchor.constraint(equalTo: view.topAnchor),
-            leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor),
-            view.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ]
+        // Constraints that make sure the progressview is at the Y center and equal width of this view.
+        bufferProgressView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bufferProgressView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            bufferProgressView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            bufferProgressView.widthAnchor.constraint(equalTo: self.widthAnchor)
+        ])
     }
 }
