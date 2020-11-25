@@ -151,8 +151,10 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
 //            } else {
                 kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
                     guard let self = self else { return }
-                    if error != nil {
-                        let alert = UIAlertController(title: "Media not loaded", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    if let error = error {
+                        let message = error.localizedDescription
+
+                        let alert = UIAlertController(title: "Media not loaded", message: message, preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
                             self.dismiss(animated: true, completion: nil)
                         }))
