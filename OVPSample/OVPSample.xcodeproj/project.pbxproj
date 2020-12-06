@@ -14,8 +14,8 @@
 		D25BE6ED24E0239C005F0222 /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6EC24E0239C005F0222 /* YouboraVideoData.swift */; };
 		D25BE6EF24E023D1005F0222 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6EE24E023D1005F0222 /* YouboraIMAVideoData.swift */; };
 		D25BE6F124E0240C005F0222 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6F024E0240C005F0222 /* YouboraIMADAIVideoData.swift */; };
-		D25BE6F324E0243B005F0222 /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6F224E0243B005F0222 /* OfflineVideoData.swift */; };
 		D25BE6F624E02CD1005F0222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25BE6F424E02CD1005F0222 /* Main.storyboard */; };
+		D260E331256702F30015F0E0 /* UIPlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260E330256702F30015F0E0 /* UIPlayerSlider.swift */; };
 		D2895AD124D290A00090F9F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AD024D290A00090F9F0 /* AppDelegate.swift */; };
 		D2895ADA24D290A90090F9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2895AD924D290A90090F9F0 /* Assets.xcassets */; };
 		D2895ADD24D290A90090F9F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2895ADB24D290A90090F9F0 /* LaunchScreen.storyboard */; };
@@ -26,7 +26,6 @@
 		D2895AF724DAE0810090F9F0 /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF624DAE0810090F9F0 /* PKMediaPlayerViewController.swift */; };
 		D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF824DAE5EB0090F9F0 /* MediaPlayerViewController.swift */; };
 		D2895AFC24DAE90D0090F9F0 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFB24DAE90D0090F9F0 /* CircleProgressView.swift */; };
-		D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */; };
 		D2895B0024DAE9470090F9F0 /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */; };
 		D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895B0324DB01270090F9F0 /* BasicVideoData.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +42,7 @@
 		D25BE6F024E0240C005F0222 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
 		D25BE6F224E0243B005F0222 /* OfflineVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineVideoData.swift; sourceTree = "<group>"; };
 		D25BE6F524E02CD1005F0222 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D260E330256702F30015F0E0 /* UIPlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlayerSlider.swift; sourceTree = "<group>"; };
 		D2895ACD24D290A00090F9F0 /* OVPSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OVPSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2895AD024D290A00090F9F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2895AD924D290A90090F9F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,6 +156,7 @@
 				D2895AFB24DAE90D0090F9F0 /* CircleProgressView.swift */,
 				D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */,
 				D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */,
+				D260E330256702F30015F0E0 /* UIPlayerSlider.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -275,14 +276,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */,
+				D260E331256702F30015F0E0 /* UIPlayerSlider.swift in Sources */,
 				D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */,
 				D25BE6EB24E0236E005F0222 /* IMADAIVideoData.swift in Sources */,
 				D2895AE524D29A1D0090F9F0 /* MainTableViewController.swift in Sources */,
 				D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */,
 				D25BE6ED24E0239C005F0222 /* YouboraVideoData.swift in Sources */,
 				D2895AF724DAE0810090F9F0 /* PKMediaPlayerViewController.swift in Sources */,
-				D25BE6F324E0243B005F0222 /* OfflineVideoData.swift in Sources */,
 				D2895AE724D29A5F0090F9F0 /* MediasTableViewController.swift in Sources */,
 				D25BE6F124E0240C005F0222 /* YouboraIMADAIVideoData.swift in Sources */,
 				D2895AD124D290A00090F9F0 /* AppDelegate.swift in Sources */,

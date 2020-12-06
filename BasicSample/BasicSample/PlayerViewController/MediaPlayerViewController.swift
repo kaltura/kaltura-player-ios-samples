@@ -9,6 +9,7 @@
 import UIKit
 import KalturaPlayer
 import PlayKit_IMA
+import PlayKit
 
 class PPRButton: UIButton {
     enum PPRButtonState {
@@ -70,7 +71,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet private weak var playPauseButton: PPRButton!
     
-    @IBOutlet private weak var mediaProgressSlider: UISlider!
+    @IBOutlet private weak var mediaProgressSlider: UIPlayerSlider!
     private var userSeekInProgress: Bool = false {
         didSet {
             mediaProgressSlider.isEnabled = !self.userSeekInProgress
@@ -137,19 +138,19 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
             
             if let mediaEntry = videoData.mediaEntry {
-                if shouldPlayLocally {
-                    if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
-                        kalturaBasicPlayer.setMedia(localMediaEntry, options: mediaOptions)
-                    } else {
-                        let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
-                            self.dismiss(animated: true, completion: nil)
-                        }))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                } else {
+//                if shouldPlayLocally {
+//                    if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
+//                        kalturaBasicPlayer.setMedia(localMediaEntry, options: mediaOptions)
+//                    } else {
+//                        let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
+//                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
+//                            self.dismiss(animated: true, completion: nil)
+//                        }))
+//                        self.present(alert, animated: true, completion: nil)
+//                    }
+//                } else {
                     kalturaBasicPlayer.setMedia(mediaEntry, options: mediaOptions)
-                }
+//                }
             } else if let freeFormMedia = videoData.freeFormMedia {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
                 kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType, mediaOptions: mediaOptions)
@@ -256,6 +257,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         registerPlaybackEvents()
         handleTracks()
         handleProgress()
+        handleBufferedProgress()
         handleDuration()
         handleError()
     }
@@ -340,13 +342,28 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     private func handleProgress() {
         kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
+            
             guard let self = self else { return }
             
             if self.userSeekInProgress { return }
-            let currentTime = self.getTimeRepresentation(self.kalturaBasicPlayer.currentTime)
+            
+            guard let currentTimeNumber = event.currentTime else { return }
+            let currentTime = self.getTimeRepresentation(currentTimeNumber.doubleValue)
             DispatchQueue.main.async {
                 self.currentTimeLabel.text = currentTime
-                self.mediaProgressSlider.value = Float(self.kalturaBasicPlayer.currentTime / self.kalturaBasicPlayer.duration)
+                self.mediaProgressSlider.value = Float(currentTimeNumber.doubleValue / self.kalturaBasicPlayer.duration)
+            }
+        }
+    }
+    
+    private func handleBufferedProgress() {
+        kalturaBasicPlayer.addObserver(self, event: KPPlayerEvent.loadedTimeRanges) { [weak self] event in
+            guard let self = self else { return }
+
+            if self.userSeekInProgress { return }
+
+            DispatchQueue.main.async {
+                self.mediaProgressSlider.bufferValue = Float(self.kalturaBasicPlayer.bufferedTime / self.kalturaBasicPlayer.duration)
             }
         }
     }

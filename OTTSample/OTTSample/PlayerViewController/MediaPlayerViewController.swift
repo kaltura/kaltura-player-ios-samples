@@ -9,6 +9,7 @@
 import UIKit
 import KalturaPlayer
 import PlayKit_IMA
+import PlayKit
 
 class PPRButton: UIButton {
     enum PPRButtonState {
@@ -70,7 +71,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet private weak var playPauseButton: PPRButton!
     
-    @IBOutlet private weak var mediaProgressSlider: UISlider!
+    @IBOutlet private weak var mediaProgressSlider: UIPlayerSlider!
     private var userSeekInProgress: Bool = false {
         didSet {
             mediaProgressSlider.isEnabled = !self.userSeekInProgress
@@ -132,26 +133,28 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             
             let mediaOptions = videoData.media.mediaOptions()
             
-            if shouldPlayLocally {
-                if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videoData.media.assetId) {
-                    kalturaOTTPlayer.setMedia(localMediaEntry, options: mediaOptions)
-                    
-                    // If the autoPlay and preload was set to false, prepare will not be called automatically
-                    if videoData.player.autoPlay == false && videoData.player.preload == false {
-                        self.kalturaOTTPlayer.prepare()
-                    }
-                } else {
-                    let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
-                        self.dismiss(animated: true, completion: nil)
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            } else {
+//            if shouldPlayLocally {
+//                if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: videoData.media.assetId) {
+//                    kalturaOTTPlayer.setMedia(localMediaEntry, options: mediaOptions)
+//
+//                    // If the autoPlay and preload was set to false, prepare will not be called automatically
+//                    if videoData.player.autoPlay == false && videoData.player.preload == false {
+//                        self.kalturaOTTPlayer.prepare()
+//                    }
+//                } else {
+//                    let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
+//                        self.dismiss(animated: true, completion: nil)
+//                    }))
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            } else {
                 kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
                     guard let self = self else { return }
-                    if error != nil {
-                        let alert = UIAlertController(title: "Media not loaded", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    if let error = error {
+                        let message = error.localizedDescription
+
+                        let alert = UIAlertController(title: "Media not loaded", message: message, preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
                             self.dismiss(animated: true, completion: nil)
                         }))
@@ -169,7 +172,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         }
                     }
                 }
-            }
+//            }
             
             if videoData.player.autoPlay {
                 playPauseButton.displayState = .pause
@@ -269,6 +272,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         registerPlaybackEvents()
         handleTracks()
         handleProgress()
+        handleBufferedProgress()
         handleDuration()
         handleError()
     }
@@ -362,6 +366,31 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                 self.mediaProgressSlider.value = Float(self.kalturaOTTPlayer.currentTime / self.kalturaOTTPlayer.duration)
             }
         }
+    }
+    
+    private func handleBufferedProgress() {
+        kalturaOTTPlayer.addObserver(self, event: KPPlayerEvent.loadedTimeRanges) { [weak self] event in
+            guard let self = self else { return }
+            
+            if self.userSeekInProgress { return }
+            
+            guard let timeRanges = event.timeRanges else { return }
+            let bufferPosition = self.bufferPosition(from: self.kalturaOTTPlayer.currentTime, loadedTimeRanges: timeRanges)
+            DispatchQueue.main.async {
+                self.mediaProgressSlider.bufferValue = Float(bufferPosition / self.kalturaOTTPlayer.duration)
+            }
+        }
+    }
+    
+    // PKTimeRange needs an import PlayKit
+    private func bufferPosition(from currentTime: TimeInterval, loadedTimeRanges: [PKTimeRange]) -> TimeInterval {
+        for timeRange in loadedTimeRanges {
+            if currentTime.isLess(than: timeRange.end) {
+                return timeRange.end
+            }
+        }
+        
+        return currentTime
     }
     
     private func handleDuration() {
