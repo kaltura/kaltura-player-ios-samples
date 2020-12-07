@@ -7,10 +7,11 @@ target 'OTTSample' do
   use_frameworks!
 
 
-  pod 'KalturaPlayer/OTT', '4.0.0.beta.2'
-#  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-#  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
+#  pod 'KalturaPlayer', '4.0.0.beta.2'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
   
+
   ## In case we want to add IMA (Interactive Media Ads)
   pod 'PlayKit_IMA'
 #  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
@@ -22,22 +23,22 @@ target 'OTTSample' do
 #  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
 
-=begin
-Removing Offline until a fix will be provided by Cocoapods or Realm for the release in Xcode 12.
-https://github.com/realm/realm-cocoa/issues/6800
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OTT')
 #  pod 'KalturaPlayer/Offline_OTT'
-  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
-  
-=end
+  pod 'KalturaPlayer/Offline_OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
+#  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
+
 
   #--- In order to work with the unreleased versions --- Will be removed once released ---
 
-#pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
-#pod 'PlayKit', :path => '../../playkit-ios'
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+#  pod 'PlayKit', :path => '../../playkit-ios'
 
-#pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
-#pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+#  pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
+#  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+
+  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'FEC-10431'
+#  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
     
 end

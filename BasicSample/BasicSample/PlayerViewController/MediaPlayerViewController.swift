@@ -138,19 +138,19 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             }
             
             if let mediaEntry = videoData.mediaEntry {
-//                if shouldPlayLocally {
-//                    if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
-//                        kalturaBasicPlayer.setMedia(localMediaEntry, options: mediaOptions)
-//                    } else {
-//                        let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
-//                            self.dismiss(animated: true, completion: nil)
-//                        }))
-//                        self.present(alert, animated: true, completion: nil)
-//                    }
-//                } else {
+                if shouldPlayLocally {
+                    if let localMediaEntry = OfflineManager.shared.getLocalPlaybackEntry(assetId: mediaEntry.id) {
+                        kalturaBasicPlayer.setMedia(localMediaEntry, options: mediaOptions)
+                    } else {
+                        let alert = UIAlertController(title: "Local Playback", message: "The local media was not retrieved.", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (alert) in
+                            self.dismiss(animated: true, completion: nil)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else {
                     kalturaBasicPlayer.setMedia(mediaEntry, options: mediaOptions)
-//                }
+                }
             } else if let freeFormMedia = videoData.freeFormMedia {
                 guard let contentUrl = URL(string: freeFormMedia.contentUrl) else { return }
                 kalturaBasicPlayer.setupMediaEntry(id: freeFormMedia.id, contentUrl: contentUrl, drmData: freeFormMedia.drmData, mediaFormat: freeFormMedia.mediaFormat, mediaType: freeFormMedia.mediaType, mediaOptions: mediaOptions)

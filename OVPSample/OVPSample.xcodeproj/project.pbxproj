@@ -14,6 +14,7 @@
 		D25BE6ED24E0239C005F0222 /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6EC24E0239C005F0222 /* YouboraVideoData.swift */; };
 		D25BE6EF24E023D1005F0222 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6EE24E023D1005F0222 /* YouboraIMAVideoData.swift */; };
 		D25BE6F124E0240C005F0222 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6F024E0240C005F0222 /* YouboraIMADAIVideoData.swift */; };
+		D25BE6F324E0243B005F0222 /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6F224E0243B005F0222 /* OfflineVideoData.swift */; };
 		D25BE6F624E02CD1005F0222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D25BE6F424E02CD1005F0222 /* Main.storyboard */; };
 		D260E331256702F30015F0E0 /* UIPlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D260E330256702F30015F0E0 /* UIPlayerSlider.swift */; };
 		D2895AD124D290A00090F9F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AD024D290A00090F9F0 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 		D2895AF724DAE0810090F9F0 /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF624DAE0810090F9F0 /* PKMediaPlayerViewController.swift */; };
 		D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF824DAE5EB0090F9F0 /* MediaPlayerViewController.swift */; };
 		D2895AFC24DAE90D0090F9F0 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFB24DAE90D0090F9F0 /* CircleProgressView.swift */; };
+		D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */; };
 		D2895B0024DAE9470090F9F0 /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */; };
 		D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895B0324DB01270090F9F0 /* BasicVideoData.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,7 @@
 		8D7C904B450B183D0E1C74A3 /* Pods_OVPSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OVPSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCAB4F3AABA02B596DB23BE /* Pods-OVPSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OVPSample.debug.xcconfig"; path = "Target Support Files/Pods-OVPSample/Pods-OVPSample.debug.xcconfig"; sourceTree = "<group>"; };
 		B7961C974DBAF3AD0D91A0F3 /* Pods-OVPSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OVPSample.release.xcconfig"; path = "Target Support Files/Pods-OVPSample/Pods-OVPSample.release.xcconfig"; sourceTree = "<group>"; };
+		D22D8632257EC56E001EB267 /* OVPSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OVPSample.entitlements; sourceTree = "<group>"; };
 		D25BE6E624E02307005F0222 /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		D25BE6E824E02324005F0222 /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
 		D25BE6EA24E0236E005F0222 /* IMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMADAIVideoData.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		D2895ACF24D290A00090F9F0 /* OVPSample */ = {
 			isa = PBXGroup;
 			children = (
+				D22D8632257EC56E001EB267 /* OVPSample.entitlements */,
 				D2895AD024D290A00090F9F0 /* AppDelegate.swift */,
 				D2895AE424D29A1D0090F9F0 /* MainTableViewController.swift */,
 				D2895AE624D29A5F0090F9F0 /* MediasTableViewController.swift */,
@@ -277,12 +281,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D260E331256702F30015F0E0 /* UIPlayerSlider.swift in Sources */,
+				D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */,
 				D25BE6EB24E0236E005F0222 /* IMADAIVideoData.swift in Sources */,
 				D2895AE524D29A1D0090F9F0 /* MainTableViewController.swift in Sources */,
 				D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */,
 				D25BE6ED24E0239C005F0222 /* YouboraVideoData.swift in Sources */,
 				D2895AF724DAE0810090F9F0 /* PKMediaPlayerViewController.swift in Sources */,
+				D25BE6F324E0243B005F0222 /* OfflineVideoData.swift in Sources */,
 				D2895AE724D29A5F0090F9F0 /* MediasTableViewController.swift in Sources */,
 				D25BE6F124E0240C005F0222 /* YouboraIMADAIVideoData.swift in Sources */,
 				D2895AD124D290A00090F9F0 /* AppDelegate.swift in Sources */,
@@ -437,6 +443,7 @@
 			baseConfigurationReference = 9FCAB4F3AABA02B596DB23BE /* Pods-OVPSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OVPSample/OVPSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = OVPSample/Info.plist;
@@ -445,7 +452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.OVPSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.KPOVPSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,6 +464,7 @@
 			baseConfigurationReference = B7961C974DBAF3AD0D91A0F3 /* Pods-OVPSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OVPSample/OVPSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = OVPSample/Info.plist;
@@ -465,7 +473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.OVPSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.KPOVPSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

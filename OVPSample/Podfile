@@ -6,8 +6,8 @@ target 'OVPSample' do
   use_frameworks!
 
 
-  pod 'KalturaPlayer/OVP', '4.0.0.beta.2'
-#  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OVP', '4.0.0.beta.2'
+  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
 #  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
 
 
@@ -23,22 +23,21 @@ target 'OVPSample' do
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
 
 
-=begin
-Removing Offline until a fix will be provided by Cocoapods or Realm for the release in Xcode 12.
-https://github.com/realm/realm-cocoa/issues/6800
-
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OVP')
-  #pod 'KalturaPlayer/Offline_OVP'
-  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline_OVP'
+  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
+#  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
-=end
 
   #--- In order to work with the unreleased versions --- Will be removed once released ---
 
-#pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
-#pod 'PlayKit', :path => '../../playkit-ios'
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+#  pod 'PlayKit', :path => '../../playkit-ios'
   
-#pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
-#pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+#  pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
+#  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+
+  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'FEC-10431'
+#  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
 
 end
