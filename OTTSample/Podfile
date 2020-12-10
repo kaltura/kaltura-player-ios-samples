@@ -13,8 +13,8 @@ target 'OTTSample' do
   
 
   ## In case we want to add IMA (Interactive Media Ads)
-  pod 'PlayKit_IMA'
-#  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+#  pod 'PlayKit_IMA'
+  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'FEC-10431'
 #  pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
 
 
