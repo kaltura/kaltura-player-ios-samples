@@ -61,7 +61,6 @@ class MediaPlayerViewController: UIViewController {
     @IBOutlet private weak var topVisualEffectViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var bottomVisualEffectView: UIVisualEffectView!
     @IBOutlet private weak var bottomVisualEffectViewHeightConstraint: NSLayoutConstraint!
-//    @IBOutlet private weak var settingsVisualEffectView: UIVisualEffectView!
     private let topBottomVisualEffectViewHeight: Float = 100.0
     
     @IBOutlet private weak var playPauseButton: PPRButton!
@@ -111,6 +110,14 @@ class MediaPlayerViewController: UIViewController {
         let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(showControllersSwipe(recognizer:)))
         swipeDownRecognizer.direction = .down
         self.view.addGestureRecognizer(swipeDownRecognizer)
+        
+        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(seekSwipe(recognizer:)))
+        swipeLeftRecognizer.direction = .left
+        self.view.addGestureRecognizer(swipeLeftRecognizer)
+        
+        let swipeRightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(seekSwipe(recognizer:)))
+        swipeRightRecognizer.direction = .right
+        self.view.addGestureRecognizer(swipeRightRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +186,16 @@ class MediaPlayerViewController: UIViewController {
         kalturaBasicPlayer.removeObserver(self, events: KPAdEvent.allEventTypes)
     }
     
+    override var preferredFocusEnvironments: [UIFocusEnvironment] {
+        let settingsIsShown = (topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
+        
+        if settingsIsShown {
+            return []
+        } else {
+            return [playPauseButton]
+        }
+    }
+    
     deinit {
         kalturaBasicPlayer.destroy()
         kalturaBasicPlayer = nil
@@ -186,7 +203,7 @@ class MediaPlayerViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    func playerOptions(_ videoData: VideoData?) -> PlayerOptions {
+    private func playerOptions(_ videoData: VideoData?) -> PlayerOptions {
         let playerOptions = PlayerOptions()
         
         if let autoPlay = videoData?.player.autoPlay {
@@ -205,16 +222,26 @@ class MediaPlayerViewController: UIViewController {
         return playerOptions
     }
     
-    @objc func playPauseTapped(recognizer: UITapGestureRecognizer) {
-        if kalturaBasicPlayer.isPlaying || kalturaBasicPlayer.rate > 0 {
-            kalturaBasicPlayer.pause()
-        } else {
-            kalturaBasicPlayer.play()
-            showPlayerControllers(false)
+    @objc private func playPauseTapped(recognizer: UITapGestureRecognizer) {
+        playButtonTouched(playPauseButton)
+    }
+    
+    @objc private func seekSwipe(recognizer: UISwipeGestureRecognizer) {
+        let controllersIsShown = (bottomVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
+        if !controllersIsShown { return }
+        if kalturaBasicPlayer.isPlaying { return }
+        
+        switch recognizer.direction {
+        case .left:
+            mediaProgressView.progress -= 0.05
+        case .right:
+            mediaProgressView.progress += 0.05
+        default:
+            break
         }
     }
     
-    @objc func showControllersSwipe(recognizer: UISwipeGestureRecognizer) {
+    @objc private func showControllersSwipe(recognizer: UISwipeGestureRecognizer) {
         let settingsIsShown = (topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
         let controllersIsShown = (bottomVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
         
@@ -241,6 +268,7 @@ class MediaPlayerViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: delay, animations: {
             self.bottomVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
             self.view.layoutIfNeeded()
+            self.setNeedsFocusUpdate()
         })
     }
     
@@ -249,6 +277,7 @@ class MediaPlayerViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: delay, animations: {
             self.topVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
             self.view.layoutIfNeeded()
+            self.setNeedsFocusUpdate()
         })
     }
     
@@ -317,6 +346,7 @@ class MediaPlayerViewController: UIViewController {
                     }
                 case is KPPlayerEvent.Seeked:
 //                    self.userSeekInProgress = false
+                    self.kalturaBasicPlayer.play()
                     self.activityIndicator.stopAnimating()
                     if self.kalturaBasicPlayer.currentTime < self.kalturaBasicPlayer.duration, self.playPauseButton.displayState == .replay {
                         self.playPauseButton.displayState = .play
@@ -520,5 +550,25 @@ extension MediaPlayerViewController {
         }
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction private func playButtonTouched(_ button: UIButton) {
+        if playPauseButton.displayState == .replay {
+            kalturaBasicPlayer.replay()
+            showPlayerControllers(false, delay: 0.5)
+        } else if kalturaBasicPlayer.isPlaying || kalturaBasicPlayer.rate > 0 {
+            kalturaBasicPlayer.pause()
+        } else {
+            let duration = kalturaBasicPlayer.duration
+            let currentProgress = Float(kalturaBasicPlayer.currentTime / duration)
+            
+            if mediaProgressView.progress != currentProgress {
+                let seekToTime = mediaProgressView.progress * Float(duration)
+                kalturaBasicPlayer.seek(to: TimeInterval(seekToTime))
+            } else {
+                kalturaBasicPlayer.play()
+                showPlayerControllers(false)
+            }
+        }
     }
 }

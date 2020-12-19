@@ -197,6 +197,9 @@
                                             </constraints>
                                             <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                             <state key="normal" backgroundImage="play"/>
+                                            <connections>
+                                                <action selector="playButtonTouched:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="VVh-Qb-1WS"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n0-gx-FhJ" userLabel="Current Time Label">
                                             <rect key="frame" x="150" y="27" width="163" height="46"/>
