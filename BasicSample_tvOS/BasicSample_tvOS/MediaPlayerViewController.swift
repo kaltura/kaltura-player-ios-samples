@@ -43,12 +43,12 @@ class MediaPlayerViewController: UIViewController {
                 mediaProgressView.progress = 0
                 currentTimeLabel.text = "00:00:00"
                 durationLabel.text = "00:00:00"
-//                audioTracks = nil
-//                textTracks = nil
-//                mediaEnded = false
-//                adsLoaded = false
-//                allAdsCompleted = false
-//
+                audioTracks = nil
+                textTracks = nil
+                mediaEnded = false
+                adsLoaded = false
+                allAdsCompleted = false
+
                 let basicPlayerOptions = playerOptions(videoData)
                 kalturaBasicPlayer.updatePlayerOptions(basicPlayerOptions)
             }
@@ -73,6 +73,9 @@ class MediaPlayerViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
+    private var audioTracks: [KPTrack]?
+    private var textTracks: [KPTrack]?
+    
     private var shouldPreparePlayer: Bool = true
     
     private var mediaEnded: Bool = false
@@ -320,8 +323,8 @@ class MediaPlayerViewController: UIViewController {
                 return
             }
             
-//            self.audioTracks = tracks.audioTracks
-//            self.textTracks = tracks.textTracks
+            self.audioTracks = tracks.audioTracks
+            self.textTracks = tracks.textTracks
         }
     }
     
@@ -426,3 +429,68 @@ class MediaPlayerViewController: UIViewController {
     }
 }
 
+// MARK: - IBAction
+
+extension MediaPlayerViewController {
+    
+    @IBAction private func speechTouched(_ button: UIButton) {
+        guard let tracks = audioTracks else { return }
+        
+        let alertController = UIAlertController(title: "Select Speech", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        for track in tracks {
+            alertController.addAction(UIAlertAction(title: track.title, style: UIAlertAction.Style.default, handler: { (alertAction) in
+                self.kalturaBasicPlayer.selectTrack(trackId: track.id)
+            }))
+        }
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = button
+            popoverController.sourceRect = button.bounds
+            popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction private func subtitleTouched(_ button: UIButton) {
+        guard let tracks = textTracks else { return }
+        
+        let alertController = UIAlertController(title: "Select Subtitle", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        for track in tracks {
+            alertController.addAction(UIAlertAction(title: track.title, style: UIAlertAction.Style.default, handler: { (alertAction) in
+                self.kalturaBasicPlayer.selectTrack(trackId: track.id)
+            }))
+        }
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = button
+            popoverController.sourceRect = button.bounds
+            popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction private func speedRateTouched(_ button: UIButton) {
+        let alertController = UIAlertController(title: "Select Speed Rate", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        alertController.addAction(UIAlertAction(title: "Normal", style: UIAlertAction.Style.default, handler: { (alertAction) in
+            self.kalturaBasicPlayer.rate = 1
+        }))
+        alertController.addAction(UIAlertAction(title: "x2", style: UIAlertAction.Style.default, handler: { (alertAction) in
+            self.kalturaBasicPlayer.rate = 2
+        }))
+        alertController.addAction(UIAlertAction(title: "x3", style: UIAlertAction.Style.default, handler: { (alertAction) in
+            self.kalturaBasicPlayer.rate = 3
+        }))
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = button
+            popoverController.sourceRect = button.bounds
+            popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
