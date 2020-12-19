@@ -6,19 +6,19 @@ target 'BasicSample_tvOS' do
   use_frameworks!
 
 #  pod 'KalturaPlayer'
-#  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)
-  pod 'PlayKit_IMA'
-#  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+#  pod 'PlayKit_IMA'
+  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'FEC-10431'
 #  pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
 
 
   ## In case we want to add Youbora
-  pod 'PlayKitYoubora'
-#  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'FEC-10434'
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
   
 
