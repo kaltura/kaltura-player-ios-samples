@@ -20,11 +20,11 @@ class PPRButton: UIButton {
         didSet {
             switch displayState {
             case .play:
-                self.setImage(UIImage(named: "play"), for: .normal)
+                self.setBackgroundImage(UIImage(named: "play"), for: .normal)
             case .pause:
-                self.setImage(UIImage(named: "pause"), for: .normal)
+                self.setBackgroundImage(UIImage(named: "pause"), for: .normal)
             case .replay:
-                self.setImage(UIImage(named: "reload"), for: .normal)
+                self.setBackgroundImage(UIImage(named: "reload"), for: .normal)
             }
         }
     }
