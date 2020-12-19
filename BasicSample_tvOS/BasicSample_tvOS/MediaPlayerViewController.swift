@@ -146,9 +146,11 @@ class MediaPlayerViewController: UIViewController {
             if videoData.player.autoPlay {
                 playPauseButton.displayState = .pause
                 showPlayerControllers(false)
+                showPlayerSettings(false)
             } else {
                 playPauseButton.displayState = .play
                 showPlayerControllers(true)
+                showPlayerSettings(true)
             }
         }
     }
@@ -195,7 +197,7 @@ class MediaPlayerViewController: UIViewController {
         }
         if let pluginConfig = videoData?.player.pluginConfig {
             if let imaConfig = pluginConfig.config[IMAPlugin.pluginName] as? IMAConfig {
-//                imaConfig.videoControlsOverlays = [controllersInteractiveView, topVisualEffectView, middleVisualEffectView, bottomVisualEffectView]
+                imaConfig.videoControlsOverlays = [topVisualEffectView, bottomVisualEffectView]
             }
             playerOptions.pluginConfig = pluginConfig
         }
@@ -203,7 +205,7 @@ class MediaPlayerViewController: UIViewController {
         return playerOptions
     }
     
-    @objc func playPauseTapped(recognizer:UITapGestureRecognizer) {
+    @objc func playPauseTapped(recognizer: UITapGestureRecognizer) {
         if kalturaBasicPlayer.isPlaying || kalturaBasicPlayer.rate > 0 {
             kalturaBasicPlayer.pause()
         } else {
@@ -212,16 +214,40 @@ class MediaPlayerViewController: UIViewController {
         }
     }
     
-    @objc func showControllersSwipe(recognizer:UISwipeGestureRecognizer) {
-        let show = !(topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
-        showPlayerControllers(show)
+    @objc func showControllersSwipe(recognizer: UISwipeGestureRecognizer) {
+        let settingsIsShown = (topVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
+        let controllersIsShown = (bottomVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
+        
+        switch recognizer.direction {
+        case .down:
+            if controllersIsShown {
+                showPlayerControllers(false)
+            } else if !settingsIsShown {
+                showPlayerSettings(true)
+            }
+        case .up:
+            if settingsIsShown {
+                showPlayerSettings(false)
+            } else if !controllersIsShown {
+                showPlayerControllers(true)
+            }
+        default:
+            break
+        }
     }
     
     private func showPlayerControllers(_ show: Bool, delay: Double = 0.0) {
         let constantValue: Float = show ? topBottomVisualEffectViewHeight : 0.0
         UIView.animate(withDuration: 0.5, delay: delay, animations: {
-            self.topVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
             self.bottomVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func showPlayerSettings(_ show: Bool, delay: Double = 0.0) {
+        let constantValue: Float = show ? topBottomVisualEffectViewHeight : 0.0
+        UIView.animate(withDuration: 0.5, delay: delay, animations: {
+            self.topVisualEffectViewHeightConstraint.constant = CGFloat(constantValue)
             self.view.layoutIfNeeded()
         })
     }
@@ -277,8 +303,10 @@ class MediaPlayerViewController: UIViewController {
                     self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
                     self.showPlayerControllers(false)
+                    self.showPlayerSettings(false)
                 case is KPPlayerEvent.Pause:
                     self.playPauseButton.displayState = .play
+                    self.showPlayerControllers(true)
                 case is KPPlayerEvent.CanPlay:
                     self.activityIndicator.stopAnimating()
                 case is KPPlayerEvent.Seeking:
