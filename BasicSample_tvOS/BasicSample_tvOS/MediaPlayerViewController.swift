@@ -45,8 +45,10 @@ class MediaPlayerViewController: UIViewController {
                 durationLabel.text = "00:00:00"
                 audioTracks = nil
                 textTracks = nil
+                userSeekInProgress = false
                 mediaEnded = false
                 adsLoaded = false
+                adInProgress = false
                 allAdsCompleted = false
 
                 let basicPlayerOptions = playerOptions(videoData)
@@ -77,8 +79,10 @@ class MediaPlayerViewController: UIViewController {
     
     private var shouldPreparePlayer: Bool = true
     
+    private var userSeekInProgress: Bool = false
     private var mediaEnded: Bool = false
     private var adsLoaded: Bool = false
+    private var adInProgress: Bool = false
     private var allAdsCompleted: Bool = false
     
     // MARK: - Overrides
@@ -227,6 +231,8 @@ class MediaPlayerViewController: UIViewController {
     }
     
     @objc private func seekSwipe(recognizer: UISwipeGestureRecognizer) {
+        if adInProgress { return }
+        
         let controllersIsShown = (bottomVisualEffectViewHeightConstraint.constant == CGFloat(topBottomVisualEffectViewHeight))
         if !controllersIsShown { return }
         if kalturaBasicPlayer.isPlaying { return }
@@ -234,8 +240,10 @@ class MediaPlayerViewController: UIViewController {
         switch recognizer.direction {
         case .left:
             mediaProgressView.progress -= 0.05
+            userSeekInProgress = true
         case .right:
             mediaProgressView.progress += 0.05
+            userSeekInProgress = true
         default:
             break
         }
@@ -339,17 +347,20 @@ class MediaPlayerViewController: UIViewController {
                 case is KPPlayerEvent.CanPlay:
                     self.activityIndicator.stopAnimating()
                 case is KPPlayerEvent.Seeking:
-                    if self.kalturaBasicPlayer.isPlaying {
-                        self.showPlayerControllers(false, delay: 0.5)
-                    } else {
-                        self.activityIndicator.startAnimating()
+                    self.activityIndicator.startAnimating()
+
+                    if self.kalturaBasicPlayer.currentTime < self.kalturaBasicPlayer.duration, self.playPauseButton.displayState == .replay {
+                        self.playPauseButton.displayState = .play
                     }
                 case is KPPlayerEvent.Seeked:
-//                    self.userSeekInProgress = false
-                    self.kalturaBasicPlayer.play()
+                    self.userSeekInProgress = false
                     self.activityIndicator.stopAnimating()
                     if self.kalturaBasicPlayer.currentTime < self.kalturaBasicPlayer.duration, self.playPauseButton.displayState == .replay {
                         self.playPauseButton.displayState = .play
+                    }
+                    
+                    if self.kalturaBasicPlayer.currentTime < self.kalturaBasicPlayer.duration {
+                        self.kalturaBasicPlayer.play()
                     }
                 case is KPPlayerEvent.PlaybackStalled:
                     if !self.kalturaBasicPlayer.isPlaying {
@@ -391,7 +402,7 @@ class MediaPlayerViewController: UIViewController {
             
             guard let self = self else { return }
             
-//            if self.userSeekInProgress { return }
+            if self.userSeekInProgress { return }
             
             guard let currentTimeNumber = event.currentTime else { return }
             let currentTime = self.getTimeRepresentation(currentTimeNumber.doubleValue)
@@ -406,7 +417,7 @@ class MediaPlayerViewController: UIViewController {
         kalturaBasicPlayer.addObserver(self, event: KPPlayerEvent.loadedTimeRanges) { [weak self] event in
             guard let self = self else { return }
 
-//            if self.userSeekInProgress { return }
+            if self.userSeekInProgress { return }
 
             DispatchQueue.main.async {
                 self.mediaProgressView.bufferValue = Float(self.kalturaBasicPlayer.bufferedTime / self.kalturaBasicPlayer.duration)
@@ -465,15 +476,14 @@ class MediaPlayerViewController: UIViewController {
                 case is KPAdEvent.AdStarted:
                     self.activityIndicator.stopAnimating()
                     self.playPauseButton.displayState = .pause
-//                    self.mediaProgressView.isEnabled = false
+                    self.adInProgress = true
                 case is KPAdEvent.AdComplete:
-//                    self.mediaProgressView.isEnabled = true
-                    break
+                    self.adInProgress = false
                 case is KPAdEvent.AdSkipped:
-//                    self.mediaProgressView.isEnabled = true
-                    break
+                    self.adInProgress = false
                 case is KPAdEvent.AllAdsCompleted:
                     self.allAdsCompleted = true
+                    self.adInProgress = false
                     // In case of a post-roll the media has ended
                     if self.mediaEnded {
                         self.playPauseButton.displayState = .replay
@@ -553,18 +563,22 @@ extension MediaPlayerViewController {
     }
     
     @IBAction private func playButtonTouched(_ button: UIButton) {
-        if playPauseButton.displayState == .replay {
-            kalturaBasicPlayer.replay()
-            showPlayerControllers(false, delay: 0.5)
-        } else if kalturaBasicPlayer.isPlaying || kalturaBasicPlayer.rate > 0 {
-            kalturaBasicPlayer.pause()
-        } else {
+        if userSeekInProgress {
             let duration = kalturaBasicPlayer.duration
             let currentProgress = Float(kalturaBasicPlayer.currentTime / duration)
             
             if mediaProgressView.progress != currentProgress {
                 let seekToTime = mediaProgressView.progress * Float(duration)
                 kalturaBasicPlayer.seek(to: TimeInterval(seekToTime))
+            } else {
+                userSeekInProgress = false
+            }
+        } else {
+            if playPauseButton.displayState == .replay {
+                kalturaBasicPlayer.replay()
+                showPlayerControllers(false, delay: 0.5)
+            } else if kalturaBasicPlayer.isPlaying || kalturaBasicPlayer.rate > 0 {
+                kalturaBasicPlayer.pause()
             } else {
                 kalturaBasicPlayer.play()
                 showPlayerControllers(false)
