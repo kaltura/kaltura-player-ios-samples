@@ -203,6 +203,8 @@ class MediaPlayerViewController: UIViewController {
     deinit {
         kalturaBasicPlayer.destroy()
         kalturaBasicPlayer = nil
+        audioTracks = nil
+        textTracks = nil
     }
     
     // MARK: - Private Methods
