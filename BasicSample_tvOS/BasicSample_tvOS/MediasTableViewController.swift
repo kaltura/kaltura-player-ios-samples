@@ -8,10 +8,10 @@
 import UIKit
 
 class UIMediaHeaderTableViewCell: UITableViewCell {
-//    @IBOutlet weak var changeMedia: check!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
 
     func shouldDestroyPlayer() -> Bool {
-        return true//!changeMediaSwitch.isOn
+        return segmentControl.selectedSegmentIndex == 0
     }
 }
 
@@ -58,12 +58,12 @@ class MediasTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if headerTableViewCell == nil {
-//            headerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UIMediaHeaderTableViewCell") as? UIMediaHeaderTableViewCell
-//        }
-//        return headerTableViewCell
-//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if headerTableViewCell == nil {
+            headerTableViewCell = tableView.dequeueReusableCell(withIdentifier: "UIMediaHeaderTableViewCell") as? UIMediaHeaderTableViewCell
+        }
+        return headerTableViewCell
+    }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return indexPath

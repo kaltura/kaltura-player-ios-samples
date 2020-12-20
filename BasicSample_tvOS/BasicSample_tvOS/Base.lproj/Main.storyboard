@@ -66,8 +66,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" rowHeight="100" id="JcY-Ip-3Zm" customClass="UIMediaHeaderTableViewCell" customModule="BasicSample_tvOS" customModuleProvider="target">
+                                <rect key="frame" x="96" y="66" width="1728" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JcY-Ip-3Zm" id="JF0-uM-Udx">
+                                    <rect key="frame" x="0.0" y="0.0" width="1728" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pSf-Um-mMb">
+                                            <rect key="frame" x="574" y="15.5" width="580" height="70"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                            <segments>
+                                                <segment title="Destroy Player"/>
+                                                <segment title="Change Media"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pSf-Um-mMb" firstAttribute="centerX" secondItem="JF0-uM-Udx" secondAttribute="centerX" id="3Th-K4-7BJ"/>
+                                        <constraint firstItem="pSf-Um-mMb" firstAttribute="centerY" secondItem="JF0-uM-Udx" secondAttribute="centerY" id="CO7-cj-sVI"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="segmentControl" destination="pSf-Um-mMb" id="y9b-XA-VQJ"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" id="pij-Mh-zIV">
-                                <rect key="frame" x="96" y="66" width="1728" height="66"/>
+                                <rect key="frame" x="96" y="180" width="1728" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pij-Mh-zIV" id="utR-Xx-L04">
                                     <rect key="frame" x="0.0" y="0.0" width="1728" height="66"/>
