@@ -6,8 +6,8 @@ target 'OVPSample_tvOS' do
   use_frameworks!
 
 #  pod 'KalturaPlayer/OVP'
-#  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)

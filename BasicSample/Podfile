@@ -1,14 +1,14 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+platform :ios, '10.0'
 
 
 target 'BasicSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-#  pod 'KalturaPlayer'
-#  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
+#  pod 'KalturaPlayer', '4.0.0.beta.2'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)
@@ -23,20 +23,14 @@ target 'BasicSample' do
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
   
 
-=begin
-Removing Offline until a fix will be provided by Cocoapods or Realm for the release in Xcode 12.
-https://github.com/realm/realm-cocoa/issues/6800
-
   ## In case we want Offline content (can replace: pod 'KalturaPlayer') 
 #  pod 'KalturaPlayer/Offline'
   pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'
 
-=end
-
   #--- In order to work with the unreleased versions --- Will be removed once released ---
-
-pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
-#pod 'PlayKit', :path => '../../playkit-ios'
+  
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+#  pod 'PlayKit', :path => '../../playkit-ios'
 
 end

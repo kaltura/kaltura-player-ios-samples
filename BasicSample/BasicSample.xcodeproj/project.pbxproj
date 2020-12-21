@@ -18,6 +18,8 @@
 		D22671FF22F7346100B1F247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22671FD22F7346100B1F247 /* Main.storyboard */; };
 		D226720122F7346400B1F247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D226720022F7346400B1F247 /* Assets.xcassets */; };
 		D226720422F7346400B1F247 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D226720222F7346400B1F247 /* LaunchScreen.storyboard */; };
+		D22E9CD924B2215B00CD9DDB /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CD824B2215B00CD9DDB /* OfflineVideoData.swift */; };
+		D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CDF24B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift */; };
 		D22E9CE224B2F4D400CD9DDB /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CE124B2F4D400CD9DDB /* CircleProgressView.swift */; };
 		D22E9CE424B36C5000CD9DDB /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9CE324B36C5000CD9DDB /* UIMediaTableViewCell.swift */; };
 		D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240FC1C2498F4CA0061A44D /* YouboraVideoData.swift */; };
@@ -55,6 +57,7 @@
 		D28B2585247EA8B800A430FD /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D28B2587247EAEC100A430FD /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
 		D2AF0A9D2492400C0085C863 /* IMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMADAIVideoData.swift; sourceTree = "<group>"; };
+		D2D85D25257E916C00404968 /* BasicSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BasicSample.entitlements; sourceTree = "<group>"; };
 		D2E3A70B2557EB9800BD152D /* UIPlayerSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlayerSlider.swift; sourceTree = "<group>"; };
 		D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		D22671F822F7346100B1F247 /* BasicSample */ = {
 			isa = PBXGroup;
 			children = (
+				D2D85D25257E916C00404968 /* BasicSample.entitlements */,
 				D22671F922F7346100B1F247 /* AppDelegate.swift */,
 				D2231DD223E8692900462B23 /* MainTableViewController.swift */,
 				D2231DDB23EAD8B300462B23 /* MediasTableViewController.swift */,
@@ -278,6 +282,8 @@
 			files = (
 				D2E3A70C2557EB9800BD152D /* UIPlayerSlider.swift in Sources */,
 				D2AF0A9E2492400C0085C863 /* IMADAIVideoData.swift in Sources */,
+				D22E9CD924B2215B00CD9DDB /* OfflineVideoData.swift in Sources */,
+				D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
 				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,
@@ -439,6 +445,8 @@
 			baseConfigurationReference = B0005E8DBCAB4DD7049BDB05 /* Pods-BasicSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BasicSample/BasicSample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = BasicSample/Info.plist;
@@ -446,8 +454,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.BasicSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.KPBasicSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,6 +467,8 @@
 			baseConfigurationReference = BFFC9696DDEFC535B0FC46B8 /* Pods-BasicSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BasicSample/BasicSample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = BasicSample/Info.plist;
@@ -465,8 +476,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.BasicSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.KPBasicSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

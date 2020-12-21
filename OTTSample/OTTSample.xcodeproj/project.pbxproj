@@ -12,6 +12,8 @@
 		D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */; };
 		D24D63E7247F9F810043FF11 /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E6247F9F810043FF11 /* IMAAdTags.swift */; };
 		D24D63E9247FA7880043FF11 /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E8247FA7880043FF11 /* IMAVideoData.swift */; };
+		D258740924A5E8A100E90558 /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258740824A5E8A100E90558 /* UIMediaDownloadTableViewCell.swift */; };
+		D277EFAD24A8DFAA00C05279 /* OfflineVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D277EFAC24A8DFAA00C05279 /* OfflineVideoData.swift */; };
 		D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2815554248E375C00099C1B /* IMADAIVideoData.swift */; };
 		D282F9BA24BF33DD00901680 /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D282F9B924BF33DD00901680 /* UIMediaTableViewCell.swift */; };
 		D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */; };
@@ -54,6 +56,7 @@
 		D2BB80432439FD440050228D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2BB80462439FD450050228D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2BB80482439FD450050228D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2D85D4E257EBCB300404968 /* OTTSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OTTSample.entitlements; sourceTree = "<group>"; };
 		D2E3A6A925514AA300BD152D /* UIPlayerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlayerSlider.swift; sourceTree = "<group>"; };
 		D2F1D4B6249A49E300D57863 /* YouboraVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4B8249A4D5E00D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		D2BB80392439FD3D0050228D /* OTTSample */ = {
 			isa = PBXGroup;
 			children = (
+				D2D85D4E257EBCB300404968 /* OTTSample.entitlements */,
 				D2BB803A2439FD3D0050228D /* AppDelegate.swift */,
 				D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */,
 				D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */,
@@ -279,6 +283,7 @@
 				D2E3A6AA25514AA300BD152D /* UIPlayerSlider.swift in Sources */,
 				D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */,
 				D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */,
+				D277EFAD24A8DFAA00C05279 /* OfflineVideoData.swift in Sources */,
 				D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */,
 				D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */,
 				D2F1D4BB249A4D6A00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
@@ -292,6 +297,7 @@
 				D24D63E9247FA7880043FF11 /* IMAVideoData.swift in Sources */,
 				D282F9BA24BF33DD00901680 /* UIMediaTableViewCell.swift in Sources */,
 				D24241EA24A4D7250037FDAD /* CircleProgressView.swift in Sources */,
+				D258740924A5E8A100E90558 /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2F1D4B7249A49E300D57863 /* YouboraVideoData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +443,7 @@
 			baseConfigurationReference = 34FD1B02DE7FD9E0EB47A894 /* Pods-OTTSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OTTSample/OTTSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = OTTSample/Info.plist;
@@ -445,7 +452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.OTTSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.KPOTTSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,6 +464,7 @@
 			baseConfigurationReference = 224948AAB8DB9E5358C12A57 /* Pods-OTTSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OTTSample/OTTSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = OTTSample/Info.plist;
@@ -465,7 +473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.OTTSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kaltura.KPOTTSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
