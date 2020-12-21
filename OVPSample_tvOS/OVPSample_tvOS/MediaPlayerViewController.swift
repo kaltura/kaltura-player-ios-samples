@@ -170,7 +170,7 @@ class MediaPlayerViewController: UIViewController {
             } else {
                 playPauseButton.displayState = .play
                 showPlayerControllers(true)
-                showPlayerSettings(true)
+                showPlayerSettings(false)
             }
         }
     }
@@ -251,12 +251,16 @@ class MediaPlayerViewController: UIViewController {
         switch recognizer.direction {
         case .left:
             mediaProgressView.progress -= 0.05
-            userSeekInProgress = true
         case .right:
             mediaProgressView.progress += 0.05
-            userSeekInProgress = true
         default:
             break
+        }
+        
+        if mediaProgressView.progress != Float(kalturaOVPPlayer.currentTime / kalturaOVPPlayer.duration) {
+            userSeekInProgress = true
+        } else {
+            userSeekInProgress = false
         }
     }
     

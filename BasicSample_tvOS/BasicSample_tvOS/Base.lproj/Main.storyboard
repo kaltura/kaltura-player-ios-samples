@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="17156" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IU4-4w-dbo">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IU4-4w-dbo">
     <device id="appleTV" appearance="light"/>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -197,15 +197,18 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="pqy-Us-XeP" firstAttribute="centerX" secondItem="8hD-GQ-RMk" secondAttribute="centerX" id="E4U-T6-3M2"/>
                                         <constraint firstAttribute="bottom" secondItem="pqy-Us-XeP" secondAttribute="bottom" id="jYw-ZS-IAk"/>
                                     </constraints>
                                 </view>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="eqR-Pq-rh6"/>
                                 </constraints>
-                                <blurEffect style="regular"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cW6-AF-dRp" userLabel="Bottom Visual Effect View">
                                 <rect key="frame" x="80" y="920" width="1760" height="100"/>
@@ -232,7 +235,7 @@
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="HUY-Qi-img"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mTM-p6-8uL" userLabel="Media Progress View" customClass="UIPlayerProgressView" customModule="BasicSample_tvOS" customModuleProvider="target">
@@ -256,10 +259,11 @@
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="fql-bC-lSQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="rC4-MJ-cUb" firstAttribute="centerY" secondItem="ta0-Rb-EoS" secondAttribute="centerY" id="Blp-8Q-mlj"/>
                                         <constraint firstItem="mTM-p6-8uL" firstAttribute="centerY" secondItem="ta0-Rb-EoS" secondAttribute="centerY" id="QLJ-2H-dWs"/>
@@ -273,10 +277,12 @@
                                         <constraint firstItem="rC4-MJ-cUb" firstAttribute="leading" secondItem="mTM-p6-8uL" secondAttribute="trailing" constant="50" id="pJs-vw-l1y"/>
                                     </constraints>
                                 </view>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Kt6-t4-1rQ"/>
                                 </constraints>
-                                <blurEffect style="regular"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
