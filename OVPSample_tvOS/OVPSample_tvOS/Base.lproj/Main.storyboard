@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3mv-Nc-Xft">
+    <device id="appleTV" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--OVP-->
+        <scene sceneID="L9p-5X-Vmp">
+            <objects>
+                <tableViewController id="1Gi-v3-y3M" customClass="MainTableViewController" customModule="OVPSample_tvOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" id="gVh-eh-sYh">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" id="E0P-2T-TDt">
+                                <rect key="frame" x="96" y="66" width="1728" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E0P-2T-TDt" id="joS-To-dRD">
+                                    <rect key="frame" x="0.0" y="0.0" width="1728" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="WhU-0t-5fh" kind="show" identifier="ShowMedias" id="LSb-DG-mXd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Gi-v3-y3M" id="vk0-Yo-4gB"/>
+                            <outlet property="delegate" destination="1Gi-v3-y3M" id="kWl-mQ-8FM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="OVP" id="Pu3-2l-aJY"/>
+                    <connections>
+                        <outlet property="tabBarObservedScrollView" destination="gVh-eh-sYh" id="2PL-mK-UHl"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8mG-xS-e5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7016" y="-34"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Ra-Wi-jsE">
+            <objects>
+                <navigationController id="3mv-Nc-Xft" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UOP-FI-qM3">
+                        <rect key="frame" x="0.0" y="60" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1Gi-v3-y3M" kind="relationship" relationship="rootViewController" id="OaL-Yh-g6t"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m0U-cI-6xi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-9132" y="-34"/>
+        </scene>
+        <!--Media Player View Controller-->
+        <scene sceneID="eBV-Mb-oT2">
+            <objects>
+                <viewController storyboardIdentifier="MediaPlayerViewController" id="HoI-Po-IbU" customClass="MediaPlayerViewController" customModule="OVPSample_tvOS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S01-IO-fNO"/>
+                        <viewControllerLayoutGuide type="bottom" id="yqu-En-FAa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C9L-hy-Z6G">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uUz-R4-akf" customClass="KalturaPlayerView" customModule="KalturaPlayer">
+                                <rect key="frame" x="80" y="60" width="1760" height="960"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="lyt-e4-HPb">
+                                <rect key="frame" x="940" y="520" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTT-tP-LOv" userLabel="Top Visual Effect View">
+                                <rect key="frame" x="80" y="60" width="1760" height="100"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Qaw-Zb-l4z">
+                                    <rect key="frame" x="0.0" y="0.0" width="1760" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="uIv-Nr-rS7">
+                                            <rect key="frame" x="423.5" y="0.0" width="913" height="100"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEb-t1-jeV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="254" height="100"/>
+                                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                    <state key="normal" title="Audio" image="audioTrack">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="focused">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="speechTouched:" destination="HoI-Po-IbU" eventType="primaryActionTriggered" id="2fz-0S-8sE"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcJ-9M-kPB">
+                                                    <rect key="frame" x="305" y="0.0" width="324" height="100"/>
+                                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                    <state key="normal" title="  Captions" image="cc">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="focused">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="subtitleTouched:" destination="HoI-Po-IbU" eventType="primaryActionTriggered" id="2QH-0s-hue"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8Y-uf-1XI">
+                                                    <rect key="frame" x="680" y="0.0" width="233" height="100"/>
+                                                    <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                    <state key="normal" title="  Rate" image="speedRate">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="focused">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="speedRateTouched:" destination="HoI-Po-IbU" eventType="primaryActionTriggered" id="Cuk-ea-2lk"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="79n-MO-hHT"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="uIv-Nr-rS7" secondAttribute="bottom" id="ISW-UL-nbl"/>
+                                        <constraint firstItem="uIv-Nr-rS7" firstAttribute="centerX" secondItem="Qaw-Zb-l4z" secondAttribute="centerX" id="MTr-Tl-MMy"/>
+                                    </constraints>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="bSs-mT-sDO"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrp-0j-xhn" userLabel="Bottom Visual Effect View">
+                                <rect key="frame" x="80" y="920" width="1760" height="100"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dQ9-Hg-Rco">
+                                    <rect key="frame" x="0.0" y="0.0" width="1760" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfA-tv-gof" customClass="PPRButton" customModule="OVPSample_tvOS" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="10" width="80" height="80"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="j6E-qe-ySz"/>
+                                                <constraint firstAttribute="height" constant="80" id="usq-Nq-WCy"/>
+                                            </constraints>
+                                            <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                            <state key="normal" backgroundImage="play"/>
+                                            <connections>
+                                                <action selector="playButtonTouched:" destination="HoI-Po-IbU" eventType="primaryActionTriggered" id="5Go-Gh-aCJ"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elY-l7-73A" userLabel="Current Time Label">
+                                            <rect key="frame" x="150" y="27" width="163" height="46"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="tgG-Mg-9RE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rUl-5m-9rK" userLabel="Media Progress View" customClass="UIPlayerProgressView" customModule="OVPSample_tvOS" customModuleProvider="target">
+                                            <rect key="frame" x="363" y="45" width="1164" height="10"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="trackTintColor" white="0.29860805460000001" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="bufferTintColor">
+                                                    <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="bufferValue">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </progressView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhr-vg-EaG" userLabel="Duration Label">
+                                            <rect key="frame" x="1577" y="27" width="163" height="46"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="163" id="6Ki-FK-cIr"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="bfA-tv-gof" firstAttribute="top" secondItem="dQ9-Hg-Rco" secondAttribute="top" constant="10" id="9os-Gx-i27"/>
+                                        <constraint firstItem="elY-l7-73A" firstAttribute="centerY" secondItem="bfA-tv-gof" secondAttribute="centerY" id="Ecp-az-lPe"/>
+                                        <constraint firstItem="elY-l7-73A" firstAttribute="leading" secondItem="bfA-tv-gof" secondAttribute="trailing" constant="50" id="FD8-Aj-cN8"/>
+                                        <constraint firstItem="rUl-5m-9rK" firstAttribute="leading" secondItem="elY-l7-73A" secondAttribute="trailing" constant="50" id="LFe-l9-X3M"/>
+                                        <constraint firstItem="xhr-vg-EaG" firstAttribute="centerY" secondItem="bfA-tv-gof" secondAttribute="centerY" id="MLY-HS-1Yc"/>
+                                        <constraint firstItem="bfA-tv-gof" firstAttribute="leading" secondItem="dQ9-Hg-Rco" secondAttribute="leading" constant="20" id="gM1-21-qbS"/>
+                                        <constraint firstAttribute="bottom" secondItem="bfA-tv-gof" secondAttribute="bottom" constant="10" id="gn3-Od-vj4"/>
+                                        <constraint firstAttribute="trailing" secondItem="xhr-vg-EaG" secondAttribute="trailing" constant="20" id="jJz-0b-guT"/>
+                                        <constraint firstItem="rUl-5m-9rK" firstAttribute="centerY" secondItem="bfA-tv-gof" secondAttribute="centerY" id="kZO-qd-d8L"/>
+                                        <constraint firstItem="xhr-vg-EaG" firstAttribute="leading" secondItem="rUl-5m-9rK" secondAttribute="trailing" constant="50" id="ltI-5Q-pmZ"/>
+                                    </constraints>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="R2B-oH-ZbR"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="S8w-sD-d5g"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dTT-tP-LOv" firstAttribute="leading" secondItem="S8w-sD-d5g" secondAttribute="leading" id="2Qx-zD-QrC"/>
+                            <constraint firstItem="hrp-0j-xhn" firstAttribute="leading" secondItem="S8w-sD-d5g" secondAttribute="leading" id="7pm-x4-2xR"/>
+                            <constraint firstItem="S8w-sD-d5g" firstAttribute="top" secondItem="uUz-R4-akf" secondAttribute="top" id="89M-hy-SwN"/>
+                            <constraint firstItem="S8w-sD-d5g" firstAttribute="trailing" secondItem="hrp-0j-xhn" secondAttribute="trailing" id="9oR-Lb-dcT"/>
+                            <constraint firstItem="S8w-sD-d5g" firstAttribute="trailing" secondItem="dTT-tP-LOv" secondAttribute="trailing" id="JMs-ep-p6q"/>
+                            <constraint firstItem="S8w-sD-d5g" firstAttribute="bottom" secondItem="hrp-0j-xhn" secondAttribute="bottom" id="PoD-dx-wlY"/>
+                            <constraint firstItem="uUz-R4-akf" firstAttribute="trailing" secondItem="S8w-sD-d5g" secondAttribute="trailing" id="mGV-GK-WIc"/>
+                            <constraint firstItem="dTT-tP-LOv" firstAttribute="top" secondItem="S8w-sD-d5g" secondAttribute="top" id="nsO-a5-AoH"/>
+                            <constraint firstItem="S8w-sD-d5g" firstAttribute="bottom" secondItem="uUz-R4-akf" secondAttribute="bottom" id="vmd-Ip-HeH"/>
+                            <constraint firstItem="S8w-sD-d5g" firstAttribute="leading" secondItem="uUz-R4-akf" secondAttribute="leading" id="xPT-nr-amU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="lyt-e4-HPb" id="54K-86-FvU"/>
+                        <outlet property="bottomVisualEffectView" destination="hrp-0j-xhn" id="nmZ-fl-Yu1"/>
+                        <outlet property="bottomVisualEffectViewHeightConstraint" destination="R2B-oH-ZbR" id="WlG-v1-WDz"/>
+                        <outlet property="currentTimeLabel" destination="elY-l7-73A" id="pGY-Hj-N7u"/>
+                        <outlet property="durationLabel" destination="xhr-vg-EaG" id="hFV-iZ-Sfk"/>
+                        <outlet property="kalturaPlayerView" destination="uUz-R4-akf" id="x3A-Ml-IoM"/>
+                        <outlet property="mediaProgressView" destination="rUl-5m-9rK" id="jRQ-Ao-B6w"/>
+                        <outlet property="playPauseButton" destination="bfA-tv-gof" id="nVi-Il-q70"/>
+                        <outlet property="topVisualEffectView" destination="dTT-tP-LOv" id="2yk-l5-Gxl"/>
+                        <outlet property="topVisualEffectViewHeightConstraint" destination="bSs-mT-sDO" id="bUW-9z-k9N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="497-kg-dJr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2318" y="-34"/>
+        </scene>
+        <!--Medias Table View Controller-->
+        <scene sceneID="eYE-mG-99c">
+            <objects>
+                <tableViewController id="WhU-0t-5fh" customClass="MediasTableViewController" customModule="OVPSample_tvOS" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" id="6gb-R0-AWk">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" rowHeight="100" id="fYK-an-cii" customClass="UIMediaHeaderTableViewCell" customModule="OVPSample_tvOS">
+                                <rect key="frame" x="96" y="66" width="1728" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fYK-an-cii" id="Bq2-xX-il2">
+                                    <rect key="frame" x="0.0" y="0.0" width="1728" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CbG-s4-Bxj">
+                                            <rect key="frame" x="574" y="15.5" width="580" height="70"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                            <segments>
+                                                <segment title="Destroy Player"/>
+                                                <segment title="Change Media"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="CbG-s4-Bxj" firstAttribute="centerX" secondItem="Bq2-xX-il2" secondAttribute="centerX" id="0Bw-Rg-C43"/>
+                                        <constraint firstItem="CbG-s4-Bxj" firstAttribute="centerY" secondItem="Bq2-xX-il2" secondAttribute="centerY" id="BH1-IP-rLt"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="segmentControl" destination="CbG-s4-Bxj" id="eYg-s7-E7g"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" id="cAp-q7-xmH">
+                                <rect key="frame" x="96" y="180" width="1728" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cAp-q7-xmH" id="E0M-I9-8Lf">
+                                    <rect key="frame" x="0.0" y="0.0" width="1728" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WhU-0t-5fh" id="Wht-Uz-0mC"/>
+                            <outlet property="delegate" destination="WhU-0t-5fh" id="mdx-QX-AUc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7CP-oW-Udi"/>
+                    <connections>
+                        <outlet property="tabBarObservedScrollView" destination="6gb-R0-AWk" id="Wp2-19-PDg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3wt-a1-yg3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4740" y="-34"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="rUl-5m-9rK">
+            <size key="intrinsicContentSize" width="-1" height="10"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="audioTrack" width="76" height="76"/>
+        <image name="cc" width="76" height="76"/>
+        <image name="play" width="109" height="109"/>
+        <image name="speedRate" width="60" height="60"/>
+    </resources>
+</document>

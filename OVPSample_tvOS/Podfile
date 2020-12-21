@@ -1,0 +1,33 @@
+# Uncomment the next line to define a global platform for your project
+platform :tvos, '10.0'
+
+target 'OVPSample_tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+#  pod 'KalturaPlayer/OVP'
+  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
+
+
+  ## In case we want to add IMA (Interactive Media Ads)
+#  pod 'PlayKit_IMA'
+  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+#  pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
+
+
+  ## In case we want to add Youbora
+#  pod 'PlayKitYoubora'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
+  
+
+### Offline is not supported in tvOS ###
+
+
+  #--- In order to work with the unreleased versions --- Will be removed once released ---
+
+pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+#pod 'PlayKit', :path => '../../playkit-ios'
+
+end
