@@ -7,7 +7,7 @@ target 'OVPSample' do
 
 
 #  pod 'KalturaPlayer/OVP', '4.0.0.beta.2'
-  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
+  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
 
 
@@ -25,7 +25,7 @@ target 'OVPSample' do
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OVP')
 #  pod 'KalturaPlayer/Offline_OVP'
-  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10497'
+  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
 
@@ -33,11 +33,5 @@ target 'OVPSample' do
 
   pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
 #  pod 'PlayKit', :path => '../../playkit-ios'
-  
-#  pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
-#  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
-
-  pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'FEC-10431'
-#  pod 'DownloadToGo', :path => '../../playkit-ios-dtg'
 
 end

@@ -6,8 +6,8 @@ target 'BasicSample_tvOS' do
   use_frameworks!
 
 #  pod 'KalturaPlayer'
-#  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)
