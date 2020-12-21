@@ -19,6 +19,7 @@ struct YouboraConfig: Decodable {
     let properties: Properties?
     let extraParams: ExtraParams?
     let houseHoldId: String?
+    let appName: String?
 
     func options() -> YBOptions {
         let options = YBOptions()
@@ -94,6 +95,10 @@ struct YouboraConfig: Decodable {
             options.contentCustomDimension8 = extraParams.param8
             options.contentCustomDimension9 = extraParams.param9
             options.contentCustomDimension10 = extraParams.param10
+        }
+        
+        if let appName = appName {
+            options.appName = appName
         }
         
         return options
