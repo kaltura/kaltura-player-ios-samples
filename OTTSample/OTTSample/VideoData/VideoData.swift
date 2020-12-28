@@ -40,6 +40,9 @@ struct OTTMedia {
     var streamerType: String?
     var startTime: TimeInterval?
     
+    var disableMediaHit: Bool = false
+    var disableMediaMark: Bool = false
+    
     func mediaOptions() -> OTTMediaOptions {
         let ottMediaOptions = OTTMediaOptions()
         
@@ -57,6 +60,9 @@ struct OTTMedia {
         if let startTime = startTime {
             ottMediaOptions.startTime = startTime
         }
+        
+        ottMediaOptions.disableMediaHit = disableMediaHit
+        ottMediaOptions.disableMediaMark = disableMediaMark
         
         return ottMediaOptions
     }
