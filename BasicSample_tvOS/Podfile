@@ -5,8 +5,8 @@ target 'BasicSample_tvOS' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-#  pod 'KalturaPlayer'
-  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+  pod 'KalturaPlayer'
+#  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
 
@@ -24,10 +24,5 @@ target 'BasicSample_tvOS' do
 
 ### Offline is not supported in tvOS ###
 
-
-  #--- In order to work with the unreleased versions --- Will be removed once released ---
-
-pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
-#pod 'PlayKit', :path => '../../playkit-ios'
 
 end

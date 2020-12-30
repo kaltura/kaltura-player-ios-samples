@@ -6,8 +6,8 @@ target 'OTTSample_tvOS' do
   use_frameworks!
 
 
-#  pod 'KalturaPlayer/OTT'
-  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+  pod 'KalturaPlayer/OTT'
+#  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
 
 
@@ -24,11 +24,5 @@ target 'OTTSample_tvOS' do
   
 
 ### Offline is not supported in tvOS ###
-
-
-  #--- In order to work with the unreleased versions --- Will be removed once released ---
-
-pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
-#pod 'PlayKit', :path => '../../playkit-ios'
 
 end
