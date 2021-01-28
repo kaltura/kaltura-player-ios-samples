@@ -7,8 +7,8 @@ target 'OTTSample' do
   use_frameworks!
 
 
-#  pod 'KalturaPlayer/OTT'
-  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10805'
+  pod 'KalturaPlayer/OTT'
+#  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
   
 
@@ -25,12 +25,9 @@ target 'OTTSample' do
 
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OTT')
-#  pod 'KalturaPlayer/Offline_OTT'
-  pod 'KalturaPlayer/Offline_OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10805'
+  pod 'KalturaPlayer/Offline_OTT'
+#  pod 'KalturaPlayer/Offline_OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
 
-
-
-pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'FEC-10805'
     
 end
