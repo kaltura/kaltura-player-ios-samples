@@ -46,8 +46,9 @@ class UIMediaDownloadTableViewCell: UITableViewCell, DownloadMediaTableViewCell 
     var videoData: VideoData? {
         didSet {
             if videoData == nil { return }
-            if let newVideoData = videoData {
-                let assetInfo = OfflineManager.shared.getAssetInfo(assetId: newVideoData.media.entryId)
+            if let newVideoData = videoData,
+               let entryId = newVideoData.media.entryId {
+                let assetInfo = OfflineManager.shared.getAssetInfo(assetId: entryId)
                 updateProgress(assetInfo?.progress ?? 0.0)
                 updateDownloadState(assetInfo?.state ?? AssetDownloadState.new)
             }
@@ -98,7 +99,7 @@ extension UIMediaDownloadTableViewCell {
     
     func canPlayDownloadedMedia() -> Bool {
         guard let media = videoData?.media else { return false }
-        guard let assetInfo = OfflineManager.shared.getAssetInfo(assetId: media.entryId) else { return false }
+        guard let entryId = media.entryId, let assetInfo = OfflineManager.shared.getAssetInfo(assetId: entryId) else { return false }
         
         return assetInfo.state == .completed
     }
@@ -108,7 +109,9 @@ extension UIMediaDownloadTableViewCell {
 
 extension UIMediaDownloadTableViewCell {
     @IBAction private func downloadButtonClicked(_ sender: Any) {
-        guard let videoData = videoData, let offlineSelectionOptions = videoData.offlineSelectionOptions else {
+        guard let videoData = videoData,
+              let offlineSelectionOptions = videoData.offlineSelectionOptions,
+              let entryId = videoData.media.entryId else {
             return
         }
         
@@ -129,12 +132,12 @@ extension UIMediaDownloadTableViewCell {
             }
         case .resume:
             downloadButton.displayState = .pause
-            try? OfflineManager.shared.startAssetDownload(assetId: videoData.media.entryId)
+            try? OfflineManager.shared.startAssetDownload(assetId: entryId)
         case .pause:
             downloadButton.displayState = .resume
-            try? OfflineManager.shared.pauseAssetDownload(assetId: videoData.media.entryId)
+            try? OfflineManager.shared.pauseAssetDownload(assetId: entryId)
         case .complete:
-            try? OfflineManager.shared.removeAssetDownload(assetId: videoData.media.entryId)
+            try? OfflineManager.shared.removeAssetDownload(assetId: entryId)
         case .error:
             downloadButton.displayState = .download
         }
