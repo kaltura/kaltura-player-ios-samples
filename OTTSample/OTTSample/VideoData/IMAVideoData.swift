@@ -24,7 +24,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "http"),
+                                castAdditionalData: CastAdditionalData(adTagType: "vast")))
         
         let imaSkippableConfig = IMAConfig()
         imaSkippableConfig.alwaysStartWithPreroll = true
@@ -36,7 +37,8 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "http",
-                                                startTime: 20)))
+                                                startTime: 20),
+                                castAdditionalData: CastAdditionalData(adTagType: "vast")))
         
         let imaPostrollConfig = IMAConfig()
         imaPostrollConfig.adTagUrl = IMAPostrollTag
@@ -47,7 +49,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "http"),
+                                castAdditionalData: CastAdditionalData(adTagType: "vmap")))
         
         let imaAdRulesConfig = IMAConfig()
         imaAdRulesConfig.adTagUrl = IMAAdRulesTag
@@ -58,7 +61,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "http"),
+                                castAdditionalData: CastAdditionalData(adTagType: "vast")))
 
         let imaPrerollAdsResponseConfig = IMAConfig()
         imaPrerollAdsResponseConfig.adsResponse = IMAPrerollAdsResponse
@@ -70,7 +74,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "http"),
+                                castAdditionalData: CastAdditionalData(adTagType: "vast")))
         
         return videos
     }
