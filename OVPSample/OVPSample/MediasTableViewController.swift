@@ -10,6 +10,7 @@ import Foundation
 
 import UIKit
 import KalturaPlayer
+import GoogleCast
 
 protocol MediaTableViewCell: UITableViewCell {
     var videoData: VideoData? { get set }
@@ -38,6 +39,10 @@ class MediasTableViewController: UITableViewController {
     var playerViewController: PlayerViewController?
     var headerTableViewCell: UIMediaHeaderTableViewCell?
     
+    // For Google Chrome Cast
+    private var castButton: GCKUICastButton!
+    private var castSelectedIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -59,6 +64,9 @@ class MediasTableViewController: UITableViewController {
             videos = VideoData.getOfflineVideos()
             OfflineManager.shared.offlineManagerDelegate = self
         }
+        
+        // For Google Chrome Cast
+        addCastButton()
     }
 
     deinit {
@@ -141,23 +149,33 @@ class MediasTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if playerViewController == nil || headerTableViewCell?.shouldDestroyPlayer() == true {
-            playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: playerType.storyboardID()) as? PlayerViewController
-        }
-        
-        guard let playerVC = playerViewController else { return }
-        
-        playerVC.videoData = videos[indexPath.row]
-        if videoDataType == .offline {
-            playerVC.shouldPlayLocally = true
-        }
+        if GoogleCastManager.sharedInstance.isConnected() {
+            // For Google Chrome Cast
+            if castSelectedIndexPath != indexPath {
+                GoogleCastManager.sharedInstance.cast(videoData: videos[indexPath.row])
+                castSelectedIndexPath = indexPath
+            }
+            
+            GoogleCastManager.sharedInstance.showExpandedControl()
+        } else {
+            if playerViewController == nil || headerTableViewCell?.shouldDestroyPlayer() == true {
+                playerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: playerType.storyboardID()) as? PlayerViewController
+            }
+            
+            guard let playerVC = playerViewController else { return }
+            
+            playerVC.videoData = videos[indexPath.row]
+            if videoDataType == .offline {
+                playerVC.shouldPlayLocally = true
+            }
 
-        playerVC.modalPresentationStyle = .overCurrentContext
-        self.navigationController?.present(playerVC, animated: true, completion: {
+            playerVC.modalPresentationStyle = .overCurrentContext
+            self.navigationController?.present(playerVC, animated: true, completion: {
 
-        })
-        
-        tableView.deselectRow(at: indexPath, animated: false)
+            })
+            
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -194,5 +212,20 @@ extension MediasTableViewController: OfflineManagerDelegate {
                 cell.updateDownloadState(newState)
             }
         }
+    }
+}
+
+// MARK: - Google Chrome Cast
+
+extension MediasTableViewController {
+    
+    func addCastButton() {
+        castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0),
+                                                   y: CGFloat(0),
+                                                   width: CGFloat(24),
+                                                   height: CGFloat(24)))
+        
+        castButton.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
     }
 }
