@@ -28,4 +28,10 @@ target 'OVPSample' do
 #  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
+
+  ## In case we want to add Google Chrome Cast
+  pod 'PlayKitGoogleCast'
+#  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
+#  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
+
 end

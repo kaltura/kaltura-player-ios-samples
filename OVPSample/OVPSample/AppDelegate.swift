@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         KalturaOVPPlayer.setup(partnerId: 2222401)
+        
+        // In order to register the Google Chrome Cast
+        // V3 (partner 2222401) - A26F86A6
+        GoogleCastManager.sharedInstance.setup(applicationId: "A26F86A6")
+        
         return true
     }
 

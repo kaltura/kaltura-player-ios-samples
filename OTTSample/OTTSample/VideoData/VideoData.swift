@@ -64,6 +64,10 @@ struct OTTMedia {
     }
 }
 
+struct CastAdditionalData {
+    var adTagType: String?
+}
+
 struct VideoData {
     var title: String
     
@@ -71,4 +75,6 @@ struct VideoData {
     var media: OTTMedia
     
     var offlineSelectionOptions: OfflineSelectionOptions?
+    
+    var castAdditionalData: CastAdditionalData?
 }
