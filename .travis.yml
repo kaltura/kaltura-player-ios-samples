@@ -1,0 +1,17 @@
+language: swift
+osx_image: xcode12
+before_install:
+  - gem install cocoapods xcpretty
+  - pod repo update
+script:
+  - pod lib lint --fail-fast --verbose --allow-warnings
+notifications:
+  email:
+    recipients:
+      - noam.tamim@kaltura.com
+      - nilit.danan@kaltura.com
+      - gilad.nadav@kaltura.com
+      - oren.melamed@kaltura.com
+      - sergey.chausov@kaltura.com
+    on_success: change
+    on_failure: always
