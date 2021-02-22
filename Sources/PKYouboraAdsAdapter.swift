@@ -63,7 +63,7 @@ extension PKYouboraAdsAdapter {
     
     override func getPlayhead() -> NSNumber? {
         if let adPlayhead = self.adPlayhead, adPlayhead > 0 {
-            return NSNumber(value: adPlayhead)
+            return NSNumber(value: Float(round(100 * adPlayhead)/100))
         } else {
             return super.getPlayhead()
         }

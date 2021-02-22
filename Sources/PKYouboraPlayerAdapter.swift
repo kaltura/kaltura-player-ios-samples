@@ -101,7 +101,7 @@ extension PKYouboraPlayerAdapter {
         
         let currentTime = player.currentTime
         
-        return NSNumber(value: currentTime)
+        return NSNumber(value: Float(round(100 * currentTime)/100))
     }
     
     override func getPlayerVersion() -> String? {
