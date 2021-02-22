@@ -156,16 +156,16 @@ extension PKYouboraAdsAdapter {
                     guard let self = self else { return }
                     // Update ad info with the new loaded event
                     self.adInfo = event.adInfo
+                }
+            case let e where e.self == AdEvent.adStarted:
+                messageBus.addObserver(self, events: [e.self]) { [weak self] event in
+                    guard let self = self else { return }
+                    
                     // If ad is preroll make sure to call /start event before /adStart
                     if let positionType = event.adInfo?.positionType, positionType == .preRoll {
                         self.plugin?.adapter?.fireStart()
                     }
                     self.fireStart()
-                }
-            case let e where e.self == AdEvent.adStarted:
-                messageBus.addObserver(self, events: [e.self]) { [weak self] event in
-                    guard let self = self else { return }
-                    self.fireJoin()
                 }
             case let e where e.self == AdEvent.adComplete:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
@@ -193,6 +193,7 @@ extension PKYouboraAdsAdapter {
                     guard let self = self else { return }
                     // Update ad playhead with new data
                     self.adPlayhead = event.adMediaTime?.doubleValue
+                    self.fireJoin()
                 }
             case let e where e.self == AdEvent.adSkipped:
                 messageBus.addObserver(self, events: [e.self]) { [weak self] event in
