@@ -13,6 +13,7 @@ struct YouboraConfig: Decodable {
     let userType: String?
     let obfuscateIP: Bool?
     var httpSecure: Bool? = true
+    let contentCDN: String?
     
     let media: Media?
     let ads: Ads?
@@ -34,7 +35,7 @@ struct YouboraConfig: Decodable {
         options.parseCdnNode = false
         
         options.deviceCode = nil // List of device codes http://mapi.youbora.com:8081/devices
-        options.contentCdn = nil
+        options.contentCdn = contentCDN // List of CDNs: http://mapi.youbora.com:8081/cdns
         
         if let media = media {
             options.contentIsLive = media.isLive != nil ? NSNumber(booleanLiteral: media.isLive!) :  nil
