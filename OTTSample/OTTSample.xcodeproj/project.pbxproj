@@ -22,6 +22,7 @@
 		D29A68FA245F1CBB00C942ED /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */; };
 		D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */; };
 		D29A68FC245F1CBB00C942ED /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F6245F1CBB00C942ED /* VideoData.swift */; };
+		D2B4286A25CAE05500A217E3 /* GoogleCastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B4286925CAE05400A217E3 /* GoogleCastManager.swift */; };
 		D2BB803B2439FD3D0050228D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BB803A2439FD3D0050228D /* AppDelegate.swift */; };
 		D2BB80422439FD3E0050228D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BB80402439FD3D0050228D /* Main.storyboard */; };
 		D2BB80442439FD440050228D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2BB80432439FD440050228D /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKMediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D29A68F6245F1CBB00C942ED /* VideoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
+		D2B4286925CAE05400A217E3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
 		D2BB80372439FD3D0050228D /* OTTSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTTSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BB803A2439FD3D0050228D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BB80412439FD3D0050228D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 			path = PlayerViewController;
 			sourceTree = "<group>";
 		};
+		D2B4286825CAE01800A217E3 /* GoogleChromeCast */ = {
+			isa = PBXGroup;
+			children = (
+				D2B4286925CAE05400A217E3 /* GoogleCastManager.swift */,
+			);
+			path = GoogleChromeCast;
+			sourceTree = "<group>";
+		};
 		D2BB802E2439FD3D0050228D = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 				D24D63E3247F9CA90043FF11 /* VideoData */,
 				D29A68F2245F1CBB00C942ED /* PlayerViewController */,
 				D24241E824A4D6CC0037FDAD /* CustomViews */,
+				D2B4286825CAE01800A217E3 /* GoogleChromeCast */,
 				D2BB80402439FD3D0050228D /* Main.storyboard */,
 				D2BB80432439FD440050228D /* Assets.xcassets */,
 				D2BB80452439FD450050228D /* LaunchScreen.storyboard */,
@@ -177,6 +188,7 @@
 				D2BB80342439FD3D0050228D /* Frameworks */,
 				D2BB80352439FD3D0050228D /* Resources */,
 				DF3AD1005230A678BB7459EE /* [CP] Embed Pods Frameworks */,
+				4F51AC849520A8097E045840 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,6 +246,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4F51AC849520A8097E045840 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OTTSample/Pods-OTTSample-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OTTSample/Pods-OTTSample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OTTSample/Pods-OTTSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CCB5BA21A5FB4171572C0599 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +322,7 @@
 				D29A68FC245F1CBB00C942ED /* VideoData.swift in Sources */,
 				D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */,
 				D2BB803B2439FD3D0050228D /* AppDelegate.swift in Sources */,
+				D2B4286A25CAE05500A217E3 /* GoogleCastManager.swift in Sources */,
 				D29A68F9245F1CBB00C942ED /* PlayerViewController.swift in Sources */,
 				D24D63E9247FA7880043FF11 /* IMAVideoData.swift in Sources */,
 				D282F9BA24BF33DD00901680 /* UIMediaTableViewCell.swift in Sources */,

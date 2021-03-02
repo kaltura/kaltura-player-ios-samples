@@ -29,6 +29,11 @@ target 'OVPSample' do
 #  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
 #  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
-pod 'PlayKitProviders',  :git => 'https://github.com/chausov/playkit-ios-providers.git', :branch => 'FEC-10389'
+pod 'PlayKitProviders',  :git => 'https://github.com/chausov/playkit-ios-providers.git', :branch => 'develop'
+
+  ## In case we want to add Google Chrome Cast
+  pod 'PlayKitGoogleCast'
+#  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
+#  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
 
 end

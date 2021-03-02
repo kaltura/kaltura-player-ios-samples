@@ -56,6 +56,12 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Create the PluginConfig](#3-create-the-pluginconfig-1)
   - [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions-1)
 
+- [Chrome Cast Plugin](#chrome-cast-plugin)
+  - [Add the Chrome Cast Pod](#1-add-the-chrome-cast-pod)
+  - [Setup the Cast](#2-setup-the-cast)
+  - [Add the required settings in the info plist file](#3-add-the-required-settings-in-the-info-plist-file)
+  - [Add the cast button](#4-add-the-cast-button)
+  - [Cast a media](#5-ast-a-media)
   
 <!-- toc -->
 
@@ -925,3 +931,151 @@ Two options to consider:
 
 - The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) for the relevant player. 
 - The playerOptions can be updated upon a change media flow, see section [Change Media](#change-media)
+
+
+## Chrome Cast Plugin
+
+**NOTE:** Currently supporting only OTT and OVP providers.
+
+### 1. Add the Chrome Cast Pod
+
+Inside your Podfile, for the specific target, add the following:  
+
+```swift
+pod 'PlayKitGoogleCast'
+```
+
+Then perform `pod update` or `pod update PlayKitGoogleCast` in the terminal.  
+See Cocoapods Guide for the [difference between pod install and pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html).
+
+Add the `PlayKitGoogleCast` and the `GoogleCast` to the relevant file.
+
+```swift
+import PlayKitGoogleCast
+import GoogleCast
+```
+
+### 2. Setup the Cast
+
+In the AppDelegate, need to set up the Application Id.  
+Recommended to create a manager in order to control all needed actions and setups, see OTTSample and OVPSample.
+
+Setup for example:  
+
+```swift
+// Set your receiver application ID.
+let options = GCKCastOptions(discoveryCriteria: GCKDiscoveryCriteria(applicationID: applicationId))
+options.physicalVolumeButtonsWillControlDeviceVolume = true
+
+// Following code enables CastConnect
+let launchOptions = GCKLaunchOptions()
+launchOptions.androidReceiverCompatible = true
+options.launchOptions = launchOptions
+
+GCKCastContext.setSharedInstanceWith(options)
+GCKCastContext.sharedInstance().useDefaultExpandedMediaControls = true
+
+// Theme the cast button using UIAppearance.
+GCKUICastButton.appearance().tintColor = UIColor.gray
+
+setupCastLogging()
+
+GCKCastContext.sharedInstance().sessionManager.add(self)
+GCKCastContext.sharedInstance().imagePicker = self
+```
+
+See Google Chrome Cast [code-lab](https://codelabs.developers.google.com/codelabs/cast-videos-ios/#0) for more information.
+
+### 3. Add the required settings in the info plist file
+
+```swift
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>${PRODUCT_NAME} uses the bluetooth to discover Cast-enabled devices via the bluetooth.</string>
+	
+<key>NSBonjourServices</key>
+<array>
+	<string>_googlecast._tcp</string>
+	<string>_(applicationID)._googlecast._tcp</string>
+</array>
+
+<key>NSLocalNetworkUsageDescription</key>
+<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi
+network.</string>
+```
+
+### 4. Add the cast button
+
+Add the cast button in the code or the xib.
+
+For example:
+
+```swift
+castButton = GCKUICastButton(frame: CGRect(x: CGFloat(0),
+                                           y: CGFloat(0),
+                                           width: CGFloat(24),
+                                           height: CGFloat(24)))
+
+castButton.tintColor = UIColor.white
+navigationItem.rightBarButtonItem = UIBarButtonItem(customView: castButton)
+```
+
+### 5. Cast a media
+
+In order to cast a media the `GCKMediaInformation` needs to be created and passed to the remoteMediaClient to be loaded. `PlayKitGoogleCast` provides a `CAFCastBuilder` which can be set with properties from the nedia and the `GCKMediaInformation` will be generated.
+
+Get the media information object and load it:
+
+```swift
+gckMediaInformation = try getCAFMediaInformation(from: videoData)
+
+if let mediaInformation = gckMediaInformation {
+    self.load(mediaInformation: mediaInformation, appending: false)
+}
+```
+
+Create the media information via the video data:
+
+```swift
+private func getCAFMediaInformation(from videoData: VideoData) throws -> GCKMediaInformation {
+    let castBuilder = CAFCastBuilder()
+    
+    castBuilder.set(contentId: videoData.media.assetId)
+    castBuilder.set( ...
+    ...
+    
+    let mediaInformation = try castBuilder.build()
+    return mediaInformation
+}
+```
+
+Load the media:
+
+```swift
+private func load(mediaInformation:GCKMediaInformation, appending: Bool) -> Void {
+    guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient else { return }
+   
+    let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
+    
+    mediaQueueItemBuilder.mediaInformation = mediaInformation
+    mediaQueueItemBuilder.autoplay = true
+    mediaQueueItemBuilder.preloadTime = 0
+    
+    let mediaQueueItem = mediaQueueItemBuilder.build()
+    
+    if appending {
+      let request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+      request.delegate = self
+    } else {
+      let queueDataBuilder = GCKMediaQueueDataBuilder(queueType: .generic)
+      queueDataBuilder.items = [mediaQueueItem]
+      queueDataBuilder.repeatMode = remoteMediaClient.mediaStatus?.queueRepeatMode ?? .off
+
+      let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
+      mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
+      mediaLoadRequestDataBuilder.queueData = queueDataBuilder.build()
+
+      let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
+      request.delegate = self
+    }
+}
+```

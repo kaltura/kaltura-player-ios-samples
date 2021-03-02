@@ -34,9 +34,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Basic" id="Rxf-TK-kE0"/>
-                    <connections>
-                        <outlet property="tabBarObservedScrollView" destination="u6k-Wz-VMA" id="Nke-3K-0eP"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0I-gT-8YC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,9 +103,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="gOU-8a-f1R"/>
-                    <connections>
-                        <outlet property="tabBarObservedScrollView" destination="neh-Fm-jmg" id="DEs-io-tFa"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Roe-aj-1Bc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

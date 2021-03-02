@@ -30,6 +30,7 @@
 		D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */; };
 		D2895B0024DAE9470090F9F0 /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */; };
 		D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895B0324DB01270090F9F0 /* BasicVideoData.swift */; };
+		D2B428A525D509EA00A217E3 /* GoogleCastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B428A425D509E900A217E3 /* GoogleCastManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaDownloadTableViewCell.swift; sourceTree = "<group>"; };
 		D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaTableViewCell.swift; sourceTree = "<group>"; };
 		D2895B0324DB01270090F9F0 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
+		D2B428A425D509E900A217E3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				D2895AE824D29A960090F9F0 /* VideoData */,
 				D2895AF324DADFCA0090F9F0 /* PlayerViewController */,
 				D2895AFA24DAE8F90090F9F0 /* CustomViews */,
+				D2B428A325D509BA00A217E3 /* GoogleChromeCast */,
 				D25BE6F424E02CD1005F0222 /* Main.storyboard */,
 				D2895AD924D290A90090F9F0 /* Assets.xcassets */,
 				D2895ADB24D290A90090F9F0 /* LaunchScreen.storyboard */,
@@ -165,6 +168,14 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		D2B428A325D509BA00A217E3 /* GoogleChromeCast */ = {
+			isa = PBXGroup;
+			children = (
+				D2B428A425D509E900A217E3 /* GoogleCastManager.swift */,
+			);
+			path = GoogleChromeCast;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,6 +188,7 @@
 				D2895ACA24D290A00090F9F0 /* Frameworks */,
 				D2895ACB24D290A00090F9F0 /* Resources */,
 				425ADA5C130C17DD07D4B99A /* [CP] Embed Pods Frameworks */,
+				C60C0642E6D963ED83D62F5D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +285,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C60C0642E6D963ED83D62F5D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -293,6 +322,7 @@
 				D25BE6F124E0240C005F0222 /* YouboraIMADAIVideoData.swift in Sources */,
 				D2895AD124D290A00090F9F0 /* AppDelegate.swift in Sources */,
 				D2895B0024DAE9470090F9F0 /* UIMediaTableViewCell.swift in Sources */,
+				D2B428A525D509EA00A217E3 /* GoogleCastManager.swift in Sources */,
 				D2895AFC24DAE90D0090F9F0 /* CircleProgressView.swift in Sources */,
 				D25BE6E724E02307005F0222 /* IMAAdTags.swift in Sources */,
 				D25BE6E924E02324005F0222 /* IMAVideoData.swift in Sources */,

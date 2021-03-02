@@ -50,6 +50,10 @@ struct OVPMedia {
     }
 }
 
+struct CastAdditionalData {
+    var adTagType: String?
+}
+
 struct VideoData {
     var title: String
     
@@ -57,5 +61,7 @@ struct VideoData {
     var media: OVPMedia
     
     var offlineSelectionOptions: OfflineSelectionOptions?
+    
+    var castAdditionalData: CastAdditionalData?
 }
 
