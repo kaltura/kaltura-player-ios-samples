@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		814AA0A8800F449C31DC5E89 /* Pods_OVPSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7C904B450B183D0E1C74A3 /* Pods_OVPSample.framework */; };
+		315C69771D9FD9EBD83B20D4 /* Pods_OVPSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CC1E300C1B551C23082140 /* Pods_OVPSample.framework */; };
 		D25BE6E724E02307005F0222 /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6E624E02307005F0222 /* IMAAdTags.swift */; };
 		D25BE6E924E02324005F0222 /* IMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6E824E02324005F0222 /* IMAVideoData.swift */; };
 		D25BE6EB24E0236E005F0222 /* IMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BE6EA24E0236E005F0222 /* IMADAIVideoData.swift */; };
@@ -34,9 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D7C904B450B183D0E1C74A3 /* Pods_OVPSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OVPSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FCAB4F3AABA02B596DB23BE /* Pods-OVPSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OVPSample.debug.xcconfig"; path = "Target Support Files/Pods-OVPSample/Pods-OVPSample.debug.xcconfig"; sourceTree = "<group>"; };
-		B7961C974DBAF3AD0D91A0F3 /* Pods-OVPSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OVPSample.release.xcconfig"; path = "Target Support Files/Pods-OVPSample/Pods-OVPSample.release.xcconfig"; sourceTree = "<group>"; };
+		757D6AD921C86CE037198D91 /* Pods-OVPSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OVPSample.debug.xcconfig"; path = "Target Support Files/Pods-OVPSample/Pods-OVPSample.debug.xcconfig"; sourceTree = "<group>"; };
+		99CC1E300C1B551C23082140 /* Pods_OVPSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OVPSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22D8632257EC56E001EB267 /* OVPSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OVPSample.entitlements; sourceTree = "<group>"; };
 		D25BE6E624E02307005F0222 /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		D25BE6E824E02324005F0222 /* IMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAVideoData.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaTableViewCell.swift; sourceTree = "<group>"; };
 		D2895B0324DB01270090F9F0 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D2B428A425D509E900A217E3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
+		E07723D493759285EF3C0D0A /* Pods-OVPSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OVPSample.release.xcconfig"; path = "Target Support Files/Pods-OVPSample/Pods-OVPSample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				814AA0A8800F449C31DC5E89 /* Pods_OVPSample.framework in Frameworks */,
+				315C69771D9FD9EBD83B20D4 /* Pods_OVPSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,16 +80,16 @@
 		364B83498B35F4789D160DA7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9FCAB4F3AABA02B596DB23BE /* Pods-OVPSample.debug.xcconfig */,
-				B7961C974DBAF3AD0D91A0F3 /* Pods-OVPSample.release.xcconfig */,
+				757D6AD921C86CE037198D91 /* Pods-OVPSample.debug.xcconfig */,
+				E07723D493759285EF3C0D0A /* Pods-OVPSample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		AD8EE552325C06023EEE18FB /* Frameworks */ = {
+		C4AA3DC14B9E2EA5909C1E30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8D7C904B450B183D0E1C74A3 /* Pods_OVPSample.framework */,
+				99CC1E300C1B551C23082140 /* Pods_OVPSample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,7 +100,7 @@
 				D2895ACF24D290A00090F9F0 /* OVPSample */,
 				D2895ACE24D290A00090F9F0 /* Products */,
 				364B83498B35F4789D160DA7 /* Pods */,
-				AD8EE552325C06023EEE18FB /* Frameworks */,
+				C4AA3DC14B9E2EA5909C1E30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,12 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2895AE124D290A90090F9F0 /* Build configuration list for PBXNativeTarget "OVPSample" */;
 			buildPhases = (
-				3776F374816590EE39598935 /* [CP] Check Pods Manifest.lock */,
+				10F783D95AD3BCCD94865A61 /* [CP] Check Pods Manifest.lock */,
 				D2895AC924D290A00090F9F0 /* Sources */,
 				D2895ACA24D290A00090F9F0 /* Frameworks */,
 				D2895ACB24D290A00090F9F0 /* Resources */,
-				425ADA5C130C17DD07D4B99A /* [CP] Embed Pods Frameworks */,
-				C60C0642E6D963ED83D62F5D /* [CP] Copy Pods Resources */,
+				9CB09B77F81E4EFCBBB6A0DE /* [CP] Embed Pods Frameworks */,
+				13A928BE26BE66355192BCBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,7 +246,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3776F374816590EE39598935 /* [CP] Check Pods Manifest.lock */ = {
+		10F783D95AD3BCCD94865A61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -268,24 +268,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		425ADA5C130C17DD07D4B99A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C60C0642E6D963ED83D62F5D /* [CP] Copy Pods Resources */ = {
+		13A928BE26BE66355192BCBD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,6 +283,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CB09B77F81E4EFCBBB6A0DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OVPSample/Pods-OVPSample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -470,7 +470,7 @@
 		};
 		D2895AE224D290A90090F9F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FCAB4F3AABA02B596DB23BE /* Pods-OVPSample.debug.xcconfig */;
+			baseConfigurationReference = 757D6AD921C86CE037198D91 /* Pods-OVPSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OVPSample/OVPSample.entitlements;
@@ -491,7 +491,7 @@
 		};
 		D2895AE324D290A90090F9F0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7961C974DBAF3AD0D91A0F3 /* Pods-OVPSample.release.xcconfig */;
+			baseConfigurationReference = E07723D493759285EF3C0D0A /* Pods-OVPSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OVPSample/OVPSample.entitlements;

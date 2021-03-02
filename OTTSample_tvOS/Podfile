@@ -6,8 +6,8 @@ target 'OTTSample_tvOS' do
   use_frameworks!
 
 
-  pod 'KalturaPlayer/OTT'
-#  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OTT'
+  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10389'
 #  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
 
 
@@ -18,11 +18,15 @@ target 'OTTSample_tvOS' do
 
 
   ## In case we want to add Youbora
-  pod 'PlayKitYoubora'
-#  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
   
 
 ### Offline is not supported in tvOS ###
+
+
+pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
+pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
 
 end
