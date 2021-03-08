@@ -61,6 +61,10 @@ class GoogleCastManager: NSObject, GCKRequestDelegate {
             castBuilder.set(httpProtocol: cafHttpProtocol(from: networkProtocol))
         }
         
+        if let urlType = videoData.media.urlType {
+            castBuilder.set(urlType: cafUrlType(from: urlType))
+        }
+        
         if let streamerType = videoData.media.streamerType {
             castBuilder.set(streamType: cafStreamType(from: streamerType))
         }
@@ -215,6 +219,21 @@ extension GoogleCastManager {
         }
         
         return cafHttpProtocol
+    }
+    
+    private func cafUrlType(from urlType: String?) -> CAFCastBuilder.CAFUrlType {
+        var cafUrlType: CAFCastBuilder.CAFUrlType = .playmanifest
+        
+        switch urlType?.lowercased() {
+        case "playmanifest":
+            cafUrlType = .playmanifest
+        case "direct":
+            cafUrlType = .direct
+        default:
+            cafUrlType = .playmanifest
+        }
+        
+        return cafUrlType
     }
     
     private func cafStreamType(from streamerType: String?) -> BasicCastBuilder.StreamType {
