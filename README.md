@@ -1,7 +1,8 @@
 # Kaltura Player iOS Samples
 
 In case of a **Basic Player**, include ```pod 'KalturaPlayer'``` in your Podfile.  
-In case of an **OTT Player**, include ```pod 'KalturaPlayer/OTT'``` in your Podfile.
+In case of an **OTT Player**, include ```pod 'KalturaPlayer/OTT'``` in your Podfile.  
+In case of an **OVP Player**, include ```pod 'KalturaPlayer/OVP'``` in your Podfile.
 
 To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org/).
 
@@ -11,22 +12,29 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Setup the KalturaBasicPlayer](#1-setup-the-kalturabasicplayer)
   - [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer)
   - [Pass the view to the KalturaBasicPlayer](#3-pass-the-view-to-the-kalturabasicplayer)
-  - [Register for Player Events](#4-register-for-player-events)
-  - [Set the Media Entry](#5-set-the-media-entry)
-  - [Prepare the player](#6-prepare-the-player)
-  - [Play](#7-play)
+  - [Set the Media Entry](#4-set-the-media-entry)
   
 - [OTT Player](#ott-player)
   - [Setup the KalturaOTTPlayer](#1-setup-the-kalturaottplayer)
   - [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer)
   - [Pass the view to the KalturaOTTPlayer](#3-pass-the-view-to-the-kalturaottplayer)
-  - [Register for Player Events](#4-register-for-player-events)
-  - [Create the media options](#5-create-the-media-options)
-  - [Load the media](#6-load-the-media)
-  - [Prepare the player](#7-prepare-the-player)
-  - [Play](#8-play)
+  - [Create the OTTMediaOptions](#4-create-the-ottmediaoptions)
+  - [Load the OTT Media](#5-load-the-ott-media)
+
+- [OVP Player](#ovp-player)
+  - [Setup the KalturaOVPPlayer](#1-setup-the-kalturaovpplayer)
+  - [Create a KalturaOVPPlayer](#2-create-a-kalturaovpplayer)
+  - [Pass the view to the KalturaOVPPlayer](#3-pass-the-view-to-the-kalturaovpplayer)
+  - [Create the OVPMediaOptions](#4-create-the-ovpmediaoptions)
+  - [Load the OVP Media](#5-load-the-ovp-media)
   
 **Additional Actions:**
+
+- [Register for Player Events](#register-for-player-events)
+
+- [Prepare the Player](#prepare-the-player)
+
+- [Play](#play)
   
 - [Change Media](#change-media)
 
@@ -123,78 +131,7 @@ kalturaBasicPlayer.view = kalturaPlayerView
 
 ```
 
-### 4. Register for Player Events
-
-In order to receive the events from the beginning, register to them before running prepare on the player.  
-
-An example for the playback events in order to updated the UI on the button:
-
-```swift
-kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause]) { [weak self] event in
-	guard let self = self else { return }
-	    
-	NSLog(event.description)
-	    
-	DispatchQueue.main.async {
-	    switch event {
-	    case is KPPlayerEvent.Ended:
-	        self.playPauseButton.displayState = .replay
-	    case is KPPlayerEvent.Play:
-	        self.playPauseButton.displayState = .pause
-	    case is KPPlayerEvent.Playing:
-	        self.playPauseButton.displayState = .pause
-	    case is KPPlayerEvent.Pause:
-	        self.playPauseButton.displayState = .play
-	    default:
-	        break
-	    }
-	}
-}
-```
-
-An example to update the progress:
-
-```swift
-kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
-    guard let self = self else { return }
-    let currentTime = event.currentTime ?? NSNumber(value: self.kalturaBasicPlayer.currentTime)
-    DispatchQueue.main.async {
-        self.mediaProgressSlider.value = Float(currentTime.doubleValue / self.kalturaBasicPlayer.duration)
-    }
-}
-```
-
-**NOTE:** Don't forget to perform UI changes on the main thread.  
-And don't forget to unregister when the view is not displayed.
-
-**All available Player events:**
-
-* canPlay
-* durationChanged
-* stopped
-* ended
-* loadedMetadata
-* play
-* pause
-* playing
-* seeking
-* seeked
-* replay
-* tracksAvailable
-* textTrackChanged
-* audioTrackChanged
-* videoTrackChanged
-* playbackInfo
-* stateChanged
-* timedMetadata
-* sourceSelected
-* loadedTimeRanges
-* playheadUpdate
-* error
-* errorLog
-* playbackStalled
-
-### 5. Set the Media Entry
+### 4. Set the Media Entry
 
 There are two available options: 
  
@@ -220,30 +157,6 @@ There are two available options:
 	Check the function for more available params.
 	
 **Note:** If you want to add a start time for the media, both functions accept a parameter of type `MediaOptions` which has a `startTime` property which can be set. See `MediaOptions` for more information.
-
-### 6. Prepare the player
-
-**This will be done automatically** if the player options, `autoPlay` or `preload` is set too true.
-Which those are the default values.
-
-In case the `autoPlay` and `preload` are set to false, `prepare` on the player needs to be called manually.
-
-```swift
-kalturaBasicPlayer.prepare()
-```
-
-### 7. Play
-
-**This will be done automatically** if the player options, `autoPlay` is set too true. Which is the default value.
-
-In case the `autoPlay` is set to false, `play` on the player needs to be called manually.
-
-```swift
-kalturaBasicPlayer.play()
-```
-
-Play on the player can be called straight after prepare, once it's ready and can play, the playback will start automatically.  
-Registering to the player event `CanPlay` will enable you to know exactly when the play can be performed in case you need it controlled.
 
 ## OTT Player
 
@@ -304,14 +217,174 @@ kalturaOTTPlayer.view = kalturaPlayerView
 
 ```
 
-### 4. Register for Player Events
+### 4. Create the OTTMediaOptions
 
-In order to receive the events from the beginning, register to them before running prepare on the player.  
+This is the media details that will be passed to the player to load.
+
+```swift
+let ottMediaOptions = OTTMediaOptions()
+```
+
+Check the `OTTMediaOptions` class for more info.  
+The available options that can be configured are the following:  
+
+```swift
+public var ks: String?
+public var assetId: String?
+public var assetType: AssetType = .unset
+public var assetReferenceType: AssetReferenceType = .unset
+public var formats: [String]?
+public var fileIds: [String]?
+public var playbackContextType: PlaybackContextType = .unset
+public var networkProtocol: String?
+public var urlType: String?
+public var streamerType: String?
+public var adapterData: [String: String]?
+
+// MediaOptions
+public var startTime: TimeInterval = .nan
+```
+
+### 5. Load the OTT Media
+
+Pass the created media options to the `loadMedia` function and implement the callback function in order to observe if an error has occurred.
+
+For example:
+
+```swift
+kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
+    guard let self = self else { return }
+    if let error = error {
+        let message = error.localizedDescription
+
+        let alert = UIAlertController(title: "Media not loaded", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    } else {
+        // If the autoPlay and preload was set to false, prepare will not be called automatically
+        if videoData.player.autoPlay == false && videoData.player.preload == false {
+            self.kalturaOTTPlayer.prepare()
+        }
+    }
+}
+```
+
+## OVP Player
+
+The OVP Player has the Kava Plugin embedded, therefore no additional configuration for the plugin is required.
+
+### 1. Setup the KalturaOVPPlayer
+
+In the AppDelegate call `setup` on the `KalturaOVPPlayer` when the app launches.
+
+For Example:
+
+```swift
+import KalturaPlayer
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    // Override point for customization after application launch.
+    KalturaOVPPlayer.setup(partnerId: 2222401)
+    
+    return true
+}
+```
+
+The `setup` will fetch for the configuration needed for the Kava Plugin. As well as register the Kava Plugin.
+
+### 2. Create a KalturaOVPPlayer
+
+```swift
+import KalturaPlayer
+
+var kalturaOVPPlayer: KalturaOVPPlayer! // Created in the viewDidLoad
+
+override func viewDidLoad() {
+	super.viewDidLoad()
+	
+	let playerOptions = PlayerOptions()
+	kalturaOVPPlayer = KalturaOVPPlayer(options: playerOptions)
+}
+```
+
+Check the `PlayerOptions` class for more info.  
+The available options and defaults that can be configured are:  
+
+```swift
+public var preload: Bool = true
+public var autoPlay: Bool = true
+public var pluginConfig: PluginConfig = PluginConfig(config: [:])
+public var ks: String?
+```
+
+### 3. Pass the view to the KalturaOVPPlayer
+
+Create a `KalturaPlayerView` in the xib or in the code.  
+
+```swift
+@IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
+
+kalturaOVPPlayer.view = kalturaPlayerView
+
+```
+
+### 4. Create the OVPMediaOptions
+
+This is the media details that will be passed to the player to load.
+
+```swift
+let ovpMediaOptions = OVPMediaOptions()
+```
+
+Check the `OVPMediaOptions` class for more info.  
+The available options that can be configured are the following:  
+
+```swift
+public var ks: String?
+public var entryId: String?
+public var referenceId: String?
+public var uiconfId: NSNumber?
+
+// MediaOptions
+public var startTime: TimeInterval = .nan
+```
+
+### 5. Load the OVP Media
+
+Pass the created media options to the `loadMedia` function and implement the callback function in order to observe if an error has occurred.
+
+For example:
+
+```swift
+kalturaOVPPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
+    guard let self = self else { return }
+    if let error = error {
+        let message = error.localizedDescription
+        
+        let alert = UIAlertController(title: "Media not loaded", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    } else {
+        // If the autoPlay and preload was set to false, prepare will not be called automatically
+        if videoData.player.autoPlay == false && videoData.player.preload == false {
+            self.kalturaOVPPlayer.prepare()
+        }
+    }
+}
+```
+
+## Register for Player Events
+
+**NOTE:** In order to receive the events from the beginning, register to them before calling `setMedia` in the BasicPlayer or calling `loadMedia` in the OTTPlayer or OVPPlayer. In case the player option is set to not auto prepare, registering can be done before calling prepare on the player.  
 
 An example for the playback events in order to updated the UI on the button:
 
 ```swift
-kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause]) { [weak self] event in
+kalturaPlayer.addObserver(self, events: [KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause]) { [weak self] event in
 	guard let self = self else { return }
 	    
 	NSLog(event.description)
@@ -336,11 +409,11 @@ kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.ended, KPPlayerEvent.p
 An example to update the progress:
 
 ```swift
-kalturaOTTPlayer.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
+kalturaPlayer.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
     guard let self = self else { return }
-    let currentTime = event.currentTime ?? NSNumber(value: self.kalturaOTTPlayer.currentTime)
+    guard let currentTimeNumber = event.currentTime else { return }
     DispatchQueue.main.async {
-        self.mediaProgressSlider.value = Float(currentTime.doubleValue / self.kalturaOTTPlayer.duration)
+        self.mediaProgressSlider.value = Float(currentTimeNumber.doubleValue / self.kalturaPlayer.duration)
     }
 }
 ```
@@ -375,71 +448,24 @@ And don't forget to unregister when the view is not displayed.
 * errorLog
 * playbackStalled
 
-### 5. Create the media options
+## Prepare the Player
 
-This is the media details that will be passed to the player to load.
-
-```swift
-let ottMediaOptions = OTTMediaOptions()
-```
-
-Check the `OTTMediaOptions` class for more info.  
-The available options that can be configured are the following:  
-
-```swift
-public var ks: String?
-public var assetId: String?
-public var assetType: AssetType = .unset
-public var assetReferenceType: AssetReferenceType = .unset
-public var formats: [String]?
-public var fileIds: [String]?
-public var playbackContextType: PlaybackContextType = .unset
-public var networkProtocol: String?
-```
-
-### 6. Load the media
-
-Pass the created media options to the `loadMedia` function and implement the callback function in order to observe if an error has occurred.
-
-For example:
-
-```swift
-kalturaOTTPlayer.loadMedia(options: ottMediaOptions) { [weak self] (error) in
-    guard let self = self else { return }
-    if error != nil {
-        let alert = UIAlertController(title: "Media not loaded", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { (alert) in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    } else {
-        // If the autoPlay and preload was set to false, prepare will not be called automatically
-        if videoData.player.autoPlay == false && videoData.player.preload == false {
-            self.kalturaOTTPlayer.prepare()
-        }
-    }
-}
-```
-
-### 7. Prepare the player
-
-**This will be done automatically** if the player options, `autoPlay` or `preload` is set too true.
-Which those are the default values.
+**This will be done automatically** if the player options, `autoPlay` or `preload` is set to true. Which those are the default values.
 
 In case the `autoPlay` and `preload` are set to false, `prepare` on the player needs to be called manually.
 
 ```swift
-kalturaOTTPlayer.prepare()
+kalturaPlayer.prepare()
 ```
 
-### 8. Play
+## Play
 
-**This will be done automatically** if the player options, `autoPlay` is set too true. Which is the default value.
+**This will be done automatically** if the player options, `autoPlay` is set to true. Which is the default value.
 
 In case the `autoPlay` is set to false, `play` on the player needs to be called manually.
 
 ```swift
-kalturaOTTPlayer.play()
+kalturaPlayer.play()
 ```
 
 Play on the player can be called straight after prepare, once it's ready and can play, the playback will start automatically.  
@@ -456,8 +482,9 @@ kalturaPlayer.updatePlayerOptions(playerOptions)
 
 After that follow the steps:
 
-- For the KalturaBasicPlayer from section [Set the Media Entry](#5-set-the-media-entry)
-- For the KalturaOTTPlayer from section [Create the media options](#5-create-the-media-options)
+- For the KalturaBasicPlayer from section [Set the Media Entry](#4-set-the-media-entry)
+- For the KalturaOTTPlayer from section [Create the OTTMediaOptions](#4-create-the-ottmediaoptions)
+- For the KalturaOVPPlayer from section [Create the OVPMediaOptions](#4-create-the-ovpmediaoptions)
 
 ## Offline
 
@@ -480,6 +507,13 @@ Inside your Podfile, for the specific target, add the following:
 	pod 'KalturaPlayer/Offline_OTT'
 	```
 	This can replace the `pod 'KalturaPlayer/OTT'`
+	
+- For the KalturaOVPPlayer:
+
+	```swift
+	pod 'KalturaPlayer/Offline_OVP'
+	```
+	This can replace the `pod 'KalturaPlayer/OVP'`
 	
 Then perform `pod update` in the terminal.  
 See Cocoapods Guide for the [difference between pod install and pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html).
@@ -570,8 +604,6 @@ Available Values:
 
 In order to start downloading a media, a call to `prepareAsset` is required.
 
-The `prepareAsset` function requires two parameters: `PKMediaEntry` and `OfflineSelectionOptions`.
-
 - Create an `OfflineSelectionOptions`. 
 
 	For example:
@@ -585,6 +617,18 @@ The `prepareAsset` function requires two parameters: `PKMediaEntry` and `Offline
 	    .setPreferredAudioCodecs([.ac3, .mp4a])
 	    .setAllTextLanguages()
 	    .setAllAudioLanguages()
+	```
+
+**For a PKMediaEntry download** the `prepareAsset` function requires two parameters: `PKMediaEntry` and `OfflineSelectionOptions`.
+
+- Create a PKMediaEntry
+
+	```swift
+	let contentURL = URL(string: "https://cdnapisec.kaltura.com/p/2215841/sp/221584100/playManifest/entryId/1_vl96wf1o/format/applehttp/protocol/https/a.m3u8")
+	let entryId = "KalturaMedia"
+	let source = PKMediaSource(entryId, contentUrl: contentURL, mediaFormat: .hls)
+	let sources: Array = [source]
+	let pkMediaEntry = PKMediaEntry(entryId, sources: sources, duration: -1)
 	```
 
 - Call the `prepareAsset` function
@@ -596,27 +640,10 @@ The `prepareAsset` function requires two parameters: `PKMediaEntry` and `Offline
 	}
 	```
 
-##### For OTT
-
-There is an additional function for the `prepareAsset` that requires the following two parameters: `OTTMediaOptions` and `OfflineSelectionOptions`.
+**For an OTT Media download** there is an additional function for the `prepareAsset` that requires the following two parameters: `OTTMediaOptions` and `OfflineSelectionOptions`.
 
 
-- Create the `MediaOptions`, follow the [Create the media options](#5-create-the-media-options) section.
-
-- Create an `OfflineSelectionOptions`. 
-
-	For example:
-
-	```swift
-	let offlineSelectionOptions = OfflineSelectionOptions()
-	    .setMinVideoHeight(300)
-	    .setMinVideoBitrate(.avc1, 3_000_000)
-	    .setMinVideoBitrate(.hevc, 5_000_000)
-	    .setPreferredVideoCodecs([.hevc, .avc1])
-	    .setPreferredAudioCodecs([.ac3, .mp4a])
-	    .setAllTextLanguages()
-	    .setAllAudioLanguages()
-	```
+- Create the `OTTMediaOptions`, follow the [Create the OTTMediaOptions](#4-create-the-ottmediaoptions) section.
 
 - Call the `prepareAsset` function
 
@@ -627,6 +654,20 @@ There is an additional function for the `prepareAsset` that requires the followi
 	    // a call to start the download can be performed.
 	}
 	```
+
+**For an OVP Media download** there is an additional function for the `prepareAsset` that requires the following two parameters: `OVPMediaOptions` and `OfflineSelectionOptions`.
+
+- Create the `OVPMediaOptions`, follow the [Create the OVPMediaOptions](#4-create-the-ovpmediaoptions) section.
+
+- Call the `prepareAsset` function
+
+	```swift
+	OfflineManager.shared.prepareAsset(mediaOptions: ovpMediaOptions,
+	                                   options: offlineSelectionOptions) { (error, assetInfo, pkMediaEntry)  in
+	    // In case an assetInfo was returned and there is no error, 
+	    // a call to start the download can be performed.
+	}
+	```	
 	
 ### 5. Start or resume downloading the media
 
@@ -694,17 +735,23 @@ if drmStatus.isValid() == false {
 In order to renew the license, a call to `renewAssetDRMLicense` is needed.
 
 ```swift
-OfflineManager.shared.renewAssetDRMLicense(mediaEntry: mediaEntry) { (error) in
+OfflineManager.shared.renewAssetDRMLicense(mediaEntry: pkMediaEntry) { (error) in
     // Decide what to do with the error depending on the error.
 }
 ```
 
-##### For OTT
-
-There is an additional function that requires the `OTTMediaOptions`.
+**For OTT** there is an additional function that requires the `OTTMediaOptions`.
 
 ```swift
-OfflineManager.shared.renewAssetDRMLicense(mediaOptions: mediaOptions) { (error) in
+OfflineManager.shared.renewAssetDRMLicense(mediaOptions: ottMediaOptions) { (error) in
+    // Decide what to do with the error depending on the error.
+}
+```
+
+**For OVP** there is an additional function that requires the `OVPMediaOptions`.
+
+```swift
+OfflineManager.shared.renewAssetDRMLicense(mediaOptions: ovpMediaOptions) { (error) in
     // Decide what to do with the error depending on the error.
 }
 ```
@@ -796,12 +843,12 @@ playerOptions.pluginConfig = pluginConfig
 
 Two options to consider:  
 
-- The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) for the relevant player. 
+- The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) or [Create a KalturaOVPPlayer](#2-create-a-kalturaovpplayer) for the relevant player. 
 - The playerOptions can be updated upon a change media flow, see section [Change Media](#change-media)
 
 ### 5. Register to the ad events
 
-In order to receive the events from the beginning, register to them before running prepare on the player.
+In order to receive the events from the beginning, register to them before prepare is performed on the player.
 
 ```swift
 private func registerAdEvents() {
@@ -929,7 +976,7 @@ playerOptions.pluginConfig = pluginConfig
 
 Two options to consider:  
 
-- The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) for the relevant player. 
+- The playerOptions is sent upon creating the Kaltura Player, see section [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer) or [Create a KalturaOTTPlayer](#2-create-a-kalturaottplayer) or [Create a KalturaOVPPlayer](#2-create-a-kalturaovpplayer) for the relevant player. 
 - The playerOptions can be updated upon a change media flow, see section [Change Media](#change-media)
 
 
