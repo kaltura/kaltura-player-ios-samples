@@ -1,0 +1,56 @@
+PODS:
+  - KalturaNetKit (1.5.0):
+    - KalturaNetKit/Core (= 1.5.0)
+  - KalturaNetKit/Core (1.5.0):
+    - SwiftyJSON (= 5.0.0)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - PlayKit/AnalyticsCommon (3.20.1):
+    - PlayKit/Core
+  - PlayKit/Core (3.20.1):
+    - KalturaNetKit (~> 1.4)
+    - PlayKitUtils (~> 0.5)
+    - SwiftyJSON (= 5.0.0)
+    - XCGLogger (= 7.0.0)
+  - PlayKitUtils (0.5.0)
+  - PlayKitYoubora (1.8.0.0000):
+    - PlayKit/AnalyticsCommon (~> 3.8)
+    - YouboraLib (= 6.5.39)
+  - SwiftyJSON (5.0.0)
+  - XCGLogger (7.0.0):
+    - XCGLogger/Core (= 7.0.0)
+  - XCGLogger/Core (7.0.0):
+    - ObjcExceptionBridging
+  - YouboraLib (6.5.39)
+
+DEPENDENCIES:
+  - PlayKitYoubora (from `../../`)
+
+SPEC REPOS:
+  trunk:
+    - KalturaNetKit
+    - ObjcExceptionBridging
+    - PlayKit
+    - PlayKitUtils
+    - SwiftyJSON
+    - XCGLogger
+    - YouboraLib
+
+EXTERNAL SOURCES:
+  PlayKitYoubora:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  KalturaNetKit: 7d9cba0df8fa93311dfabaef019f34b3bf52e2f5
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  PlayKit: 0309961050118b6bc002bc48fdbb625394661a26
+  PlayKitUtils: 8edb43515c8b91d9aa9a47ae8b5af1e7dd58f6f3
+  PlayKitYoubora: d8eabb721a8d83fbf64e1d3a5541993bb6b6f2d4
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
+  YouboraLib: 10429980003aeeeb24b7fe52cb10de6e31d67147
+
+PODFILE CHECKSUM: 34c827b2db99b5c0178f42cbfc4658daab246911
+
+COCOAPODS: 1.10.1
