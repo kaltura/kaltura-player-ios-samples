@@ -27,7 +27,7 @@ struct YouboraConfig: Decodable {
     let ads: Ads?
     let properties: Properties?
     
-    let customDimensions: CustomDimensions?
+    let contentCustomDimensions: ContentCustomDimensions?
     let extraParams: ExtraParams?
     let houseHoldId: String?
     let isAutoStart: Bool?
@@ -214,7 +214,7 @@ struct YouboraConfig: Decodable {
             options.contentCustomDimension10 = extraParams.param10
         }
         
-        if let customDimensions = customDimensions {
+        if let customDimensions = contentCustomDimensions {
             options.contentCustomDimension1 = customDimensions.contentCustomDimension1
             options.contentCustomDimension2 = customDimensions.contentCustomDimension2
             options.contentCustomDimension3 = customDimensions.contentCustomDimension3
@@ -386,7 +386,7 @@ struct AdCustomDimensions: Decodable {
     let adCustomDimension10: String?
 }
 
-struct CustomDimensions: Decodable {
+struct ContentCustomDimensions: Decodable {
     let contentCustomDimension1: String?
     let contentCustomDimension2: String?
     let contentCustomDimension3: String?
