@@ -175,7 +175,7 @@ class YouboraConfigTemplate {
         "parse": parse,
         "app": app,
         "extraParams": extraParameters,
-        "customDimensions": customDimensions,
+        "contentCustomDimensions": customDimensions,
         "ads": ads,
         "media": media,
         "content": content,
