@@ -91,6 +91,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
     
+    private var playbackHeadersAdaptor: CustomPlaybackRequestAdapter? = CustomPlaybackRequestAdapter()
+    
     // MARK: - Overrides
     
     override func viewDidLoad() {
@@ -149,6 +151,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             } else {
+                
+                self.playbackHeadersAdaptor?.httpHeaders = videoData.player.getAuthHeaders()
+                
+                self.kalturaOTTPlayer.settings.contentRequestAdapter = self.playbackHeadersAdaptor
+                
                 kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
                     guard let self = self else { return }
                     if let error = error {

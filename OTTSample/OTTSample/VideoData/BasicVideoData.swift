@@ -13,7 +13,8 @@ extension VideoData {
         
         videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
-                                                   preload: true),
+                                                   preload: true,
+                                                   authToken: "FIRST_TOKEN_VALUE_1"),
                                 media: OTTMedia(assetId: "548575",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
@@ -21,7 +22,7 @@ extension VideoData {
                                                 networkProtocol: "http")))
         
         videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20",
-                                player: PlayerData(),
+                                player: PlayerData(authToken: "Second_token_value_2"),
                                 media: OTTMedia(assetId: "548570",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
@@ -30,7 +31,8 @@ extension VideoData {
                                                 startTime: 20)))
         
         videos.append(VideoData(title: "548576, autoPlay-false, preload",
-                                player: PlayerData(autoPlay: false),
+                                player: PlayerData(autoPlay: false,
+                                                   authToken: "Third_token_value_3"),
                                 media: OTTMedia(assetId: "548576",
                                                 assetType: .media,
                                                 assetReferenceType: .media,

@@ -19,11 +19,24 @@ struct PlayerData {
     
     var pluginConfig: PluginConfig?
     
-    init(autoPlay: Bool = true, preload: Bool = true, ks: String? = nil, pluginConfig: PluginConfig? = nil) {
+    var authToken: String?
+    
+    init(autoPlay: Bool = true, preload: Bool = true, ks: String? = nil, pluginConfig: PluginConfig? = nil, authToken: String? = nil) {
         self.autoPlay = autoPlay
         self.preload = preload
         self.ks = ks
         self.pluginConfig = pluginConfig
+        self.authToken = authToken
+    }
+    
+    func getAuthHeaders() -> [String : String] {
+        var headers: [String: String] = [:]
+        
+        if let token: String = self.authToken {
+            headers["Authorization"] = "Bearer " + token
+        }
+        
+        return headers
     }
 }
 
