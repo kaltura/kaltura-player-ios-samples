@@ -59,7 +59,7 @@ class GoogleCastManager: NSObject, GCKRequestDelegate {
         return mediaInformation
     }
     
-    private func load(mediaInformation:GCKMediaInformation, appending: Bool) -> Void {
+    private func load(mediaInformation:GCKMediaInformation, appending: Bool, startTime: TimeInterval?) -> Void {
         guard let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient else { return }
        
         let mediaQueueItemBuilder = GCKMediaQueueItemBuilder()
@@ -72,7 +72,12 @@ class GoogleCastManager: NSObject, GCKRequestDelegate {
         let mediaQueueItem = mediaQueueItemBuilder.build()
         
         if appending {
-          let request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+            let request: GCKRequest
+            if let startTime = startTime {
+                request = remoteMediaClient.queueInsertAndPlay(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID, playPosition: startTime, customData: nil)
+            } else {
+                request = remoteMediaClient.queueInsert(mediaQueueItem, beforeItemWithID: kGCKMediaQueueInvalidItemID)
+            }
           request.delegate = self
         } else {
           let queueDataBuilder = GCKMediaQueueDataBuilder(queueType: .generic)
@@ -82,6 +87,10 @@ class GoogleCastManager: NSObject, GCKRequestDelegate {
           let mediaLoadRequestDataBuilder = GCKMediaLoadRequestDataBuilder()
           mediaLoadRequestDataBuilder.mediaInformation = mediaInformation
           mediaLoadRequestDataBuilder.queueData = queueDataBuilder.build()
+            
+            if let startTime = startTime {
+                mediaLoadRequestDataBuilder.startTime = startTime
+            }
 
           let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
           request.delegate = self
@@ -141,7 +150,7 @@ class GoogleCastManager: NSObject, GCKRequestDelegate {
             gckMediaInformation = try getCAFMediaInformation(from: videoData)
             
             if let mediaInformation = gckMediaInformation {
-                self.load(mediaInformation: mediaInformation, appending: false)
+                self.load(mediaInformation: mediaInformation, appending: false, startTime: videoData.media.startTime)
             }
             
         } catch {
