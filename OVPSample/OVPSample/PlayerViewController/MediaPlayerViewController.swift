@@ -57,6 +57,14 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     var shouldPlayLocally: Bool = false
     
+    var preferredPlaybackRate: Float = 1.0 {
+        didSet {
+            if self.kalturaOVPPlayer.isPlaying {
+                self.kalturaOVPPlayer.rate = preferredPlaybackRate
+            }
+        }
+    }
+    
     @IBOutlet weak var kalturaPlayerView: KalturaPlayerView!
     
     // We have to have the 'controllersInteractiveView' and set the tap guesture on it and not on the 'kalturaPlayerView' because IMA's ad view is above the player's view.
@@ -540,19 +548,20 @@ extension MediaPlayerViewController {
         } else {
             kalturaOVPPlayer.play()
             showPlayerControllers(false)
+            self.kalturaOVPPlayer.rate = self.preferredPlaybackRate
         }
     }
     
     @IBAction private func speedRateTouched(_ button: UIButton) {
         let alertController = UIAlertController(title: "Select Speed Rate", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         alertController.addAction(UIAlertAction(title: "Normal", style: UIAlertAction.Style.default, handler: { (alertAction) in
-            self.kalturaOVPPlayer.rate = 1
+            self.preferredPlaybackRate = 1
+        }))
+        alertController.addAction(UIAlertAction(title: "x1.5", style: UIAlertAction.Style.default, handler: { (alertAction) in
+            self.preferredPlaybackRate = 1.5
         }))
         alertController.addAction(UIAlertAction(title: "x2", style: UIAlertAction.Style.default, handler: { (alertAction) in
-            self.kalturaOVPPlayer.rate = 2
-        }))
-        alertController.addAction(UIAlertAction(title: "x3", style: UIAlertAction.Style.default, handler: { (alertAction) in
-            self.kalturaOVPPlayer.rate = 3
+            self.preferredPlaybackRate = 2
         }))
         
         if let popoverController = alertController.popoverPresentationController {
