@@ -1,10 +1,11 @@
 language: swift
 osx_image: xcode12.4
+podfile: OTTSample/Podfile
 before_install:
   - gem install cocoapods xcpretty
   - pod repo update
 script:
-  - pod lib lint --fail-fast --verbose --allow-warnings
+  - pod install
 notifications:
   email:
     recipients:
@@ -12,11 +13,6 @@ notifications:
     on_success: change
     on_failure: always
 
-
-
-
-
-
-    xcode_workspace: OTTSample/OTTSample.xcworkspace # path to your xcodeproj folder
+xcode_workspace: OTTSample/OTTSample.xcworkspace
 xcode_scheme: OTTSample
 xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
