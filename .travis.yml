@@ -17,6 +17,4 @@ notifications:
 
 xcode_workspace: OTTSample/OTTSample.xcworkspace
 xcode_scheme: OTTSample
-xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
-
-script: xcodebuild -sdk iphonesimulator
+xcode_destination: platform=iOS Simulator,OS=14.0,name=iPhone X
