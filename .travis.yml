@@ -1,11 +1,14 @@
 language: swift
 osx_image: xcode12.4
+
 podfile: OTTSample/Podfile
+
 before_install:
   - gem install cocoapods xcpretty
   - pod repo update
+  - pod install --project-directory=OTTSample
 script:
-  - pod install
+  
 notifications:
   email:
     recipients:
