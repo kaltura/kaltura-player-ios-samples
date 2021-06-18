@@ -12,7 +12,7 @@ keepAlive() {
 buildBasicSampleiOS() {
   echo Building the KalturaPlayer iOS BasicSample test App
   cd BasicSample
-  xcodebuild clean build -workspace BasicSample.xcworkspace -scheme BasicSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | tee xcodebuild.log | xcpretty -r html && exit ${PIPESTATUS[0]}
+  xcodebuild clean build -workspace BasicSample.xcworkspace -scheme BasicSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=YES | tee xcodebuild.log | xcpretty -r html && exit ${PIPESTATUS[0]}
   cd ../
 }
 
