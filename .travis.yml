@@ -6,7 +6,12 @@ podfile: OTTSample/Podfile
 before_install:
   - gem install cocoapods xcpretty
   - pod repo update
+  - pod install --project-directory=BasicSample
+  - pod install --project-directory=BasicSample_tvOS
   - pod install --project-directory=OTTSample
+  - pod install --project-directory=OTTSample_tvOS
+  - pod install --project-directory=OVPSample
+  - pod install --project-directory=OVPSample_tvOS
   
 notifications:
   email:
