@@ -12,7 +12,7 @@ keepAlive() {
 buildBasicSampleiOS() {
   echo Building the KalturaPlayer iOS BasicSample test App
   cd BasicSample
-  xcodebuild clean build -workspace BasicSample.xcworkspace -scheme BasicSample ONLY_ACTIVE_ARCH=NO -destination 'platform=iOS Simulator,name=iPhone 11' | tee xcodebuild.log | xcpretty -r html && exit ${PIPESTATUS[0]}
+  xcodebuild clean build -workspace BasicSample.xcworkspace -scheme BasicSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | tee xcodebuild.log | xcpretty -r html && exit ${PIPESTATUS[0]}
   cd ../
 }
 
@@ -57,11 +57,6 @@ if [ -n "$TRAVIS_TAG" ] || [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
   keepAlive $FLAG &
 else
   buildBasicSampleiOS
-  buildBasicSampletvOS
-  buildOTTSampleiOS
-  buildOTTSampletvOS
-  buildOVPSampleiOS
-  buildOVPSampletvOS
 fi
 
 rm $FLAG  # stop keepAlive
