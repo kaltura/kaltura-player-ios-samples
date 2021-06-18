@@ -13,13 +13,12 @@ before_install:
   - pod install --project-directory=OVPSample
   - pod install --project-directory=OVPSample_tvOS
   
+script:
+  - ./travis-build.sh
+  
 notifications:
   email:
     recipients:
       - sergey.chausov@kaltura.com
     on_success: change
     on_failure: always
-
-xcode_workspace: OTTSample/OTTSample.xcworkspace
-xcode_scheme: OTTSample
-xcode_destination: platform=iOS Simulator,OS=10.1,name=iPhone X
