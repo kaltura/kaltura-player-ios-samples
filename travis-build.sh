@@ -14,7 +14,7 @@ buildBasicSampleiOS() {
   cd BasicSample
   pod install
   ls -al Pods
-  xcodebuild clean build -workspace BasicSample.xcworkspace -scheme BasicSample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | tee xcodebuild.log | xcpretty -r html && exit ${PIPESTATUS[0]}
+  xcodebuild clean build -workspace BasicSample.xcworkspace -scheme BasicSample -destination 'platform=iOS Simulator,name=iPhone 11' | tee xcodebuild.log | xcpretty -r html && exit ${PIPESTATUS[0]}
   cd ../
 }
 
