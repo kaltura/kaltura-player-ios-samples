@@ -1,5 +1,7 @@
 # Kaltura Player iOS Samples
 
+[![Build Status](https://travis-ci.com/kaltura/kaltura-player-ios-samples.svg?branch=main)](https://travis-ci.com/kaltura/kaltura-player-ios-samples)
+
 In case of a **Basic Player**, include ```pod 'KalturaPlayer'``` in your Podfile.  
 In case of an **OTT Player**, include ```pod 'KalturaPlayer/OTT'``` in your Podfile.  
 In case of an **OVP Player**, include ```pod 'KalturaPlayer/OVP'``` in your Podfile.
