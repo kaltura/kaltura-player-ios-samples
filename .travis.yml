@@ -1,8 +1,6 @@
 language: swift
 osx_image: xcode12.4
 
-podfile: OTTSample/Podfile
-
 before_install:
   - gem install cocoapods xcpretty
   - pod repo update
@@ -20,5 +18,8 @@ notifications:
   email:
     recipients:
       - sergey.chausov@kaltura.com
+      - nilit.danan@kaltura.com
+      - gilad.nadav@kaltura.com
+      - oren.melamed@kaltura.com
     on_success: change
     on_failure: always
