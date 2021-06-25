@@ -25,7 +25,7 @@ else
 
     DESTINATION="platform=iOS Simulator,name=iPhone 11,OS=latest"
     
-    if [ "$dir" == *"_tvOS"* ]; then
+    if [[ "$dir" == *"_tvOS"* ]]; then
       DESTINATION="platform=tvOS Simulator,name=Apple TV,OS=latest"
     fi
     
