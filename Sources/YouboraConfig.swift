@@ -94,6 +94,29 @@ struct YouboraConfig: Decodable {
             options.contentTransactionCode = media.transactionCode
         }
         
+        if let properties = properties {
+            options.contentMetadata = ["genre": properties.genre ?? "",
+                                       "type": properties.type ?? "",
+                                       "transaction_type": properties.transactionType ?? "",
+                                       "year": properties.year ?? "",
+                                       "cast": properties.cast ?? "",
+                                       "director": properties.director ?? "",
+                                       "owner": properties.owner ?? "",
+                                       "parental": properties.parental ?? "",
+                                       "price": properties.price ?? "",
+                                       "rating": properties.rating ?? "",
+                                       "audioType": properties.audioType ?? "",
+                                       "audioChannels": properties.audioChannels ?? "",
+                                       "device": properties.device ?? "",
+                                       "quality": properties.quality ?? ""]
+            
+            options.contentGenre = properties.genre
+            options.contentType = properties.type
+            options.contentTransactionCode = properties.transactionType
+            options.contentPrice = properties.price
+            options.contentRendition = properties.quality
+        }
+        
         if let content = content {
             options.contentResource = content.contentResource
             options.contentTitle = content.contentTitle
@@ -182,23 +205,6 @@ struct YouboraConfig: Decodable {
                 options.adCustomDimension9 = adsCustomDimensions.adCustomDimension9
                 options.adCustomDimension10 = adsCustomDimensions.adCustomDimension10
             }
-        }
-        
-        if let properties = properties {
-            options.contentMetadata = ["genre": properties.genre ?? "",
-                                       "type": properties.type ?? "",
-                                       "transaction_type": properties.transactionType ?? "",
-                                       "year": properties.year ?? "",
-                                       "cast": properties.cast ?? "",
-                                       "director": properties.director ?? "",
-                                       "owner": properties.owner ?? "",
-                                       "parental": properties.parental ?? "",
-                                       "price": properties.price ?? "",
-                                       "rating": properties.rating ?? "",
-                                       "audioType": properties.audioType ?? "",
-                                       "audioChannels": properties.audioChannels ?? "",
-                                       "device": properties.device ?? "",
-                                       "quality": properties.quality ?? ""]
         }
         
         if let extraParams = extraParams {
