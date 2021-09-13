@@ -59,7 +59,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     var preferredPlaybackRate: Float = 1.0 {
         didSet {
-            if self.kalturaOVPPlayer.isPlaying {
+            if self.kalturaOVPPlayer.isPlaying, !self.adIsPlaying {
                 self.kalturaOVPPlayer.rate = preferredPlaybackRate
             }
         }
@@ -98,6 +98,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var mediaEnded: Bool = false
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
+    
+    private var adIsPlaying: Bool = false
     
     // MARK: - Overrides
     
@@ -418,7 +420,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     // MARK: - Register IMA Events
     
     private func registerAdEvents() {
-        kalturaOVPPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
+        kalturaOVPPlayer.addObserver(self, events: [KPAdEvent.adDidRequestContentPause, KPAdEvent.adDidRequestContentResume, KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
             guard let self = self else { return }
             
             NSLog("Event triggered: " + adEvent.description)
@@ -453,6 +455,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         self.playPauseButton.displayState = .replay
                         self.showPlayerControllers(true)
                     }
+                case is KPAdEvent.AdDidRequestContentPause:
+                    self.adIsPlaying = true
+                case is KPAdEvent.AdDidRequestContentResume:
+                    self.adIsPlaying = false
+                    self.kalturaOVPPlayer.rate = self.preferredPlaybackRate
                 default:
                     break
                 }
@@ -548,7 +555,9 @@ extension MediaPlayerViewController {
         } else {
             kalturaOVPPlayer.play()
             showPlayerControllers(false)
-            self.kalturaOVPPlayer.rate = self.preferredPlaybackRate
+            if !self.adIsPlaying {
+                self.kalturaOVPPlayer.rate = self.preferredPlaybackRate
+            }
         }
     }
     
