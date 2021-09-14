@@ -59,7 +59,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     var preferredPlaybackRate: Float = 1.0 {
         didSet {
-            if self.kalturaOTTPlayer.isPlaying {
+            if self.kalturaOTTPlayer.isPlaying, !self.adIsPlaying {
                 self.kalturaOTTPlayer.rate = preferredPlaybackRate
             }
         }
@@ -98,6 +98,8 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     private var mediaEnded: Bool = false
     private var adsLoaded: Bool = false
     private var allAdsCompleted: Bool = false
+    
+    private var adIsPlaying: Bool = false
     
     // MARK: - Overrides
     
@@ -429,7 +431,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     // MARK: - Register IMA Events
     
     private func registerAdEvents() {
-        kalturaOTTPlayer.addObserver(self, events: [KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
+        kalturaOTTPlayer.addObserver(self, events: [KPAdEvent.adDidRequestContentPause, KPAdEvent.adDidRequestContentResume, KPAdEvent.adLoaded, KPAdEvent.adPaused, KPAdEvent.adResumed, KPAdEvent.adStartedBuffering, KPAdEvent.adPlaybackReady, KPAdEvent.adStarted, KPAdEvent.adComplete, KPAdEvent.adSkipped, KPAdEvent.allAdsCompleted]) { [weak self] adEvent in
             guard let self = self else { return }
             
             NSLog("Event triggered: " + adEvent.description)
@@ -464,6 +466,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         self.playPauseButton.displayState = .replay
                         self.showPlayerControllers(true)
                     }
+                case is KPAdEvent.AdDidRequestContentPause:
+                    self.adIsPlaying = true
+                case is KPAdEvent.AdDidRequestContentResume:
+                    self.adIsPlaying = false
+                    self.kalturaOTTPlayer.rate = self.preferredPlaybackRate
                 default:
                     break
                 }
@@ -559,7 +566,9 @@ extension MediaPlayerViewController {
         } else {
             kalturaOTTPlayer.play()
             showPlayerControllers(false)
-            self.kalturaOTTPlayer.rate = self.preferredPlaybackRate
+            if !self.adIsPlaying {
+                self.kalturaOTTPlayer.rate = self.preferredPlaybackRate
+            }
         }
     }
     
