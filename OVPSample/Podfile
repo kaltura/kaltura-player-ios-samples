@@ -6,8 +6,8 @@ target 'OVPSample' do
   use_frameworks!
 
 
-  pod 'KalturaPlayer/OVP'
-#  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OVP'
+  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10389'
 #  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
 
 
@@ -24,10 +24,12 @@ target 'OVPSample' do
 
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OVP')
-  pod 'KalturaPlayer/Offline_OVP'
-#  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline_OVP'
+  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-10389'
 #  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
+#  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+pod 'PlayKitProviders',  :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
 
   ## In case we want to add Google Chrome Cast
   pod 'PlayKitGoogleCast'

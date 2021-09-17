@@ -29,7 +29,8 @@ struct PlayerData {
 
 struct OVPMedia {
     var ks: String?
-    var entryId: String
+    var entryId: String?
+    var referenceId: String?
     var uiconfId: NSNumber?
     var startTime: TimeInterval?
     
@@ -38,6 +39,7 @@ struct OVPMedia {
         
         ovpMediaOptions.ks = ks
         ovpMediaOptions.entryId = entryId
+        ovpMediaOptions.referenceId = referenceId
         ovpMediaOptions.uiconfId = uiconfId
         
         if let startTime = startTime {

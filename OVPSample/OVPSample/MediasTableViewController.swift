@@ -112,13 +112,18 @@ class MediasTableViewController: UITableViewController {
         if videoDataType == .offline {
             if let cell = tableView.cellForRow(at: indexPath) as? DownloadMediaTableViewCell, cell.canPlayDownloadedMedia() {
                 let media = videos[indexPath.row].media
-                if OfflineManager.shared.getLocalPlaybackEntry(assetId: media.entryId) != nil {
+                guard let entryId = media.entryId else {
+                    // If entryId did not set, deny selection.
+                    return nil
+                }
+                
+                if OfflineManager.shared.getLocalPlaybackEntry(assetId: entryId) != nil {
                     // In case the DRM media's license has expired, renew it.
-                    if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: media.entryId), drmStatus.isValid() == false {
+                    if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: entryId), drmStatus.isValid() == false {
                         OfflineManager.shared.renewAssetDRMLicense(mediaOptions: media.mediaOptions()) { (error) in
                             // Decide what to do with the error depending on the error.
                             var message = ""
-                            if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: media.entryId), drmStatus.isValid() == false {
+                            if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: entryId), drmStatus.isValid() == false {
                                 message = "The DRM License was not renewed, can't play locally."
                             }
                             else {
@@ -201,7 +206,9 @@ extension MediasTableViewController: OfflineManagerDelegate {
         if let index = self.videos.firstIndex(where: { $0.media.entryId == id }) {
             if newState == .completed {
                 // In case the DRM media was paused for too long and the license has expired, renew it.
-                if let drmStatus = OfflineManager.shared.getDRMStatus(assetId: videos[index].media.entryId), drmStatus.isValid() == false {
+                if let entryId = videos[index].media.entryId,
+                   let drmStatus = OfflineManager.shared.getDRMStatus(assetId: entryId),
+                   drmStatus.isValid() == false {
                     OfflineManager.shared.renewAssetDRMLicense(mediaOptions: videos[index].media.mediaOptions()) { (error) in
                         // Decide what to do with the error depending on the error.
                     }
