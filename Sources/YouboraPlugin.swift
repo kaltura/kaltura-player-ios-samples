@@ -61,6 +61,8 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         
         try super.init(player: player, pluginConfig: pluginConfig, messageBus: messageBus)
         
+        self.registerCdnSwitchEvent()
+        
         // The didSet of config is not performed before the super.init, therfore it needs to be called for the first time.
         self.addCustomProperties()
         
@@ -107,6 +109,9 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
         stopMonitoring()
         // Remove ad observers
         messageBus?.removeObserver(self, events: [AdEvent.adCuePointsUpdate, AdEvent.allAdsCompleted])
+        
+        unregisterCdnSwitchEvent()
+        
         AppStateSubject.shared.remove(observer: self)
         super.destroy()
     }
@@ -186,5 +191,32 @@ public class YouboraPlugin: BasePlugin, AppStateObservable {
             // If properties doesn't exist then add
             config.params[propertiesKey] = [CustomPropertyKey.sessionId: player.sessionId]
         }
+    }
+}
+
+extension YouboraPlugin {
+    
+    fileprivate func registerCdnSwitchEvent() {
+        PKLog.debug("Register CDN switched event")
+        guard let messageBus = self.messageBus else { return }
+        
+        messageBus.addObserver(self, events: [InterceptorEvent.cdnSwitched]) { [weak self] event in
+            guard let self = self else { return }
+            
+            switch event {
+            case let cdnSwitchedEvent as InterceptorEvent.CDNSwitched:
+                if let cdnCode = cdnSwitchedEvent.cdnCode, !cdnCode.isEmpty {
+                    self.ybPlugin?.options.contentCdn = cdnCode
+                } else {
+                    PKLog.debug("Content CDN code is incorrect")
+                }
+            default: return
+            }
+        }
+    }
+    
+    func unregisterCdnSwitchEvent() {
+        PKLog.debug("Unregister CDN switched event")
+        messageBus?.removeObserver(self, events: [InterceptorEvent.cdnSwitched])
     }
 }
