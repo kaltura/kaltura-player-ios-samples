@@ -30,6 +30,7 @@ struct PlayerData {
 struct OTTMedia {
     var ks: String?
     var assetId: String
+    var epgId: String?
     var assetType: AssetType
     var assetReferenceType: AssetReferenceType
     var playbackContextType: PlaybackContextType
@@ -46,6 +47,7 @@ struct OTTMedia {
         
         ottMediaOptions.ks = ks
         ottMediaOptions.assetId = assetId
+        ottMediaOptions.epgId = epgId
         ottMediaOptions.assetType = assetType
         ottMediaOptions.assetReferenceType = assetReferenceType
         ottMediaOptions.formats = formats
