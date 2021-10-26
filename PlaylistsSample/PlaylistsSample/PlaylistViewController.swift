@@ -7,11 +7,12 @@
 
 import UIKit
 import KalturaPlayer
+import PlayKit
 
 private let cellID = "PlaylistCellID"
 
-class ViewController: UIViewController {
-
+class PlaylistViewController: UIViewController {
+    
     @IBOutlet weak var playerView: KalturaPlayerView!
     @IBOutlet weak var playlistNameLabel: UILabel!
     
@@ -20,33 +21,40 @@ class ViewController: UIViewController {
     @IBOutlet weak var playNext: UIButton!
     @IBOutlet weak var playPrev: UIButton!
     
-    @IBOutlet weak var playListTapleView: UITableView!
+    @IBOutlet weak var playListTableView: UITableView!
     
-    var kalturaOVPPlayer: KalturaOVPPlayer?
+//    var kalturaPlayer: KalturaBasicPlayer?
+//    var kalturaOVPPlayer: KalturaOVPPlayer?
+    var kalturaPlayer: KalturaOVPPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+//        KalturaBasicPlayer.setup()
         
         KalturaOVPPlayer.setup(partnerId: 1091,
                                serverURL: "https://qa-apache-php7.dev.kaltura.com",
                                referrer: nil)
         
+//        let plyerOptions = PlayerOptions()
         let ovpPlayerOptions = PlayerOptions()
         let player = KalturaOVPPlayer(options: ovpPlayerOptions)
-        kalturaOVPPlayer = player
+//        let player = KalturaBasicPlayer(options: plyerOptions)
+        kalturaPlayer = player
         player.view = playerView
         
-        self.playListTapleView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellID)
+        self.playListTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellID)
         
         player.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
-            
+
             DispatchQueue.main.async {
                 self.seekBar.value = Float(player.currentTime / player.duration)
             }
         }
         
         registerPlaybackEvents()
+        checkIfMediasAvailable()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,18 +62,57 @@ class ViewController: UIViewController {
         
         let playlistOptions = OVPPlaylistOptions()
         playlistOptions.playlistId = "0_wckoqjnn"
-        kalturaOVPPlayer?.loadPlaylist(options: playlistOptions) { [weak self] (error) in
+        kalturaPlayer?.loadPlaylist(options: playlistOptions) { [weak self] (error) in
+            guard let self = self else { return }
+
+            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+            self.playListTableView.reloadData()
+
+            self.playNextAction(self)
+            self.checkIfMediasAvailable()
+        }
+        
+        /*
+        var mediaOptions: [OVPMediaOptions] = []
+        
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+        
+        kalturaPlayer?.loadPlaylistByEntryIds(options: mediaOptions, callback: { [weak self] (error) in
             guard let self = self else { return }
             
-            self.playlistNameLabel.text = self.kalturaOVPPlayer?.playlistController?.playlist.name
-            self.playListTapleView.reloadData()
+            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+            self.playListTableView.reloadData()
             
             self.playNextAction(self)
-        }
+        })
+        */
+        /*
+        let playlist: PKPlaylist = PKPlaylist("ID",
+                                              name: "Basic Playlist",
+                                              thumbnailUrl: nil,
+                                              medias: BasicVideoData().getBasicVideos())
+        
+        kalturaPlayer?.setPlaylist(playlist)
+        
+        self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+        self.playListTableView.reloadData()
+        
+        self.playNextAction(self)
+        */
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        kalturaPlayer?.pause()
+        kalturaPlayer?.removeObserver(self, events: KPPlayerEvent.allEventTypes)
+        kalturaPlayer?.removeObserver(self, events: KPAdEvent.allEventTypes)
     }
     
     private func registerPlaybackEvents() {
-        guard let player = self.kalturaOVPPlayer else { return }
+        guard let player = self.kalturaPlayer else { return }
         
         player.addObserver(self, events: [KPPlayerEvent.play,
                                           KPPlayerEvent.playing,
@@ -78,12 +125,21 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 switch event {
                 case is KPPlayerEvent.Play:
+                    
                     self.playPauseButton.isHighlighted = true
+                    
                 case is KPPlayerEvent.Playing:
+                    
                     self.playPauseButton.isHighlighted = true
+                    
                 case is KPPlayerEvent.Pause:
+                    
                     self.playPauseButton.isHighlighted = false
-                case is KPPlayerEvent.CanPlay: break
+                    
+                case is KPPlayerEvent.CanPlay:
+                    
+                    self.checkIfMediasAvailable()
+                    
                 case is KPPlayerEvent.Seeking: break
                 case is KPPlayerEvent.Seeked: break
                 default:
@@ -94,7 +150,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playPauseAction(_ sender: Any) {
-        guard let player = self.kalturaOVPPlayer else { return }
+        guard let player = self.kalturaPlayer else { return }
         
         if player.isPlaying || player.rate > 0 {
             player.pause()
@@ -104,33 +160,53 @@ class ViewController: UIViewController {
     }
     
     @IBAction func seekAction(_ slider: UISlider) {
-        guard let player = self.kalturaOVPPlayer else { return }
+        guard let player = self.kalturaPlayer else { return }
         player.currentTime = TimeInterval(player.duration * Double(slider.value))
     }
     
     @IBAction func playNextAction(_ sender: Any) {
-        kalturaOVPPlayer?.playlistController?.playNext()
+        kalturaPlayer?.playlistController?.playNext()
     }
     
     @IBAction func playPrevAction(_ sender: Any) {
-        kalturaOVPPlayer?.playlistController?.playPrev()
+        kalturaPlayer?.playlistController?.playPrev()
+    }
+    
+    @IBAction func repeatAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        kalturaPlayer?.playlistController?.loop = sender.isSelected
+        self.checkIfMediasAvailable()
+    }
+    
+    @IBAction func shuffleAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    func checkIfMediasAvailable() {
+        guard let controller = kalturaPlayer?.playlistController else {
+            self.playNext.isEnabled = false
+            self.playPrev.isEnabled = false
+            return
+        }
+        self.playNext.isEnabled = controller.isNextItemAvailable()
+        self.playPrev.isEnabled = controller.isPreviousItemAvailable()
     }
     
 }
 
 
-extension ViewController: UITableViewDelegate {
+extension PlaylistViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        kalturaOVPPlayer?.playlistController?.playItem(index: indexPath.item)
+        kalturaPlayer?.playlistController?.playItem(index: indexPath.item)
     }
     
 }
 
-extension ViewController: UITableViewDataSource {
+extension PlaylistViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let playlist = kalturaOVPPlayer?.playlistController?.playlist,
+        guard let playlist = kalturaPlayer?.playlistController?.playlist,
               let items = playlist.medias else {
             return 0
         }
@@ -141,7 +217,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
-        if let playlist = kalturaOVPPlayer?.playlistController?.playlist,
+        if let playlist = kalturaPlayer?.playlistController?.playlist,
            let item = playlist.medias?[indexPath.item] {
             
             cell.textLabel?.text = item.name

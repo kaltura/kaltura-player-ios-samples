@@ -6,6 +6,7 @@ target 'PlaylistsSample' do
   use_frameworks!
 
   pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
   pod 'PlayKit', :path => '../../playkit-ios'
   pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
   

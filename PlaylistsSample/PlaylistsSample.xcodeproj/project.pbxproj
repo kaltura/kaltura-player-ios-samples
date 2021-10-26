@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		14EEBC63711BFC3B345193B3 /* Pods_PlaylistsSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADDCABC680525CBE44D92F37 /* Pods_PlaylistsSample.framework */; };
 		908028BB271591E6008F6F12 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908028BA271591E6008F6F12 /* PlaylistTableViewCell.swift */; };
+		90A2F6C22720992800F31A66 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A2F6C12720992800F31A66 /* BasicVideoData.swift */; };
 		90AC732026DEB88A00A77AF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC731F26DEB88A00A77AF0 /* AppDelegate.swift */; };
 		90AC732226DEB88A00A77AF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC732126DEB88A00A77AF0 /* SceneDelegate.swift */; };
-		90AC732426DEB88A00A77AF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC732326DEB88A00A77AF0 /* ViewController.swift */; };
+		90AC732426DEB88A00A77AF0 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC732326DEB88A00A77AF0 /* PlaylistViewController.swift */; };
 		90AC732726DEB88A00A77AF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AC732526DEB88A00A77AF0 /* Main.storyboard */; };
 		90AC732926DEB88D00A77AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90AC732826DEB88D00A77AF0 /* Assets.xcassets */; };
 		90AC732C26DEB88D00A77AF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AC732A26DEB88D00A77AF0 /* LaunchScreen.storyboard */; };
@@ -42,10 +43,11 @@
 		43BA4EFD58ECC305DF7A54DB /* Pods-PlaylistsSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaylistsSample.release.xcconfig"; path = "Target Support Files/Pods-PlaylistsSample/Pods-PlaylistsSample.release.xcconfig"; sourceTree = "<group>"; };
 		759785C29F05635E36B8F7FE /* Pods-PlaylistsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaylistsSample.debug.xcconfig"; path = "Target Support Files/Pods-PlaylistsSample/Pods-PlaylistsSample.debug.xcconfig"; sourceTree = "<group>"; };
 		908028BA271591E6008F6F12 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
+		90A2F6C12720992800F31A66 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		90AC731C26DEB88A00A77AF0 /* PlaylistsSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaylistsSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AC731F26DEB88A00A77AF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90AC732126DEB88A00A77AF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		90AC732326DEB88A00A77AF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		90AC732326DEB88A00A77AF0 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		90AC732626DEB88A00A77AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		90AC732826DEB88D00A77AF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90AC732B26DEB88D00A77AF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 			children = (
 				90AC731F26DEB88A00A77AF0 /* AppDelegate.swift */,
 				90AC732126DEB88A00A77AF0 /* SceneDelegate.swift */,
-				90AC732326DEB88A00A77AF0 /* ViewController.swift */,
+				90A2F6C12720992800F31A66 /* BasicVideoData.swift */,
+				90AC732326DEB88A00A77AF0 /* PlaylistViewController.swift */,
 				908028BA271591E6008F6F12 /* PlaylistTableViewCell.swift */,
 				90AC732526DEB88A00A77AF0 /* Main.storyboard */,
 				90AC732826DEB88D00A77AF0 /* Assets.xcassets */,
@@ -427,7 +430,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90AC732426DEB88A00A77AF0 /* ViewController.swift in Sources */,
+				90AC732426DEB88A00A77AF0 /* PlaylistViewController.swift in Sources */,
+				90A2F6C22720992800F31A66 /* BasicVideoData.swift in Sources */,
 				90AC732026DEB88A00A77AF0 /* AppDelegate.swift in Sources */,
 				90AC732226DEB88A00A77AF0 /* SceneDelegate.swift in Sources */,
 				908028BB271591E6008F6F12 /* PlaylistTableViewCell.swift in Sources */,

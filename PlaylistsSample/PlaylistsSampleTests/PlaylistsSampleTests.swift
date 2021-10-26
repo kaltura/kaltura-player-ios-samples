@@ -26,7 +26,7 @@ class PlaylistsSampleTests: QuickSpec {
         
         describe("KalturaPlayer") {
             context("Loads playlist") {
-                
+                /*
                 it("1. by playlist ID") {
                     waitUntil(timeout: .seconds(150)) { done in
                         
@@ -50,6 +50,26 @@ class PlaylistsSampleTests: QuickSpec {
                         
                         controller.playNext()
                         done()
+                    }
+                }
+                */
+                var mediaOptions: [OVPMediaOptions] = []
+                
+                mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
+                mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
+                mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+                
+                it("3. Load playlist by Entry ids") {
+                    
+                    waitUntil(timeout: .seconds(150)) { done in
+                        
+                        kalturaOVPPlayer.loadPlaylistByEntryIds(options: mediaOptions) { (error) in
+                            
+                            expect(error).to(beNil())
+
+                            
+                            done()
+                        }
                     }
                 }
                 
