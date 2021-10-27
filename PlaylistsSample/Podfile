@@ -5,10 +5,17 @@ target 'PlaylistsSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
-  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
-  pod 'PlayKit', :path => '../../playkit-ios'
-  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+#  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11456'
+  
+#  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11456'
+  
+#  pod 'PlayKit', :path => '../../playkit-ios'
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios', :branch => 'FEC-11456'
+  
+#  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+  pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers', :branch => 'FEC-11499'
   
   target 'PlaylistsSampleTests' do
     inherit! :search_paths
