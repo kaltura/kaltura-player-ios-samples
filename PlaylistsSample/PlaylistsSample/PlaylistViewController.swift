@@ -137,7 +137,7 @@ class PlaylistViewController: UIViewController {
                     self.playPauseButton.isHighlighted = false
                     
                 case is KPPlayerEvent.CanPlay:
-                    
+                    self.playPauseButton.isHighlighted = false
                     self.checkIfMediasAvailable()
                     
                 case is KPPlayerEvent.Seeking: break
