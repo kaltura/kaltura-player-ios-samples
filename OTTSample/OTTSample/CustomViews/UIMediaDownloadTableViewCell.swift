@@ -117,19 +117,40 @@ extension UIMediaDownloadTableViewCell {
             downloadButton.displayState = .pause
             
             OfflineManager.shared.prepareAsset(mediaOptions: videoData.media.mediaOptions(),
-                                               options: offlineSelectionOptions) { (error, assetInfo, pkMediaEntry)  in
+                                               options: offlineSelectionOptions) { [weak self] (error, assetInfo, pkMediaEntry) in
+                guard let self = self else { return }
+                
                 DispatchQueue.main.async {
                     if let assetInfo = assetInfo, error == nil {
-                        try? OfflineManager.shared.startAssetDownload(assetId: assetInfo.itemId)
+                        do {
+                            try OfflineManager.shared.startAssetDownload(assetId: assetInfo.itemId)
+                        } catch {
+                            if let err = error as? OfflineManagerError {
+                                self.presentAlert(withMessage: err.errorDescription)
+                            } else {
+                                self.presentAlert(withMessage: error.localizedDescription)
+                            }
+                            self.downloadButton.displayState = .error
+                        }
                     }
                     else {
+                        self.presentAlert(withMessage: error?.localizedDescription)
                         self.downloadButton.displayState = .error
                     }
                 }
             }
         case .resume:
             downloadButton.displayState = .pause
-            try? OfflineManager.shared.startAssetDownload(assetId: videoData.media.assetId)
+            do {
+                try OfflineManager.shared.startAssetDownload(assetId: videoData.media.assetId)
+            } catch {
+                if let err = error as? OfflineManagerError {
+                    presentAlert(withMessage: err.errorDescription)
+                } else {
+                    presentAlert(withMessage: error.localizedDescription)
+                }
+                downloadButton.displayState = .error
+            }
         case .pause:
             downloadButton.displayState = .resume
             try? OfflineManager.shared.pauseAssetDownload(assetId: videoData.media.assetId)
@@ -138,5 +159,16 @@ extension UIMediaDownloadTableViewCell {
         case .error:
             downloadButton.displayState = .download
         }
+    }
+}
+
+// MARK: - Error Alert
+
+extension UIMediaDownloadTableViewCell {
+    func presentAlert(withMessage message: String?) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        window?.rootViewController?.present(alert, animated: true)
     }
 }
