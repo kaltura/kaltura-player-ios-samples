@@ -17,6 +17,8 @@ target 'PlaylistsSample' do
 #  pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
   pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers', :branch => 'FEC-11499'
   
+#  pod 'PlayKitKava', :path => '../../playkit-ios-kava'
+  
   target 'PlaylistsSampleTests' do
     inherit! :search_paths
     
