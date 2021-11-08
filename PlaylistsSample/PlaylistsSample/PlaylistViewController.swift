@@ -8,6 +8,8 @@
 import UIKit
 import KalturaPlayer
 import PlayKit
+import PlayKit_IMA
+import PlayKitYoubora
 
 private let cellID = "PlaylistCellID"
 
@@ -30,7 +32,7 @@ class PlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
 //        KalturaBasicPlayer.setup()
         
         KalturaOVPPlayer.setup(partnerId: 1091,
@@ -47,6 +49,18 @@ class PlaylistViewController: UIViewController {
 //        let plyerOptions = PlayerOptions()
         let plyerOptions = PlayerOptions()
         plyerOptions.autoPlay = true
+        
+        let youboraPluginParams: [String: Any] = [
+            "accountCode": "kalturatest"
+        ]
+        let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
+        
+        let imaConfig = IMAConfig()
+        imaConfig.alwaysStartWithPreroll = true
+        
+        plyerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
+                                                          YouboraPlugin.pluginName: analyticsConfig])
+        
 //        plyerOptions.ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
         
         
@@ -82,8 +96,10 @@ class PlaylistViewController: UIViewController {
             guard let self = self else { return }
             
             if let error = error {
-                
+                print("Loading playlist error: " + error.localizedDescription)
             }
+            
+            self.kalturaPlayer?.playlistController?.delegate = self
             
             self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
             self.playListTableView.reloadData()
@@ -93,11 +109,11 @@ class PlaylistViewController: UIViewController {
         }
         
         
-        var mediaOptions: [OVPMediaOptions] = []
-        
-        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
-        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
-        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+//        var mediaOptions: [OVPMediaOptions] = []
+//
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
         
 //        let ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
 //
@@ -238,7 +254,6 @@ class PlaylistViewController: UIViewController {
     
 }
 
-
 extension PlaylistViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -282,3 +297,33 @@ extension PlaylistViewController: UITableViewDataSource {
     }
     
 }
+
+let IMAAdRulesTag = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator="
+
+extension PlaylistViewController: PlaylistControllerDelegate {
+    
+    func playlistController(_ controller: PlaylistController, needsUpdatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+        return true
+    }
+    
+    func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig {
+        
+        let youboraPluginParams: [String: Any] = [
+            "accountCode": "kalturatest",
+            "contentCustomDimensions": [
+                "contentCustomDimension1": controller.playlist.id,
+                "contentCustomDimension2": "Playlist Item: \(mediaItemIndex)"
+            ]
+        ]
+        let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
+        
+        let imaConfig = IMAConfig()
+        imaConfig.alwaysStartWithPreroll = true
+        imaConfig.adTagUrl = IMAAdRulesTag
+        
+        return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
+                                     YouboraPlugin.pluginName: analyticsConfig])
+    }
+    
+}
+

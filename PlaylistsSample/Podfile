@@ -5,6 +5,9 @@ target 'PlaylistsSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+  pod 'PlayKit_IMA'
+  pod 'PlayKitYoubora'
+  
 #  pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
   pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11456'
   
