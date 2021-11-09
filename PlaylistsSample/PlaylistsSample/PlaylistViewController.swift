@@ -92,7 +92,7 @@ class PlaylistViewController: UIViewController {
         let playlistOptions = OVPPlaylistOptions()
         playlistOptions.playlistId = "0_wckoqjnn"
         
-        kalturaPlayer?.loadPlaylist(options: playlistOptions) { [weak self] (error) in
+        kalturaPlayer?.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
             guard let self = self else { return }
             
             if let error = error {

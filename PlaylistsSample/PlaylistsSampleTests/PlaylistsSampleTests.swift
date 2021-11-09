@@ -63,7 +63,7 @@ class PlaylistsSampleTests: QuickSpec {
                     
                     waitUntil(timeout: .seconds(150)) { done in
                         
-                        kalturaOVPPlayer.loadPlaylistByEntryIds(options: mediaOptions) { (error) in
+                        kalturaOVPPlayer.loadPlaylist(options: mediaOptions) { (error) in
                             
                             expect(error).to(beNil())
 
