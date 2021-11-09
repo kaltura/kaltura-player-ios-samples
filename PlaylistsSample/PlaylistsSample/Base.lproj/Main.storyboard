@@ -270,7 +270,13 @@
                             <constraint firstItem="FBc-bS-RiB" firstAttribute="top" secondItem="lc1-Vh-gSs" secondAttribute="bottom" constant="5" id="uGe-v4-mmD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tLv-YZ-ceS"/>
+                    <navigationItem key="navigationItem" id="tLv-YZ-ceS">
+                        <barButtonItem key="rightBarButtonItem" title="Reload PL" id="Poh-rY-O6N">
+                            <connections>
+                                <action selector="reloadPlayList:" destination="BYZ-38-t0r" id="chT-41-Gf8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="playListTableView" destination="HbT-5y-wV2" id="TT9-zj-WeI"/>
                         <outlet property="playNext" destination="eGz-2K-2yw" id="IQU-x9-kpv"/>

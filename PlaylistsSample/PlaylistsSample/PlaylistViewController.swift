@@ -72,13 +72,7 @@ class PlaylistViewController: UIViewController {
         
         self.playListTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellID)
         
-        player.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                self.seekBar.value = Float(player.currentTime / player.duration)
-            }
-        }
+        
         
         registerPlaybackEvents()
         registerPlaylistControllerEvents()
@@ -88,7 +82,10 @@ class PlaylistViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.loadPlayList()
+    }
+    
+    func loadPlayList() {
         let playlistOptions = OVPPlaylistOptions()
         playlistOptions.playlistId = "0_wckoqjnn"
         
@@ -103,48 +100,49 @@ class PlaylistViewController: UIViewController {
             
             self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
             self.playListTableView.reloadData()
-
+            
             self.playNextAction(self)
             self.checkIfMediasAvailable()
         }
         
         
-//        var mediaOptions: [OVPMediaOptions] = []
-//
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+        //        var mediaOptions: [OVPMediaOptions] = []
+        //
+        //        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
+        //        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
+        //        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
         
-//        let ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
-//
-//        var mediaOptions: [OTTMediaOptions] = []
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media).set(ks: ks))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media).set(ks: ks))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media).set(ks: ks))
+        //        let ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
+        //
+        //        var mediaOptions: [OTTMediaOptions] = []
+        //        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media).set(ks: ks))
+        //        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media).set(ks: ks))
+        //        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media).set(ks: ks))
         
-//        kalturaPlayer?.loadPlaylistByEntryIds(options: mediaOptions, callback: { [weak self] (error) in
-//            guard let self = self else { return }
-//
-//            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-//            self.playListTableView.reloadData()
-//
-//            self.playNextAction(self)
-//        })
+        //        kalturaPlayer?.loadPlaylistByEntryIds(options: mediaOptions, callback: { [weak self] (error) in
+        //            guard let self = self else { return }
+        //
+        //            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+        //            self.playListTableView.reloadData()
+        //
+        //            self.playNextAction(self)
+        //        })
         
         /*
          // Basic
-        let playlist: PKPlaylist = PKPlaylist("ID",
-                                              name: "Basic Playlist",
-                                              thumbnailUrl: nil,
-                                              medias: BasicVideoData().getBasicVideos())
+         let playlist: PKPlaylist = PKPlaylist("ID",
+         name: "Basic Playlist",
+         thumbnailUrl: nil,
+         medias: BasicVideoData().getBasicVideos())
+         
+         kalturaPlayer?.setPlaylist(playlist)
+         
+         self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+         self.playListTableView.reloadData()
+         
+         self.playNextAction(self)
+         */
         
-        kalturaPlayer?.setPlaylist(playlist)
-        
-        self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-        self.playListTableView.reloadData()
-        
-        self.playNextAction(self)
-        */
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -174,6 +172,13 @@ class PlaylistViewController: UIViewController {
     
     private func registerPlaybackEvents() {
         guard let player = self.kalturaPlayer else { return }
+        
+        player.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.seekBar.value = Float(player.currentTime / player.duration)
+            }
+        }
         
         player.addObserver(self, events: [KPPlayerEvent.play,
                                           KPPlayerEvent.playing,
@@ -240,6 +245,10 @@ class PlaylistViewController: UIViewController {
     
     @IBAction func shuffleAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+    }
+    
+    @IBAction func reloadPlayList(_ sender: Any) {
+        self.loadPlayList()
     }
     
     func checkIfMediasAvailable() {
