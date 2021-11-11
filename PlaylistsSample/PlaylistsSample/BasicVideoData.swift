@@ -13,11 +13,11 @@ class BasicVideoData {
     func getBasicVideos() -> [PKMediaEntry] {
         var medias: [PKMediaEntry] = []
         
-        if let entry = sintelDRM() {
+        if let entry = sintelClear() {
             medias.append(entry)
         }
         
-        if let entry = sintelClear() {
+        if let entry = sintelDRM() {
             medias.append(entry)
         }
         

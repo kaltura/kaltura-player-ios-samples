@@ -13,7 +13,19 @@ import PlayKitYoubora
 
 private let cellID = "PlaylistCellID"
 
+enum PlaylistType {
+    case basic
+    case ott
+    case ovp
+    case ovpId
+}
+
 class PlaylistViewController: UIViewController {
+    
+    var playlistType: PlaylistType = .basic
+    var pluginsEnabled: Bool = true
+    
+    var adTags: [String] = IMAAdTags().getAdTagsCollection()
     
     @IBOutlet weak var playerView: KalturaPlayerView!
     @IBOutlet weak var playlistNameLabel: UILabel!
@@ -25,171 +37,206 @@ class PlaylistViewController: UIViewController {
     
     @IBOutlet weak var playListTableView: UITableView!
     
-//    var kalturaPlayer: KalturaBasicPlayer?
-//    var kalturaPlayer: KalturaOVPPlayer?
-    var kalturaPlayer: KalturaOTTPlayer?
+    /*
+     This is just sor sample uses.
+     Try to use exact type you need in your App: KalturaBasicPlayer, KalturaOVPPlayer or KalturaOTTPlayer
+     */
+    var player: KalturaPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupPlayer()
-        
-//        let plyerOptions = PlayerOptions()
-        let plyerOptions = PlayerOptions()
-        plyerOptions.autoPlay = true
-        
-        let youboraPluginParams: [String: Any] = [
-            "accountCode": "kalturatest"
-        ]
-        let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
-        
-        let imaConfig = IMAConfig()
-        
-        plyerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                                          YouboraPlugin.pluginName: analyticsConfig])
-        
-//        plyerOptions.ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
-        
-        plyerOptions.ks = "djJ8NDc4fMyE0MvWS-ph7F2aXohFMGAWtZexqZUJ1FXE3KzTrPRPQooYkOIW3t3pGHHV7tyccr_qyJzMydem-M5hyokocv1D7sBfMgQslNAh_F8-Sl7JKaGghNionDoBg5589dX8WZoKr4yOwoSLp1Rtu6FxHRZoYwLKSxCVW1zme389sIQWGqpgBhV4vrjqgb_muEiSIKNKwWjX4rZGKGasxh-WiDyvXuYj6V3OBIRyaeldCoqCrw-x0kreEfP5wc4Y_lJKbX__FPlkqNmk46ECYG-wWj4nUOy8cNzqb4fCPPKWU7OBiGrho6qb40PnTzNvUX6TdCTvYEb7ZW-AZ6o2iEGXwanf3Lu83lpnGaBFukE3ExFnm-Oerq_C_a52xUnFoTcH8lCi9A9gVQ-h9MUcNj_ElWGVhbbmRmyOILNhN_wmXw4KNeMjqv5-Jhrw9HODJkirhDTQd2Floij3NcRraGPbELydZv2FLSuqePhbV1kGO__w"
-        
-        
-        let player = KalturaOTTPlayer(options: plyerOptions)
-//        let player = KalturaOVPPlayer(options: plyerOptions)
-//        let player = KalturaBasicPlayer(options: plyerOptions)
-        kalturaPlayer = player
-        player.view = playerView
-        
         self.playListTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellID)
+        
+        setupPlayer()
+        initializePlayer()
         
         registerPlaybackEvents()
         registerPlaylistControllerEvents()
-        
-        checkIfMediasAvailable()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.loadPlayList()
-    }
-    
-    func setupPlayer() {
         
-//        KalturaBasicPlayer.setup()
-        
-        //        KalturaOVPPlayer.setup(partnerId: 1091,
-        //                               serverURL: "https://qa-apache-php7.dev.kaltura.com",
-        //                               referrer: nil)
-        
-                KalturaOTTPlayer.setup(partnerId: 478,
-                                       serverURL: "https://rest.beeline.tv/api_v3/")
-        
-//                KalturaOTTPlayer.setup(partnerId: 3009,
-//                                       serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3",
-//                                       referrer: nil)
-        
-        
-        
-        
-        
-        KalturaOTTPlayer.bypassConfigFetching(partnerId: 478,
-                                              ovpPartnerId: 0,
-                                              analyticsUrl: "https://analytics.kaltura.com",
-                                              ovpServiceUrl: "https://rest.beeline.tv/api_v3",
-                                              uiConfId: 0)
-    }
-    
-    func loadPlayList() {
-//        let playlistOptions = OVPPlaylistOptions()
-//        playlistOptions.playlistId = "0_wckoqjnn"
-//
-//        kalturaPlayer?.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
-//            guard let self = self else { return }
-//
-//            if let error = error {
-//                print("Loading playlist error: " + error.localizedDescription)
-//            }
-//
-//            self.kalturaPlayer?.playlistController?.delegate = self
-//
-//            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-//            self.playListTableView.reloadData()
-//
-//            self.playNextAction(self)
-//            self.checkIfMediasAvailable()
-//        }
-        
-        
-//        var mediaOptions: [OVPMediaOptions] = []
-//
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
-//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
-        
-        //        let ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
-        //
-        var mediaOptions: [OTTMediaOptions] = []
-        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "849804").set(assetReferenceType: .media))
-        
-        
-        
-        
-//        var mediaOptions: [OTTMediaOptions] = []
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "548575").set(assetReferenceType: .media))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "548570").set(assetReferenceType: .media))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "548576").set(assetReferenceType: .media))
-        
-        kalturaPlayer?.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
-            guard let self = self else { return }
-            
-            self.kalturaPlayer?.playlistController?.delegate = self
-            
-            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-            self.playListTableView.reloadData()
-
-            self.playNextAction(self)
-        })
-
-
-        
-        
-         // Basic
-//        let playlist: PKPlaylist = PKPlaylist(id: "ID-123",
-//                                              name: "Basic Playlist",
-//                                              thumbnailUrl: nil,
-//                                              medias: BasicVideoData().getBasicVideos())
-//
-//         kalturaPlayer?.setPlaylist(playlist)
-//
-//         self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-//         self.playListTableView.reloadData()
-//
-//         self.playNextAction(self)
-//
-        
+        loadPlayList()
+        checkIfMediasAvailable()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        kalturaPlayer?.pause()
-        kalturaPlayer?.removeObserver(self, events: KPPlaylistEvent.allEventTypes)
-        kalturaPlayer?.removeObserver(self, events: KPPlayerEvent.allEventTypes)
-        kalturaPlayer?.removeObserver(self, events: KPAdEvent.allEventTypes)
+        unregisterPlayerEvents()
     }
     
-    private func registerPlaylistControllerEvents() {
-        guard let player = self.kalturaPlayer else { return }
+    //
+    
+    func setupPlayer() {
+        
+        switch self.playlistType {
+        case .basic:
+            KalturaBasicPlayer.setup()
+        case .ott:
+            KalturaOTTPlayer.setup(partnerId: 3009,
+                                   serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3",
+                                   referrer: nil)
+            
+//            KalturaOTTPlayer.bypassConfigFetching(partnerId: 0,
+//                                                  ovpPartnerId: 0,
+//                                                  analyticsUrl: "https://analytics.kaltura.com",
+//                                                  ovpServiceUrl: "https://rest.beeline.tv/api_v3",
+//                                                  uiConfId: 0)
+        case .ovp:
+            KalturaOVPPlayer.setup(partnerId: 1091,
+                                   serverURL: "https://qa-apache-php7.dev.kaltura.com",
+                                   referrer: nil)
+        case .ovpId:
+            KalturaOVPPlayer.setup(partnerId: 1091,
+                                   serverURL: "https://qa-apache-php7.dev.kaltura.com",
+                                   referrer: nil)
+        }
+    }
+    
+    func initializePlayer() {
+        
+        switch self.playlistType {
+        case .basic:
+            player = KalturaBasicPlayer(options: self.getPlayerOptions())
+        case .ott:
+            player = KalturaOTTPlayer(options: self.getPlayerOptions())
+        case .ovp:
+            player = KalturaOVPPlayer(options: self.getPlayerOptions())
+        case .ovpId:
+            player = KalturaOVPPlayer(options: self.getPlayerOptions())
+        }
+        
+        player?.view = playerView
+    }
+    
+    func getPlayerOptions() -> PlayerOptions {
+        let plyerOptions = PlayerOptions()
+        plyerOptions.autoPlay = true
+        
+        //plyerOptions.ks = ""
+        
+        if self.pluginsEnabled == true {
+            
+            let youboraPluginParams: [String: Any] = [
+                "accountCode": "kalturatest"
+            ]
+            let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
+            
+            let imaConfig = IMAConfig()
+            
+            plyerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
+                                                              YouboraPlugin.pluginName: analyticsConfig])
+        }
+        
+        return plyerOptions
+    }
+    
+    func loadBasicPlaylist() {
+        guard let player = self.player as? KalturaBasicPlayer else { return }
+        
+        let playlist: PKPlaylist = PKPlaylist(id: nil,
+                                              name: "Basic Playlist",
+                                              thumbnailUrl: nil,
+                                              medias: BasicVideoData().getBasicVideos())
+        
+        player.setPlaylist(playlist)
+        
+        handlePlaylist()
+    }
+    
+    func loadOttPlaylist() {
+        guard let player = self.player as? KalturaOTTPlayer else { return }
+        
+        var mediaOptions: [OTTMediaOptions] = []
+        
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media))
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media))
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media))
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "849804").set(assetReferenceType: .media))
+        
+        mediaOptions.append(OTTMediaOptions().set(assetId: "548575").set(assetReferenceType: .media).set(networkProtocol: "http"))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "548570").set(assetReferenceType: .media).set(networkProtocol: "http"))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "548576").set(assetReferenceType: .media).set(networkProtocol: "http"))
+        
+        player.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Loading playlist error: " + error.localizedDescription)
+            }
+            self.handlePlaylist()
+        })
+    }
+    
+    func loadOvpPlaylist() {
+        guard let player = self.player as? KalturaOVPPlayer else { return }
+        
+        var mediaOptions: [OVPMediaOptions] = []
+        
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+        
+        player.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Loading playlist error: " + error.localizedDescription)
+            }
+            self.handlePlaylist()
+        })
+    }
+    
+    func loadPlaylistWithOvpId() {
+        guard let player = self.player as? KalturaOVPPlayer else { return }
+        
+        let playlistOptions = OVPPlaylistOptions()
+        playlistOptions.playlistId = "0_wckoqjnn"
+        
+        player.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
+            guard let self = self else { return }
+            if let error = error {
+                print("Loading playlist error: " + error.localizedDescription)
+            }
+            self.handlePlaylist()
+        }
+    }
+    
+    func handlePlaylist() {
+        
+        if let playlistController = self.player?.playlistController {
+            
+            playlistController.delegate = self
+            
+            self.playlistNameLabel.text = playlistController.playlist.name
+            self.playListTableView.reloadData()
+            
+            self.playNextAction(self)
+            
+            checkIfMediasAvailable()
+        }
+    }
+    
+    func loadPlayList() {
+        switch self.playlistType {
+        case .basic: self.loadBasicPlaylist()
+        case .ott: self.loadOttPlaylist()
+        case .ovp: self.loadOvpPlaylist()
+        case .ovpId: self.loadPlaylistWithOvpId()
+        }
+    }
+    
+    func registerPlaylistControllerEvents() {
+        guard let player = self.player else { return }
         
         player.addObserver(self, events: [KPPlaylistEvent.playListCurrentPlayingItemChanged]) { [weak self] event in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 
-                if let playlistController = self.kalturaPlayer?.playlistController {
+                if let playlistController = self.player?.playlistController {
                     self.playListTableView.selectRow(at: IndexPath(item: playlistController.currentMediaIndex, section: 0),
                                                      animated: true,
                                                      scrollPosition: .top)
@@ -198,8 +245,8 @@ class PlaylistViewController: UIViewController {
         }
     }
     
-    private func registerPlaybackEvents() {
-        guard let player = self.kalturaPlayer else { return }
+    func registerPlaybackEvents() {
+        guard let player = self.player else { return }
         
         player.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
@@ -242,8 +289,15 @@ class PlaylistViewController: UIViewController {
         }
     }
     
+    func unregisterPlayerEvents() {
+        player?.pause()
+        player?.removeObserver(self, events: KPPlaylistEvent.allEventTypes)
+        player?.removeObserver(self, events: KPPlayerEvent.allEventTypes)
+        player?.removeObserver(self, events: KPAdEvent.allEventTypes)
+    }
+    
     @IBAction func playPauseAction(_ sender: Any) {
-        guard let player = self.kalturaPlayer else { return }
+        guard let player = self.player else { return }
         
         if player.isPlaying || player.rate > 0 {
             player.pause()
@@ -253,21 +307,21 @@ class PlaylistViewController: UIViewController {
     }
     
     @IBAction func seekAction(_ slider: UISlider) {
-        guard let player = self.kalturaPlayer else { return }
+        guard let player = self.player else { return }
         player.currentTime = TimeInterval(player.duration * Double(slider.value))
     }
     
     @IBAction func playNextAction(_ sender: Any) {
-        kalturaPlayer?.playlistController?.playNext()
+        player?.playlistController?.playNext()
     }
     
     @IBAction func playPrevAction(_ sender: Any) {
-        kalturaPlayer?.playlistController?.playPrev()
+        player?.playlistController?.playPrev()
     }
     
     @IBAction func repeatAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        kalturaPlayer?.playlistController?.loop = sender.isSelected
+        player?.playlistController?.loop = sender.isSelected
         self.checkIfMediasAvailable()
     }
     
@@ -280,7 +334,7 @@ class PlaylistViewController: UIViewController {
     }
     
     func checkIfMediasAvailable() {
-        guard let controller = kalturaPlayer?.playlistController else {
+        guard let controller = player?.playlistController else {
             self.playNext.isEnabled = false
             self.playPrev.isEnabled = false
             return
@@ -294,7 +348,7 @@ class PlaylistViewController: UIViewController {
 extension PlaylistViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        kalturaPlayer?.playlistController?.playItem(index: indexPath.item)
+        player?.playlistController?.playItem(index: indexPath.item)
     }
     
 }
@@ -302,18 +356,18 @@ extension PlaylistViewController: UITableViewDelegate {
 extension PlaylistViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let playlist = kalturaPlayer?.playlistController?.playlist,
+        guard let playlist = player?.playlistController?.playlist,
               let items = playlist.medias else {
-            return 0
-        }
+                  return 0
+              }
         
         return items.count
     }
-   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
-        if let playlist = kalturaPlayer?.playlistController?.playlist,
+        if let playlist = player?.playlistController?.playlist,
            let item = playlist.medias?[indexPath.item] {
             
             cell.textLabel?.text = item.name
@@ -323,7 +377,7 @@ extension PlaylistViewController: UITableViewDataSource {
                 
                 do {
                     let data = try Data(contentsOf: url)
-                     cell.imageView?.image = UIImage(data: data)
+                    cell.imageView?.image = UIImage(data: data)
                 } catch {
                     print(error)
                 }
@@ -335,12 +389,10 @@ extension PlaylistViewController: UITableViewDataSource {
     
 }
 
-let IMAAdRulesTag = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator="
-
 extension PlaylistViewController: PlaylistControllerDelegate {
     
     func playlistController(_ controller: PlaylistController, needsUpdatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
-        return false
+        return pluginsEnabled
     }
     
     func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig {
@@ -357,7 +409,7 @@ extension PlaylistViewController: PlaylistControllerDelegate {
         
         let imaConfig = IMAConfig()
         imaConfig.alwaysStartWithPreroll = true
-        imaConfig.adTagUrl = IMAAdRulesTag
+        imaConfig.adTagUrl = adTags.randomElement() ?? ""
         
         return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
                                      YouboraPlugin.pluginName: analyticsConfig])

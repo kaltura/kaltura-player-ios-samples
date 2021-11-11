@@ -18,6 +18,8 @@
 		90AC732C26DEB88D00A77AF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90AC732A26DEB88D00A77AF0 /* LaunchScreen.storyboard */; };
 		90AC733726DEB88E00A77AF0 /* PlaylistsSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC733626DEB88E00A77AF0 /* PlaylistsSampleTests.swift */; };
 		90AC734226DEB88E00A77AF0 /* PlaylistsSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC734126DEB88E00A77AF0 /* PlaylistsSampleUITests.swift */; };
+		A5C53A84273D94C50017CCFF /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C53A83273D94C50017CCFF /* StartViewController.swift */; };
+		A5C53A86273DAAD70017CCFF /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C53A85273DAAD70017CCFF /* IMAAdTags.swift */; };
 		ACF8747BA3B0CBC3EED61405 /* Pods_PlaylistsSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F122F94544808CA7617EEA /* Pods_PlaylistsSampleTests.framework */; };
 		F6124890C6BF607CD5C97C0D /* Pods_PlaylistsSample_PlaylistsSampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A62FA306B58E7CA6240555 /* Pods_PlaylistsSample_PlaylistsSampleUITests.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +60,8 @@
 		90AC733D26DEB88E00A77AF0 /* PlaylistsSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaylistsSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AC734126DEB88E00A77AF0 /* PlaylistsSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsSampleUITests.swift; sourceTree = "<group>"; };
 		90AC734326DEB88E00A77AF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5C53A83273D94C50017CCFF /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		A5C53A85273DAAD70017CCFF /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
 		A6A62FA306B58E7CA6240555 /* Pods_PlaylistsSample_PlaylistsSampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaylistsSample_PlaylistsSampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6CC10F1D9CD74D8BBB16EFE /* Pods-PlaylistsSample-PlaylistsSampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaylistsSample-PlaylistsSampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-PlaylistsSample-PlaylistsSampleUITests/Pods-PlaylistsSample-PlaylistsSampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADDCABC680525CBE44D92F37 /* Pods_PlaylistsSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaylistsSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +127,8 @@
 				90AC731F26DEB88A00A77AF0 /* AppDelegate.swift */,
 				90AC732126DEB88A00A77AF0 /* SceneDelegate.swift */,
 				90A2F6C12720992800F31A66 /* BasicVideoData.swift */,
+				A5C53A85273DAAD70017CCFF /* IMAAdTags.swift */,
+				A5C53A83273D94C50017CCFF /* StartViewController.swift */,
 				90AC732326DEB88A00A77AF0 /* PlaylistViewController.swift */,
 				908028BA271591E6008F6F12 /* PlaylistTableViewCell.swift */,
 				90AC732526DEB88A00A77AF0 /* Main.storyboard */,
@@ -432,9 +438,11 @@
 			files = (
 				90AC732426DEB88A00A77AF0 /* PlaylistViewController.swift in Sources */,
 				90A2F6C22720992800F31A66 /* BasicVideoData.swift in Sources */,
+				A5C53A86273DAAD70017CCFF /* IMAAdTags.swift in Sources */,
 				90AC732026DEB88A00A77AF0 /* AppDelegate.swift in Sources */,
 				90AC732226DEB88A00A77AF0 /* SceneDelegate.swift in Sources */,
 				908028BB271591E6008F6F12 /* PlaylistTableViewCell.swift in Sources */,
+				A5C53A84273D94C50017CCFF /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

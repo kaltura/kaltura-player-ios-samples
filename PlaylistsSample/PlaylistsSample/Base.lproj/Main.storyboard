@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vh7-Tk-Zb7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vh7-Tk-Zb7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,14 +21,14 @@
                             <tableViewSection headerTitle="Player type" footerTitle="footer" id="9FU-4C-4W9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fX7-CX-qkr" rowHeight="60" style="IBUITableViewCellStyleDefault" id="3fI-l9-S8E">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3fI-l9-S8E" id="Z2R-fO-tki">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Basic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fX7-CX-qkr">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="60"/>
+                                                    <rect key="frame" x="20" y="0.0" width="356.5" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -37,14 +38,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="0Vu-yS-4zb" rowHeight="60" style="IBUITableViewCellStyleDefault" id="rGy-ac-mtT">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="104.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rGy-ac-mtT" id="via-OU-vQz">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="OTT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Vu-yS-4zb">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="60"/>
+                                                    <rect key="frame" x="20" y="0.0" width="356.5" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -54,14 +55,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="bSW-Iw-Sge" rowHeight="60" style="IBUITableViewCellStyleDefault" id="n3O-fl-Qbn">
-                                        <rect key="frame" x="0.0" y="148" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="164.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n3O-fl-Qbn" id="gaH-RM-Wx5">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="OVP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bSW-Iw-Sge">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="60"/>
+                                                    <rect key="frame" x="20" y="0.0" width="356.5" height="60"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -99,30 +100,77 @@
             </objects>
             <point key="canvasLocation" x="-1568" y="10"/>
         </scene>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="wVX-7s-JON">
             <objects>
-                <viewController id="mGV-n7-KjZ" sceneMemberID="viewController">
+                <viewController id="mGV-n7-KjZ" customClass="StartViewController" customModule="PlaylistsSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dz3-Ug-6ek">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Arx-Ez-jQK">
-                                <rect key="frame" x="150" y="433" width="114" height="30"/>
-                                <state key="normal" title="Show my playlist"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="H5i-8T-2Ma"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="zNK-NX-pfb">
+                                <rect key="frame" x="88" y="311" width="238.5" height="274"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Arx-Ez-jQK">
+                                        <rect key="frame" x="0.0" y="0.0" width="238.5" height="30"/>
+                                        <state key="normal" title="Basic Playlist"/>
+                                        <connections>
+                                            <action selector="showBasic:" destination="mGV-n7-KjZ" eventType="touchUpInside" id="5eq-MH-Zdk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4D-hs-7un">
+                                        <rect key="frame" x="0.0" y="60" width="238.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="OTT Playlist"/>
+                                        <connections>
+                                            <action selector="showOtt:" destination="mGV-n7-KjZ" eventType="touchUpInside" id="Hkc-oG-vTR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHO-ME-6bK">
+                                        <rect key="frame" x="0.0" y="121" width="238.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="OVP Playlist"/>
+                                        <connections>
+                                            <action selector="showOvp:" destination="mGV-n7-KjZ" eventType="touchUpInside" id="pQx-gb-Dnc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leq-8x-BUv">
+                                        <rect key="frame" x="0.0" y="182" width="238.5" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="OVP Playlist by playlist id"/>
+                                        <connections>
+                                            <action selector="showOvpById:" destination="mGV-n7-KjZ" eventType="touchUpInside" id="3N4-di-nXA"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sS6-t1-5xd">
+                                        <rect key="frame" x="0.0" y="243" width="238.5" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With Youpora and IMA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBY-IM-Vqq">
+                                                <rect key="frame" x="0.0" y="0.0" width="169.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iMJ-WY-Gxc">
+                                                <rect key="frame" x="189.5" y="0.0" width="51" height="31"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AXN-rc-Xsb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Arx-Ez-jQK" firstAttribute="centerX" secondItem="dz3-Ug-6ek" secondAttribute="centerX" id="6Mo-eB-7cs"/>
-                            <constraint firstItem="Arx-Ez-jQK" firstAttribute="centerY" secondItem="dz3-Ug-6ek" secondAttribute="centerY" id="7zt-Qd-cgi"/>
+                            <constraint firstItem="zNK-NX-pfb" firstAttribute="centerY" secondItem="dz3-Ug-6ek" secondAttribute="centerY" id="jMc-3f-dV6"/>
+                            <constraint firstItem="zNK-NX-pfb" firstAttribute="centerX" secondItem="dz3-Ug-6ek" secondAttribute="centerX" id="yBD-dW-535"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="J6i-Ma-vej"/>
+                    <connections>
+                        <outlet property="pluginsEnabledSwitch" destination="iMJ-WY-Gxc" id="2o6-gD-Ydi"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowPlaylist" id="oYc-s6-zba"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GcW-Bb-fvt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -297,8 +345,8 @@
         <image name="forward.fill" catalog="system" width="128" height="79"/>
         <image name="pause.fill" catalog="system" width="116" height="128"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
-        <image name="repeat" catalog="system" width="128" height="99"/>
-        <image name="shuffle" catalog="system" width="128" height="93"/>
+        <image name="repeat" catalog="system" width="128" height="98"/>
+        <image name="shuffle" catalog="system" width="128" height="95"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
