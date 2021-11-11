@@ -21,8 +21,15 @@ class BasicVideoData {
             medias.append(entry)
         }
         
+        if let entry = anotherSintelClear() {
+            medias.append(entry)
+        }
+        
         return medias
     }
+    
+    
+    // All Items
     
     func sintelClear() -> PKMediaEntry? {
         
@@ -61,6 +68,25 @@ class BasicVideoData {
         drmMediaEntry.name = "DRM"
         
         return drmMediaEntry
+    }
+    
+    func anotherSintelClear() -> PKMediaEntry? {
+        
+        guard let contentUrl = URL(string: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8") else { return nil }
+        
+        let sintelSource = PKMediaSource("id-1-2",
+                                         contentUrl: contentUrl,
+                                         drmData: nil,
+                                         mediaFormat: .hls)
+        
+        let sintelMediaEntry = PKMediaEntry("id-1-2",
+                                            sources: [sintelSource],
+                                            duration: -1)
+        sintelMediaEntry.mediaType = .vod
+        sintelMediaEntry.name = "Sintel-2"
+        //        self.mediaOptions = mediaOptions
+        //        self.mediaEntry = mediaEntry
+        return sintelMediaEntry
     }
     
 }

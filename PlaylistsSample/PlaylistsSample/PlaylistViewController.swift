@@ -26,25 +26,13 @@ class PlaylistViewController: UIViewController {
     @IBOutlet weak var playListTableView: UITableView!
     
 //    var kalturaPlayer: KalturaBasicPlayer?
-//    var kalturaOVPPlayer: KalturaOVPPlayer?
-    var kalturaPlayer: KalturaOVPPlayer?
-//    var kalturaPlayer: KalturaOTTPlayer?
+//    var kalturaPlayer: KalturaOVPPlayer?
+    var kalturaPlayer: KalturaOTTPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        KalturaBasicPlayer.setup()
-        
-        KalturaOVPPlayer.setup(partnerId: 1091,
-                               serverURL: "https://qa-apache-php7.dev.kaltura.com",
-                               referrer: nil)
-        
-//        KalturaOTTPlayer.setup(partnerId: 478,
-//                               serverURL: "https://rest.beeline.tv/api_v3/")
-        
-//        KalturaOTTPlayer.setup(partnerId: 3009,
-//                               serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3",
-//                               referrer: nil)
+        self.setupPlayer()
         
 //        let plyerOptions = PlayerOptions()
         let plyerOptions = PlayerOptions()
@@ -56,23 +44,22 @@ class PlaylistViewController: UIViewController {
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
         
         let imaConfig = IMAConfig()
-        imaConfig.alwaysStartWithPreroll = true
         
         plyerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
                                                           YouboraPlugin.pluginName: analyticsConfig])
         
 //        plyerOptions.ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
         
+        plyerOptions.ks = "djJ8NDc4fMyE0MvWS-ph7F2aXohFMGAWtZexqZUJ1FXE3KzTrPRPQooYkOIW3t3pGHHV7tyccr_qyJzMydem-M5hyokocv1D7sBfMgQslNAh_F8-Sl7JKaGghNionDoBg5589dX8WZoKr4yOwoSLp1Rtu6FxHRZoYwLKSxCVW1zme389sIQWGqpgBhV4vrjqgb_muEiSIKNKwWjX4rZGKGasxh-WiDyvXuYj6V3OBIRyaeldCoqCrw-x0kreEfP5wc4Y_lJKbX__FPlkqNmk46ECYG-wWj4nUOy8cNzqb4fCPPKWU7OBiGrho6qb40PnTzNvUX6TdCTvYEb7ZW-AZ6o2iEGXwanf3Lu83lpnGaBFukE3ExFnm-Oerq_C_a52xUnFoTcH8lCi9A9gVQ-h9MUcNj_ElWGVhbbmRmyOILNhN_wmXw4KNeMjqv5-Jhrw9HODJkirhDTQd2Floij3NcRraGPbELydZv2FLSuqePhbV1kGO__w"
         
-//        let player = KalturaOTTPlayer(options: plyerOptions)
-        let player = KalturaOVPPlayer(options: plyerOptions)
+        
+        let player = KalturaOTTPlayer(options: plyerOptions)
+//        let player = KalturaOVPPlayer(options: plyerOptions)
 //        let player = KalturaBasicPlayer(options: plyerOptions)
         kalturaPlayer = player
         player.view = playerView
         
         self.playListTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellID)
-        
-        
         
         registerPlaybackEvents()
         registerPlaylistControllerEvents()
@@ -85,63 +72,104 @@ class PlaylistViewController: UIViewController {
         self.loadPlayList()
     }
     
-    func loadPlayList() {
-        let playlistOptions = OVPPlaylistOptions()
-        playlistOptions.playlistId = "0_wckoqjnn"
+    func setupPlayer() {
         
-        kalturaPlayer?.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
+//        KalturaBasicPlayer.setup()
+        
+        //        KalturaOVPPlayer.setup(partnerId: 1091,
+        //                               serverURL: "https://qa-apache-php7.dev.kaltura.com",
+        //                               referrer: nil)
+        
+                KalturaOTTPlayer.setup(partnerId: 478,
+                                       serverURL: "https://rest.beeline.tv/api_v3/")
+        
+//                KalturaOTTPlayer.setup(partnerId: 3009,
+//                                       serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3",
+//                                       referrer: nil)
+        
+        
+        
+        
+        
+        KalturaOTTPlayer.bypassConfigFetching(partnerId: 478,
+                                              ovpPartnerId: 0,
+                                              analyticsUrl: "https://analytics.kaltura.com",
+                                              ovpServiceUrl: "https://rest.beeline.tv/api_v3",
+                                              uiConfId: 0)
+    }
+    
+    func loadPlayList() {
+//        let playlistOptions = OVPPlaylistOptions()
+//        playlistOptions.playlistId = "0_wckoqjnn"
+//
+//        kalturaPlayer?.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
+//            guard let self = self else { return }
+//
+//            if let error = error {
+//                print("Loading playlist error: " + error.localizedDescription)
+//            }
+//
+//            self.kalturaPlayer?.playlistController?.delegate = self
+//
+//            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+//            self.playListTableView.reloadData()
+//
+//            self.playNextAction(self)
+//            self.checkIfMediasAvailable()
+//        }
+        
+        
+//        var mediaOptions: [OVPMediaOptions] = []
+//
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+//        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
+        
+        //        let ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
+        //
+        var mediaOptions: [OTTMediaOptions] = []
+        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "849804").set(assetReferenceType: .media))
+        
+        
+        
+        
+//        var mediaOptions: [OTTMediaOptions] = []
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "548575").set(assetReferenceType: .media))
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "548570").set(assetReferenceType: .media))
+//        mediaOptions.append(OTTMediaOptions().set(assetId: "548576").set(assetReferenceType: .media))
+        
+        kalturaPlayer?.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
             guard let self = self else { return }
-            
-            if let error = error {
-                print("Loading playlist error: " + error.localizedDescription)
-            }
             
             self.kalturaPlayer?.playlistController?.delegate = self
             
             self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
             self.playListTableView.reloadData()
-            
+
             self.playNextAction(self)
-            self.checkIfMediasAvailable()
-        }
+        })
+
+
         
         
-        //        var mediaOptions: [OVPMediaOptions] = []
-        //
-        //        mediaOptions.append(OVPMediaOptions().set(entryId: "0_ttfy4uu0"))
-        //        mediaOptions.append(OVPMediaOptions().set(entryId: "0_01iwbdrn"))
-        //        mediaOptions.append(OVPMediaOptions().set(entryId: "0_1l9q18gy"))
-        
-        //        let ks = "djJ8NDc4fAnQ0UMs1SxUeP3qfNo3nD7C2aQ1JaeMuSKWWbF4qANX33y4Xi5oKJ1IV9Dfi5UM0OgegkgNwPCKSq5zl8Jm9Tc6k3tJm0J7HiMz46f_-fYezSCzrQonOF-MW94Ml7H3iNtoVjCqJfzXNPNnK56UBcd14dxcCFU4-samNk4vDh6U_w5lI56G0dwIuTjVocc-mDoFc0e1nNxJCzEgfzH2QNT2ibsc22u2ACv-shEX_GcJOXf1ZYVc7wxLOzuafPgEfIT_aiochFoBLLix56cgaL6A0Z3qi_U47WYzfgjFVpBr1O0kpH6OaysoyvC5FTklN9JI83bspX0xCC-dmQvBZW_4qaZcm4jbQOsFvP8MMCSmXmn-D0tZJPwzzp_MAIKVK-8NYajfhyuLQI5f0czXNBUhUj6nooCXjdDkFZdxpfRKyoatVhVgqFdrmBO4SGwWdF_qTOxwJC2CSLCQyCN0UfY="
-        //
-        //        var mediaOptions: [OTTMediaOptions] = []
-        //        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media).set(ks: ks))
-        //        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media).set(ks: ks))
-        //        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media).set(ks: ks))
-        
-        //        kalturaPlayer?.loadPlaylistByEntryIds(options: mediaOptions, callback: { [weak self] (error) in
-        //            guard let self = self else { return }
-        //
-        //            self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-        //            self.playListTableView.reloadData()
-        //
-        //            self.playNextAction(self)
-        //        })
-        
-        /*
          // Basic
-         let playlist: PKPlaylist = PKPlaylist("ID",
-         name: "Basic Playlist",
-         thumbnailUrl: nil,
-         medias: BasicVideoData().getBasicVideos())
-         
-         kalturaPlayer?.setPlaylist(playlist)
-         
-         self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
-         self.playListTableView.reloadData()
-         
-         self.playNextAction(self)
-         */
+//        let playlist: PKPlaylist = PKPlaylist(id: "ID-123",
+//                                              name: "Basic Playlist",
+//                                              thumbnailUrl: nil,
+//                                              medias: BasicVideoData().getBasicVideos())
+//
+//         kalturaPlayer?.setPlaylist(playlist)
+//
+//         self.playlistNameLabel.text = self.kalturaPlayer?.playlistController?.playlist.name
+//         self.playListTableView.reloadData()
+//
+//         self.playNextAction(self)
+//
         
     }
     
@@ -312,7 +340,7 @@ let IMAAdRulesTag = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/
 extension PlaylistViewController: PlaylistControllerDelegate {
     
     func playlistController(_ controller: PlaylistController, needsUpdatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
-        return true
+        return false
     }
     
     func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig {
@@ -321,7 +349,8 @@ extension PlaylistViewController: PlaylistControllerDelegate {
             "accountCode": "kalturatest",
             "contentCustomDimensions": [
                 "contentCustomDimension1": controller.playlist.id,
-                "contentCustomDimension2": "Playlist Item: \(mediaItemIndex)"
+                "contentCustomDimension2": "Playlist Item: \(mediaItemIndex)",
+                "contentCustomDimension3": controller.playlist.medias?[mediaItemIndex].id
             ]
         ]
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
