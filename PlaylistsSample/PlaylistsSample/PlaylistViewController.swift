@@ -27,6 +27,9 @@ class PlaylistViewController: UIViewController {
     
     var adTags: [String] = IMAAdTags().getAdTagsCollection()
     
+    @IBOutlet weak var countdownView: UIView!
+    @IBOutlet weak var countdownTitle: UILabel!
+    
     @IBOutlet weak var playerView: KalturaPlayerView!
     @IBOutlet weak var playlistNameLabel: UILabel!
     
@@ -36,6 +39,12 @@ class PlaylistViewController: UIViewController {
     @IBOutlet weak var playPrev: UIButton!
     
     @IBOutlet weak var playListTableView: UITableView!
+    
+    @IBOutlet weak var autoPlayNextButton: UIButton!
+    
+    @IBOutlet weak var playbackTime: UILabel!
+    @IBOutlet weak var playbackLeftTime: UILabel!
+    @IBOutlet weak var totalDurationTime: UILabel!
     
     /*
      This is just sor sample uses.
@@ -47,6 +56,8 @@ class PlaylistViewController: UIViewController {
         super.viewDidLoad()
         
         self.playListTableView.register(PlaylistTableViewCell.self, forCellReuseIdentifier: cellID)
+        
+        self.countdownView.isHidden = true
         
         setupPlayer()
         initializePlayer()
@@ -210,6 +221,9 @@ class PlaylistViewController: UIViewController {
         if let playlistController = self.player?.playlistController {
             
             playlistController.delegate = self
+            playlistController.autoContinue = true
+            
+            self.autoPlayNextButton.isSelected = playlistController.autoContinue
             
             self.playlistNameLabel.text = playlistController.playlist.name
             self.playListTableView.reloadData()
@@ -229,6 +243,16 @@ class PlaylistViewController: UIViewController {
         }
     }
     
+    func checkIfMediasAvailable() {
+        guard let controller = player?.playlistController else {
+            self.playNext.isEnabled = false
+            self.playPrev.isEnabled = false
+            return
+        }
+        self.playNext.isEnabled = controller.isNextItemAvailable()
+        self.playPrev.isEnabled = controller.isPreviousItemAvailable()
+    }
+    
     func registerPlaylistControllerEvents() {
         guard let player = self.player else { return }
         
@@ -243,6 +267,19 @@ class PlaylistViewController: UIViewController {
                 }
             }
         }
+        
+        player.addObserver(self, events: [PlaylistEvent.playlistCountDownStart, PlaylistEvent.playlistCountDownEnd]) { [weak self] event in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch event {
+                case is PlaylistEvent.PlaylistCountDownStart:
+                    self.showCoundownView(true, animated: true)
+                case is PlaylistEvent.PlaylistCountDownEnd:
+                    self.showCoundownView(false, animated: true)
+                default: break
+                }
+            }
+        }
     }
     
     func registerPlaybackEvents() {
@@ -251,7 +288,15 @@ class PlaylistViewController: UIViewController {
         player.addObserver(self, events: [KPPlayerEvent.playheadUpdate]) { [weak self] event in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.seekBar.value = Float(player.currentTime / player.duration)
+                
+                if let currentTime = event.currentTime {
+                    
+                    self.seekBar.value = Float(player.currentTime / player.duration)
+                    
+                    self.playbackTime.text = "\(currentTime.intValue)"
+                    self.playbackLeftTime.text = "-\(Int(player.duration - currentTime.doubleValue))"
+                    self.totalDurationTime.text = "\(Int(player.duration))"
+                }
             }
         }
         
@@ -327,20 +372,38 @@ class PlaylistViewController: UIViewController {
     
     @IBAction func shuffleAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        guard let controller = player?.playlistController else {
+            return
+        }
+
+        controller.shuffle()
+    }
+    
+    @IBAction func enableAutoPlayNextAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        player?.playlistController?.autoContinue = sender.isSelected
     }
     
     @IBAction func reloadPlayList(_ sender: Any) {
         self.loadPlayList()
     }
     
-    func checkIfMediasAvailable() {
-        guard let controller = player?.playlistController else {
-            self.playNext.isEnabled = false
-            self.playPrev.isEnabled = false
-            return
+    @IBAction func dismissCountdownAction(_ sender: Any) {
+        player?.playlistController?.resetCountdownForCurrentItem()
+        self.showCoundownView(false, animated: true)
+    }
+    
+    func showCoundownView(_ show: Bool, animated: Bool) {
+        
+        if animated == false {
+            self.countdownView.isHidden = !show
+        } else {
+            UIView.transition(with: self.countdownView, duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                self.countdownView.isHidden = !show
+            })
         }
-        self.playNext.isEnabled = controller.isNextItemAvailable()
-        self.playPrev.isEnabled = controller.isPreviousItemAvailable()
     }
     
 }
@@ -413,6 +476,18 @@ extension PlaylistViewController: PlaylistControllerDelegate {
         
         return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
                                      YouboraPlugin.pluginName: analyticsConfig])
+    }
+    
+    func playlistController(_ controller: PlaylistController, enableCountdownForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+        return true
+    }
+    
+    func playlistController(_ controller: PlaylistController, countdownOptionsForMediaItemAtIndex mediaItemIndex: Int) -> CountdownOptions {
+        
+        let countdown = CountdownOptions()
+        countdown.timeToShow = 240
+        countdown.duration = 15
+        return countdown
     }
     
 }
