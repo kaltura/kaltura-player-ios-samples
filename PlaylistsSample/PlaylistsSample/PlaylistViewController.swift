@@ -46,6 +46,8 @@ class PlaylistViewController: UIViewController {
     @IBOutlet weak var playbackLeftTime: UILabel!
     @IBOutlet weak var totalDurationTime: UILabel!
     
+    var playlistItemsIdsWithErrors: [String] = []
+    
     /*
      This is just sor sample uses.
      Try to use exact type you need in your App: KalturaBasicPlayer, KalturaOVPPlayer or KalturaOTTPlayer
@@ -219,13 +221,14 @@ class PlaylistViewController: UIViewController {
     func handlePlaylist() {
         
         if let playlistController = self.player?.playlistController {
-            
             playlistController.delegate = self
             playlistController.autoContinue = true
+            playlistController.recoverOnError = false
             
             self.autoPlayNextButton.isSelected = playlistController.autoContinue
-            
             self.playlistNameLabel.text = playlistController.playlist.name
+            
+            self.playlistItemsIdsWithErrors.removeAll()
             self.playListTableView.reloadData()
             
             self.playNextAction(self)
@@ -256,9 +259,10 @@ class PlaylistViewController: UIViewController {
     func registerPlaylistControllerEvents() {
         guard let player = self.player else { return }
         
-        player.addObserver(self, events: [KPPlaylistEvent.playListCurrentPlayingItemChanged]) { [weak self] event in
+        player.addObserver(self, events: [PlaylistEvent.playListCurrentPlayingItemChanged]) { [weak self] event in
             guard let self = self else { return }
             DispatchQueue.main.async {
+                self.playListTableView.reloadData()
                 
                 if let playlistController = self.player?.playlistController {
                     self.playListTableView.selectRow(at: IndexPath(item: playlistController.currentMediaIndex, section: 0),
@@ -276,6 +280,21 @@ class PlaylistViewController: UIViewController {
                     self.showCoundownView(true, animated: true)
                 case is PlaylistEvent.PlaylistCountDownEnd:
                     self.showCoundownView(false, animated: true)
+                default: break
+                }
+            }
+        }
+        
+        player.addObserver(self, events: [PlaylistEvent.playListLoadMediaError]) { [weak self] event in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch event {
+                case is PlaylistEvent.PlayListLoadMediaError:
+                    if let entryId = event.entryId, !self.playlistItemsIdsWithErrors.contains(entryId) {
+                        self.playlistItemsIdsWithErrors.append(entryId)
+                        self.playListTableView.reloadData()
+                    }
                 default: break
                 }
             }
@@ -435,6 +454,12 @@ extension PlaylistViewController: UITableViewDataSource {
             
             cell.textLabel?.text = item.name
             cell.detailTextLabel?.text = "Duration: \(item.duration)"
+            
+            if self.playlistItemsIdsWithErrors.contains(item.id) {
+                cell.backgroundColor = UIColor.red.withAlphaComponent(0.3)
+            } else {
+                cell.backgroundColor = nil
+            }
             
             if let thumbnailUrl = item.thumbnailUrl, let url = URL(string: thumbnailUrl) {
                 

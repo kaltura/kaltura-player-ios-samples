@@ -343,7 +343,7 @@
                                             <constraint firstAttribute="height" constant="50" id="gpd-ge-sC4"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.app.fill" catalog="system" title="Skip"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="xmark.app.fill" catalog="system" title="Skip"/>
                                         <connections>
                                             <action selector="dismissCountdownAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HU4-Rv-9mM"/>
                                         </connections>
