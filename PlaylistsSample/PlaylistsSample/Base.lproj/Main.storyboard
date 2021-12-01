@@ -204,13 +204,13 @@
                                 <rect key="frame" x="40" y="269.5" width="369" height="44"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lc1-Vh-gSs">
-                                        <rect key="frame" x="-2" y="0.0" width="329" height="45"/>
+                                        <rect key="frame" x="-2" y="0.0" width="285" height="45"/>
                                         <connections>
                                             <action selector="seekAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="GCm-xB-m0w"/>
                                         </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOA-Ew-CpO">
-                                        <rect key="frame" x="325" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="281" y="0.0" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="4bY-QR-GM1"/>
                                             <constraint firstAttribute="height" constant="44" id="I5J-rA-Sjr"/>
@@ -224,6 +224,17 @@
                                         </state>
                                         <connections>
                                             <action selector="enableAutoPlayNextAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="btd-oN-aaY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNk-Qs-wpw">
+                                        <rect key="frame" x="325" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="Bea-pt-FG7"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down.on.square" catalog="system"/>
+                                        <connections>
+                                            <action selector="preloadNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EJf-gH-1Eq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -447,6 +458,7 @@
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="repeat" catalog="system" width="128" height="98"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
+        <image name="square.and.arrow.down.on.square" catalog="system" width="122" height="128"/>
         <image name="xmark.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

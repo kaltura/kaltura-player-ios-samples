@@ -10,6 +10,8 @@ import KalturaPlayer
 import PlayKit
 import PlayKit_IMA
 import PlayKitYoubora
+import PlayKitProviders
+import PlayKitSmartSwitch
 
 private let cellID = "PlaylistCellID"
 
@@ -126,8 +128,8 @@ class PlaylistViewController: UIViewController {
     }
     
     func getPlayerOptions() -> PlayerOptions {
-        let plyerOptions = PlayerOptions()
-        plyerOptions.autoPlay = true
+        let playerOptions = PlayerOptions()
+        playerOptions.autoPlay = true
         
         //plyerOptions.ks = ""
         
@@ -137,14 +139,15 @@ class PlaylistViewController: UIViewController {
                 "accountCode": "kalturatest"
             ]
             let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
-            
             let imaConfig = IMAConfig()
+            let smartSwitchConfig = SmartSwitchConfig()
             
-            plyerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                                              YouboraPlugin.pluginName: analyticsConfig])
+            playerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
+                                                              YouboraPlugin.pluginName: analyticsConfig,
+                                                               SmartSwitchMediaEntryInterceptor.pluginName: smartSwitchConfig])
         }
         
-        return plyerOptions
+        return playerOptions
     }
     
     func loadBasicPlaylist() {
@@ -159,6 +162,8 @@ class PlaylistViewController: UIViewController {
         
         handlePlaylist()
     }
+    
+    var playlistName: String? = nil
     
     func loadOttPlaylist() {
         guard let player = self.player as? KalturaOTTPlayer else { return }
@@ -223,7 +228,7 @@ class PlaylistViewController: UIViewController {
         if let playlistController = self.player?.playlistController {
             playlistController.delegate = self
             playlistController.autoContinue = true
-            playlistController.recoverOnError = false
+            playlistController.recoverOnError = true
             
             self.autoPlayNextButton.isSelected = playlistController.autoContinue
             self.playlistNameLabel.text = playlistController.playlist.name
@@ -259,7 +264,7 @@ class PlaylistViewController: UIViewController {
     func registerPlaylistControllerEvents() {
         guard let player = self.player else { return }
         
-        player.addObserver(self, events: [PlaylistEvent.playListCurrentPlayingItemChanged]) { [weak self] event in
+        player.addObserver(self, events: [PlaylistEvent.playlistCurrentPlayingItemChanged]) { [weak self] event in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.playListTableView.reloadData()
@@ -285,12 +290,12 @@ class PlaylistViewController: UIViewController {
             }
         }
         
-        player.addObserver(self, events: [PlaylistEvent.playListLoadMediaError]) { [weak self] event in
+        player.addObserver(self, events: [PlaylistEvent.playlistLoadMediaError]) { [weak self] event in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 switch event {
-                case is PlaylistEvent.PlayListLoadMediaError:
+                case is PlaylistEvent.PlaylistLoadMediaError:
                     if let entryId = event.entryId, !self.playlistItemsIdsWithErrors.contains(entryId) {
                         self.playlistItemsIdsWithErrors.append(entryId)
                         self.playListTableView.reloadData()
@@ -412,6 +417,10 @@ class PlaylistViewController: UIViewController {
         self.showCoundownView(false, animated: true)
     }
     
+    @IBAction func preloadNext(_ sender: Any) {
+        player?.playlistController?.preloadNext()
+    }
+    
     func showCoundownView(_ show: Bool, animated: Bool) {
         
         if animated == false {
@@ -499,8 +508,27 @@ extension PlaylistViewController: PlaylistControllerDelegate {
         imaConfig.alwaysStartWithPreroll = true
         imaConfig.adTagUrl = adTags.randomElement() ?? ""
         
+        let phoenixAnalytics = PhoenixAnalyticsPluginConfig(baseUrl: "https://api.frp1.ott.kaltura.com/api_v3/",
+                                                            timerInterval: 30,
+                                                            ks: "123",
+                                                            partnerId: 0,
+                                                            disableMediaHit: false,
+                                                            disableMediaMark: false,
+                                                            epgId: "gilad")
+        
+        let smartSwitchConfig = SmartSwitchConfig()
+        smartSwitchConfig.accountCode = "kalturatest" // Youbora account code.
+        smartSwitchConfig.originCode = "vod"
+        smartSwitchConfig.optionalParams = ["live": "false"]
+        smartSwitchConfig.timeout = 160 // Timeout time period for Youbora CDN balancer calls.
+        smartSwitchConfig.reportSelectedCDNCode = true // if true plugin will report chosen CDN code to Youbora analytics.
+        // smartSwitchUrl this is optional parameter. Set it if you have different Youbora CDN balancer host.
+        smartSwitchConfig.smartSwitchUrl = "http://cdnbalancer.youbora.com/orderedcdn"
+        
         return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                     YouboraPlugin.pluginName: analyticsConfig])
+                                     YouboraPlugin.pluginName: analyticsConfig,
+                                     PhoenixAnalyticsPlugin.pluginName: phoenixAnalytics,
+                                     SmartSwitchMediaEntryInterceptor.pluginName: smartSwitchConfig])
     }
     
     func playlistController(_ controller: PlaylistController, enableCountdownForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
