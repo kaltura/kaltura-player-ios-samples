@@ -11,7 +11,7 @@ import PlayKit
 import PlayKit_IMA
 import PlayKitYoubora
 import PlayKitProviders
-import PlayKitSmartSwitch
+
 
 private let cellID = "PlaylistCellID"
 
@@ -140,11 +140,10 @@ class PlaylistViewController: UIViewController {
             ]
             let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
             let imaConfig = IMAConfig()
-            let smartSwitchConfig = SmartSwitchConfig()
+            
             
             playerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                                              YouboraPlugin.pluginName: analyticsConfig,
-                                                               SmartSwitchMediaEntryInterceptor.pluginName: smartSwitchConfig])
+                                                              YouboraPlugin.pluginName: analyticsConfig])
         }
         
         return playerOptions
@@ -516,19 +515,18 @@ extension PlaylistViewController: PlaylistControllerDelegate {
                                                             disableMediaMark: false,
                                                             epgId: "gilad")
         
-        let smartSwitchConfig = SmartSwitchConfig()
-        smartSwitchConfig.accountCode = "kalturatest" // Youbora account code.
-        smartSwitchConfig.originCode = "vod"
-        smartSwitchConfig.optionalParams = ["live": "false"]
-        smartSwitchConfig.timeout = 160 // Timeout time period for Youbora CDN balancer calls.
-        smartSwitchConfig.reportSelectedCDNCode = true // if true plugin will report chosen CDN code to Youbora analytics.
-        // smartSwitchUrl this is optional parameter. Set it if you have different Youbora CDN balancer host.
-        smartSwitchConfig.smartSwitchUrl = "http://cdnbalancer.youbora.com/orderedcdn"
+//        let smartSwitchConfig = SmartSwitchConfig()
+//        smartSwitchConfig.accountCode = "kalturatest" // Youbora account code.
+//        smartSwitchConfig.originCode = "vod"
+//        smartSwitchConfig.optionalParams = ["live": "false"]
+//        smartSwitchConfig.timeout = 160 // Timeout time period for Youbora CDN balancer calls.
+//        smartSwitchConfig.reportSelectedCDNCode = true // if true plugin will report chosen CDN code to Youbora analytics.
+//        // smartSwitchUrl this is optional parameter. Set it if you have different Youbora CDN balancer host.
+//        smartSwitchConfig.smartSwitchUrl = "http://cdnbalancer.youbora.com/orderedcdn"
         
         return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
                                      YouboraPlugin.pluginName: analyticsConfig,
-                                     PhoenixAnalyticsPlugin.pluginName: phoenixAnalytics,
-                                     SmartSwitchMediaEntryInterceptor.pluginName: smartSwitchConfig])
+                                     PhoenixAnalyticsPlugin.pluginName: phoenixAnalytics])
     }
     
     func playlistController(_ controller: PlaylistController, enableCountdownForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
