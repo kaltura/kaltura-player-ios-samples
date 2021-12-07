@@ -98,7 +98,7 @@ class PlaylistViewController: UIViewController {
 //            KalturaOTTPlayer.bypassConfigFetching(partnerId: 0,
 //                                                  ovpPartnerId: 0,
 //                                                  analyticsUrl: "https://analytics.kaltura.com",
-//                                                  ovpServiceUrl: "https://rest.beeline.tv/api_v3",
+//                                                  ovpServiceUrl: "https://analytics.kaltura.com/api_v3",
 //                                                  uiConfId: 0)
         case .ovp:
             KalturaOVPPlayer.setup(partnerId: 1091,
@@ -212,6 +212,7 @@ class PlaylistViewController: UIViewController {
         
         let playlistOptions = OVPPlaylistOptions()
         playlistOptions.playlistId = "0_wckoqjnn"
+//        playlistOptions.playlistId = "0_ma5mq6d3"
         
         player.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
             guard let self = self else { return }
@@ -228,6 +229,7 @@ class PlaylistViewController: UIViewController {
             playlistController.delegate = self
             playlistController.autoContinue = true
             playlistController.recoverOnError = true
+            playlistController.preloadTime = 120
             
             self.autoPlayNextButton.isSelected = playlistController.autoContinue
             self.playlistNameLabel.text = playlistController.playlist.name
@@ -394,12 +396,7 @@ class PlaylistViewController: UIViewController {
     }
     
     @IBAction func shuffleAction(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        guard let controller = player?.playlistController else {
-            return
-        }
-
-        controller.shuffle()
+        // currently not implemented
     }
     
     @IBAction func enableAutoPlayNextAction(_ sender: UIButton) {
@@ -412,7 +409,7 @@ class PlaylistViewController: UIViewController {
     }
     
     @IBAction func dismissCountdownAction(_ sender: Any) {
-        player?.playlistController?.resetCountdownForCurrentItem()
+        player?.playlistController?.disableCountdownForCurrentItem()
         self.showCoundownView(false, animated: true)
     }
     
@@ -487,59 +484,40 @@ extension PlaylistViewController: UITableViewDataSource {
 
 extension PlaylistViewController: PlaylistControllerDelegate {
     
-    func playlistController(_ controller: PlaylistController, needsUpdatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
-        return pluginsEnabled
+    func playlistController(_ controller: PlaylistController, updatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+        return true
     }
     
-    func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig {
+    func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig? {
         
         let youboraPluginParams: [String: Any] = [
             "accountCode": "kalturatest",
             "contentCustomDimensions": [
-                "contentCustomDimension1": controller.playlist.id,
-                "contentCustomDimension2": "Playlist Item: \(mediaItemIndex)",
-                "contentCustomDimension3": controller.playlist.medias?[mediaItemIndex].id
+                "contentCustomDimension1": "Playlist ID: \(controller.playlist.id ?? "empty")",
+                "contentCustomDimension2": "Playlist Item #: \(mediaItemIndex)",
+                "contentCustomDimension3": "MediaEntry ID: \(controller.playlist.medias?[mediaItemIndex].id ?? "empty")",
             ]
         ]
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
         
         let imaConfig = IMAConfig()
         imaConfig.alwaysStartWithPreroll = true
-        imaConfig.adTagUrl = adTags.randomElement() ?? ""
-        
-        let phoenixAnalytics = PhoenixAnalyticsPluginConfig(baseUrl: "https://api.frp1.ott.kaltura.com/api_v3/",
-                                                            timerInterval: 30,
-                                                            ks: "123",
-                                                            partnerId: 0,
-                                                            disableMediaHit: false,
-                                                            disableMediaMark: false,
-                                                            epgId: "gilad")
-        
-//        let smartSwitchConfig = SmartSwitchConfig()
-//        smartSwitchConfig.accountCode = "kalturatest" // Youbora account code.
-//        smartSwitchConfig.originCode = "vod"
-//        smartSwitchConfig.optionalParams = ["live": "false"]
-//        smartSwitchConfig.timeout = 160 // Timeout time period for Youbora CDN balancer calls.
-//        smartSwitchConfig.reportSelectedCDNCode = true // if true plugin will report chosen CDN code to Youbora analytics.
-//        // smartSwitchUrl this is optional parameter. Set it if you have different Youbora CDN balancer host.
-//        smartSwitchConfig.smartSwitchUrl = "http://cdnbalancer.youbora.com/orderedcdn"
+        imaConfig.adTagUrl = "AD_TAG"
         
         return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                     YouboraPlugin.pluginName: analyticsConfig,
-                                     PhoenixAnalyticsPlugin.pluginName: phoenixAnalytics])
+                                     YouboraPlugin.pluginName: analyticsConfig])
     }
     
     func playlistController(_ controller: PlaylistController, enableCountdownForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
         return true
     }
     
-    func playlistController(_ controller: PlaylistController, countdownOptionsForMediaItemAtIndex mediaItemIndex: Int) -> CountdownOptions {
+    func playlistController(_ controller: PlaylistController, countdownOptionsForMediaItemAtIndex mediaItemIndex: Int) -> CountdownOptions? {
         
         let countdown = CountdownOptions()
         countdown.timeToShow = 240
-        countdown.duration = 15
+        countdown.duration = 20
         return countdown
     }
-    
 }
 
