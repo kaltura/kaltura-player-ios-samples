@@ -12,7 +12,7 @@
 		D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DD623E963D100462B23 /* MediaPlayerViewController.swift */; };
 		D2231DDA23EAD71700462B23 /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DD923EAD71700462B23 /* VideoData.swift */; };
 		D2231DDC23EAD8B300462B23 /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DDB23EAD8B300462B23 /* MediasTableViewController.swift */; };
-		D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DDD23EAFAB700462B23 /* PKMediaPlayerViewController.swift */; };
+		D2231DDE23EAFAB700462B23 /* KPMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DDD23EAFAB700462B23 /* KPMediaPlayerViewController.swift */; };
 		D2231DE123EAFCD600462B23 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DE023EAFCD600462B23 /* PlayerViewController.swift */; };
 		D22671FA22F7346100B1F247 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22671F922F7346100B1F247 /* AppDelegate.swift */; };
 		D22671FF22F7346100B1F247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22671FD22F7346100B1F247 /* Main.storyboard */; };
@@ -40,7 +40,7 @@
 		D2231DD623E963D100462B23 /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D2231DD923EAD71700462B23 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
 		D2231DDB23EAD8B300462B23 /* MediasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediasTableViewController.swift; sourceTree = "<group>"; };
-		D2231DDD23EAFAB700462B23 /* PKMediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMediaPlayerViewController.swift; sourceTree = "<group>"; };
+		D2231DDD23EAFAB700462B23 /* KPMediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPMediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D2231DE023EAFCD600462B23 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D22671F622F7346100B1F247 /* BasicSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22671F922F7346100B1F247 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 			children = (
 				D2231DE023EAFCD600462B23 /* PlayerViewController.swift */,
 				D2231DD623E963D100462B23 /* MediaPlayerViewController.swift */,
-				D2231DDD23EAFAB700462B23 /* PKMediaPlayerViewController.swift */,
+				D2231DDD23EAFAB700462B23 /* KPMediaPlayerViewController.swift */,
 			);
 			path = PlayerViewController;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 				D22E9CE024B2F4A400CD9DDB /* UIMediaDownloadTableViewCell.swift in Sources */,
 				D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */,
-				D2231DDE23EAFAB700462B23 /* PKMediaPlayerViewController.swift in Sources */,
+				D2231DDE23EAFAB700462B23 /* KPMediaPlayerViewController.swift in Sources */,
 				D22E9CE224B2F4D400CD9DDB /* CircleProgressView.swift in Sources */,
 				D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,
