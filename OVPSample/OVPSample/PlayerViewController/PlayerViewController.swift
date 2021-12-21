@@ -15,7 +15,7 @@ enum PlayerType {
     func storyboardID() -> String {
         switch self {
         case .Custom: return "MediaPlayerViewController"
-        case .PlayKitUI: return "PKMediaPlayerViewController"
+        case .PlayKitUI: return "KPMediaPlayerViewController"
         }
     }
 }

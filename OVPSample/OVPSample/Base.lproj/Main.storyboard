@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UwV-0S-DtE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UwV-0S-DtE">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="CE2-9R-DVY" style="IBUITableViewCellStyleDefault" id="sGf-B1-v54">
-                                <rect key="frame" x="0.0" y="28" width="414" height="58.5"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="58.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sGf-B1-v54" id="8Ar-VE-8Bj">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="58.5"/>
@@ -60,7 +60,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UIMediaHeaderTableViewCell" id="d2l-yY-lKt" customClass="UIMediaHeaderTableViewCell" customModule="OVPSample" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="41.5"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d2l-yY-lKt" id="1Ms-89-RdC">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
@@ -102,7 +102,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="dWR-Xr-KMb" style="IBUITableViewCellStyleDefault" id="4Eh-Ed-HGP" customClass="UIMediaTableViewCell" customModule="OVPSample">
-                                <rect key="frame" x="0.0" y="69.5" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="86" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Eh-Ed-HGP" id="Ja7-Bo-zZ0">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -122,7 +122,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaDownloadTableViewCell" id="2cq-qd-n2F" customClass="UIMediaDownloadTableViewCell" customModule="OVPSample">
-                                <rect key="frame" x="0.0" y="113" width="414" height="60.5"/>
+                                <rect key="frame" x="0.0" y="129.5" width="414" height="60.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2cq-qd-n2F" id="eV1-P9-1A6">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
@@ -192,18 +192,18 @@
         <!--Media Player View Controller-->
         <scene sceneID="Jhk-gf-6Dr">
             <objects>
-                <viewController storyboardIdentifier="PKMediaPlayerViewController" id="0QD-8F-E1V" customClass="PKMediaPlayerViewController" customModule="OVPSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PKMediaPlayerViewController" id="0QD-8F-E1V" customClass="KPMediaPlayerViewController" customModule="OVPSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HpD-yD-ul9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlv-ad-fnp" customClass="PKMediaPlayer" customModule="PlayKitUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlv-ad-fnp" customClass="KPMediaPlayer" customModule="KalturaPlayer">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sHH-Dh-y98"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sHH-Dh-y98" firstAttribute="trailing" secondItem="tlv-ad-fnp" secondAttribute="trailing" id="2Md-vS-f9L"/>
                             <constraint firstItem="tlv-ad-fnp" firstAttribute="leading" secondItem="sHH-Dh-y98" secondAttribute="leading" id="Gi9-5T-wLv"/>
@@ -215,6 +215,9 @@
                             <constraint firstItem="tlv-ad-fnp" firstAttribute="top" secondItem="sHH-Dh-y98" secondAttribute="top" id="zeQ-8r-NT9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mediaPlayer" destination="tlv-ad-fnp" id="19E-lA-kyw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcJ-1O-1a8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -584,9 +587,6 @@
         <image name="play" width="109" height="109"/>
         <image name="playerSettingsIcon" width="32" height="32"/>
         <image name="speedRate" width="60" height="60"/>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -24,7 +24,7 @@
 		D2895AE724D29A5F0090F9F0 /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AE624D29A5F0090F9F0 /* MediasTableViewController.swift */; };
 		D2895AEA24D29AB50090F9F0 /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AE924D29AB50090F9F0 /* VideoData.swift */; };
 		D2895AF524DADFF90090F9F0 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF424DADFF90090F9F0 /* PlayerViewController.swift */; };
-		D2895AF724DAE0810090F9F0 /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF624DAE0810090F9F0 /* PKMediaPlayerViewController.swift */; };
+		D2895AF724DAE0810090F9F0 /* KPMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF624DAE0810090F9F0 /* KPMediaPlayerViewController.swift */; };
 		D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AF824DAE5EB0090F9F0 /* MediaPlayerViewController.swift */; };
 		D2895AFC24DAE90D0090F9F0 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFB24DAE90D0090F9F0 /* CircleProgressView.swift */; };
 		D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */; };
@@ -56,7 +56,7 @@
 		D2895AE624D29A5F0090F9F0 /* MediasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediasTableViewController.swift; sourceTree = "<group>"; };
 		D2895AE924D29AB50090F9F0 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
 		D2895AF424DADFF90090F9F0 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		D2895AF624DAE0810090F9F0 /* PKMediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKMediaPlayerViewController.swift; sourceTree = "<group>"; };
+		D2895AF624DAE0810090F9F0 /* KPMediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPMediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D2895AF824DAE5EB0090F9F0 /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D2895AFB24DAE90D0090F9F0 /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		D2895AFD24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaDownloadTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				D2895AF424DADFF90090F9F0 /* PlayerViewController.swift */,
-				D2895AF624DAE0810090F9F0 /* PKMediaPlayerViewController.swift */,
+				D2895AF624DAE0810090F9F0 /* KPMediaPlayerViewController.swift */,
 				D2895AF824DAE5EB0090F9F0 /* MediaPlayerViewController.swift */,
 			);
 			path = PlayerViewController;
@@ -316,7 +316,7 @@
 				D2895AE524D29A1D0090F9F0 /* MainTableViewController.swift in Sources */,
 				D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */,
 				D25BE6ED24E0239C005F0222 /* YouboraVideoData.swift in Sources */,
-				D2895AF724DAE0810090F9F0 /* PKMediaPlayerViewController.swift in Sources */,
+				D2895AF724DAE0810090F9F0 /* KPMediaPlayerViewController.swift in Sources */,
 				D25BE6F324E0243B005F0222 /* OfflineVideoData.swift in Sources */,
 				D2895AE724D29A5F0090F9F0 /* MediasTableViewController.swift in Sources */,
 				D25BE6F124E0240C005F0222 /* YouboraIMADAIVideoData.swift in Sources */,
