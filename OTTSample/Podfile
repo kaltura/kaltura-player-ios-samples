@@ -8,10 +8,14 @@ target 'OTTSample' do
 
 
 #  pod 'KalturaPlayer/OTT'
-#  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
 
-  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
+
+ ## In case we want KalturaPlayer UI
+  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
+
 
   ## In case we want to add IMA (Interactive Media Ads)
   pod 'PlayKit_IMA'
@@ -27,8 +31,8 @@ target 'OTTSample' do
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer/OTT')
 #  pod 'KalturaPlayer/Offline_OTT'
-#  pod 'KalturaPlayer/Offline_OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer/Offline_OTT', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline_OTT', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add Google Chrome Cast

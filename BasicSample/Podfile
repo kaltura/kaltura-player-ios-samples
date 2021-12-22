@@ -7,10 +7,13 @@ target 'BasicSample' do
   use_frameworks!
 
 #  pod 'KalturaPlayer'
-#  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
+  pod 'KalturaPlayer', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer', :path => '../../kaltura-player-ios'
 
-  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
+
+ ## In case we want KalturaPlayer UI
+  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
 
 
   ## In case we want to add IMA (Interactive Media Ads)
@@ -27,7 +30,7 @@ target 'BasicSample' do
 
   ## In case we want Offline content (can replace: pod 'KalturaPlayer') 
 #  pod 'KalturaPlayer/Offline'
-#  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
-  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'  
+  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'  
 
 end
