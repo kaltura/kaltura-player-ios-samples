@@ -19,7 +19,7 @@
 		D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */; };
 		D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */; };
 		D29A68F9245F1CBB00C942ED /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */; };
-		D29A68FA245F1CBB00C942ED /* PKMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */; };
+		D29A68FA245F1CBB00C942ED /* KPMediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F4245F1CBB00C942ED /* KPMediaPlayerViewController.swift */; };
 		D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */; };
 		D29A68FC245F1CBB00C942ED /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29A68F6245F1CBB00C942ED /* VideoData.swift */; };
 		D2B4286A25CAE05500A217E3 /* GoogleCastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B4286925CAE05400A217E3 /* GoogleCastManager.swift */; };
@@ -48,7 +48,7 @@
 		D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediasTableViewController.swift; sourceTree = "<group>"; };
 		D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKMediaPlayerViewController.swift; sourceTree = "<group>"; };
+		D29A68F4245F1CBB00C942ED /* KPMediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KPMediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
 		D29A68F6245F1CBB00C942ED /* VideoData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
 		D2B4286925CAE05400A217E3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				D29A68F3245F1CBB00C942ED /* PlayerViewController.swift */,
-				D29A68F4245F1CBB00C942ED /* PKMediaPlayerViewController.swift */,
+				D29A68F4245F1CBB00C942ED /* KPMediaPlayerViewController.swift */,
 				D29A68F5245F1CBB00C942ED /* MediaPlayerViewController.swift */,
 			);
 			path = PlayerViewController;
@@ -318,7 +318,7 @@
 				D2F1D4BB249A4D6A00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
 				D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */,
 				D24D63E7247F9F810043FF11 /* IMAAdTags.swift in Sources */,
-				D29A68FA245F1CBB00C942ED /* PKMediaPlayerViewController.swift in Sources */,
+				D29A68FA245F1CBB00C942ED /* KPMediaPlayerViewController.swift in Sources */,
 				D29A68FC245F1CBB00C942ED /* VideoData.swift in Sources */,
 				D29A68F7245F1CBB00C942ED /* MediasTableViewController.swift in Sources */,
 				D2BB803B2439FD3D0050228D /* AppDelegate.swift in Sources */,
