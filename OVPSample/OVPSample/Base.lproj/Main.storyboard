@@ -192,7 +192,7 @@
         <!--Media Player View Controller-->
         <scene sceneID="Jhk-gf-6Dr">
             <objects>
-                <viewController storyboardIdentifier="PKMediaPlayerViewController" id="0QD-8F-E1V" customClass="KPMediaPlayerViewController" customModule="OVPSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KPMediaPlayerViewController" id="0QD-8F-E1V" customClass="KPMediaPlayerViewController" customModule="OVPSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HpD-yD-ul9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

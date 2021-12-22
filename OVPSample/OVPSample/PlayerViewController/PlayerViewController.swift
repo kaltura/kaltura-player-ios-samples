@@ -10,12 +10,12 @@ import UIKit
 
 enum PlayerType {
     case Custom
-    case PlayKitUI
+    case KalturaPlayerUI
     
     func storyboardID() -> String {
         switch self {
         case .Custom: return "MediaPlayerViewController"
-        case .PlayKitUI: return "KPMediaPlayerViewController"
+        case .KalturaPlayerUI: return "KPMediaPlayerViewController"
         }
     }
 }
