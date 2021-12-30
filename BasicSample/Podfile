@@ -33,4 +33,10 @@ target 'BasicSample' do
   pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'  
 
+
+########
+
+pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios', :branch => 'develop'
+pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers', :branch => 'develop'
+
 end

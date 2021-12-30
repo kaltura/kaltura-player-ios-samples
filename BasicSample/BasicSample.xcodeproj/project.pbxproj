@@ -30,6 +30,7 @@
 		D2E3A70C2557EB9800BD152D /* UIPlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E3A70B2557EB9800BD152D /* UIPlayerSlider.swift */; };
 		D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */; };
 		D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */; };
+		DA2A949C27763F2000D874C6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		D2E3A70B2557EB9800BD152D /* UIPlayerSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlayerSlider.swift; sourceTree = "<group>"; };
 		D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
+		DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				D2D85D25257E916C00404968 /* BasicSample.entitlements */,
 				D22671F922F7346100B1F247 /* AppDelegate.swift */,
 				D2231DD223E8692900462B23 /* MainTableViewController.swift */,
+				DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */,
 				D2231DDB23EAD8B300462B23 /* MediasTableViewController.swift */,
 				D28B2584247EA87E00A430FD /* VideoData */,
 				D2231DDF23EAFB2C00462B23 /* PlayerViewController */,
@@ -296,6 +299,7 @@
 				D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */,
 				D2231DDC23EAD8B300462B23 /* MediasTableViewController.swift in Sources */,
 				D22E9CE424B36C5000CD9DDB /* UIMediaTableViewCell.swift in Sources */,
+				DA2A949C27763F2000D874C6 /* PlaylistViewController.swift in Sources */,
 				D2231DDA23EAD71700462B23 /* VideoData.swift in Sources */,
 				D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */,
 				D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */,

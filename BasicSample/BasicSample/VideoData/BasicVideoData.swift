@@ -7,17 +7,23 @@
 //
 
 import PlayKit
+import KalturaPlayer
 
 extension VideoData {
 
     static func getBasicVideos() -> [VideoData] {
         var videos: [VideoData] = []
         
+        let customPlaylistCountdownOptions = CountdownOptions()
+        customPlaylistCountdownOptions.timeToShow = 30
+        customPlaylistCountdownOptions.duration = 20
+        
         // Sending a free form Media
         
         videos.append(VideoData(title: "Sintel - Free Form Media - Defaults",
                                 freeFormMedia: FreeFormMedia(id: "sintel",
-                                                             contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8")))
+                                                             contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"),
+                                playlistCountdownOptions: customPlaylistCountdownOptions))
         
         videos.append(VideoData(title: "Sintel - Free Form Media - autoPlay false",
                                 freeFormMedia: FreeFormMedia(id: "sintel",

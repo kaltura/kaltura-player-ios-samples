@@ -6,10 +6,16 @@
 //  Copyright © 2020 Kaltura Inc. All rights reserved.
 //
 
+import KalturaPlayer
+
 extension VideoData {
     
     static func getBasicVideos() -> [VideoData] {
         var videos: [VideoData] = []
+        
+        let customPlaylistCountdownOptions = CountdownOptions()
+        customPlaylistCountdownOptions.timeToShow = 30
+        customPlaylistCountdownOptions.duration = 20
         
         videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
@@ -18,7 +24,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "http"),
+                                playlistCountdownOptions: customPlaylistCountdownOptions))
         
         videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20",
                                 player: PlayerData(),

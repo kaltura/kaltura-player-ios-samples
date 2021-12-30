@@ -31,6 +31,7 @@
 		D2F1D4B7249A49E300D57863 /* YouboraVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B6249A49E300D57863 /* YouboraVideoData.swift */; };
 		D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B8249A4D5E00D57863 /* YouboraIMAVideoData.swift */; };
 		D2F1D4BB249A4D6A00D57863 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4BA249A4D6A00D57863 /* YouboraIMADAIVideoData.swift */; };
+		DA0D9FBF277D353C004D9FDD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0D9FBE277D353C004D9FDD /* PlaylistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		D2F1D4B6249A49E300D57863 /* YouboraVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4B8249A4D5E00D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4BA249A4D6A00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
+		DA0D9FBE277D353C004D9FDD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				D2D85D4E257EBCB300404968 /* OTTSample.entitlements */,
 				D2BB803A2439FD3D0050228D /* AppDelegate.swift */,
 				D29A68F1245F1CBB00C942ED /* MainTableViewController.swift */,
+				DA0D9FBE277D353C004D9FDD /* PlaylistViewController.swift */,
 				D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */,
 				D24D63E3247F9CA90043FF11 /* VideoData */,
 				D29A68F2245F1CBB00C942ED /* PlayerViewController */,
@@ -311,6 +314,7 @@
 			files = (
 				D2E3A6AA25514AA300BD152D /* UIPlayerSlider.swift in Sources */,
 				D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */,
+				DA0D9FBF277D353C004D9FDD /* PlaylistViewController.swift in Sources */,
 				D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D277EFAD24A8DFAA00C05279 /* OfflineVideoData.swift in Sources */,
 				D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */,

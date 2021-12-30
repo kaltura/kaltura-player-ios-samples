@@ -31,6 +31,7 @@
 		D2895B0024DAE9470090F9F0 /* UIMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */; };
 		D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895B0324DB01270090F9F0 /* BasicVideoData.swift */; };
 		D2B428A525D509EA00A217E3 /* GoogleCastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B428A425D509E900A217E3 /* GoogleCastManager.swift */; };
+		DA0D9FC1277D5E79004D9FDD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0D9FC0277D5E79004D9FDD /* PlaylistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		D2895AFF24DAE9470090F9F0 /* UIMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMediaTableViewCell.swift; sourceTree = "<group>"; };
 		D2895B0324DB01270090F9F0 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D2B428A425D509E900A217E3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
+		DA0D9FC0277D5E79004D9FDD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				D22D8632257EC56E001EB267 /* OVPSample.entitlements */,
 				D2895AD024D290A00090F9F0 /* AppDelegate.swift */,
 				D2895AE424D29A1D0090F9F0 /* MainTableViewController.swift */,
+				DA0D9FC0277D5E79004D9FDD /* PlaylistViewController.swift */,
 				D2895AE624D29A5F0090F9F0 /* MediasTableViewController.swift */,
 				D2895AE824D29A960090F9F0 /* VideoData */,
 				D2895AF324DADFCA0090F9F0 /* PlayerViewController */,
@@ -311,6 +314,7 @@
 			files = (
 				D260E331256702F30015F0E0 /* UIPlayerSlider.swift in Sources */,
 				D2895AFE24DAE92C0090F9F0 /* UIMediaDownloadTableViewCell.swift in Sources */,
+				DA0D9FC1277D5E79004D9FDD /* PlaylistViewController.swift in Sources */,
 				D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */,
 				D25BE6EB24E0236E005F0222 /* IMADAIVideoData.swift in Sources */,
 				D2895AE524D29A1D0090F9F0 /* MainTableViewController.swift in Sources */,
