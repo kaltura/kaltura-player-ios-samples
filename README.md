@@ -80,7 +80,7 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
 - [Playing Playlists](#playing-playlists)
 	- [Register for Playlist Controller Events](#register-for-playlist-controller-events)
 	- [Handeling Playlist Controller](#handeling-playlist-controller)
-	- [How to get access for indiwidual playlist items?](#how-to-get-access-for-indiwidual-playlist-items)
+	- [How to get access for individual playlist items?](#how-to-get-access-for-individual-playlist-items)
 	- [PlaylistControllerDelegate](#playlistcontrollerdelegate)
   
   
