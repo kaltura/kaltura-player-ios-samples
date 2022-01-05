@@ -13,6 +13,7 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Create a KalturaBasicPlayer](#2-create-a-kalturabasicplayer)
   - [Pass the view to the KalturaBasicPlayer](#3-pass-the-view-to-the-kalturabasicplayer)
   - [Set the Media Entry](#4-set-the-media-entry)
+  - [Set collection of PKMediaEntry to Basic Player](#5-set-collection-of-pkmediaentry-to-basic-player)
   
 - [OTT Player](#ott-player)
   - [Setup the KalturaOTTPlayer](#1-setup-the-kalturaottplayer)
@@ -20,6 +21,7 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Pass the view to the KalturaOTTPlayer](#3-pass-the-view-to-the-kalturaottplayer)
   - [Create the OTTMediaOptions](#4-create-the-ottmediaoptions)
   - [Load the OTT Media](#5-load-the-ott-media)
+  - [Load OTT Playlist](#6-load-ott-playlist)
 
 - [OVP Player](#ovp-player)
   - [Setup the KalturaOVPPlayer](#1-setup-the-kalturaovpplayer)
@@ -27,6 +29,8 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Pass the view to the KalturaOVPPlayer](#3-pass-the-view-to-the-kalturaovpplayer)
   - [Create the OVPMediaOptions](#4-create-the-ovpmediaoptions)
   - [Load the OVP Media](#5-load-the-ovp-media)
+  - [Load OVP Playlist](#6-load-ovp-playlist)
+  - [Load OVP Playlist by playlist id](#7-load-ovp-playlist-by-playlist-id)
   
 **Additional Actions:**
 
@@ -70,6 +74,15 @@ To use Cocoapods please refer to [Cocoapods Guides](https://guides.cocoapods.org
   - [Add the required settings in the info plist file](#3-add-the-required-settings-in-the-info-plist-file)
   - [Add the cast button](#4-add-the-cast-button)
   - [Cast a media](#5-ast-a-media)
+  
+**Playlist:**
+  
+- [Playing Playlists](#playing-playlists)
+	- [Register for Playlist Controller Events](#register-for-playlist-controller-events)
+	- [Handeling Playlist Controller](#handeling-playlist-controller)
+	- [How to get access for indiwidual playlist items?](#how-to-get-access-for-indiwidual-playlist-items)
+	- [PlaylistControllerDelegate](#playlistcontrollerdelegate)
+  
   
 <!-- toc -->
 
@@ -1227,7 +1240,8 @@ private func load(mediaInformation:GCKMediaInformation, appending: Bool) -> Void
 
 ### Register for Playlist Controller Events
 
-It is similar to [Register for Player Events](#register-for-player-events)
+It is similar to [Register for Player Events](#register-for-player-events).
+
 **NOTE:** Don't forget to perform UI changes on the main thread.  
 And don't forget to unregister when the view is not displayed.
 
@@ -1267,9 +1281,9 @@ if let playlistController = self.player?.playlistController {
 }
 ```
 
-### How to get access for indiwidual playlist items?
+### How to get access for individual playlist items?
 
-Once playlist is loaded in the playlist controller you will have puplic access to `var playlist: PKPlaylist`
+Once playlist is loaded in the playlist controller you will have public access to `var playlist: PKPlaylist`
 So basically you have to read `playlistController.playlist.medias` collection.
 
 ```swift
@@ -1285,11 +1299,11 @@ if let playlist = player?.playlistController?.playlist,
 
 To provide individual media items dedicated plugin configs or countdown options you have to set PlaylistControllerDelegate.
 
-1. Plugin config implemintation is similar to [Create the PluginConfig](#3-create-the-pluginconfig) and [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions)
+1. Plugin config implementation is similar to [Create the PluginConfig](#3-create-the-pluginconfig) and [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions).  
 	With the one exeption you can provide own config for the requested media at index (check the example code).
 
-2. Every playlist media may have specific `CountdownOptions` it will help you build countdown UI in you App if needed.
-	With [Playlists Controller events](#Register-for-Playlist-Controller-Events) `playlistCountDownStart` and `playlistCountDownEnd` you nac listen for coundown updates.
+2. Every playlist media may have specific `CountdownOptions` it will help you build countdown UI in you App if needed.   
+	With [Playlists Controller events](#Register-for-Playlist-Controller-Events) `playlistCountDownStart` and `playlistCountDownEnd` you can listen for coundown updates.
 
 ```swift
 extension PlaylistViewController: PlaylistControllerDelegate {
