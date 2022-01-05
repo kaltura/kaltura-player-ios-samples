@@ -44,19 +44,23 @@ struct VideoData {
     
     var offlineSelectionOptions: OfflineSelectionOptions?
     
-    init(title: String, mediaEntry: PKMediaEntry, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil, offlineSelectionOptions: OfflineSelectionOptions? = nil) {
+    var playlistCountdownOptions: CountdownOptions?
+    
+    init(title: String, mediaEntry: PKMediaEntry, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil, offlineSelectionOptions: OfflineSelectionOptions? = nil, playlistCountdownOptions: CountdownOptions? = nil) {
         self.title = title
         self.mediaEntry = mediaEntry
         self.player = player
         self.startTime = startTime
         self.offlineSelectionOptions = offlineSelectionOptions
+        self.playlistCountdownOptions = playlistCountdownOptions
     }
     
-    init(title: String, freeFormMedia: FreeFormMedia, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil, offlineSelectionOptions: OfflineSelectionOptions? = nil) {
+    init(title: String, freeFormMedia: FreeFormMedia, player: PlayerData = PlayerData(), startTime: TimeInterval? = nil, offlineSelectionOptions: OfflineSelectionOptions? = nil, playlistCountdownOptions: CountdownOptions? = nil) {
         self.title = title
         self.freeFormMedia = freeFormMedia
         self.player = player
         self.startTime = startTime
         self.offlineSelectionOptions = offlineSelectionOptions
+        self.playlistCountdownOptions = playlistCountdownOptions
     }
 }

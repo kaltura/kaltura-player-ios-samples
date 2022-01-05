@@ -29,14 +29,14 @@ extension VideoData {
                                 player: PlayerData(pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig]))))
         
         videos.append(VideoData(title: "Sintel - Free Form Media - autoPlay false",
-                                freeFormMedia: FreeFormMedia(id: "sintel",
+                                freeFormMedia: FreeFormMedia(id: "sintel 2",
                                                              contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"),
                                 player: PlayerData(autoPlay: false,
                                                    preload: false,
                                                    pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig]))))
         
         videos.append(VideoData(title: "Sintel - Free Form Media - startPosition 30",
-                                freeFormMedia: FreeFormMedia(id: "sintel",
+                                freeFormMedia: FreeFormMedia(id: "sintel 3",
                                                              contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"),
                                 player: PlayerData(pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
                                 startTime: 30.0))

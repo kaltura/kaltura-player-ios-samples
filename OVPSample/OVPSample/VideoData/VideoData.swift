@@ -60,6 +60,8 @@ struct VideoData {
     
     var offlineSelectionOptions: OfflineSelectionOptions?
     
+    var playlistCountdownOptions: CountdownOptions?
+    
     var castAdditionalData: CastAdditionalData?
 }
 

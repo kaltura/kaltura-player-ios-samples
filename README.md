@@ -158,6 +158,30 @@ There are two available options:
 	
 **Note:** If you want to add a start time for the media, both functions accept a parameter of type `MediaOptions` which has a `startTime` property which can be set. See `MediaOptions` for more information.
 
+### 5. Set collection of PKMediaEntry to Basic Player
+
+1. Create a collection of PKMediaEntry:
+
+```swift
+var mediaEntries: [PKMediaEntry] = []
+```
+How to create an individual PKMediaEntry see section 4. [Set the Media Entry](#4-set-the-media-entry)
+
+2. Populate `mediaEntries` collection with created medias
+
+3. Create `PKPlaylist` with this collection and set this playlist to the player
+```swift
+let playlist: PKPlaylist = PKPlaylist(id: nil,
+                                      name: "Basic Playlist",
+                                      thumbnailUrl: nil,
+                                      medias: mediaEntries)
+
+player.setPlaylist(playlist)
+
+// Once all set you can handle playlist here
+```
+2. Now you have access to player.playlistController. Please check the example of [Handeling Playlist Controller](#handeling-playlist-controller)
+
 ## OTT Player
 
 The OTT Player has the Kava Plugin and Phoenix Analytics Plugin embedded, therefore no additional configuration for those plugins are required.
@@ -271,6 +295,30 @@ kalturaOTTPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
 }
 ```
 
+### 6. Load OTT Playlist
+
+1. Prepare a collection of `OTTMediaOptions`
+
+```swift
+var mediaOptions: [OTTMediaOptions] = []
+
+mediaOptions.append(OTTMediaOptions().set(assetId: "111111").set(assetReferenceType: .media).set(networkProtocol: "http"))
+mediaOptions.append(OTTMediaOptions().set(assetId: "222222").set(assetReferenceType: .media).set(networkProtocol: "http"))
+mediaOptions.append(OTTMediaOptions().set(assetId: "333333").set(assetReferenceType: .media).set(networkProtocol: "http"))
+```
+2. Pass this collection to the player loadPlaylist method:
+
+```swift
+player.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
+    guard let self = self else { return }
+    if let error = error {
+        print("Loading playlist error: " + error.localizedDescription)
+    }
+    // Handle loaded playlist here
+})
+```
+3. Now you have access to player.playlistController. Please check the example of [Handeling Playlist Controller](#handeling-playlist-controller)
+
 ## OVP Player
 
 The OVP Player has the Kava Plugin embedded, therefore no additional configuration for the plugin is required.
@@ -376,6 +424,54 @@ kalturaOVPPlayer.loadMedia(options: mediaOptions) { [weak self] (error) in
     }
 }
 ```
+
+### 6. Load OVP Playlist
+
+1. Prepare a collection of `OVPMediaOptions`
+
+```swift
+var mediaOptions: [OVPMediaOptions] = []
+
+mediaOptions.append(OVPMediaOptions().set(entryId: "0_aaaa1111"))
+mediaOptions.append(OVPMediaOptions().set(entryId: "0_aaaa2222"))
+mediaOptions.append(OVPMediaOptions().set(entryId: "0_aaaa3333"))
+mediaOptions.append(OVPMediaOptions().set(entryId: "0_aaaa4444"))
+mediaOptions.append(OVPMediaOptions().set(entryId: "0_aaaa5555"))
+mediaOptions.append(OVPMediaOptions().set(entryId: "0_aaaa6666"))
+```
+2. Pass this collection to the player loadPlaylist method:
+
+```swift
+player.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
+    guard let self = self else { return }
+    if let error = error {
+        print("Loading playlist error: " + error.localizedDescription)
+    }
+    // Handle loaded playlist here
+})
+```
+3. Now you have access to player.playlistController. Please check the example of [Handeling Playlist Controller](#handeling-playlist-controller)
+
+### 7. Load OVP Playlist by playlist id
+
+1. Prepare `OVPPlaylistOptions` and set playlist id:
+```swift
+let playlistOptions = OVPPlaylistOptions()
+playlistOptions.playlistId = "0_abcd12345"
+```
+
+2. Call loadPlaylistById method in player and pass options:
+```swift
+player.loadPlaylistById(options: playlistOptions) { [weak self] (error) in
+    guard let self = self else { return }
+    if let error = error {
+        print("Loading playlist error: " + error.localizedDescription)
+    }
+    // Handle loaded playlist here
+}
+```
+
+3. Now you have access to player.playlistController. Please check the example of [Handeling Playlist Controller](#handeling-playlist-controller)
 
 ## Register for Player Events
 
@@ -1123,6 +1219,115 @@ private func load(mediaInformation:GCKMediaInformation, appending: Bool) -> Void
 
       let request = remoteMediaClient.loadMedia(with: mediaLoadRequestDataBuilder.build())
       request.delegate = self
+    }
+}
+```
+
+## Playing Playlists
+
+### Register for Playlist Controller Events
+
+It is similar to [Register for Player Events](#register-for-player-events)
+**NOTE:** Don't forget to perform UI changes on the main thread.  
+And don't forget to unregister when the view is not displayed.
+
+**All available Playlists Controller events:**
+
+* playlistLoaded
+* playlistStarted
+* playlistEnded
+* playlistCountDownStart
+* playlistCountDownEnd
+* playlistLoopStateChanged
+* playlistAutoContinueStateChanged
+* playlistError
+* playlistLoadMediaError
+* playlistCurrentPlayingItemChanged
+
+### Handeling Playlist Controller
+
+```swift
+if let playlistController = self.player?.playlistController {
+    // Configure PlaylistController
+    
+    // Set the playlist controller delegate if you need to manage plugins for each item
+    // or countdown options for each item.
+    playlistController.delegate = self
+    
+    // Also you may set some playlist controller options.
+    playlistController.preloadTime = 120
+    playlistController.loop = true
+    
+    // This is good place to handle UI updates that reuire playlist data.
+    // Reload your UITableView/UIColloctionView here.
+    
+    // If needed start playlist playback.
+    // playNext() will start it from the first item.
+    self.player?.playlistController?.playNext()
+}
+```
+
+### How to get access for indiwidual playlist items?
+
+Once playlist is loaded in the playlist controller you will have puplic access to `var playlist: PKPlaylist`
+So basically you have to read `playlistController.playlist.medias` collection.
+
+```swift
+if let playlist = player?.playlistController?.playlist,
+   let item = playlist.medias?[0] {
+    
+    print(item.name)
+    print(item.duration)
+}
+```
+
+### PlaylistControllerDelegate
+
+To provide individual media items dedicated plugin configs or countdown options you have to set PlaylistControllerDelegate.
+
+1. Plugin config implemintation is similar to [Create the PluginConfig](#3-create-the-pluginconfig) and [Pass the PluginConfig to the PlayerOptions](#4-pass-the-pluginconfig-to-the-playeroptions)
+	With the one exeption you can provide own config for the requested media at index (check the example code).
+
+2. Every playlist media may have specific `CountdownOptions` it will help you build countdown UI in you App if needed.
+	With [Playlists Controller events](#Register-for-Playlist-Controller-Events) `playlistCountDownStart` and `playlistCountDownEnd` you nac listen for coundown updates.
+
+```swift
+extension PlaylistViewController: PlaylistControllerDelegate {
+    
+    func playlistController(_ controller: PlaylistController, updatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+        return true
+    }
+    
+    func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig? {
+        
+        let youboraPluginParams: [String: Any] = [
+            "accountCode": "kalturatest",
+            "contentCustomDimensions": [
+                "contentCustomDimension1": "Playlist ID: \(controller.playlist.id ?? "empty")",
+                "contentCustomDimension2": "Playlist Item #: \(mediaItemIndex)",
+                "contentCustomDimension3": "MediaEntry ID: \(controller.playlist.medias?[mediaItemIndex].id ?? "empty")",
+            ]
+        ]
+        let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
+        
+        let imaConfig = IMAConfig()
+        imaConfig.alwaysStartWithPreroll = true
+        imaConfig.adTagUrl = "AD_TAG"
+        
+        return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
+                                     YouboraPlugin.pluginName: analyticsConfig])
+    }
+    
+    func playlistController(_ controller: PlaylistController, enableCountdownForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+        return true
+    }
+    
+    func playlistController(_ controller: PlaylistController, countdownOptionsForMediaItemAtIndex mediaItemIndex: Int) -> CountdownOptions? {
+        
+        let countdown = CountdownOptions()
+        countdown.timeToShow = 240
+        countdown.duration = 20
+        return countdown
     }
 }
 ```
