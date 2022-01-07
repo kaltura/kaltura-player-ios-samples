@@ -134,7 +134,8 @@ extension UIMediaDownloadTableViewCell {
                         }
                     }
                     else {
-                        self.presentAlert(withMessage: error?.localizedDescription)
+                        let errorMessage = (error as? OfflineManagerError)?.errorDescription ?? error?.localizedDescription
+                        self.presentAlert(withMessage: errorMessage)
                         self.downloadButton.displayState = .error
                     }
                 }
