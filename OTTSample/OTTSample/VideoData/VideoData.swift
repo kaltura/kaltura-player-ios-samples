@@ -51,13 +51,16 @@ struct OTTMedia {
         ottMediaOptions.formats = formats
         ottMediaOptions.fileIds = fileIds
         ottMediaOptions.playbackContextType = playbackContextType
-        ottMediaOptions.networkProtocol = networkProtocol
         ottMediaOptions.urlType = urlType
         ottMediaOptions.streamerType = streamerType
         ottMediaOptions.adapterData = adapterData
         
         if let startTime = startTime {
             ottMediaOptions.startTime = startTime
+        }
+        
+        if let networkProtocol = networkProtocol {
+            ottMediaOptions.networkProtocol = networkProtocol
         }
         
         return ottMediaOptions
