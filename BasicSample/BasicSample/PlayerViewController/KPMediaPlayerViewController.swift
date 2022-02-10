@@ -21,8 +21,14 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
                 
                 shouldPreparePlayer = true
                 
+                // Update only; do not override the player options.
                 let basicPlayerOptions = playerOptions(videoData)
-                kalturaBasicPlayer.updatePlayerOptions(basicPlayerOptions)
+                if let playerKS = basicPlayerOptions.ks {
+                    kalturaBasicPlayer.updatePlayerOptionsKS(playerKS)
+                }
+                for pluginConfig in basicPlayerOptions.pluginConfig.config {
+                    kalturaBasicPlayer.updatePluginConfig(pluginName: pluginConfig.key, config: pluginConfig.value)
+                }
             }
         }
     }
@@ -106,6 +112,9 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     func playerOptions(_ videoData: VideoData?) -> PlayerOptions {
         let playerOptions = PlayerOptions()
         
+        if let playerKS = videoData?.player.ks {
+            playerOptions.ks = playerKS
+        }
         if let autoPlay = videoData?.player.autoPlay {
             playerOptions.autoPlay = autoPlay
         }

@@ -22,11 +22,14 @@ struct PlayerData {
     var autoPlay: Bool = true
     var preload: Bool = true
     
+    var ks: String?
+    
     var pluginConfig: PluginConfig?
     
-    init(autoPlay: Bool = true, preload: Bool = true, pluginConfig: PluginConfig? = nil) {
+    init(autoPlay: Bool = true, preload: Bool = true, ks: String? = nil, pluginConfig: PluginConfig? = nil) {
         self.autoPlay = autoPlay
         self.preload = preload
+        self.ks = ks
         self.pluginConfig = pluginConfig
     }
 }

@@ -21,8 +21,14 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
                 
                 shouldPreparePlayer = true
                 
+                // Update only; do not override the player options.
                 let ovpPlayerOptions = playerOptions(videoData)
-                kalturaOVPPlayer.updatePlayerOptions(ovpPlayerOptions)
+                if let playerKS = ovpPlayerOptions.ks {
+                    kalturaOVPPlayer.updatePlayerOptionsKS(playerKS)
+                }
+                for pluginConfig in ovpPlayerOptions.pluginConfig.config {
+                    kalturaOVPPlayer.updatePluginConfig(pluginName: pluginConfig.key, config: pluginConfig.value)
+                }
             }
         }
     }
