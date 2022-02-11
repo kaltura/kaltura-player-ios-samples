@@ -278,13 +278,13 @@ class PlaylistViewController: UIViewController {
             }
         }
         
-        player.addObserver(self, events: [PlaylistEvent.playlistCountDownStart, PlaylistEvent.playlistCountDownEnd]) { [weak self] event in
+        player.addObserver(self, events: [PlaylistEvent.playlistCountdownStart, PlaylistEvent.playlistCountdownEnd]) { [weak self] event in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch event {
-                case is PlaylistEvent.PlaylistCountDownStart:
+                case is PlaylistEvent.PlaylistCountdownStart:
                     self.showCoundownView(true, animated: true)
-                case is PlaylistEvent.PlaylistCountDownEnd:
+                case is PlaylistEvent.PlaylistCountdownEnd:
                     self.showCoundownView(false, animated: true)
                 default: break
                 }
@@ -484,12 +484,11 @@ extension PlaylistViewController: UITableViewDataSource {
 
 extension PlaylistViewController: PlaylistControllerDelegate {
     
-    func playlistController(_ controller: PlaylistController, updatePluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+    func playlistController(_ controller: PlaylistController, updatePluginConfigForMediaEntry mediaEntry: PKMediaEntry, atIndex mediaItemIndex: Int) -> Bool {
         return true
     }
     
-    func playlistController(_ controller: PlaylistController, pluginConfigForMediaItemAtIndex mediaItemIndex: Int) -> PluginConfig? {
-        
+    func playlistController(_ controller: PlaylistController, pluginConfigForMediaEntry mediaEntry: PKMediaEntry, atIndex mediaItemIndex: Int) -> PluginConfig? {
         let youboraPluginParams: [String: Any] = [
             "accountCode": "kalturatest",
             "contentCustomDimensions": [
@@ -508,11 +507,11 @@ extension PlaylistViewController: PlaylistControllerDelegate {
                                      YouboraPlugin.pluginName: analyticsConfig])
     }
     
-    func playlistController(_ controller: PlaylistController, enableCountdownForMediaItemAtIndex mediaItemIndex: Int) -> Bool {
+    func playlistController(_ controller: PlaylistController, enableCountdownForMediaEntry mediaEntry: PKMediaEntry, atIndex mediaItemIndex: Int) -> Bool {
         return true
     }
     
-    func playlistController(_ controller: PlaylistController, countdownOptionsForMediaItemAtIndex mediaItemIndex: Int) -> CountdownOptions? {
+    func playlistController(_ controller: PlaylistController, countdownOptionsForMediaEntry mediaEntry: PKMediaEntry, atIndex mediaItemIndex: Int) -> CountdownOptions? {
         
         let countdown = CountdownOptions()
         countdown.timeToShow = 240
