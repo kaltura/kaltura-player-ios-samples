@@ -11,7 +11,7 @@ import PlayKit
 import PlayKit_IMA
 import PlayKitYoubora
 import PlayKitProviders
-
+import PlayKitSmartSwitch
 
 private let cellID = "PlaylistCellID"
 
@@ -143,7 +143,8 @@ class PlaylistViewController: UIViewController {
             
             
             playerOptions.pluginConfig = PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                                              YouboraPlugin.pluginName: analyticsConfig])
+                                                               YouboraPlugin.pluginName: analyticsConfig,
+                                                               SmartSwitchMediaEntryInterceptor.pluginName: SmartSwitchConfig()])
         }
         
         return playerOptions
@@ -503,8 +504,19 @@ extension PlaylistViewController: PlaylistControllerDelegate {
         imaConfig.alwaysStartWithPreroll = true
         imaConfig.adTagUrl = "AD_TAG"
         
+        
+        let smartSwitchConfig = SmartSwitchConfig()
+        smartSwitchConfig.accountCode = "kalturatest" // Youbora account code.
+        smartSwitchConfig.originCode = "vod"
+        smartSwitchConfig.optionalParams = ["live": "false"]
+        smartSwitchConfig.timeout = 5 // Timeout time period for Youbora CDN balancer calls.
+        smartSwitchConfig.reportSelectedCDNCode = true // if true plugin will report chosen CDN code to Youbora analytics.
+        // smartSwitchUrl this is optional parameter. Set it if you have different Youbora CDN balancer host.
+        smartSwitchConfig.smartSwitchUrl = "http://cdnbalancer.youbora.com/orderedcdn"
+        
         return PluginConfig(config: [IMAPlugin.pluginName: imaConfig,
-                                     YouboraPlugin.pluginName: analyticsConfig])
+                                     YouboraPlugin.pluginName: analyticsConfig,
+                                     SmartSwitchMediaEntryInterceptor.pluginName: smartSwitchConfig])
     }
     
     func playlistController(_ controller: PlaylistController, enableCountdownForMediaEntry mediaEntry: PKMediaEntry, atIndex mediaItemIndex: Int) -> Bool {

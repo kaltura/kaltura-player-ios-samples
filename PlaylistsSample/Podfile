@@ -5,21 +5,27 @@ target 'PlaylistsSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'PlayKit_IMA'
-  pod 'PlayKitYoubora'
+#  pod 'PlayKitYoubora'
   
 #   pod 'KalturaPlayer/OVP', :path => '../../kaltura-player-ios'
- pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11456'
+ pod 'KalturaPlayer/OVP', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11740'
   
 #   pod 'KalturaPlayer/OTT', :path => '../../kaltura-player-ios'
- pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11456'
+ pod 'KalturaPlayer/OTT', :git => 'https://github.com/kaltura/kaltura-player-ios', :branch => 'FEC-11740'
   
 #   pod 'PlayKit', :path => '../../playkit-ios'
- pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios', :branch => 'FEC-11456'
+ pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios', :branch => 'develop'
   
 #   pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
- pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers', :branch => 'FEC-11499'
+ pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers', :branch => 'develop'
   
   # pod 'PlayKitKava', :path => '../../playkit-ios-kava'
+  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
+  
+#  pod 'PlayKitKava', :path => '../../playkit-ios-kava'
+  
+  pod 'PlayKitSmartSwitch'
+  
   
   target 'PlaylistsSampleTests' do
     inherit! :search_paths
