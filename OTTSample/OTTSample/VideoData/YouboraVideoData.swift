@@ -8,6 +8,7 @@
 
 import PlayKit
 import PlayKitYoubora
+import PlayKitSmartSwitch
 
 extension VideoData {
     
@@ -21,10 +22,16 @@ extension VideoData {
         ]
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
         
+        let smsw = SmartSwitchConfig()
+        
+        smsw.set(accountCode: "kaltura")
+        smsw.set(application: "NPAW test")
+        
         videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
                                                    preload: true,
-                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
+                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig,
+                                                                                       SmartSwitchMediaEntryInterceptor.pluginName: smsw])),
                                 media: OTTMedia(assetId: "548575",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
@@ -32,7 +39,8 @@ extension VideoData {
                                                 networkProtocol: "http")))
         
         videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20",
-                                player: PlayerData(pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
+                                player: PlayerData(pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig,
+                                                                                       SmartSwitchMediaEntryInterceptor.pluginName: smsw])),
                                 media: OTTMedia(assetId: "548570",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
@@ -42,7 +50,8 @@ extension VideoData {
         
         videos.append(VideoData(title: "548576, autoPlay-false, preload",
                                 player: PlayerData(autoPlay: false,
-                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
+                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig,
+                                                                                       SmartSwitchMediaEntryInterceptor.pluginName: smsw])),
                                 media: OTTMedia(assetId: "548576",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
@@ -51,7 +60,8 @@ extension VideoData {
         
         videos.append(VideoData(title: "548577, autoPlay, preload-false",
                                 player: PlayerData(preload: false,
-                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
+                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig,
+                                                                                       SmartSwitchMediaEntryInterceptor.pluginName: smsw])),
                                 media: OTTMedia(assetId: "548577",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
@@ -60,7 +70,8 @@ extension VideoData {
 
         videos.append(VideoData(title: "548551, autoPlay-false, preload-false",
                                 player: PlayerData(autoPlay: false, preload: false,
-                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
+                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig,
+                                                                                       SmartSwitchMediaEntryInterceptor.pluginName: smsw])),
                                 media: OTTMedia(assetId: "548551",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
