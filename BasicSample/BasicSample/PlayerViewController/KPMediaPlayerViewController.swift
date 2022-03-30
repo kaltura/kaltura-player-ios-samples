@@ -107,6 +107,11 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         }
     }
     
+    deinit {
+        kalturaBasicPlayer.destroy()
+        kalturaBasicPlayer = nil
+    }
+    
     // MARK: - Private Methods
     
     func playerOptions(_ videoData: VideoData?) -> PlayerOptions {
