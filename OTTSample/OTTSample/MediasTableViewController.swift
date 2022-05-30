@@ -31,7 +31,7 @@ class UIMediaHeaderTableViewCell: UITableViewCell {
 class MediasTableViewController: UITableViewController, MediasView {
     
     var videos: [VideoData] = []
-    var playerType: PlayerType = .KalturaPlayerUI // .Custom
+    var playerType: PlayerType = .Custom // .KalturaPlayerUI // 
     var videoDataType: MenuItem = .basic
     
     var playerViewController: PlayerViewController?

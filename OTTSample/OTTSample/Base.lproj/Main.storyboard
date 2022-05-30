@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="As8-Tt-03u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="As8-Tt-03u">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIPlaylistHeaderTableViewCell" id="Uw0-5v-P44" customClass="UIPlaylistHeaderTableViewCell" customModule="BasicSample" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIPlaylistHeaderTableViewCell" id="Uw0-5v-P44" customClass="UIPlaylistHeaderTableViewCell" customModule="OTTSample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uw0-5v-P44" id="vit-bY-ZLh">
@@ -388,7 +388,7 @@
                                                     </constraints>
                                                     <state key="normal" image="playerSettingsIcon"/>
                                                     <connections>
-                                                        <action selector="openSettingsTouched:" destination="heX-JM-oLt" eventType="touchUpInside" id="w3D-3N-4yX"/>
+                                                        <action selector="seekToLive" destination="heX-JM-oLt" eventType="touchUpInside" id="WlX-5T-y1m"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNV-W2-1Dr" userLabel="Close Button">
@@ -402,13 +402,24 @@
                                                         <action selector="closeTouched:" destination="heX-JM-oLt" eventType="touchUpInside" id="5Cc-fr-lFd"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0lG-ka-MTY">
+                                                    <rect key="frame" x="89" y="5" width="97" height="40"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="seek to live"/>
+                                                    <connections>
+                                                        <action selector="seekToLive" destination="heX-JM-oLt" eventType="touchUpInside" id="GmO-mA-i4t"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="yNV-W2-1Dr" secondAttribute="trailing" constant="20" identifier="TopVisualEffectCloseButtonTrailing" id="HvB-CR-Dzt"/>
+                                                <constraint firstItem="0lG-ka-MTY" firstAttribute="leading" secondItem="tlg-Gd-R4t" secondAttribute="trailing" constant="29" id="QT9-5S-zJt"/>
                                                 <constraint firstItem="tlg-Gd-R4t" firstAttribute="leading" secondItem="ZAB-fX-ycM" secondAttribute="leading" constant="20" identifier="TopVisualEffectSettingsButtonLeading" id="Tih-Wo-CV4"/>
                                                 <constraint firstAttribute="bottom" secondItem="tlg-Gd-R4t" secondAttribute="bottom" constant="5" identifier="TopVisualEffectSettingsButtonBottom" id="UFu-LL-RYa"/>
                                                 <constraint firstAttribute="bottom" secondItem="yNV-W2-1Dr" secondAttribute="bottom" constant="5" identifier="TopVisualEffectCloseButtonBotton" id="bUV-b3-MMN"/>
+                                                <constraint firstItem="0lG-ka-MTY" firstAttribute="top" secondItem="tlg-Gd-R4t" secondAttribute="top" id="g2y-dh-II5"/>
+                                                <constraint firstItem="0lG-ka-MTY" firstAttribute="bottom" secondItem="tlg-Gd-R4t" secondAttribute="bottom" id="l2M-bG-kbH"/>
                                             </constraints>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -609,7 +620,7 @@
         <!--Playlist View Controller-->
         <scene sceneID="BD6-5t-d5t">
             <objects>
-                <viewController id="sLl-2J-P5D" customClass="PlaylistViewController" customModule="BasicSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sLl-2J-P5D" customClass="PlaylistViewController" customModule="OTTSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q4n-oh-oe5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -765,7 +776,7 @@
                                         <rect key="frame" x="0.0" y="281" width="375" height="453"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="JZz-XI-s9D" style="IBUITableViewCellStyleDefault" id="9Kb-If-T7h" customClass="UIMediaTableViewCell" customModule="BasicSample" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UIMediaTableViewCell" textLabel="JZz-XI-s9D" style="IBUITableViewCellStyleDefault" id="9Kb-If-T7h" customClass="UIMediaTableViewCell" customModule="OTTSample" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="43.666667938232422"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Kb-If-T7h" id="8wP-1y-4Uu">

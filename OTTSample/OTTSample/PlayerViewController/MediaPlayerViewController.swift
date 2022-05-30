@@ -592,4 +592,8 @@ extension MediaPlayerViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    @IBAction private func seekToLive() {
+        kalturaOTTPlayer.seekToLiveEdge()
+    }
 }
