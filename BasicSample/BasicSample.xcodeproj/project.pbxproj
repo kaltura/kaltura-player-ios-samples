@@ -31,6 +31,8 @@
 		D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */; };
 		D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */; };
 		DA2A949C27763F2000D874C6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */; };
+		DA8F3E25282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F3E24282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift */; };
+		DA8F3E27282BD19300D99762 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8F3E26282BD19300D99762 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
 		DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DA8F3E24282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KPMediaPlayerViewController-BG.swift"; sourceTree = "<group>"; };
+		DA8F3E26282BD19300D99762 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85B5F5523C0F6F8180CA285A /* Pods_BasicSample.framework in Frameworks */,
+				DA8F3E27282BD19300D99762 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 				D28B2584247EA87E00A430FD /* VideoData */,
 				D2231DDF23EAFB2C00462B23 /* PlayerViewController */,
 				D22E9CDA24B2F2EE00CD9DDB /* CustomViews */,
+				DA8F3E23282BC34800D99762 /* Background */,
 				D22671FD22F7346100B1F247 /* Main.storyboard */,
 				D226720022F7346400B1F247 /* Assets.xcassets */,
 				D226720222F7346400B1F247 /* LaunchScreen.storyboard */,
@@ -163,9 +169,18 @@
 		D79AEE6F337404ED47C5F3FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA8F3E26282BD19300D99762 /* AudioToolbox.framework */,
 				6CD52A0F58AC1EA09BA7CA54 /* Pods_BasicSample.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA8F3E23282BC34800D99762 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				DA8F3E24282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift */,
+			);
+			path = Background;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +310,7 @@
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,
 				D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */,
 				D2231DE123EAFCD600462B23 /* PlayerViewController.swift in Sources */,
+				DA8F3E25282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift in Sources */,
 				D22671FA22F7346100B1F247 /* AppDelegate.swift in Sources */,
 				D28B2583247EA0E500A430FD /* IMAAdTags.swift in Sources */,
 				D2231DDC23EAD8B300462B23 /* MediasTableViewController.swift in Sources */,
