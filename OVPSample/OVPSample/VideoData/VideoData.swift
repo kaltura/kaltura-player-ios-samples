@@ -33,6 +33,8 @@ struct OVPMedia {
     var uiconfId: NSNumber?
     var startTime: TimeInterval?
     
+    var externalSubtitles: [PKExternalSubtitle]?
+    
     func mediaOptions() -> OVPMediaOptions {
         let ovpMediaOptions = OVPMediaOptions()
         
@@ -43,6 +45,8 @@ struct OVPMedia {
         if let startTime = startTime {
             ovpMediaOptions.startTime = startTime
         }
+        
+//        ovpMediaOptions.externalSubtitles = externalSubtitles
         
         return ovpMediaOptions
     }
