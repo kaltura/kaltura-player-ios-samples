@@ -43,6 +43,8 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         
         let ottPlayerOptions = playerOptions(videoData)
         kalturaOTTPlayer = KalturaOTTPlayer(options: ottPlayerOptions)
+        // FEC-12301 Testing
+        kalturaOTTPlayer.settings.preventsDisplaySleepDuringVideoPlayback = false
         mediaPlayer.player = kalturaOTTPlayer
         mediaPlayer.delegate = self
     }
