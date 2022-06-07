@@ -31,6 +31,7 @@
 		D2F1D4B3249A449700D57863 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */; };
 		D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */; };
 		DA2A949C27763F2000D874C6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */; };
+		DA6763302850101900E936BF /* PlaylistViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67632F2850101900E936BF /* PlaylistViewController-BG.swift */; };
 		DA8F3E25282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F3E24282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift */; };
 		DA8F3E27282BD19300D99762 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA8F3E26282BD19300D99762 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		D2F1D4B2249A449700D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4B4249A471F00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
 		DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DA67632F2850101900E936BF /* PlaylistViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistViewController-BG.swift"; sourceTree = "<group>"; };
 		DA8F3E24282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KPMediaPlayerViewController-BG.swift"; sourceTree = "<group>"; };
 		DA8F3E26282BD19300D99762 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				DA8F3E24282BC7F200D99762 /* KPMediaPlayerViewController-BG.swift */,
+				DA67632F2850101900E936BF /* PlaylistViewController-BG.swift */,
 			);
 			path = Background;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				D2231DDE23EAFAB700462B23 /* KPMediaPlayerViewController.swift in Sources */,
 				D22E9CE224B2F4D400CD9DDB /* CircleProgressView.swift in Sources */,
 				D2F1D4B5249A471F00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
+				DA6763302850101900E936BF /* PlaylistViewController-BG.swift in Sources */,
 				D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */,
 				D28B2586247EA8B800A430FD /* BasicVideoData.swift in Sources */,
 				D2231DE123EAFCD600462B23 /* PlayerViewController.swift in Sources */,

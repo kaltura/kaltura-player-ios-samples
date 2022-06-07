@@ -1,8 +1,8 @@
 //
-//  KPMediaPlayerViewController-BG.swift
+//  PlaylistViewController-BG.swift
 //  BasicSample
 //
-//  Created by Nilit Danan on 11/05/2022.
+//  Created by Nilit Danan on 08/06/2022.
 //  Copyright © 2022 Kaltura Inc. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Foundation
 import AVFoundation
 import PlayKit
 
-extension KPMediaPlayerViewController {
+extension PlaylistViewController {
     
     func initBGSession() {
         

@@ -75,10 +75,13 @@ class PlaylistViewController: UIViewController, MediasView {
         
         autoPlayNextButton.isSelected = playlistController?.autoContinue ?? false
         
+        initBGSession()
+        
         registerPlaylistControllerEvents()
     }
     
     deinit {
+        deinitBGSession()
         kalturaBasicPlayer.removeObserver(self, events: KPPlaylistEvent.allEventTypes)
     }
     
