@@ -75,9 +75,9 @@ class PlaylistViewController: UIViewController, MediasView {
         
         autoPlayNextButton.isSelected = playlistController?.autoContinue ?? false
         
-        initBGSession()
-        
         registerPlaylistControllerEvents()
+        
+        initBGSession()
     }
     
     deinit {

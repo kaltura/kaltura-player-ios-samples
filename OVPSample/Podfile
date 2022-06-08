@@ -12,16 +12,16 @@ target 'OVPSample' do
 
   ### In case we want Offline content (This can replace: pod 'KalturaPlayer/OVP') ###
 
-  pod 'KalturaPlayer/Offline_OVP'
-#  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline_OVP'
+  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-12251'
 #  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
   #####################################################################
 
  ### In case we want KalturaPlayer UI ###
 
-  pod 'KalturaPlayer/UI'
-#  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/UI'
+  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-12251'
 #  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
 
   #####################################################################
@@ -48,5 +48,8 @@ target 'OVPSample' do
 #  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
 #  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
 
+
+
+pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'FEC-12251'
 
 end

@@ -89,9 +89,12 @@ class PlaylistViewController: UIViewController, MediasView {
                 }
             }
         }
+        
+        initBGSession()
     }
     
     deinit {
+        deinitBGSession()
         kalturaOVPPlayer.removeObserver(self, events: KPPlaylistEvent.allEventTypes)
     }
     

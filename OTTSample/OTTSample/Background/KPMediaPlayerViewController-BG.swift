@@ -1,8 +1,8 @@
 //
 //  KPMediaPlayerViewController-BG.swift
-//  BasicSample
+//  OTTSample
 //
-//  Created by Nilit Danan on 11/05/2022.
+//  Created by Nilit Danan on 08/06/2022.
 //  Copyright © 2022 Kaltura Inc. All rights reserved.
 //
 
@@ -18,7 +18,7 @@ extension KPMediaPlayerViewController {
     
     func initBGSession() {
         
-        kalturaBasicPlayer.settings.allowAudioFromVideoAssetInBackground = true
+        kalturaOTTPlayer.settings.allowAudioFromVideoAssetInBackground = true
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(audioSessionInterrupted(_:)),
@@ -47,18 +47,19 @@ extension KPMediaPlayerViewController {
         if (receivedEvent.type == .remoteControl) {
             switch receivedEvent.subtype {
             case .remoteControlTogglePlayPause:
-                if kalturaBasicPlayer.isPlaying {
-                    kalturaBasicPlayer.pause()
+                if kalturaOTTPlayer.isPlaying {
+                    kalturaOTTPlayer.pause()
                 } else {
-                    kalturaBasicPlayer.play()
+                    kalturaOTTPlayer.play()
                 }
             case .remoteControlPlay:
-                kalturaBasicPlayer.play()
+                kalturaOTTPlayer.play()
             case .remoteControlPause:
-                kalturaBasicPlayer.pause()
+                kalturaOTTPlayer.pause()
             default:
                 print("received sub type \(receivedEvent.subtype) Ignoring")
             }
         }
     }
 }
+

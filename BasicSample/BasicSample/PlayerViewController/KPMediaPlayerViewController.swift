@@ -110,6 +110,7 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     deinit {
+        deinitBGSession()
         kalturaBasicPlayer.destroy()
         kalturaBasicPlayer = nil
     }

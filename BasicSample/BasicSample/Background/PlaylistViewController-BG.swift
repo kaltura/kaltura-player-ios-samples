@@ -11,9 +11,14 @@ import Foundation
 import AVFoundation
 import PlayKit
 
+// Minimum implementation for playing audio of the video asset in the BG
+// Does not work for assets including IMA
+
 extension PlaylistViewController {
     
     func initBGSession() {
+        
+        kalturaBasicPlayer.settings.allowAudioFromVideoAssetInBackground = true
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(audioSessionInterrupted(_:)),
