@@ -49,7 +49,4 @@ target 'OVPSample' do
 #  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
 
 
-
-pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'FEC-12251'
-
 end

@@ -42,7 +42,4 @@ target 'BasicSample' do
   
   
 
-
-pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'FEC-12251'
-
 end
