@@ -37,13 +37,12 @@ extension KPMediaPlayerViewController {
     }
     
     // MARK: - Notifications
-    @objc func audioSessionInterrupted(_ notification:Notification)
-    {
+    @objc func audioSessionInterrupted(_ notification:Notification) {
         print("interruption received: \(notification)")
     }
     
     // Response to remote control events
-    func remoteControlReceivedWithEvent(_ receivedEvent:UIEvent)  {
+    func remoteControlReceivedWithEvent(_ receivedEvent:UIEvent) {
         if (receivedEvent.type == .remoteControl) {
             switch receivedEvent.subtype {
             case .remoteControlTogglePlayPause:
