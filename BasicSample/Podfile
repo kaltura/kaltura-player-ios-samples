@@ -13,7 +13,7 @@ target 'BasicSample' do
   ### In case we want Offline content (This can replace: pod 'KalturaPlayer') ###
   
 #  pod 'KalturaPlayer/Offline'
-  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-12251'
+  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'ForQA_TravisIssue'
 #  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'
   
   #####################################################################
@@ -21,7 +21,7 @@ target 'BasicSample' do
   ### In case we want KalturaPlayer UI ###
   
 #  pod 'KalturaPlayer/UI'
-  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-12251'
+  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'ForQA_TravisIssue'
 #  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
   
   #####################################################################
@@ -41,5 +41,12 @@ target 'BasicSample' do
 #  pod 'PlayKitYoubora', :path => '../../../PlayKit/playkit-ios-youbora'
   
   
+### FOR QA
+
+pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
+pod 'PlayKitKava', :git => 'https://github.com/kaltura/playkit-ios-kava.git', :branch => 'develop'
+pod 'DownloadToGo', :git => 'https://github.com/kaltura/playkit-ios-dtg.git', :branch => 'develop'
+pod 'KalturaNetKit', :git => 'https://github.com/kaltura/netkit-ios.git', :branch => 'develop'
 
 end
