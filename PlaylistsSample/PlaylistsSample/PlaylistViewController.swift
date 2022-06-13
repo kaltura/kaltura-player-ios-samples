@@ -231,6 +231,8 @@ class PlaylistViewController: UIViewController {
             playlistController.recoverOnError = true
             playlistController.preloadTime = 120
             
+            playlistController.skipCountdownForPostRoll = true
+            
             self.autoPlayNextButton.isSelected = playlistController.autoContinue
             self.playlistNameLabel.text = playlistController.playlist.name
             
