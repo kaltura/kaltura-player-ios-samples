@@ -36,9 +36,9 @@ target 'BasicSample' do
   
   ### In case we want to add Youbora ###
   
-  pod 'PlayKitYoubora'
-#  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
-#  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
+#  pod 'PlayKitYoubora'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora', :path => '../../../PlayKit/playkit-ios-youbora'
   
   
 
