@@ -20,6 +20,8 @@ extension VideoData {
         
         // Sending a free form Media
         
+        videos.append(VideoData(title: "Audio only", freeFormMedia: FreeFormMedia(id: "audio1", contentUrl: "https://cdnapisec.kaltura.com/p/243342/sp/24334200/playManifest/entryId/1_wup745o9/flavorIds/1_5bsqhd7r,1_gp5hvle6/format/applehttp/protocol/https/a.m3u8?referrer=aHR0cHM6Ly9rZ2l0Lmh0bWw1dmlkZW8ub3Jn&playSessionId=7a54b1be-f1fd-a63a-1799-2780c64fb632&clientTag=html5:v2.90__0f3ed6ee&uiConfId=12905712")))
+        
         videos.append(VideoData(title: "Sintel - Free Form Media - Defaults",
                                 freeFormMedia: FreeFormMedia(id: "sintel",
                                                              contentUrl: "https://cdnapisec.kaltura.com/p/2215841/playManifest/entryId/1_w9zx2eti/format/applehttp/protocol/https/a.m3u8"),

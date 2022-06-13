@@ -47,6 +47,8 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         kalturaOTTPlayer.settings.preventsDisplaySleepDuringVideoPlayback = false
         mediaPlayer.player = kalturaOTTPlayer
         mediaPlayer.delegate = self
+        
+        initBGSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +119,7 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     deinit {
+        deinitBGSession()
         kalturaOTTPlayer.destroy()
         kalturaOTTPlayer = nil
     }

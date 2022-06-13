@@ -32,6 +32,8 @@
 		D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2895B0324DB01270090F9F0 /* BasicVideoData.swift */; };
 		D2B428A525D509EA00A217E3 /* GoogleCastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B428A425D509E900A217E3 /* GoogleCastManager.swift */; };
 		DA0D9FC1277D5E79004D9FDD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0D9FC0277D5E79004D9FDD /* PlaylistViewController.swift */; };
+		DA63B4182850ED1000BD3B51 /* KPMediaPlayerViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA63B4172850ED1000BD3B51 /* KPMediaPlayerViewController-BG.swift */; };
+		DA63B41A2850ED4800BD3B51 /* PlaylistViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA63B4192850ED4800BD3B51 /* PlaylistViewController-BG.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		D2895B0324DB01270090F9F0 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D2B428A425D509E900A217E3 /* GoogleCastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleCastManager.swift; sourceTree = "<group>"; };
 		DA0D9FC0277D5E79004D9FDD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DA63B4172850ED1000BD3B51 /* KPMediaPlayerViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KPMediaPlayerViewController-BG.swift"; sourceTree = "<group>"; };
+		DA63B4192850ED4800BD3B51 /* PlaylistViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistViewController-BG.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 				D2895AF324DADFCA0090F9F0 /* PlayerViewController */,
 				D2895AFA24DAE8F90090F9F0 /* CustomViews */,
 				D2B428A325D509BA00A217E3 /* GoogleChromeCast */,
+				DA63B4162850ECE400BD3B51 /* Background */,
 				D25BE6F424E02CD1005F0222 /* Main.storyboard */,
 				D2895AD924D290A90090F9F0 /* Assets.xcassets */,
 				D2895ADB24D290A90090F9F0 /* LaunchScreen.storyboard */,
@@ -177,6 +182,15 @@
 				D2B428A425D509E900A217E3 /* GoogleCastManager.swift */,
 			);
 			path = GoogleChromeCast;
+			sourceTree = "<group>";
+		};
+		DA63B4162850ECE400BD3B51 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				DA63B4172850ED1000BD3B51 /* KPMediaPlayerViewController-BG.swift */,
+				DA63B4192850ED4800BD3B51 /* PlaylistViewController-BG.swift */,
+			);
+			path = Background;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,9 +331,11 @@
 				DA0D9FC1277D5E79004D9FDD /* PlaylistViewController.swift in Sources */,
 				D2895B0424DB01270090F9F0 /* BasicVideoData.swift in Sources */,
 				D25BE6EB24E0236E005F0222 /* IMADAIVideoData.swift in Sources */,
+				DA63B41A2850ED4800BD3B51 /* PlaylistViewController-BG.swift in Sources */,
 				D2895AE524D29A1D0090F9F0 /* MainTableViewController.swift in Sources */,
 				D2895AF924DAE5EB0090F9F0 /* MediaPlayerViewController.swift in Sources */,
 				D25BE6ED24E0239C005F0222 /* YouboraVideoData.swift in Sources */,
+				DA63B4182850ED1000BD3B51 /* KPMediaPlayerViewController-BG.swift in Sources */,
 				D2895AF724DAE0810090F9F0 /* KPMediaPlayerViewController.swift in Sources */,
 				D25BE6F324E0243B005F0222 /* OfflineVideoData.swift in Sources */,
 				D2895AE724D29A5F0090F9F0 /* MediasTableViewController.swift in Sources */,

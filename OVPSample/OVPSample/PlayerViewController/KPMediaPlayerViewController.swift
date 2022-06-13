@@ -45,6 +45,8 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         kalturaOVPPlayer = KalturaOVPPlayer(options: ovpPlayerOptions)
         mediaPlayer.player = kalturaOVPPlayer
         mediaPlayer.delegate = self
+        
+        initBGSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +117,7 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     deinit {
+        deinitBGSession()
         kalturaOVPPlayer.destroy()
         kalturaOVPPlayer = nil
     }

@@ -12,16 +12,16 @@ target 'BasicSample' do
   
   ### In case we want Offline content (This can replace: pod 'KalturaPlayer') ###
   
-  pod 'KalturaPlayer/Offline'
-#  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline'
+  pod 'KalturaPlayer/Offline', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-12251'
 #  pod 'KalturaPlayer/Offline', :path => '../../kaltura-player-ios'
   
   #####################################################################
   
   ### In case we want KalturaPlayer UI ###
   
-  pod 'KalturaPlayer/UI'
-#  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/UI'
+  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'FEC-12251'
 #  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
   
   #####################################################################
@@ -41,4 +41,5 @@ target 'BasicSample' do
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
   
   
+
 end

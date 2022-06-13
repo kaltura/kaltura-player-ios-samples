@@ -35,6 +35,10 @@
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>${PRODUCT_NAME} uses the local network to discover Cast-enabled devices on your WiFi
 network.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

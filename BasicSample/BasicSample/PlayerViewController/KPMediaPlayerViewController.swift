@@ -45,6 +45,8 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         kalturaBasicPlayer = KalturaBasicPlayer(options: basicPlayerOptions)
         mediaPlayer.player = kalturaBasicPlayer
         mediaPlayer.delegate = self
+        
+        initBGSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,6 +110,7 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     deinit {
+        deinitBGSession()
         kalturaBasicPlayer.destroy()
         kalturaBasicPlayer = nil
     }

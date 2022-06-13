@@ -32,6 +32,8 @@
 		D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4B8249A4D5E00D57863 /* YouboraIMAVideoData.swift */; };
 		D2F1D4BB249A4D6A00D57863 /* YouboraIMADAIVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1D4BA249A4D6A00D57863 /* YouboraIMADAIVideoData.swift */; };
 		DA0D9FBF277D353C004D9FDD /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0D9FBE277D353C004D9FDD /* PlaylistViewController.swift */; };
+		DA63B4132850E47500BD3B51 /* KPMediaPlayerViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA63B4122850E47500BD3B51 /* KPMediaPlayerViewController-BG.swift */; };
+		DA63B4152850E4A000BD3B51 /* PlaylistViewController-BG.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA63B4142850E4A000BD3B51 /* PlaylistViewController-BG.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		D2F1D4B8249A4D5E00D57863 /* YouboraIMAVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMAVideoData.swift; sourceTree = "<group>"; };
 		D2F1D4BA249A4D6A00D57863 /* YouboraIMADAIVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouboraIMADAIVideoData.swift; sourceTree = "<group>"; };
 		DA0D9FBE277D353C004D9FDD /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		DA63B4122850E47500BD3B51 /* KPMediaPlayerViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KPMediaPlayerViewController-BG.swift"; sourceTree = "<group>"; };
+		DA63B4142850E4A000BD3B51 /* PlaylistViewController-BG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaylistViewController-BG.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,12 +167,22 @@
 				D29A68F2245F1CBB00C942ED /* PlayerViewController */,
 				D24241E824A4D6CC0037FDAD /* CustomViews */,
 				D2B4286825CAE01800A217E3 /* GoogleChromeCast */,
+				DA63B4112850E05900BD3B51 /* Background */,
 				D2BB80402439FD3D0050228D /* Main.storyboard */,
 				D2BB80432439FD440050228D /* Assets.xcassets */,
 				D2BB80452439FD450050228D /* LaunchScreen.storyboard */,
 				D2BB80482439FD450050228D /* Info.plist */,
 			);
 			path = OTTSample;
+			sourceTree = "<group>";
+		};
+		DA63B4112850E05900BD3B51 /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				DA63B4122850E47500BD3B51 /* KPMediaPlayerViewController-BG.swift */,
+				DA63B4142850E4A000BD3B51 /* PlaylistViewController-BG.swift */,
+			);
+			path = Background;
 			sourceTree = "<group>";
 		};
 		DD69385BEF8FF001EDAFEF66 /* Frameworks */ = {
@@ -317,9 +331,11 @@
 				DA0D9FBF277D353C004D9FDD /* PlaylistViewController.swift in Sources */,
 				D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */,
 				D277EFAD24A8DFAA00C05279 /* OfflineVideoData.swift in Sources */,
+				DA63B4152850E4A000BD3B51 /* PlaylistViewController-BG.swift in Sources */,
 				D29A68F8245F1CBB00C942ED /* MainTableViewController.swift in Sources */,
 				D29A68FB245F1CBB00C942ED /* MediaPlayerViewController.swift in Sources */,
 				D2F1D4BB249A4D6A00D57863 /* YouboraIMADAIVideoData.swift in Sources */,
+				DA63B4132850E47500BD3B51 /* KPMediaPlayerViewController-BG.swift in Sources */,
 				D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */,
 				D24D63E7247F9F810043FF11 /* IMAAdTags.swift in Sources */,
 				D29A68FA245F1CBB00C942ED /* KPMediaPlayerViewController.swift in Sources */,
