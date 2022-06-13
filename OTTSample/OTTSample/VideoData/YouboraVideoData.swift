@@ -8,6 +8,7 @@
 
 import PlayKit
 import PlayKitYoubora
+import PlayKitSmartSwitch
 
 extension VideoData {
     
@@ -21,10 +22,17 @@ extension VideoData {
         ]
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
         
+        let smartSwitchConfig = SmartSwitchConfig()
+        smartSwitchConfig.domainUrl = "https://southeast-1.gnsnpaw.com"
+        smartSwitchConfig.set(accountCode: "kaltura")
+        smartSwitchConfig.set(application: "NPAW test")
+        smartSwitchConfig.set(optionalParams: ["live": "False", "userAgent": "PlayKit"])
+        
         videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
                                                    preload: true,
-                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
+                                                   pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig,
+                                                                                       SmartSwitchMediaEntryInterceptor.pluginName: smartSwitchConfig])),
                                 media: OTTMedia(assetId: "548575",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
