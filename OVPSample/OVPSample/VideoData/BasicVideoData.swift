@@ -17,9 +17,9 @@ extension VideoData {
         customPlaylistCountdownOptions.timeToShow = 30
         customPlaylistCountdownOptions.duration = 20
 
-        videos.append(VideoData(title: "1_xay0wjby, autoPlay, preload",
+        videos.append(VideoData(title: "1_tmomdals, autoPlay, preload",
                                 player: PlayerData(autoPlay: true, preload: true),
-                                media: OVPMedia(entryId: "1_xay0wjby"),
+                                media: OVPMedia(entryId: "1_tmomdals"),
                                 playlistCountdownOptions: customPlaylistCountdownOptions))
         
         videos.append(VideoData(title: "1_ytsd86sc, autoPlay, preload, startTime-20",
