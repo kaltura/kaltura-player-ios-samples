@@ -12,41 +12,44 @@ target 'OVPSample' do
 
   ### In case we want Offline content (This can replace: pod 'KalturaPlayer/OVP') ###
 
-  pod 'KalturaPlayer/Offline_OVP'
-#  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/Offline_OVP'
+  pod 'KalturaPlayer/Offline_OVP', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/Offline_OVP', :path => '../../kaltura-player-ios'
 
   #####################################################################
 
  ### In case we want KalturaPlayer UI ###
 
-  pod 'KalturaPlayer/UI'
-#  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
+#  pod 'KalturaPlayer/UI'
+  pod 'KalturaPlayer/UI', :git => 'https://github.com/kaltura/kaltura-player-ios.git', :branch => 'develop'
 #  pod 'KalturaPlayer/UI', :path => '../../kaltura-player-ios'
 
   #####################################################################
 
   ### In case we want to add IMA (Interactive Media Ads) ###
 
-  pod 'PlayKit_IMA'
-#  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
+#  pod 'PlayKit_IMA'
+  pod 'PlayKit_IMA', :git => 'https://github.com/kaltura/playkit-ios-ima.git', :branch => 'develop'
 #  pod 'PlayKit_IMA', :path => '../../playkit-ios-ima'
 
   #####################################################################
 
   ### In case we want to add Youbora ###
 
-  pod 'PlayKitYoubora'
-#  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'develop'
+#  pod 'PlayKitYoubora'
+  pod 'PlayKitYoubora', :git => 'https://github.com/kaltura/playkit-ios-youbora.git', :branch => 'FEC-11892'
 #  pod 'PlayKitYoubora', :path => '../../playkit-ios-youbora'
 
   #####################################################################
 
   ### In case we want to add Google Chrome Cast ###
 
-  pod 'PlayKitGoogleCast'
-#  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
+#  pod 'PlayKitGoogleCast'
+  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
 #  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
 
+
+  pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'develop'
+  pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
 
 end

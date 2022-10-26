@@ -22,7 +22,11 @@ extension VideoData {
         imaDAIConfigVODStartWithPreroll.streamType = .vod
         imaDAIConfigVODStartWithPreroll.alwaysStartWithPreroll = true
         
-        videos.append(VideoData(title: "IMA DAI - VOD Start With Preroll, 548575, autoPlay, preload",
+        imaDAIConfigVODStartWithPreroll.adTagParams = ["MyKey": "MyValue"]
+        imaDAIConfigVODStartWithPreroll.streamActivityMonitorId = "MyMoritor-ID"
+        imaDAIConfigVODStartWithPreroll.authToken = "MyAuth-token"
+        
+        videos.append(VideoData(title: "QA Testing 4.8.0 IMA DAI - VOD Start With Preroll, 548575, autoPlay, preload",
                                 player: PlayerData(autoPlay: true,
                                                    preload: true,
                                                    pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigVODStartWithPreroll])),

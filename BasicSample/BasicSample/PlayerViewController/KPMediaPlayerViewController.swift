@@ -45,6 +45,8 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         kalturaBasicPlayer = KalturaBasicPlayer(options: basicPlayerOptions)
         mediaPlayer.player = kalturaBasicPlayer
         mediaPlayer.delegate = self
+        
+        handleEvents()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,6 +136,33 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         }
         
         return playerOptions
+    }
+    
+    func handleEvents() {
+        
+        kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.timedMetadata,
+                                                      KPPlayerEvent.videoTrackChanged,
+                                                      KPPlayerEvent.audioTrackChanged]) { [weak self] event in
+            guard let self = self else { return }
+                        
+            DispatchQueue.main.async {
+                switch event {
+                case is KPPlayerEvent.TimedMetadata:
+                    print("TIMED METADATA EVENT: \(event.timedMetadata)")
+                    
+                    if let metadata = event.timedMetadata?.first {
+                        print("Time: \(metadata.time.seconds)")
+                    }
+                   
+                case is KPPlayerEvent.VideoTrackChanged:
+                    print("Codec: \(event.codecDescription) +++ Bitrate: \(event.bitrate)")
+                case is KPPlayerEvent.AudioTrackChanged:
+                    print("Codec: \(event.codecDescription) +++ Bitrate: \(event.bitrate)")
+                default:
+                    break
+                }
+            }
+        }
     }
 }
 
