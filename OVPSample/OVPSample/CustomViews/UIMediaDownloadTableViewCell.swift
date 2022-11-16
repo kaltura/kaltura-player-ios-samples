@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import KalturaPlayer
+import PlayKit
+import DownloadToGo
 
 class UIDownloadButton: UIButton {
     enum downloadState {
@@ -116,6 +118,11 @@ extension UIMediaDownloadTableViewCell {
         case .download:
             downloadButton.displayState = .pause
             
+            OfflineManager.shared.setManifestRequestAdapter(requestAdapter: KalturaPlayerDTGRequestAdapter(sessionId: "",
+                                                                                                           withAppName: "https://kaltura.uts.edu.au"))
+            
+            OfflineManager.shared.setReferrer("https://kaltura.uts.edu.au")
+            
             OfflineManager.shared.prepareAsset(mediaOptions: videoData.media.mediaOptions(),
                                                options: offlineSelectionOptions) { [weak self] (error, assetInfo, pkMediaEntry) in
                 guard let self = self else { return }
@@ -174,3 +181,52 @@ extension UIMediaDownloadTableViewCell {
     }
 }
 
+public class KalturaPlayerDTGRequestAdapter: DTGRequestParamsAdapter {
+    
+    private var applicationName: String?
+    private var sessionId: String?
+    
+    /// Init adapter.
+    ///
+    /// - Parameters:
+    ///   - player: The player you want to use with the request adapter
+    ///   - appName: the application name, if `nil` will use the bundle identifier.
+    @objc init(sessionId: String,
+               withAppName appName: String){
+        self.sessionId = sessionId
+        self.applicationName = appName
+    }
+    
+    
+    public func adapt(_ requestParams: DownloadToGo.DTGRequestParams) -> DownloadToGo.DTGRequestParams {
+        
+        guard let sessionId = self.sessionId else { return requestParams }
+        guard requestParams.url.path.contains("/playManifest/") else { return requestParams }
+        guard var urlComponents = URLComponents(url: requestParams.url, resolvingAgainstBaseURL: false) else { return requestParams }
+        // add query items to the request
+        let queryItems = [
+            URLQueryItem(name: "playSessionId", value: sessionId),
+            URLQueryItem(name: "clientTag", value: PlayKitManager.clientTag),
+            URLQueryItem(name: "referrer", value: self.applicationName == nil ? self.base64(from: Bundle.main.bundleIdentifier ?? "") : self.base64(from: self.applicationName!))
+        ]
+        if var urlQueryItems = urlComponents.queryItems {
+            urlQueryItems += queryItems
+            urlComponents.queryItems = urlQueryItems
+        } else {
+            urlComponents.queryItems = queryItems
+        }
+        // create the url
+        guard let url = urlComponents.url else {
+            PKLog.debug("failed to create url after appending query items")
+            return requestParams
+        }
+        
+        return DTGRequestParams(url: url, headers: requestParams.headers)
+        
+    }
+    
+    private func base64(from: String) -> String {
+        return from.data(using: .utf8)?.base64EncodedString() ?? ""
+    }
+    
+}

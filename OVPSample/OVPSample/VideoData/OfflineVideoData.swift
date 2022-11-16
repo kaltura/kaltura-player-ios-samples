@@ -25,6 +25,13 @@ extension VideoData {
 
         defaultOfflineSelectionOptions.allowInefficientCodecs = true
 
+        let ks = ""
+        
+        videos.append(VideoData(title: "* 0_0jmqn97p",
+                                player: PlayerData(autoPlay: true, preload: true, ks: ks),
+                                media: OVPMedia(entryId: "0_0jmqn97p"),
+                                offlineSelectionOptions: defaultOfflineSelectionOptions))
+        
         videos.append(VideoData(title: "1_xay0wjby, autoPlay, preload",
                                 player: PlayerData(autoPlay: true, preload: true),
                                 media: OVPMedia(entryId: "1_xay0wjby"),
