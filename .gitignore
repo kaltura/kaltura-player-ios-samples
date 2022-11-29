@@ -61,4 +61,4 @@ fastlane/screenshots
 fastlane/test_output
 
 
-plugin-credentials
+plugin-credentials.*
