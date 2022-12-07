@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        KalturaOTTPlayer.setup(partnerId: 3009,
-                               serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3/")
+        KalturaOTTPlayer.setup(partnerId: 8337,
+                               serverURL: "https://api.frs1.ott.kaltura.com/api_v3/")
         
         // In order to register the Google Chrome Cast
         // V3 (partner 3009) - 3F0E7646

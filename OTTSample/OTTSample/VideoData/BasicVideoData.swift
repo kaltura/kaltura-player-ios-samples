@@ -17,14 +17,20 @@ extension VideoData {
         customPlaylistCountdownOptions.timeToShow = 30
         customPlaylistCountdownOptions.duration = 20
         
-        videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
+        let ks = "djJ8ODMzN3wTu6k1x9Wkafy3_a8FAquZFghLc82OnH_lc3lGTEqxWGGeI0V76i-lWsqYmPj3fJ9Obgpki9zN8zYknBzZwNTYQYQGgY7NYBydwZWouC6Bqzo1E0cupSraJ7vWno-hLptQVJUv4alXC1wTx0_s6KB2paPzBOI6i7O4K8Ai-TglTE_rjhh3ggTXjm6IJ5LxwsFFIhVWn86tML_gJ18sJyRnkQpwdQ27dB8VJ-o5P5oo74IwNwL-sYgi7jxv4JKTPYhdR6oyMI5YMcQp5dO4F_rdN6kS_dZu8zDkKVNuRdg0Ukprlsec-N61XeXPh4_aSttInuLMcPdPAZ3MJAvypYOohi4Yjgc4kl9-zzJTAU1RZ7VNRX9HLeqiNvmIX6AMrCBeZKjG22d5OhdDqYjdo7oH9ILwzIk9A1kzTm7vRlNPKA=="
+        
+        
+        
+        videos.append(VideoData(title: "* 3516688, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
-                                                   preload: true),
-                                media: OTTMedia(assetId: "548575",
+                                                   preload: true,
+                                                   ks: ks),
+                                media: OTTMedia(assetId: "3516688",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http"),
+                                                fileIds: ["36080467"],
+                                                networkProtocol: "https"),
                                 playlistCountdownOptions: customPlaylistCountdownOptions))
         
         videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20",
