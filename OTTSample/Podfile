@@ -47,6 +47,11 @@ target 'OTTSample' do
   pod 'PlayKitGoogleCast'
 #  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
 #  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
-    
+   
+   
+   pod 'PlayKitProviders', :git => 'https://github.com/kaltura/playkit-ios-providers.git', :branch => 'develop'
+   
+#   pod 'PlayKitProviders', :path => '../../playkit-ios-providers'
+   
 
 end
