@@ -1,0 +1,74 @@
+PODS:
+  - GoogleAds-IMA-tvOS-SDK (4.6.1)
+  - KalturaNetKit (1.6.1):
+    - KalturaNetKit/Core (= 1.6.1)
+  - KalturaNetKit/Core (1.6.1):
+    - SwiftyJSON (= 5.0.0)
+  - KalturaPlayer (4.8.1):
+    - KalturaPlayer/Core (= 4.8.1)
+  - KalturaPlayer/Core (4.8.1):
+    - KalturaPlayer/Interceptor
+  - KalturaPlayer/Interceptor (4.8.1):
+    - PlayKit (~> 3.27)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - PlayKit (3.27.2):
+    - PlayKit/Core (= 3.27.2)
+  - PlayKit/AnalyticsCommon (3.27.2):
+    - PlayKit/Core
+  - PlayKit/Core (3.27.2):
+    - KalturaNetKit (~> 1.6.1)
+    - PlayKitUtils (~> 0.5)
+    - SwiftyJSON (= 5.0.0)
+    - XCGLogger (= 7.0.0)
+  - PlayKit_IMA (1.14.0):
+    - GoogleAds-IMA-iOS-SDK (= 3.18.1)
+    - GoogleAds-IMA-tvOS-SDK (= 4.6.1)
+    - PlayKit (~> 3.22)
+  - PlayKitUtils (0.5.1)
+  - PlayKitYoubora (1.15.0):
+    - PlayKit/AnalyticsCommon (~> 3.27)
+    - YouboraLib (= 6.6.25)
+  - SwiftyJSON (5.0.0)
+  - XCGLogger (7.0.0):
+    - XCGLogger/Core (= 7.0.0)
+  - XCGLogger/Core (7.0.0):
+    - ObjcExceptionBridging
+  - YouboraLib (6.6.25)
+
+DEPENDENCIES:
+  - KalturaPlayer
+  - PlayKit_IMA
+  - PlayKitYoubora
+
+SPEC REPOS:
+  trunk:
+    - GoogleAds-IMA-tvOS-SDK
+    - KalturaNetKit
+    - KalturaPlayer
+    - ObjcExceptionBridging
+    - PlayKit
+    - PlayKit_IMA
+    - PlayKitUtils
+    - PlayKitYoubora
+    - SwiftyJSON
+    - XCGLogger
+    - YouboraLib
+
+SPEC CHECKSUMS:
+  GoogleAds-IMA-tvOS-SDK: 86df385a513f50a9deb0b37e35f1478089ce5158
+  KalturaNetKit: 2af6c3c2a1abbd8936b5acde45f33f5195125f4a
+  KalturaPlayer: 88de9b168e2871ed1a8f940d3c9d9fa5ff35bfbd
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  PlayKit: 4e2c81a6495b2266cc523f767e6e36eb78305ac0
+  PlayKit_IMA: b7a37ba5474f3397f9c0880e7105fed72c21bc02
+  PlayKitUtils: 4a11aef6488e778d10b774702ba79dd0cfa0ef11
+  PlayKitYoubora: 2784003d0e0934ea53a0bbf34a12cf7a928bd63d
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
+  YouboraLib: 6ee57250e24a2f88a12c5685f5b57ce641fea851
+
+PODFILE CHECKSUM: eed8fb65e04f889d9a26bc680956a9754259507a
+
+COCOAPODS: 1.11.3
