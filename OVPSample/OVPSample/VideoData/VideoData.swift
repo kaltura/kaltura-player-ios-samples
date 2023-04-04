@@ -32,6 +32,7 @@ struct OVPMedia {
     var entryId: String
     var uiconfId: NSNumber?
     var startTime: TimeInterval?
+    var redirectFromEntryId: Bool = true
     
     func mediaOptions() -> OVPMediaOptions {
         let ovpMediaOptions = OVPMediaOptions()
@@ -39,7 +40,7 @@ struct OVPMedia {
         ovpMediaOptions.ks = ks
         ovpMediaOptions.entryId = entryId
         ovpMediaOptions.uiconfId = uiconfId
-        
+        ovpMediaOptions.redirectFromEntryId = redirectFromEntryId
         if let startTime = startTime {
             ovpMediaOptions.startTime = startTime
         }

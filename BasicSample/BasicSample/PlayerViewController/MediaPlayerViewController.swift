@@ -263,13 +263,17 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     }
     
     private func registerPlaybackEvents() {
-        kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.loadedMetadata, KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause, KPPlayerEvent.canPlay, KPPlayerEvent.seeking, KPPlayerEvent.seeked, KPPlayerEvent.playbackStalled, KPPlayerEvent.stateChanged]) { [weak self] event in
+        kalturaBasicPlayer.addObserver(self, events: [KPPlayerEvent.playbackInfo,KPPlayerEvent.timedMetadata, KPPlayerEvent.loadedMetadata, KPPlayerEvent.ended, KPPlayerEvent.play, KPPlayerEvent.playing, KPPlayerEvent.pause, KPPlayerEvent.canPlay, KPPlayerEvent.seeking, KPPlayerEvent.seeked, KPPlayerEvent.playbackStalled, KPPlayerEvent.stateChanged]) { [weak self] event in
             guard let self = self else { return }
             
             NSLog("Event triggered: " + event.description)
             
             DispatchQueue.main.async {
                 switch event {
+                case is KPPlayerEvent.PlaybackInfo:
+                    NSLog("XXX PlaybackInfo")
+                case is KPPlayerEvent.TimedMetadata:
+                    NSLog("XXX TimedMetadata")
                 case is KPPlayerEvent.LoadedMetadata:
                     if self.kalturaBasicPlayer.isLive() {
                         self.mediaProgressSlider.thumbTintColor = UIColor.red
@@ -284,6 +288,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
                         self.showPlayerControllers(true)
                     }
                 case is KPPlayerEvent.Play:
+                    NSLog("XXX Play")
                     self.playPauseButton.displayState = .pause
                 case is KPPlayerEvent.Playing:
                     self.activityIndicator.stopAnimating()
