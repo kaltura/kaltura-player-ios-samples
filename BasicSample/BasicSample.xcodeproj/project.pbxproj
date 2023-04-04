@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3140100A2982F7680074AF4E /* LiongateFPSLicenseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314010092982F7680074AF4E /* LiongateFPSLicenseProvider.swift */; };
 		85B5F5523C0F6F8180CA285A /* Pods_BasicSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD52A0F58AC1EA09BA7CA54 /* Pods_BasicSample.framework */; };
 		D2231DD323E8692900462B23 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DD223E8692900462B23 /* MainTableViewController.swift */; };
 		D2231DD723E963D100462B23 /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2231DD623E963D100462B23 /* MediaPlayerViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		314010092982F7680074AF4E /* LiongateFPSLicenseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiongateFPSLicenseProvider.swift; sourceTree = "<group>"; };
 		6CD52A0F58AC1EA09BA7CA54 /* Pods_BasicSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0005E8DBCAB4DD7049BDB05 /* Pods-BasicSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicSample.debug.xcconfig"; path = "Target Support Files/Pods-BasicSample/Pods-BasicSample.debug.xcconfig"; sourceTree = "<group>"; };
 		BFFC9696DDEFC535B0FC46B8 /* Pods-BasicSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicSample.release.xcconfig"; path = "Target Support Files/Pods-BasicSample/Pods-BasicSample.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				D2D85D25257E916C00404968 /* BasicSample.entitlements */,
+				314010092982F7680074AF4E /* LiongateFPSLicenseProvider.swift */,
 				D22671F922F7346100B1F247 /* AppDelegate.swift */,
 				D2231DD223E8692900462B23 /* MainTableViewController.swift */,
 				DA2A949B27763F2000D874C6 /* PlaylistViewController.swift */,
@@ -301,6 +304,7 @@
 				D22E9CE424B36C5000CD9DDB /* UIMediaTableViewCell.swift in Sources */,
 				DA2A949C27763F2000D874C6 /* PlaylistViewController.swift in Sources */,
 				D2231DDA23EAD71700462B23 /* VideoData.swift in Sources */,
+				3140100A2982F7680074AF4E /* LiongateFPSLicenseProvider.swift in Sources */,
 				D28B2588247EAEC100A430FD /* IMAVideoData.swift in Sources */,
 				D240FC1D2498F4CA0061A44D /* YouboraVideoData.swift in Sources */,
 			);

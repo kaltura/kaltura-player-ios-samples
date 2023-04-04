@@ -7,6 +7,9 @@ target 'BasicSample' do
   use_frameworks!
   
   #####################################################################
+   pod 'PlayKit', :git => 'https://github.com/kaltura/playkit-ios.git', :branch => 'FEC-12866'
+
+
   
 #  pod 'KalturaPlayer'
   

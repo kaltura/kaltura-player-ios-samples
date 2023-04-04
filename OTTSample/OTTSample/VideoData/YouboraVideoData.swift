@@ -8,6 +8,7 @@
 
 import PlayKit
 import PlayKitYoubora
+import KalturaPlayer
 
 extension VideoData {
     
@@ -19,7 +20,13 @@ extension VideoData {
         let youboraPluginParams: [String: Any] = [
             "accountCode": "kalturatest"
         ]
+        
+        let playerOptions = PlayerOptions()
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
+        let pluginConfig = PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])
+                 
+        playerOptions.pluginConfig = pluginConfig
+            
         
         videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
