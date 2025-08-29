@@ -21,51 +21,51 @@ extension VideoData {
         ]
         let analyticsConfig = AnalyticsConfig(params: youboraPluginParams)
         
-        videos.append(VideoData(title: "548575, autoPlay-true, preload-true",
+        videos.append(VideoData(title: "3835484, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
                                                    preload: true,
                                                    pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
-                                media: OTTMedia(assetId: "548575",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
         
-        videos.append(VideoData(title: "548570, autoPlay, preload, startTime-20",
+        videos.append(VideoData(title: "3835484, autoPlay, preload, startTime-20",
                                 player: PlayerData(pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
-                                media: OTTMedia(assetId: "548570",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http",
+                                                networkProtocol: "https",
                                                 startTime: 20)))
         
-        videos.append(VideoData(title: "548576, autoPlay-false, preload",
+        videos.append(VideoData(title: "3835484, autoPlay-false, preload",
                                 player: PlayerData(autoPlay: false,
                                                    pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
-                                media: OTTMedia(assetId: "548576",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
         
-        videos.append(VideoData(title: "548577, autoPlay, preload-false",
+        videos.append(VideoData(title: "3835484, autoPlay, preload-false",
                                 player: PlayerData(preload: false,
                                                    pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
-                                media: OTTMedia(assetId: "548577",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
 
-        videos.append(VideoData(title: "548551, autoPlay-false, preload-false",
+        videos.append(VideoData(title: "3835484, autoPlay-false, preload-false",
                                 player: PlayerData(autoPlay: false, preload: false,
                                                    pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
-                                media: OTTMedia(assetId: "548551",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
         
         return videos
     }

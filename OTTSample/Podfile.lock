@@ -71,6 +71,7 @@ PODS:
     - Realm (= 10.32.3)
   - SwiftyJSON (5.0.0)
   - SwiftyXMLParser (5.0.0)
+  - Wormholy (1.7.0)
   - XCGLogger (7.0.0):
     - XCGLogger/Core (= 7.0.0)
   - XCGLogger/Core (7.0.0):
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - PlayKit_IMA
   - PlayKitGoogleCast
   - PlayKitYoubora
+  - Wormholy
 
 SPEC REPOS:
   trunk:
@@ -106,6 +108,7 @@ SPEC REPOS:
     - RealmSwift
     - SwiftyJSON
     - SwiftyXMLParser
+    - Wormholy
     - XCGLogger
     - YouboraLib
 
@@ -130,9 +133,10 @@ SPEC CHECKSUMS:
   RealmSwift: 7c181da8fa1c2fe613656a77c198d6a3dc3879a1
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+  Wormholy: ab1c8c2f02f58587a0941deb0088555ffbf039a1
   XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
   YouboraLib: 6ee57250e24a2f88a12c5685f5b57ce641fea851
 
-PODFILE CHECKSUM: 26122e19f8e10efbb5051faf646f9d1a79790a22
+PODFILE CHECKSUM: 5df68e12fa5ae8e31d29097e2c4ee8d7d5efacc5
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2

@@ -22,23 +22,23 @@ extension VideoData {
         imaDAIConfigVODStartWithPreroll.streamType = .vod
         imaDAIConfigVODStartWithPreroll.alwaysStartWithPreroll = true
         
-        videos.append(VideoData(title: "IMA DAI - VOD Start With Preroll, 548575, autoPlay, preload",
+        videos.append(VideoData(title: "IMA DAI - VOD Start With Preroll, 3835484, autoPlay, preload",
                                 player: PlayerData(autoPlay: true,
                                                    preload: true,
                                                    pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigVODStartWithPreroll])),
-                                media: OTTMedia(assetId: "548575",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
         
-        videos.append(VideoData(title: "IMA DAI - VOD Start With Preroll, 548570, autoPlay, preload, startTime-20",
+        videos.append(VideoData(title: "IMA DAI - VOD Start With Preroll, 3835484, autoPlay, preload, startTime-20",
                                 player: PlayerData(pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigVODStartWithPreroll])),
-                                media: OTTMedia(assetId: "548570",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http",
+                                                networkProtocol: "https",
                                                 startTime: 20)))
         
         let imaDAIConfigVODDontStartWithPreroll = IMADAIConfig()
@@ -49,14 +49,14 @@ extension VideoData {
         imaDAIConfigVODDontStartWithPreroll.streamType = .vod
         imaDAIConfigVODDontStartWithPreroll.alwaysStartWithPreroll = false
         
-        videos.append(VideoData(title: "IMA DAI - VOD Don't Start With Preroll, 548576, autoPlay-false, preload, startTime-20",
+        videos.append(VideoData(title: "IMA DAI - VOD Don't Start With Preroll, 3835484, autoPlay-false, preload, startTime-20",
                                 player: PlayerData(autoPlay: false,
                                                    pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigVODDontStartWithPreroll])),
-                                media: OTTMedia(assetId: "548576",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http",
+                                                networkProtocol: "https",
                                                 startTime: 20)))
         
         
@@ -68,14 +68,14 @@ extension VideoData {
         imaDAIConfigLiveDontStartWithPreroll.streamType = .live
         imaDAIConfigLiveDontStartWithPreroll.alwaysStartWithPreroll = false
         
-        videos.append(VideoData(title: "IMA DAI - Live Don't Start With Preroll, 548577, autoPlay, preload-false",
+        videos.append(VideoData(title: "IMA DAI - Live Don't Start With Preroll, 3835484, autoPlay, preload-false",
                                 player: PlayerData(preload: false,
                                                    pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigLiveDontStartWithPreroll])),
-                                media: OTTMedia(assetId: "548577",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
 
         let imaDAIConfigError = IMADAIConfig()
         imaDAIConfigError.assetTitle = "BBB-widevine"
@@ -85,15 +85,15 @@ extension VideoData {
         imaDAIConfigError.streamType = .vod
         imaDAIConfigError.alwaysStartWithPreroll = false
         
-        videos.append(VideoData(title: "IMA DAI - Error, 548551, autoPlay-false, preload-false",
+        videos.append(VideoData(title: "IMA DAI - Error, 3835484, autoPlay-false, preload-false",
                                 player: PlayerData(autoPlay: false,
                                                    preload: false,
                                                    pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigError])),
-                                media: OTTMedia(assetId: "548551",
+                                media: OTTMedia(assetId: "3835484",
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "http")))
+                                                networkProtocol: "https")))
         
         return videos
     }

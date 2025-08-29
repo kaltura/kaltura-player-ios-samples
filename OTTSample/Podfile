@@ -48,5 +48,7 @@ target 'OTTSample' do
 #  pod 'PlayKitGoogleCast', :git => 'https://github.com/kaltura/playkit-ios-googlecast.git', :branch => 'develop'
 #  pod 'PlayKitGoogleCast', :path => '../../playkit-ios-googlecast'
     
+    
+  pod 'Wormholy', :configurations => ['Debug']
 
 end
