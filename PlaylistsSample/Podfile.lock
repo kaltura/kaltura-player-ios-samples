@@ -1,0 +1,129 @@
+PODS:
+  - CwlCatchException (2.2.1):
+    - CwlCatchExceptionSupport (~> 2.2.1)
+  - CwlCatchExceptionSupport (2.2.1)
+  - CwlMachBadInstructionHandler (2.2.2)
+  - CwlPosixPreconditionTesting (2.2.2)
+  - CwlPreconditionTesting (2.2.2):
+    - CwlCatchException (~> 2.2.1)
+    - CwlMachBadInstructionHandler (~> 2.2.2)
+    - CwlPosixPreconditionTesting (~> 2.2.2)
+  - GoogleAds-IMA-iOS-SDK (3.22.1)
+  - KalturaNetKit (1.7.0):
+    - KalturaNetKit/Core (= 1.7.0)
+  - KalturaNetKit/Core (1.7.0):
+    - kSwiftyJSON (= 5.0.8)
+  - KalturaPlayer/Core (4.10.1):
+    - KalturaPlayer/Interceptor
+  - KalturaPlayer/Interceptor (4.10.1):
+    - PlayKit (~> 3.31)
+  - KalturaPlayer/OTT (4.10.1):
+    - KalturaPlayer/Core
+    - PlayKitKava (~> 1.11)
+    - PlayKitProviders (~> 1.19)
+  - KalturaPlayer/OVP (4.10.1):
+    - KalturaPlayer/Core
+    - PlayKitKava (~> 1.11)
+    - PlayKitProviders (~> 1.19)
+  - kSwiftyJSON (5.0.8)
+  - Nimble (13.7.1):
+    - CwlPreconditionTesting (~> 2.2.0)
+  - ObjcExceptionBridging (7.1.5):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 7.1.5)
+  - ObjcExceptionBridging/ObjcExceptionBridging (7.1.5)
+  - PlayKit (3.31.0):
+    - PlayKit/Core (= 3.31.0)
+  - PlayKit/AnalyticsCommon (3.31.0):
+    - PlayKit/Core
+  - PlayKit/Core (3.31.0):
+    - KalturaNetKit (~> 1.7.0)
+    - kSwiftyJSON (= 5.0.8)
+    - PlayKitUtils (~> 0.7)
+    - XCGLogger (= 7.1.5)
+  - PlayKit_IMA (1.16.0):
+    - GoogleAds-IMA-iOS-SDK (= 3.22.1)
+    - GoogleAds-IMA-tvOS-SDK (= 4.12.0)
+    - PlayKit (~> 3.30)
+  - PlayKitKava (1.11.0):
+    - PlayKit/AnalyticsCommon (~> 3.30)
+  - PlayKitProviders (1.19.1):
+    - KalturaNetKit (~> 1.7.0)
+    - PlayKit/AnalyticsCommon (~> 3.30)
+    - PlayKitUtils (~> 0.7)
+    - SwiftyXMLParser (= 5.6.0)
+  - PlayKitUtils (0.7.0)
+  - PlayKitYoubora (1.16.0):
+    - PlayKit/AnalyticsCommon (~> 3.30)
+    - YouboraLib (= 6.7)
+  - Quick (7.6.2)
+  - SwiftyXMLParser (5.6.0)
+  - Wormholy (1.7.0)
+  - XCGLogger (7.1.5):
+    - XCGLogger/Core (= 7.1.5)
+  - XCGLogger/Core (7.1.5):
+    - ObjcExceptionBridging
+  - YouboraLib (6.7.0)
+
+DEPENDENCIES:
+  - KalturaPlayer/OTT
+  - KalturaPlayer/OVP
+  - Nimble
+  - PlayKit
+  - PlayKit_IMA
+  - PlayKitProviders
+  - PlayKitYoubora
+  - Quick
+  - Wormholy
+
+SPEC REPOS:
+  trunk:
+    - CwlCatchException
+    - CwlCatchExceptionSupport
+    - CwlMachBadInstructionHandler
+    - CwlPosixPreconditionTesting
+    - CwlPreconditionTesting
+    - GoogleAds-IMA-iOS-SDK
+    - KalturaNetKit
+    - KalturaPlayer
+    - kSwiftyJSON
+    - Nimble
+    - ObjcExceptionBridging
+    - PlayKit
+    - PlayKit_IMA
+    - PlayKitKava
+    - PlayKitProviders
+    - PlayKitUtils
+    - PlayKitYoubora
+    - Quick
+    - SwiftyXMLParser
+    - Wormholy
+    - XCGLogger
+    - YouboraLib
+
+SPEC CHECKSUMS:
+  CwlCatchException: 7acc161b299a6de7f0a46a6ed741eae2c8b4d75a
+  CwlCatchExceptionSupport: 54ccab8d8c78907b57f99717fb19d4cc3bce02dc
+  CwlMachBadInstructionHandler: dae4fdd124d45c9910ac240287cc7b898f4502a1
+  CwlPosixPreconditionTesting: ecd095aa2129e740b44301c34571e8d85906fb88
+  CwlPreconditionTesting: 67a0047dd4de4382b93442c0e3f25207f984f35a
+  GoogleAds-IMA-iOS-SDK: 160c3616b8371b58016e30aaf441e71d6d9e8f7d
+  KalturaNetKit: a01d38b9d54ae38f5f20ffd6c15d0480097b154e
+  KalturaPlayer: f67eb6899f76b9edfc8b8c72101413f3ec96051b
+  kSwiftyJSON: 9d87145a14a721c7b64ed68a77ca105fbf034d37
+  Nimble: 317d713c30c3336dd8571da1889f7ec3afc626e8
+  ObjcExceptionBridging: d3d37d62981bb7f252ecb31b62d7e23a96bbfb8a
+  PlayKit: 2153926264d954bd075f0b66b20b609befe5f93a
+  PlayKit_IMA: 11dc0b03ab0fb7723876bfb1086e9e0c8be1c741
+  PlayKitKava: caadb9648a112528c82ed95ea7e5cebcee223e75
+  PlayKitProviders: 900ba107f2b5a112feb211f75bd77e687e691ca8
+  PlayKitUtils: 7b0e4a5d981fbe88437829c97610b565a2534d38
+  PlayKitYoubora: 8e2f49e7bdfa54a26754f791d3bad9a4dbef856a
+  Quick: b8bec97cd4b9f21da0472d45580f763b801fc353
+  SwiftyXMLParser: 9b98995235961881322015ebe38d1f3d7c953bd7
+  Wormholy: ab1c8c2f02f58587a0941deb0088555ffbf039a1
+  XCGLogger: 399c5885210b4e2ad79d9f7a29b105d672ef724f
+  YouboraLib: 6ed1ea91a640e260cc62df4aadcef488aa3f818d
+
+PODFILE CHECKSUM: 04fedaf09f867021c990159ca47f98ab0de7299a
+
+COCOAPODS: 1.15.2

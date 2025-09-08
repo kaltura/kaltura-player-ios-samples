@@ -91,8 +91,8 @@ class PlaylistViewController: UIViewController {
         case .basic:
             KalturaBasicPlayer.setup()
         case .ott:
-            KalturaOTTPlayer.setup(partnerId: 3009,
-                                   serverURL: "https://rest-us.ott.kaltura.com/v4_5/api_v3",
+            KalturaOTTPlayer.setup(partnerId: 5033,
+                                   serverURL: "https://5033.frp1.ott.kaltura.com/api_v3/",
                                    referrer: nil)
             
 //            KalturaOTTPlayer.bypassConfigFetching(partnerId: 0,
@@ -168,16 +168,11 @@ class PlaylistViewController: UIViewController {
         guard let player = self.player as? KalturaOTTPlayer else { return }
         
         var mediaOptions: [OTTMediaOptions] = []
-        
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "681795").set(assetReferenceType: .media))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "681771").set(assetReferenceType: .media))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "681766").set(assetReferenceType: .media))
-//        mediaOptions.append(OTTMediaOptions().set(assetId: "849804").set(assetReferenceType: .media))
-        
-        mediaOptions.append(OTTMediaOptions().set(assetId: "548575").set(assetReferenceType: .media).set(networkProtocol: "http"))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "548570").set(assetReferenceType: .media).set(networkProtocol: "http"))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "548576").set(assetReferenceType: .media).set(networkProtocol: "http"))
-        
+                
+        mediaOptions.append(OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https"))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https"))
+        mediaOptions.append(OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https"))
+
         player.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
             guard let self = self else { return }
             if let error = error {
@@ -519,4 +514,3 @@ extension PlaylistViewController: PlaylistControllerDelegate {
         return countdown
     }
 }
-
