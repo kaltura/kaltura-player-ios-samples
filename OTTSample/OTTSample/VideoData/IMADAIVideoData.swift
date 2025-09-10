@@ -30,7 +30,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         videos.append(VideoData(title: "IMA DAI - VOD Start With Preroll, 3835484, autoPlay, preload, startTime-20",
                                 player: PlayerData(pluginConfig: PluginConfig(config: [IMADAIPlugin.pluginName : imaDAIConfigVODStartWithPreroll])),
@@ -39,6 +40,7 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "https",
+                                                urlType: "DIRECT",
                                                 startTime: 20)))
         
         let imaDAIConfigVODDontStartWithPreroll = IMADAIConfig()
@@ -57,6 +59,7 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "https",
+                                                urlType: "DIRECT",
                                                 startTime: 20)))
         
         
@@ -75,7 +78,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
 
         let imaDAIConfigError = IMADAIConfig()
         imaDAIConfigError.assetTitle = "BBB-widevine"
@@ -93,7 +97,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         return videos
     }

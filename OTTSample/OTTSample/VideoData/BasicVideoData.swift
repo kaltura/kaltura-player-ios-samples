@@ -16,7 +16,6 @@ extension VideoData {
         let customPlaylistCountdownOptions = CountdownOptions()
         customPlaylistCountdownOptions.timeToShow = 30
         customPlaylistCountdownOptions.duration = 20
-        
         videos.append(VideoData(title: "3835484, autoPlay-true, preload-true",
                                 player: PlayerData(autoPlay: true,
                                                    preload: true),
@@ -24,7 +23,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),                                
                                 playlistCountdownOptions: customPlaylistCountdownOptions))
         
         videos.append(VideoData(title: "3835484, autoPlay, preload, startTime-20",
@@ -34,6 +34,7 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "https",
+                                                urlType: "DIRECT",
                                                 startTime: 20)))
         
         videos.append(VideoData(title: "3835484, autoPlay-false, preload",
@@ -42,7 +43,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         videos.append(VideoData(title: "3835484, autoPlay, preload-false",
                                 player: PlayerData(preload: false),
@@ -50,7 +52,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
 
         videos.append(VideoData(title: "3835484, autoPlay-false, preload-false",
                                 player: PlayerData(autoPlay: false, preload: false),
@@ -58,7 +61,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         return videos
     }

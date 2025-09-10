@@ -32,7 +32,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 offlineSelectionOptions: defaultOfflineSelectionOptions))
         
         videos.append(VideoData(title: "3835484, autoPlay, preload, startTime-20",
@@ -42,6 +43,7 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "https",
+                                                urlType: "DIRECT",
                                                 startTime: 20),
                                 offlineSelectionOptions: defaultOfflineSelectionOptions))
         
@@ -51,7 +53,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 offlineSelectionOptions: defaultOfflineSelectionOptions))
         
         videos.append(VideoData(title: "3835484, autoPlay, preload-false",
@@ -60,7 +63,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 offlineSelectionOptions: defaultOfflineSelectionOptions))
 
         videos.append(VideoData(title: "3835484, autoPlay-false, preload-false",
@@ -70,7 +74,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 offlineSelectionOptions: defaultOfflineSelectionOptions))
         
         return videos

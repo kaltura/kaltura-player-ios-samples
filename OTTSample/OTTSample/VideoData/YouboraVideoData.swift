@@ -29,7 +29,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         videos.append(VideoData(title: "3835484, autoPlay, preload, startTime-20",
                                 player: PlayerData(pluginConfig: PluginConfig(config: [YouboraPlugin.pluginName: analyticsConfig])),
@@ -38,6 +39,7 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "https",
+                                                urlType: "DIRECT",
                                                 startTime: 20)))
         
         videos.append(VideoData(title: "3835484, autoPlay-false, preload",
@@ -47,7 +49,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         videos.append(VideoData(title: "3835484, autoPlay, preload-false",
                                 player: PlayerData(preload: false,
@@ -56,7 +59,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
 
         videos.append(VideoData(title: "3835484, autoPlay-false, preload-false",
                                 player: PlayerData(autoPlay: false, preload: false,
@@ -65,7 +69,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https")))
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT")))
         
         return videos
     }

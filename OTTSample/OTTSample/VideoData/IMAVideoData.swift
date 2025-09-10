@@ -24,7 +24,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 castAdditionalData: CastAdditionalData(adTagType: "vast")))
         
         let imaSkippableConfig = IMAConfig()
@@ -37,6 +38,7 @@ extension VideoData {
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
                                                 networkProtocol: "https",
+                                                urlType: "DIRECT",
                                                 startTime: 20),
                                 castAdditionalData: CastAdditionalData(adTagType: "vast")))
         
@@ -49,7 +51,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 castAdditionalData: CastAdditionalData(adTagType: "vmap")))
         
         let imaAdRulesConfig = IMAConfig()
@@ -61,7 +64,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 castAdditionalData: CastAdditionalData(adTagType: "vast")))
 
         let imaPrerollAdsResponseConfig = IMAConfig()
@@ -74,7 +78,8 @@ extension VideoData {
                                                 assetType: .media,
                                                 assetReferenceType: .media,
                                                 playbackContextType: .playback,
-                                                networkProtocol: "https"),
+                                                networkProtocol: "https",
+                                                urlType: "DIRECT"),
                                 castAdditionalData: CastAdditionalData(adTagType: "vast")))
         
         return videos

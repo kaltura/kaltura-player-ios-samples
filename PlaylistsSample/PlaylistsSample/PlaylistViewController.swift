@@ -169,10 +169,12 @@ class PlaylistViewController: UIViewController {
         
         var mediaOptions: [OTTMediaOptions] = []
                 
-        mediaOptions.append(OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https"))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https"))
-        mediaOptions.append(OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https"))
-
+        let option = OTTMediaOptions().set(assetId: "3835484").set(assetType: .media).set(assetReferenceType: .media).set(networkProtocol: "https")
+        option.urlType = "DIRECT"
+        mediaOptions.append(option)
+        mediaOptions.append(option)
+        mediaOptions.append(option)
+        
         player.loadPlaylist(options: mediaOptions, callback: { [weak self] error in
             guard let self = self else { return }
             if let error = error {
