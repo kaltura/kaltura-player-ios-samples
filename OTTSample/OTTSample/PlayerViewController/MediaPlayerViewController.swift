@@ -81,7 +81,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     //AG
     ///////////////////
-    @IBOutlet private weak var seekingThumnbnailImageView: UIImageView!
+    @IBOutlet private weak var seekingThumbnailImageView: UIImageView!
     private var seekingThumbnailsManager = SeekingThumbnailsManager()
     ///////////////////
     
@@ -558,8 +558,8 @@ extension MediaPlayerViewController {
         userSeekInProgress = true
         //AG
         ////////////
-        seekingThumnbnailImageView.image = nil
-        seekingThumnbnailImageView.isHidden = false
+        seekingThumbnailImageView.image = nil
+        seekingThumbnailImageView.isHidden = false
         ////////////
     }
     
@@ -567,7 +567,7 @@ extension MediaPlayerViewController {
         userSeekInProgress = false
         //AG
         ////////////
-        seekingThumnbnailImageView.isHidden = true
+        seekingThumbnailImageView.isHidden = true
         ////////////
     }
     
@@ -577,7 +577,7 @@ extension MediaPlayerViewController {
         kalturaOTTPlayer.seek(to: seekTo)
         //AG
         ////////////
-        seekingThumnbnailImageView.isHidden = true
+        seekingThumbnailImageView.isHidden = true
         ////////////
     }
     
@@ -589,7 +589,7 @@ extension MediaPlayerViewController {
         seekingThumbnailsManager.getThumbnailInfo(for: seekPosition, params: .init(maximumSize: .init(width: 120, height: 0))) { [weak self] info in
             DispatchQueue.main.async {
                 guard let self else { return }
-                self.seekingThumnbnailImageView.image = info?.image
+                self.seekingThumbnailImageView.image = info?.image
             }
         }
     }

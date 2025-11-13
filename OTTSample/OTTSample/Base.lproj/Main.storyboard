@@ -594,7 +594,7 @@
                         <outlet property="mediaProgressSlider" destination="m0L-dC-YCC" id="isT-Vm-07W"/>
                         <outlet property="middleVisualEffectView" destination="P8d-P2-ona" id="H6Y-7M-iWY"/>
                         <outlet property="playPauseButton" destination="L6Z-Kx-r4C" id="899-Rd-Z6b"/>
-                        <outlet property="seekingThumnbnailImageView" destination="dN1-zG-9QK" id="Q13-BQ-s9W"/>
+                        <outlet property="seekingThumbnailImageView" destination="dN1-zG-9QK" id="Q13-BQ-s9W"/>
                         <outlet property="settingsVisualEffectView" destination="rFh-gs-qDs" id="ZmS-Qo-3tt"/>
                         <outlet property="topVisualEffectView" destination="2x3-QI-ayb" id="Dtz-pO-dqe"/>
                         <outlet property="topVisualEffectViewHeightConstraint" destination="XLc-NQ-Dsy" id="jA4-0x-2TF"/>
