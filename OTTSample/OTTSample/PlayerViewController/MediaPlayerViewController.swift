@@ -79,6 +79,12 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet private weak var playPauseButton: PPRButton!
     
+    //AG
+    ///////////////////
+    @IBOutlet private weak var seekingThumnbnailImageView: UIImageView!
+    private var seekingThumbnailsManager = SeekingThumbnailsManager()
+    ///////////////////
+    
     @IBOutlet private weak var mediaProgressSlider: UIPlayerSlider!
     private var userSeekInProgress: Bool = false {
         didSet {
@@ -117,6 +123,11 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
         let ottPlayerOptions = playerOptions(videoData)
         kalturaOTTPlayer = KalturaOTTPlayer(options: ottPlayerOptions)
         kalturaOTTPlayer.view = kalturaPlayerView
+        
+        //AG
+        /////////////////////
+        seekingThumbnailsManager.kalturaPlayer = kalturaOTTPlayer
+        /////////////////////
         
         NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] (notification) in
             guard let self = self else { return }
@@ -373,7 +384,7 @@ class MediaPlayerViewController: UIViewController, PlayerViewController {
             let currentTime = self.getTimeRepresentation(self.kalturaOTTPlayer.currentTime)
             DispatchQueue.main.async {
                 self.currentTimeLabel.text = currentTime
-                self.mediaProgressSlider.value = Float(self.kalturaOTTPlayer.currentTime / self.kalturaOTTPlayer.duration)
+                self.mediaProgressSlider.value = Float(self.kalturaOTTPlayer.currentTime / self.kalturaOTTPlayer.duration)                
             }
         }
     }
@@ -545,17 +556,44 @@ extension MediaPlayerViewController {
     
     @IBAction func mediaProgressSliderTouchDown(_ sender: UISlider) {
         userSeekInProgress = true
+        //AG
+        ////////////
+        seekingThumnbnailImageView.image = nil
+        seekingThumnbnailImageView.isHidden = false
+        ////////////
     }
     
     @IBAction func mediaProgressSliderTouchUpOutside(_ sender: UISlider) {
         userSeekInProgress = false
+        //AG
+        ////////////
+        seekingThumnbnailImageView.isHidden = true
+        ////////////
     }
     
     @IBAction func mediaProgressSliderTouchUpInside(_ sender: UISlider) {
         let currentValue = Double(sender.value)
         let seekTo = currentValue * kalturaOTTPlayer.duration
         kalturaOTTPlayer.seek(to: seekTo)
+        //AG
+        ////////////
+        seekingThumnbnailImageView.isHidden = true
+        ////////////
     }
+    
+    //AG
+    /////////////////////
+    @IBAction func mediaProgressSliderValueChanged(_ sender: UISlider) {
+        let currentValue = Double(sender.value)
+        let seekPosition = currentValue * kalturaOTTPlayer.duration
+        seekingThumbnailsManager.getThumbnailInfo(for: seekPosition, params: .init(maximumSize: .init(width: 120, height: 0))) { [weak self] info in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.seekingThumnbnailImageView.image = info?.image
+            }
+        }
+    }
+    /////////////////////
     
     @IBAction private func playButtonTouched(_ sender: Any) {
         if playPauseButton.displayState == .replay {

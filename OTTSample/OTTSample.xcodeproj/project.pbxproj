@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D879A6FFFD154D9FFBF0EE6 /* Pods_OTTSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76E5DC614FC11A64743B6859 /* Pods_OTTSample.framework */; };
+		77A572C82EC394C300FE4F11 /* SeekingThumbnailsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A572C72EC394C300FE4F11 /* SeekingThumbnailsManager.swift */; };
 		D24241EA24A4D7250037FDAD /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24241E924A4D7250037FDAD /* CircleProgressView.swift */; };
 		D24D63E5247F9CD80043FF11 /* BasicVideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */; };
 		D24D63E7247F9F810043FF11 /* IMAAdTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24D63E6247F9F810043FF11 /* IMAAdTags.swift */; };
@@ -38,6 +39,7 @@
 		224948AAB8DB9E5358C12A57 /* Pods-OTTSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OTTSample.release.xcconfig"; path = "Target Support Files/Pods-OTTSample/Pods-OTTSample.release.xcconfig"; sourceTree = "<group>"; };
 		34FD1B02DE7FD9E0EB47A894 /* Pods-OTTSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OTTSample.debug.xcconfig"; path = "Target Support Files/Pods-OTTSample/Pods-OTTSample.debug.xcconfig"; sourceTree = "<group>"; };
 		76E5DC614FC11A64743B6859 /* Pods_OTTSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OTTSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		77A572C72EC394C300FE4F11 /* SeekingThumbnailsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekingThumbnailsManager.swift; sourceTree = "<group>"; };
 		D24241E924A4D7250037FDAD /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		D24D63E4247F9CD80043FF11 /* BasicVideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicVideoData.swift; sourceTree = "<group>"; };
 		D24D63E6247F9F810043FF11 /* IMAAdTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAAdTags.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77A572C62EC3946100FE4F11 /* SeekingThumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				77A572C72EC394C300FE4F11 /* SeekingThumbnailsManager.swift */,
+			);
+			path = SeekingThumbnails;
+			sourceTree = "<group>";
+		};
 		B2C00631C4F43827B076F1D2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +171,7 @@
 				D29A68F0245F1CBB00C942ED /* MediasTableViewController.swift */,
 				D24D63E3247F9CA90043FF11 /* VideoData */,
 				D29A68F2245F1CBB00C942ED /* PlayerViewController */,
+				77A572C62EC3946100FE4F11 /* SeekingThumbnails */,
 				D24241E824A4D6CC0037FDAD /* CustomViews */,
 				D2B4286825CAE01800A217E3 /* GoogleChromeCast */,
 				D2BB80402439FD3D0050228D /* Main.storyboard */,
@@ -313,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2E3A6AA25514AA300BD152D /* UIPlayerSlider.swift in Sources */,
+				77A572C82EC394C300FE4F11 /* SeekingThumbnailsManager.swift in Sources */,
 				D2815555248E375C00099C1B /* IMADAIVideoData.swift in Sources */,
 				DA0D9FBF277D353C004D9FDD /* PlaylistViewController.swift in Sources */,
 				D2F1D4B9249A4D5E00D57863 /* YouboraIMAVideoData.swift in Sources */,
@@ -481,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = OTTSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -502,7 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X8RDCFJK95;
 				INFOPLIST_FILE = OTTSample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

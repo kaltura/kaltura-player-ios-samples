@@ -1,85 +1,87 @@
 PODS:
-  - DownloadToGo (3.18.0):
-    - GCDWebServer (~> 3.5.4)
-    - M3U8Kit (= 1.0.0)
-    - PlayKitUtils (~> 0.5)
-    - Realm (~> 10.32.0)
-    - RealmSwift (~> 10.32.0)
-    - XCGLogger (~> 7.0.0)
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
-  - google-cast-sdk (4.7.0):
-    - google-cast-sdk/Core (= 4.7.0)
+  - DownloadToGo (3.20.0):
+    - kGCDWebServer (~> 4.0.0)
+    - M3U8Kit (= 1.1.0)
+    - PlayKitUtils (~> 0.7)
+    - Realm (~> 10.50.0)
+    - RealmSwift (~> 10.50.0)
+    - XCGLogger (~> 7.1.5)
+  - google-cast-sdk (4.8.1):
     - Protobuf (~> 3.13)
-  - google-cast-sdk/Core (4.7.0):
-    - Protobuf (~> 3.13)
-  - GoogleAds-IMA-iOS-SDK (3.18.1)
-  - KalturaNetKit (1.6.1):
-    - KalturaNetKit/Core (= 1.6.1)
-  - KalturaNetKit/Core (1.6.1):
-    - SwiftyJSON (= 5.0.0)
-  - KalturaPlayer/Core (4.8.1):
+  - GoogleAds-IMA-iOS-SDK (3.22.1)
+  - KalturaNetKit (1.7.0):
+    - KalturaNetKit/Core (= 1.7.0)
+  - KalturaNetKit/Core (1.7.0):
+    - kSwiftyJSON (= 5.0.8)
+  - KalturaPlayer/Core (4.10.1):
     - KalturaPlayer/Interceptor
-  - KalturaPlayer/Interceptor (4.8.1):
-    - PlayKit (~> 3.27)
-  - KalturaPlayer/Offline (4.8.1):
-    - DownloadToGo (~> 3.18)
-    - PlayKit (~> 3.27)
-  - KalturaPlayer/Offline_OTT (4.8.1):
+  - KalturaPlayer/Interceptor (4.10.1):
+    - PlayKit (~> 3.31)
+  - KalturaPlayer/Offline (4.10.1):
+    - DownloadToGo (~> 3.20.0)
+    - PlayKit (~> 3.31)
+  - KalturaPlayer/Offline_OTT (4.10.1):
     - KalturaPlayer/Offline
-    - PlayKitKava (~> 1.10)
-    - PlayKitProviders (~> 1.18)
-  - KalturaPlayer/UI (4.8.1):
+    - PlayKitKava (~> 1.11)
+    - PlayKitProviders (~> 1.19)
+  - KalturaPlayer/UI (4.10.1):
     - KalturaPlayer/Core
-  - M3U8Kit (1.0.0)
-  - ObjcExceptionBridging (1.0.1):
-    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
-  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
-  - PlayKit (3.27.2):
-    - PlayKit/Core (= 3.27.2)
-  - PlayKit/AnalyticsCommon (3.27.2):
+  - kGCDWebServer (4.0.0):
+    - kGCDWebServer/Core (= 4.0.0)
+  - kGCDWebServer/Core (4.0.0)
+  - kSwiftyJSON (5.0.8)
+  - M3U8Kit (1.1.0)
+  - ObjcExceptionBridging (7.1.5):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 7.1.5)
+  - ObjcExceptionBridging/ObjcExceptionBridging (7.1.5)
+  - PlayKit (3.31.0):
+    - PlayKit/Core (= 3.31.0)
+  - PlayKit/AnalyticsCommon (3.31.0):
     - PlayKit/Core
-  - PlayKit/Core (3.27.2):
-    - KalturaNetKit (~> 1.6.1)
-    - PlayKitUtils (~> 0.5)
-    - SwiftyJSON (= 5.0.0)
-    - XCGLogger (= 7.0.0)
-  - PlayKit_IMA (1.14.0):
-    - GoogleAds-IMA-iOS-SDK (= 3.18.1)
-    - GoogleAds-IMA-tvOS-SDK (= 4.6.1)
-    - PlayKit (~> 3.22)
-  - PlayKitGoogleCast (1.5.2):
-    - google-cast-sdk (= 4.7.0)
-    - XCGLogger (= 7.0.0)
-  - PlayKitKava (1.10.1):
-    - PlayKit/AnalyticsCommon (~> 3.21)
-  - PlayKitProviders (1.18.1):
-    - KalturaNetKit (~> 1.6.1)
-    - PlayKit/AnalyticsCommon (~> 3.27)
-    - PlayKitUtils (~> 0.5)
-    - SwiftyXMLParser (= 5.0.0)
-  - PlayKitUtils (0.5.1)
-  - PlayKitYoubora (1.15.0):
-    - PlayKit/AnalyticsCommon (~> 3.27)
-    - YouboraLib (= 6.6.25)
-  - Protobuf (3.22.0)
-  - Realm (10.32.3):
-    - Realm/Headers (= 10.32.3)
-  - Realm/Headers (10.32.3)
-  - RealmSwift (10.32.3):
-    - Realm (= 10.32.3)
-  - SwiftyJSON (5.0.0)
-  - SwiftyXMLParser (5.0.0)
-  - Wormholy (1.7.0)
-  - XCGLogger (7.0.0):
-    - XCGLogger/Core (= 7.0.0)
-  - XCGLogger/Core (7.0.0):
+  - PlayKit/Core (3.31.0):
+    - KalturaNetKit (~> 1.7.0)
+    - kSwiftyJSON (= 5.0.8)
+    - PlayKitUtils (~> 0.7)
+    - XCGLogger (= 7.1.5)
+  - PlayKit_IMA (1.16.0):
+    - GoogleAds-IMA-iOS-SDK (= 3.22.1)
+    - GoogleAds-IMA-tvOS-SDK (= 4.12.0)
+    - PlayKit (~> 3.30)
+  - PlayKitGoogleCast (1.6.0):
+    - google-cast-sdk (= 4.8.1)
+    - XCGLogger (= 7.1.5)
+  - PlayKitKava (1.11.0):
+    - PlayKit/AnalyticsCommon (~> 3.30)
+  - PlayKitProviders (1.19.1):
+    - KalturaNetKit (~> 1.7.0)
+    - PlayKit/AnalyticsCommon (~> 3.30)
+    - PlayKitUtils (~> 0.7)
+    - SwiftyXMLParser (= 5.6.0)
+  - PlayKitUtils (0.7.0)
+  - PlayKitYoubora (1.16.0):
+    - PlayKit/AnalyticsCommon (~> 3.30)
+    - YouboraLib (= 6.7)
+  - Protobuf (3.29.5)
+  - Realm (10.50.1):
+    - Realm/Headers (= 10.50.1)
+  - Realm/Headers (10.50.1)
+  - RealmSwift (10.50.1):
+    - Realm (= 10.50.1)
+  - SwiftyXMLParser (5.6.0)
+  - Wormholy (2.2.0):
+    - Wormholy/WormholyObjC (= 2.2.0)
+    - Wormholy/WormholySwift (= 2.2.0)
+  - Wormholy/WormholyObjC (2.2.0):
+    - Wormholy/WormholySwift
+  - Wormholy/WormholySwift (2.2.0)
+  - XCGLogger (7.1.5):
+    - XCGLogger/Core (= 7.1.5)
+  - XCGLogger/Core (7.1.5):
     - ObjcExceptionBridging
-  - YouboraLib (6.6.25)
+  - YouboraLib (6.7.0)
 
 DEPENDENCIES:
-  - KalturaPlayer/Offline_OTT
+  - KalturaPlayer/Offline_OTT (= 4.10.1)
   - KalturaPlayer/UI
   - PlayKit_IMA
   - PlayKitGoogleCast
@@ -89,11 +91,12 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - DownloadToGo
-    - GCDWebServer
     - google-cast-sdk
     - GoogleAds-IMA-iOS-SDK
     - KalturaNetKit
     - KalturaPlayer
+    - kGCDWebServer
+    - kSwiftyJSON
     - M3U8Kit
     - ObjcExceptionBridging
     - PlayKit
@@ -106,37 +109,36 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
-    - SwiftyJSON
     - SwiftyXMLParser
     - Wormholy
     - XCGLogger
     - YouboraLib
 
 SPEC CHECKSUMS:
-  DownloadToGo: 4a40b914acf3691c0dddcd6d8896533e20f50e0a
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
-  google-cast-sdk: 6731e9a206ce43e0f4433d15598ad8a19f0371d5
-  GoogleAds-IMA-iOS-SDK: 54941bbcc0fc7408ad5ee13e4347343604927eea
-  KalturaNetKit: 2af6c3c2a1abbd8936b5acde45f33f5195125f4a
-  KalturaPlayer: 88de9b168e2871ed1a8f940d3c9d9fa5ff35bfbd
-  M3U8Kit: bfd8b437d48632cdbc8e7a21cb25fde295b2f863
-  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
-  PlayKit: 4e2c81a6495b2266cc523f767e6e36eb78305ac0
-  PlayKit_IMA: b7a37ba5474f3397f9c0880e7105fed72c21bc02
-  PlayKitGoogleCast: 25b87036d5de8bdba1a5a820f27e00dac300044f
-  PlayKitKava: 82abd140990020da3a5e76c5320bafb24db4e703
-  PlayKitProviders: 6c6774f9a737ca6103ab1be9149f5fc8d8ee1cb3
-  PlayKitUtils: 4a11aef6488e778d10b774702ba79dd0cfa0ef11
-  PlayKitYoubora: 2784003d0e0934ea53a0bbf34a12cf7a928bd63d
-  Protobuf: 5e6cbc143d02fe08585d86b0098f8b755d2caaab
-  Realm: fdf6732924dc5e69e30e0db2c11e869f92b53f3d
-  RealmSwift: 7c181da8fa1c2fe613656a77c198d6a3dc3879a1
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
-  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
-  Wormholy: ab1c8c2f02f58587a0941deb0088555ffbf039a1
-  XCGLogger: 0434f15e3909cdc450bb63faf638b8792ab782ab
-  YouboraLib: 6ee57250e24a2f88a12c5685f5b57ce641fea851
+  DownloadToGo: 2be4ee29894ea73468ecae619f5d4cc8cb362a15
+  google-cast-sdk: beb7a3ec3def0e3beb618a849b0f1ab2b15b5ebb
+  GoogleAds-IMA-iOS-SDK: 160c3616b8371b58016e30aaf441e71d6d9e8f7d
+  KalturaNetKit: a01d38b9d54ae38f5f20ffd6c15d0480097b154e
+  KalturaPlayer: f67eb6899f76b9edfc8b8c72101413f3ec96051b
+  kGCDWebServer: 5293f9ea3296609e6b023e700560af2fe1250056
+  kSwiftyJSON: 9d87145a14a721c7b64ed68a77ca105fbf034d37
+  M3U8Kit: d0f2dae9736a35fc44b54bea10aeebcaa75215b3
+  ObjcExceptionBridging: d3d37d62981bb7f252ecb31b62d7e23a96bbfb8a
+  PlayKit: 2153926264d954bd075f0b66b20b609befe5f93a
+  PlayKit_IMA: 11dc0b03ab0fb7723876bfb1086e9e0c8be1c741
+  PlayKitGoogleCast: a1bd72839fa559e0076c58b2f94c7201a4338210
+  PlayKitKava: caadb9648a112528c82ed95ea7e5cebcee223e75
+  PlayKitProviders: 900ba107f2b5a112feb211f75bd77e687e691ca8
+  PlayKitUtils: 7b0e4a5d981fbe88437829c97610b565a2534d38
+  PlayKitYoubora: 8e2f49e7bdfa54a26754f791d3bad9a4dbef856a
+  Protobuf: 164aea2ae380c3951abdc3e195220c01d17400e0
+  Realm: 36bc9fe2681d7cf234aa487e7990821c772206a2
+  RealmSwift: 84a370d3d4f191d327a9f8ade1f064a274f79847
+  SwiftyXMLParser: 9b98995235961881322015ebe38d1f3d7c953bd7
+  Wormholy: f250d9792d42880b6184eb57d1e93a7c71900ecf
+  XCGLogger: 399c5885210b4e2ad79d9f7a29b105d672ef724f
+  YouboraLib: 6ed1ea91a640e260cc62df4aadcef488aa3f818d
 
-PODFILE CHECKSUM: 5df68e12fa5ae8e31d29097e2c4ee8d7d5efacc5
+PODFILE CHECKSUM: 9ca054651ad688a99cf98553a41c830d0bb01520
 
 COCOAPODS: 1.15.2
