@@ -9,6 +9,8 @@
 import UIKit
 import KalturaPlayer
 import PlayKit_IMA
+import PlayKit
+import AVFoundation
 
 class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     
@@ -20,7 +22,7 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
                 kalturaOTTPlayer.stop()
                 
                 shouldPreparePlayer = true
-                
+                                                
                 // Update only; do not override the player options.
                 let ottPlayerOptions = playerOptions(videoData)
                 if let playerKS = ottPlayerOptions.ks {
@@ -38,6 +40,12 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
     
     @IBOutlet weak var mediaPlayer: KPMediaPlayer!
     
+    //AG
+    //////////////////////////////////////
+    @IBOutlet weak var seekingThumbnailImageView: UIImageView!
+    private var seekingThumbnailsManager = SeekingThumbnailsManager()
+    //////////////////////////////////////
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +53,7 @@ class KPMediaPlayerViewController: UIViewController, PlayerViewController {
         kalturaOTTPlayer = KalturaOTTPlayer(options: ottPlayerOptions)
         mediaPlayer.player = kalturaOTTPlayer
         mediaPlayer.delegate = self
+        seekingThumbnailsManager.kalturaPlayer = kalturaOTTPlayer
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,5 +167,28 @@ extension KPMediaPlayerViewController: KPMediaPlayerDelegate {
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func mediaProgressSliderDidTouchDown() {
+        seekingThumbnailImageView.image = nil
+        seekingThumbnailImageView.isHidden = false
+    }
+    
+    func mediaProgressSliderDidTouchUpOutside() {
+        seekingThumbnailImageView.isHidden = true
+    }
+    
+    func mediaProgressSliderDidTouchUpInside() {
+        seekingThumbnailImageView.isHidden = true
+    }
+    
+    func mediaProgressSliderValueChanged(value: Double) {
+        let seekPosition = value * kalturaOTTPlayer.duration
+        seekingThumbnailsManager.getThumbnailInfo(for: seekPosition, params: .init(maximumSize: .init(width: 120, height: 0))) { [weak self] info in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.seekingThumbnailImageView.image = info?.image
+            }
+        }
     }
 }

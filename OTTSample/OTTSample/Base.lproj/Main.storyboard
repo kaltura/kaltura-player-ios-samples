@@ -231,11 +231,16 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ehl-Y3-ASf">
-                                <rect key="frame" x="127.66666666666669" y="610.66666666666663" width="120" height="67.333333333333371"/>
+                                <rect key="frame" x="127.66666666666669" y="660.66666666666663" width="120" height="67.333333333333371"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Ehl-Y3-ASf" secondAttribute="height" multiplier="16:9" id="30j-Mz-p1D"/>
                                     <constraint firstAttribute="width" constant="120" id="kQF-s9-0bF"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zuh-8K-PP7"/>
@@ -247,7 +252,7 @@
                             <constraint firstItem="zuh-8K-PP7" firstAttribute="trailing" secondItem="a2S-65-bz7" secondAttribute="trailing" id="UwY-ut-xg3"/>
                             <constraint firstItem="a2S-65-bz7" firstAttribute="leading" secondItem="zuh-8K-PP7" secondAttribute="leading" id="WFU-o9-mMI"/>
                             <constraint firstItem="zuh-8K-PP7" firstAttribute="trailing" secondItem="a2S-65-bz7" secondAttribute="trailing" id="efg-30-5mf"/>
-                            <constraint firstItem="a2S-65-bz7" firstAttribute="bottom" secondItem="Ehl-Y3-ASf" secondAttribute="bottom" constant="100" id="fg8-Em-0cy"/>
+                            <constraint firstItem="a2S-65-bz7" firstAttribute="bottom" secondItem="Ehl-Y3-ASf" secondAttribute="bottom" constant="50" id="fg8-Em-0cy"/>
                             <constraint firstItem="a2S-65-bz7" firstAttribute="top" secondItem="zuh-8K-PP7" secondAttribute="top" id="oYw-cj-9hQ"/>
                             <constraint firstItem="a2S-65-bz7" firstAttribute="leading" secondItem="zuh-8K-PP7" secondAttribute="leading" id="qxw-16-lDz"/>
                             <constraint firstItem="a2S-65-bz7" firstAttribute="top" secondItem="zuh-8K-PP7" secondAttribute="top" id="wc4-C7-jbB"/>
@@ -255,7 +260,7 @@
                     </view>
                     <connections>
                         <outlet property="mediaPlayer" destination="a2S-65-bz7" id="y8b-ar-dfj"/>
-                        <outlet property="seekingThunbnailImageView" destination="Ehl-Y3-ASf" id="GPh-Q8-aaj"/>
+                        <outlet property="seekingThumbnailImageView" destination="Ehl-Y3-ASf" id="bBO-pZ-3L9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOK-3W-l0U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
