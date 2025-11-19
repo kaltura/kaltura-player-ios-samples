@@ -20,17 +20,25 @@ class SeekingThumbnailsManager {
     private var thumbnailsCache: [Float64: ThumbnailInfo] = [:]
     private var lastRequestedPosition: Float64?
     
+    private var queue: DispatchQueue = .init(label: "seekingThumbnailsQueue")
+    
     @objc public func getThumbnailInfo(for position: Float64, params: ThumbnailRequestParams?, completion: @escaping (ThumbnailInfo?) -> Void) {
-        let positionApplyingGranularity = positionApplyingGranularity(position)
-        if let cachedInfo = thumbnailsCache[positionApplyingGranularity] {
-            completion(cachedInfo)
-        } else {
-            lastRequestedPosition = positionApplyingGranularity
-            kalturaPlayer?.getThumbnailInfo(for: positionApplyingGranularity, params: params) { [weak self] info in
-                guard let self else { return }
-                self.thumbnailsCache[positionApplyingGranularity] = info
-                if positionApplyingGranularity == self.lastRequestedPosition {
-                    completion(info)
+        DispatchQueue.global().async {
+            let positionApplyingGranularity = self.positionApplyingGranularity(position)
+            var cachedInfo: ThumbnailInfo?
+            self.queue.sync { // to prevent crash during parallel requests
+                cachedInfo = self.thumbnailsCache[positionApplyingGranularity]
+            }
+            if let cachedInfo {
+                completion(cachedInfo)
+            } else {
+                self.lastRequestedPosition = positionApplyingGranularity
+                self.kalturaPlayer?.getThumbnailInfo(for: positionApplyingGranularity, params: params) { [weak self] info in
+                    guard let self else { return }
+                    self.thumbnailsCache[positionApplyingGranularity] = info
+                    if positionApplyingGranularity == self.lastRequestedPosition {
+                        completion(info)
+                    }
                 }
             }
         }
