@@ -1,0 +1,25 @@
+language: swift
+osx_image: xcode12.4
+
+before_install:
+  - gem install cocoapods xcpretty
+  - pod repo update
+  - pod install --project-directory=BasicSample
+  - pod install --project-directory=BasicSample_tvOS
+  - pod install --project-directory=OTTSample
+  - pod install --project-directory=OTTSample_tvOS
+  - pod install --project-directory=OVPSample
+  - pod install --project-directory=OVPSample_tvOS
+  
+script:
+  - ./travis-build.sh
+  
+notifications:
+  email:
+    recipients:
+      - sergey.chausov@kaltura.com
+      - nilit.danan@kaltura.com
+      - gilad.nadav@kaltura.com
+      - oren.melamed@kaltura.com
+    on_success: change
+    on_failure: always
